@@ -26,9 +26,9 @@ const yanjiHtml = `<!DOCTYPE html>
   <meta name="theme-color" content="#FFFFFF">
   <title>延吉金秋风情 · 长辈舒享旅行手账</title>
   
-  <!-- Leaflet Map CSS & JS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Leaflet Map CSS & JS (Local Vendor first with CDN fallback for China accessibility) -->
+  <link rel="stylesheet" href="./vendor/leaflet/leaflet.css" onerror="this.onerror=null;this.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'"/>
+  <script src="./vendor/leaflet/leaflet.js" onerror="this.onerror=null;this.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'"></script>
 
   <style>
 ${cssContent}
