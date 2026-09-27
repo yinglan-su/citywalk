@@ -4,4 +4,7 @@ qrcode.png
 source_qingdao.html
 build_encrypted_qingdao.js
 dist_qingdao
+source_yanji.html
+build_encrypted_yanji.js
+dist_yanji
 .vercel
