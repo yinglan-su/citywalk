@@ -1,3 +1,7 @@
 source_app.html
 build_encrypted.js
 qrcode.png
+source_qingdao.html
+build_encrypted_qingdao.js
+dist_qingdao
+.vercel
