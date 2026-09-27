@@ -253,12 +253,12 @@ ${cssContent}
 
           <div class="act-special-grid">
             <div class="as-item">
-              <span class="as-item-label">参访贴士:</span>
-              <span class="as-item-val">刷身份证免费入馆，馆内提供免费行李寄存与长辈休息椅，南门西侧设有无障碍电梯。</span>
+              <span class="as-item-label">预约与门票:</span>
+              <span class="as-item-val"><strong>免费参观（免费不免票）</strong>。可提前通过微信公众号【延边博物馆】实名预约，或现场直接刷<strong>二代身份证原件</strong>快速入馆；长辈同行务必随身携带实体二代身份证，现场配有专属人工绿色通道免排队。</span>
             </div>
             <div class="as-item">
               <span class="as-item-label">落客指引:</span>
-              <span class="as-item-val">网约车直接停在博物馆南门正门平坦路缘下客，下车即进门。</span>
+              <span class="as-item-val">网约车直接停在博物馆南门正门平坦路缘下客，下车即进门，全馆电梯无障碍。</span>
             </div>
           </div>
 
@@ -403,7 +403,14 @@ ${cssContent}
             <span>延边大学学府漫步 & 网红双语弹幕墙从容侧影</span>
             <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%BB%B6%E8%BE%B9%E5%A4%A7%E5%AD%A6" onclick="openDianping('延吉 延边大学', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
           </div>
-          <div class="act-tagline">傍晚斜阳顺光，从正南门刷脸进入延边大学（提前微信预约）。求真楼融合了朝鲜族传统大飞檐与现代学府气魄。漫步后在大学城对街开阔广场顺光侧影留念，避开夜间几万人扎堆排队拍照的拥挤人潮，长辈拍照舒心从容。</div>
+          <div class="act-tagline">傍晚斜阳顺光，漫步延边大学学府园区。求真楼融合了朝鲜族传统大飞檐与现代学府气魄。漫步后在大学城对街开阔广场顺光侧影留念，避开夜间扎堆排队拍照的拥挤人潮，长辈拍照舒心从容。</div>
+
+          <div class="act-special-grid">
+            <div class="as-item" style="grid-column: 1 / -1;">
+              <span class="as-item-label">预约与进校:</span>
+              <span class="as-item-val">① <strong>网红双语弹幕墙（完全免预约）</strong>：位于延大南门正对面的大学城商业楼外立面，属于开放市政街道，全天 24 小时随到随拍；<br>② <strong>进校漫步</strong>：校园实施访客登记，可通过微信搜索【延边大学】小程序登记或在南门安保处出示<strong>二代身份证</strong>登记入校；如遇假期临时校园管理，南门正对面广场即可开阔仰拍求真楼传统青瓦飞檐，长辈无需硬挤。</span>
+            </div>
+          </div>
 
           <!-- Photo Spot Card -->
           <div class="spot-photo-card">
@@ -900,6 +907,19 @@ ${cssContent}
           </div>
         </div>
 
+        <!-- Mini Map Container for Day 6 -->
+        <div class="day-map-card">
+          <div class="dmm-header">
+            <span class="dmm-title">当日专车送站与高铁返程微缩地图</span>
+            <span id="dmmTag_day6" class="dmm-tag">西站返程路线已规划</span>
+          </div>
+          <div id="miniMap_day6" class="mini-map-box"></div>
+          <div class="dcc-stats" id="dccStats_day6">
+            <span>预计车程: <strong>约 8.5 km (专车送站20m)</strong></span>
+            <span>舒享步数: <strong>约 1,500 步 (车站平路从容候车)</strong></span>
+          </div>
+        </div>
+
         <!-- Activity Cards -->
         <div class="section-title">核心行程节奏</div>
 
@@ -1096,6 +1116,27 @@ ${cssContent}
           <span>防川与图们边境出行注意事项</span>
         </div>
         <div class="act-tagline">Day 3 前往珲春防川或图们边境，属于重要边防区域。全员必须随身携带<strong>二代身份证原件</strong>，沿途边防检查站需核验身份证；边境区域严禁未经审批放飞无人机，在国界线附近请遵守指示牌，文明参观。</div>
+      </div>
+
+      <div class="act-card">
+        <div class="act-header">
+          <span class="act-time-pill" style="background:var(--brand-accent); color:#FFF;">预约与入馆</span>
+          <span class="act-intensity intensity-flat">重点景点预约须知</span>
+        </div>
+        <div class="act-name">
+          <span>延边博物馆与延边大学进校预约全攻略</span>
+        </div>
+        <div class="act-tagline">长辈出行前请注意以下重点景点的官方预约规则与身份证携带要求：</div>
+        <div class="act-special-grid">
+          <div class="as-item" style="grid-column: 1 / -1;">
+            <span class="as-item-label" style="font-weight:700; color:#0F172A;">1. 延边博物馆（国家一级馆 · 必须带二代身份证）</span>
+            <span class="as-item-val"><strong>免费参观（免费不免票）</strong>。散客可关注微信公众号【延边博物馆】提前 1-3 天线上实名预约，也可在入口处直接刷<strong>本人二代身份证原件</strong>快速核验进馆。长辈同行请务必随身携带实体二代身份证，现场设有免排队专属人工绿色通道。开放时间 09:00 - 17:30（17:00停止入馆）。</span>
+          </div>
+          <div class="as-item" style="grid-column: 1 / -1;">
+            <span class="as-item-label" style="font-weight:700; color:#0F172A;">2. 延边大学与网红双语弹幕墙（弹幕墙完全免预约）</span>
+            <span class="as-item-val"><strong>网红弹幕墙</strong>：位于延大正门正对面的大学城商业楼外立面，属于开放式城市市政街道，全天 24 小时随到随看，<strong>完全无需预约</strong>；<br><strong>进入校园漫步</strong>：校园实施访客登记管理，公众可通过微信搜索【延边大学】或【延边大学智慧校园】小程序登记访客信息，或在南门安保岗出示二代身份证登记；若国庆假期校方实施临时封闭管理，在南门外的开阔广场即可完整仰拍求真楼标志性朝鲜族青瓦大飞檐，视野开阔且无拥挤。</span>
+          </div>
+        </div>
       </div>
 
       <div class="act-card">
@@ -1324,6 +1365,15 @@ ${cssContent}
       if (pills[pillIdx]) pills[pillIdx].classList.add('active');
 
       initYjMiniMap(dayId);
+      setTimeout(() => {
+        if (yjMiniMaps[dayId]) {
+          yjMiniMaps[dayId].invalidateSize();
+          const layerData = yjMiniLayers[dayId];
+          if (layerData && layerData.polyline) {
+            yjMiniMaps[dayId].fitBounds(layerData.polyline.getBounds(), { padding: [25, 25] });
+          }
+        }
+      }, 80);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -1614,6 +1664,12 @@ ${cssContent}
 
         totalDist = '约 10 km (打车起步价随叫随到)';
         totalSteps = '约 5,000 步 (集市平坦采购)';
+      } else if (dayKey === 'day6') {
+        stops.push(YJ_SPOTS.hotel);
+        stops.push(YJ_SPOTS.west_station);
+
+        totalDist = '约 8.5 km (专车送达西站高架落客平台)';
+        totalSteps = '约 1,500 步 (车站平路候车从容)';
       }
 
       const statsEl = document.getElementById('dccStats_' + dayKey);
@@ -2089,6 +2145,13 @@ ${cssContent}
           stepsInfo = '帝王蟹整只清蒸，大腿肉雪白鲜甜软嫩，无需费力咀嚼，蟹膏做温热海鲜粥，滋阴养胃极适口。';
           dropoffInfo = '珲春安排在【海鲜街·醉香阁】现场活挑；延吉安排在市内活海鲜标杆【震海贝烤贝总店】独立包厢。';
           itineraryAdvice = '【双重满足】已为您在 Day 3（珲春海鲜街）与 Day 5（延吉震海贝烤贝）分别安排了两顿不同风味的鲜活俄罗斯帝王蟹大餐！';
+        } else if (text.includes('预约') || text.includes('门票') || text.includes('身份证') || text.includes('延大预约') || text.includes('博物馆预约')) {
+          title = '延边博物馆与延边大学预约指南';
+          rating = 'green';
+          badge = '[出行必读 · 免费不免票]';
+          stepsInfo = '① 延边博物馆：免费参观，微信关注【延边博物馆】实名预约或现场直接刷二代身份证原件（长辈走专属人工绿色通道）；② 延边大学：南门正对面网红双语弹幕墙完全免预约24小时可看；进校漫步在微信小程序【延边大学】登记访客信息或南门刷身份证登记。';
+          dropoffInfo = '长辈出行务必随身携带二代身份证原件；网约车直达南门正门平坦路缘下客。';
+          itineraryAdvice = '【预约建议】延边博物馆建议提前 1-3 天在微信公众号预约，现场刷实体身份证即可快速进入；延大弹幕墙在校外市政道路，无需进校即可尽兴拍照！';
         } else if (text.includes('恐龙') || text.includes('王国') || text.includes('乐园')) {
           title = '延吉恐龙王国 / 机械游乐园';
           rating = 'red';
@@ -2229,6 +2292,12 @@ ${cssContent}
       switchDay('day1');
       fetchLiveWeather(false);
       renderSavedIdeasList();
+      setTimeout(() => {
+        initYjMiniMap('day1');
+        if (yjMiniMaps['day1']) {
+          yjMiniMaps['day1'].invalidateSize();
+        }
+      }, 150);
     });
   </script>
 </body>
