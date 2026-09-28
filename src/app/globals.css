@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 248, 250, 252;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #f8fafc;
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom scrollbar hiding */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Print optimizations */
+@media print {
+  header, nav, button {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+}
