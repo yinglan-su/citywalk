@@ -61,11 +61,11 @@ ${cssContent}
       </button>
       <button class="theme-pill" onclick="switchDay('day3')">
         <span>Day 3</span>
-        <span class="pill-sub">珲春帝王蟹</span>
+        <span class="pill-sub">古建烤肉</span>
       </button>
       <button class="theme-pill" onclick="switchDay('day4')">
         <span>Day 4</span>
-        <span class="pill-sub">万亩金浪</span>
+        <span class="pill-sub">珲春帝王蟹</span>
       </button>
       <button class="theme-pill" onclick="switchDay('day5')">
         <span>Day 5</span>
@@ -456,89 +456,12 @@ ${cssContent}
       <!-- ==================== DAY 3 ==================== -->
       <div id="pane_day3" class="day-pane">
         <div class="senior-hero-card">
-          <div class="sh-title">Day 3 (10/3) · 边境风情一日 · 珲春防川三国交界 · 珲春活蒸帝王蟹</div>
-          <div class="sh-desc">今天前往中朝俄边境。长辈腿脚正常能走，特别设计两套出行方案：首选【路线 A】专属商务包车直达珲春防川风景区，乘直梯登临 12 层龙虎阁“一眼望三国”（左俄右朝脚下中，远眺图们江入海口与日本海），中午在珲春海鲜街豪享俄罗斯直运原产地活蒸帝王蟹；若当天追求超低车程，可自由一键切换为【路线 B】图们边境口岸国门与日光山俯瞰江湾。</div>
+          <div class="sh-title">Day 3 (10/3) · 市内文脉寻踪 · 梅花炭火烤肉 · 人民公园古榆 · 顺姬温面</div>
+          <div class="sh-desc">今天全程在延吉市内悠享慢调。上午打车探访延吉现存唯一的清代古建筑群【道尹公署旧址】，青砖灰瓦古树参天，平地漫步探寻百年边防文脉与汉朝双语石刻；中午在延吉老牌【梅花炭火烤肉】独立无烟包房享用正宗朝鲜族炭火烤肉，专职服务生全程代烤，黄牛雪花肉鲜嫩多汁；午后回希尔顿欢朋酒店深度午休 2 小时；下午漫步延吉人民公园百年古榆林海，看民间长辈农乐舞与棋艺；在劳顶笨咖啡品味热五味子茶与手工打糕雪冰；晚宴享用顺姬冷面招牌热玉米温面。</div>
           <div class="sh-tags">
-            <span class="sh-tag">一眼望中朝俄三国</span>
-            <span class="sh-tag">龙虎阁全高速直梯</span>
-            <span class="sh-tag">珲春活蒸帝王蟹</span>
-            <span class="sh-tag">门到门商务包车</span>
-            <span class="sh-tag">回欢朋休整品茗</span>
-          </div>
-        </div>
-
-        <!-- Day 3 Customizer & Transport Options -->
-        <div class="customizer-box">
-          <div class="cb-header">
-            <span class="cb-title">珲春出行方式与路线抉择</span>
-            <span class="cb-badge">动态生成地图与卡片</span>
-          </div>
-
-          <div class="cb-section-label">交通方式建议（包车 vs 高铁）：</div>
-          <div class="cb-radio-group">
-            <label class="cb-item">
-              <input type="radio" name="d3_transport" value="charter" checked onchange="updateYjDayRoute('day3')">
-              <div class="cb-item-content">
-                <div class="cb-item-title">方案 A（首选强烈推荐）：7座商务专车包车一日游（门到门零换乘）</div>
-                <div class="cb-item-desc">酒店大堂门前迎送，随身物品放车上，免去进出高铁站排队安检折腾，长辈车内舒心小憩</div>
-              </div>
-            </label>
-            <label class="cb-item">
-              <input type="radio" name="d3_transport" value="bullet_train" onchange="updateYjDayRoute('day3')">
-              <div class="cb-item-content">
-                <div class="cb-item-title">方案 B（极速备选）：城际高铁 (40m · ¥28) + 珲春当地包车/打车</div>
-                <div class="cb-item-desc">延吉西至珲春站高铁极速平稳（车程仅40分钟），出站后包地接车前往防川与海鲜街</div>
-              </div>
-            </label>
-          </div>
-
-          <div class="cb-section-label" style="margin-top:12px;">边境目的地偏好：</div>
-          <div class="cb-radio-group">
-            <label class="cb-item">
-              <input type="radio" name="d3_route" value="go_hunchun" checked onchange="updateYjDayRoute('day3')">
-              <div class="cb-item-content">
-                <div class="cb-item-title">珲春防川“一眼望三国” + 俄罗斯活蒸帝王蟹午宴（首选震撼推荐）</div>
-                <div class="cb-item-desc">直梯上龙虎阁看三国交界与日本海，中午大饱鲜活帝王蟹口福</div>
-              </div>
-            </label>
-            <label class="cb-item">
-              <input type="radio" name="d3_route" value="go_tumen" onchange="updateYjDayRoute('day3')">
-              <div class="cb-item-content">
-                <div class="cb-item-title">图们边境口岸国门 & 86号界碑 + 日光山森林俯瞰（从容舒缓备选）</div>
-                <div class="cb-item-desc">专车车程仅 45 分钟，超低位移，平视对岸朝鲜南阳市，下午从容回延吉深度午休</div>
-              </div>
-            </label>
-          </div>
-        </div>
-
-        <!-- Mini Map Container -->
-        <div class="day-map-card">
-          <div class="dmm-header">
-            <span class="dmm-title">当日专车动线与打卡点微缩地图</span>
-            <span id="dmmTag_day3" class="dmm-tag">珲春三国交界线已规划</span>
-          </div>
-          <div id="miniMap_day3" class="mini-map-box"></div>
-          <div class="dcc-stats" id="dccStats_day3">
-            <span>预计车程: <strong>约 280 km (全高速专车)</strong></span>
-            <span>舒享步数: <strong>约 4,500 步 (直梯全景)</strong></span>
-          </div>
-        </div>
-
-        <!-- Container for dynamically rendered Day 3 cards -->
-        <div id="d3_cards_container">
-          <!-- Rendered by JavaScript function renderDay3Cards -->
-        </div>
-      </div>
-
-      <!-- ==================== DAY 4 ==================== -->
-      <div id="pane_day4" class="day-pane">
-        <div class="senior-hero-card">
-          <div class="sh-title">Day 4 (10/4) · 海兰江畔万亩金浪 · 苹果梨香 · 顺姬温面</div>
-          <div class="sh-desc">专车南下龙井，探访海兰江畔万亩水稻公园，乘纯平观光小火车穿梭于金秋稻浪之中，呼吸无边稻香；参观亚洲最大苹果梨祖树林，赏枝头秋实；中午品尝特色黄牛排骨火锅；午后回希尔顿欢朋酒店深度午休 2 小时；下午漫步延吉人民公园百年古榆林海，看民间长辈农乐舞与棋艺；在劳顶笨咖啡品味热五味子茶与打糕雪冰；晚宴享用顺姬冷面招牌热玉米温面。</div>
-          <div class="sh-tags">
-            <span class="sh-tag">海兰江万亩金稻浪</span>
-            <span class="sh-tag">纯平观光小火车</span>
-            <span class="sh-tag">苹果梨发源母树</span>
+            <span class="sh-tag">延吉道尹公署古建</span>
+            <span class="sh-tag">梅花无烟炭火烤肉</span>
+            <span class="sh-tag">13:15-15:15 酒店午休</span>
             <span class="sh-tag">人民公园百年古榆</span>
             <span class="sh-tag">热玉米温面暖胃</span>
           </div>
@@ -548,12 +471,12 @@ ${cssContent}
         <div class="day-map-card">
           <div class="dmm-header">
             <span class="dmm-title">当日专车动线与打卡点微缩地图</span>
-            <span id="dmmTag_day4" class="dmm-tag">全景路线已规划</span>
+            <span id="dmmTag_day3" class="dmm-tag">市内路线已规划</span>
           </div>
-          <div id="miniMap_day4" class="mini-map-box"></div>
-          <div class="dcc-stats" id="dccStats_day4">
-            <span>预计车程: <strong>约 26 km (专车/打车接驳)</strong></span>
-            <span>舒享步数: <strong>约 4,800 步 (小火车接驳)</strong></span>
+          <div id="miniMap_day3" class="mini-map-box"></div>
+          <div class="dcc-stats" id="dccStats_day3">
+            <span>预计车程: <strong>约 12 km (市区打车起步价随叫随到)</strong></span>
+            <span>舒享步数: <strong>约 4,500 步 (古建庭院与公园平步)</strong></span>
           </div>
         </div>
 
@@ -562,60 +485,43 @@ ${cssContent}
 
         <div class="act-card">
           <div class="act-header">
-            <span class="act-time-pill">田园金浪 ~2h</span>
-            <span class="act-intensity intensity-ride">小火车观光</span>
+            <span class="act-time-pill">文脉寻踪 ~1.5h</span>
+            <span class="act-intensity intensity-flat">百年清代古建</span>
           </div>
           <div class="act-name">
-            <span>龙井良田百世度假区 · 海兰江万亩水稻金浪 & 苹果梨母树园</span>
-            <a href="dianping://searchshoplist?keyword=%E9%BE%99%E4%BA%95%20%E8%89%AF%E7%94%B0%E7%99%BE%E4%B8%96" onclick="openDianping('龙井 良田百世', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+            <span>延吉道尹公署旧址（百年清末古建筑群落 · 幽静文化寻踪）</span>
+            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E9%81%93%E5%B0%B9%E5%85%AC%E7%BD%B2" onclick="openDianping('延吉 道尹公署', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
           </div>
-          <div class="act-tagline">海兰江平原是延边的粮仓，十月秋收之际，万亩有机稻田一片金黄波涛，壮丽震撼。长辈乘坐纯平电瓶观光小火车在稻田间悠然穿行，清风徐来、稻香醉人。顺道探访龙井苹果梨母树园，枝头硕果累累，纯天然大自然田园风貌，视野极度宽广开阔。</div>
-
-          <!-- Photo Spot Card -->
-          <div class="spot-photo-card">
-            <div class="photo-img-wrap">
-              <img src="./images/spot_yj_rice.jpg" alt="海兰江平原万亩稻田金浪" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=960&q=80'" />
-              <div class="photo-badge">最佳机位</div>
-            </div>
-            <div class="photo-guide-body">
-              <div class="pg-item">
-                <span class="pg-label">取景机位:</span>
-                <span class="pg-val">水稻公园中央木质观景亭栈桥端头，长焦平视拍摄万亩金黄稻浪与海兰江远山。</span>
-              </div>
-              <div class="pg-item">
-                <span class="pg-label">最佳光线:</span>
-                <span class="pg-val">10:00 - 11:30 上午纯净阳光照耀稻穗，呈现出油画般的金黄光泽。</span>
-              </div>
-            </div>
-          </div>
+          <div class="act-tagline">始建于清宣统元年（1909年），是延吉市内现存唯一的清代官方官署建筑群。青砖灰瓦、四合院落布局，飞檐斗拱掩映在百年古树之中。院落全程纯平青砖路面，无台阶无陡坡，环境安详清幽、远离喧嚣。长辈可悠然踱步参观边防开拓与历史展陈，品味边陲百年沧桑。</div>
         </div>
 
         <div class="transit-step">
           <div class="ts-line"></div>
           <div class="ts-badge">
             <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>专车 ~10m · 5 km 前往特色农家火锅</span>
+            <span>打车 ~6m · 2.2 km 前往烤肉名店</span>
           </div>
           <div class="ts-line"></div>
         </div>
 
         <div class="act-card">
           <div class="act-header">
-            <span class="act-time-pill">特色午宴 ~1h</span>
-            <span class="act-intensity intensity-flat">温润暖胃午宴</span>
+            <span class="act-time-pill">特色午宴 ~1.5h</span>
+            <span class="act-intensity intensity-flat">代烤无烟包厢</span>
           </div>
           <div class="act-name">
-            <span>龙井海兰江黄牛排骨火锅</span>
-            <a href="dianping://searchshoplist?keyword=%E9%BE%99%E4%BA%95%20%E9%BB%84%E7%89%9B%E6%8E%92%E9%AA%A8" onclick="openDianping('龙井 黄牛排骨', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+            <span>梅花炭火烤肉品质包厢（延吉老牌朝鲜族烤肉）</span>
+            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E6%A2%85%E8%8A%B1%E7%83%A4%E8%82%89" onclick="openDianping('延吉 梅花烤肉', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
           </div>
-          <div class="act-tagline">选用本地优质黄牛大排骨，砂锅慢火清炖出醇浓鲜汤。肉质炖至软烂脱骨、毫无膻味。锅内配以山地白菜、鲜豆腐与手打鲜面，温热清补，长辈吃得暖胃又舒坦。</div>
+          <div style="font-size:12px; color:#475569; margin:4px 0;">大众点评 4.8分 · 延吉炭火烤肉标杆 · 人均 ¥110-140 · 局子街核心区</div>
+          <div class="act-tagline">【特色烤肉午宴】延吉老牌高品质朝鲜族炭火烤肉，专设独立无烟下排风包厢。专职服务生全程桌边代烤，严选本地顶级黄牛雪花肉、特选牛排肉与牛五花，外微焦而内鲜嫩多汁，肉质极其细腻无筋；搭配鲜嫩苏子叶包肉、解腻拌生菜与温热大酱汤，长辈免动牙力轻松品鉴地道烤肉风味。</div>
         </div>
 
         <div class="transit-step">
           <div class="ts-line"></div>
           <div class="ts-badge">
             <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>专车/打车 ~25m · 19 km 返回延吉中心希尔顿欢朋酒店</span>
+            <span>打车 ~5m · 1.5 km 返回延吉中心希尔顿欢朋酒店</span>
           </div>
           <div class="ts-line"></div>
         </div>
@@ -650,6 +556,24 @@ ${cssContent}
             <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E4%BA%BA%E6%B0%91%E5%85%AC%E5%9B%AD" onclick="openDianping('延吉 人民公园', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
           </div>
           <div class="act-tagline">延吉历史最悠久的自然公园，距希尔顿欢朋仅步行可达。园内数百年古榆参天蔽日，红叶秋色满园。长辈慢步其间，常常能偶遇当地朝鲜族同龄长辈身着常服，吹奏长鼓、跳着安详从容的象帽舞或切磋象棋，是最真实可触的非商业人间温情。</div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_park.jpg" alt="延吉人民公园古榆" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=960&q=80'" />
+              <div class="photo-badge">最佳机位</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">公园中心古榆绿荫道与长寿亭前，捕捉长辈从容散步的温情瞬间。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">15:30 - 16:30 午后柔和斜阳穿透古榆枝叶，光影斑驳静谧。</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="transit-step">
@@ -692,6 +616,83 @@ ${cssContent}
             <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E9%A1%BA%E5%A7%AC%E5%86%B7%E9%9D%A2" onclick="openDianping('延吉 顺姬冷面', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
           </div>
           <div class="act-tagline">专为长辈点选【招牌热玉米温面】——摒弃极冰刺激的冷面汤底，选用纯玉米细面放入滚烫牛骨高汤中现煮，汤头微辣鲜美、面条爽滑软弹；搭配外酥里嫩的金黄锅包肉与煎苏子叶肉合子，吃得浑身暖和透亮。餐后打车返回酒店。</div>
+        </div>
+      </div>
+
+      <!-- ==================== DAY 4 ==================== -->
+      <div id="pane_day4" class="day-pane">
+        <div class="senior-hero-card">
+          <div class="sh-title">Day 4 (10/4) · 边境风情一日 · 珲春防川三国交界 · 珲春活蒸帝王蟹</div>
+          <div class="sh-desc">今天前往中朝俄边境。长辈腿脚正常能走，特别设计两套出行方案：首选【路线 A】专属商务包车直达珲春防川风景区，乘直梯登临 12 层龙虎阁“一眼望三国”（左俄右朝脚下中，远眺图们江入海口与日本海），中午在珲春海鲜街豪享俄罗斯直运原产地活蒸帝王蟹盛宴（【绝不替换帝王蟹】源头活蒸，肉质鲜甜紧实）；若当天追求超低车程，可自由一键切换为【路线 B】图们边境口岸国门与日光山俯瞰江湾。</div>
+          <div class="sh-tags">
+            <span class="sh-tag">一眼望中朝俄三国</span>
+            <span class="sh-tag">龙虎阁全高速直梯</span>
+            <span class="sh-tag">珲春活蒸帝王蟹</span>
+            <span class="sh-tag">门到门商务包车</span>
+            <span class="sh-tag">回欢朋休整品茗</span>
+          </div>
+        </div>
+
+        <!-- Day 4 Customizer & Transport Options -->
+        <div class="customizer-box">
+          <div class="cb-header">
+            <span class="cb-title">珲春出行方式与路线抉择</span>
+            <span class="cb-badge">动态生成地图与卡片</span>
+          </div>
+
+          <div class="cb-section-label">交通方式建议（包车 vs 高铁）：</div>
+          <div class="cb-radio-group">
+            <label class="cb-item">
+              <input type="radio" name="d4_transport" value="charter" checked onchange="updateYjDayRoute('day4')">
+              <div class="cb-item-content">
+                <div class="cb-item-title">方案 A（首选强烈推荐）：7座商务专车包车一日游（门到门零换乘）</div>
+                <div class="cb-item-desc">酒店大堂门前迎送，随身物品放车上，免去进出高铁站排队安检折腾，长辈车内舒心小憩</div>
+              </div>
+            </label>
+            <label class="cb-item">
+              <input type="radio" name="d4_transport" value="bullet_train" onchange="updateYjDayRoute('day4')">
+              <div class="cb-item-content">
+                <div class="cb-item-title">方案 B（极速备选）：城际高铁 (40m · ¥28) + 珲春当地包车/打车</div>
+                <div class="cb-item-desc">延吉西至珲春站高铁极速平稳（车程仅40分钟），出站后包地接车前往防川与海鲜街</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="cb-section-label" style="margin-top:12px;">边境目的地偏好：</div>
+          <div class="cb-radio-group">
+            <label class="cb-item">
+              <input type="radio" name="d4_route" value="go_hunchun" checked onchange="updateYjDayRoute('day4')">
+              <div class="cb-item-content">
+                <div class="cb-item-title">珲春防川“一眼望三国” + 俄罗斯活蒸帝王蟹午宴（首选震撼推荐）</div>
+                <div class="cb-item-desc">直梯上龙虎阁看三国交界与日本海，中午在海鲜街现场大池活挑原汁原味清蒸帝王蟹</div>
+              </div>
+            </label>
+            <label class="cb-item">
+              <input type="radio" name="d4_route" value="go_tumen" onchange="updateYjDayRoute('day4')">
+              <div class="cb-item-content">
+                <div class="cb-item-title">图们边境口岸国门 & 86号界碑 + 日光山森林俯瞰（从容舒缓备选）</div>
+                <div class="cb-item-desc">专车车程仅 45 分钟，超低位移，平视对岸朝鲜南阳市，下午从容回延吉深度午休</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Mini Map Container -->
+        <div class="day-map-card">
+          <div class="dmm-header">
+            <span class="dmm-title">当日专车动线与打卡点微缩地图</span>
+            <span id="dmmTag_day4" class="dmm-tag">珲春三国交界线已规划</span>
+          </div>
+          <div id="miniMap_day4" class="mini-map-box"></div>
+          <div class="dcc-stats" id="dccStats_day4">
+            <span>预计车程: <strong>约 280 km (全高速专车)</strong></span>
+            <span>舒享步数: <strong>约 4,500 步 (直梯全景)</strong></span>
+          </div>
+        </div>
+
+        <!-- Container for dynamically rendered Day 4 cards -->
+        <div id="d4_cards_container">
+          <!-- Rendered by JavaScript function renderDay4Cards -->
         </div>
       </div>
 
@@ -963,7 +964,7 @@ ${cssContent}
     <section id="tabDining" class="tab-content">
       <div class="senior-hero-card" style="background: linear-gradient(135deg, #1E293B 0%, #334155 100%);">
         <div class="sh-title">延吉长辈养胃美食宝典 (双帝王蟹特别版)</div>
-        <div class="sh-desc">专为长辈胃肠适口性考量定制：剔除冰碴冷面与过重辣椒，精选慢火滋补参鸡汤、软烂菜包肉、珲春与延吉双重活蒸俄罗斯帝王蟹、现煮热玉米温面与清炖牛排骨锅，兼具浓郁民族特色与温和养胃。</div>
+        <div class="sh-desc">专为长辈胃肠适口性考量定制：剔除冰碴冷面与过重辣椒，精选慢火滋补参鸡汤、软烂菜包肉、珲春与延吉双重活蒸俄罗斯帝王蟹盛宴、梅花炭火烤肉品质包房（代烤无烟）、现煮热玉米温面与清炖牛排骨锅，兼具浓郁民族特色与温和养胃。</div>
       </div>
 
       <div class="act-card">
@@ -1029,6 +1030,19 @@ ${cssContent}
         </div>
         <div style="font-size:12px; color:#475569; margin:4px 0;">大众点评 4.7分 · 人均 ¥60-75 · 锅包肉绝配</div>
         <div class="act-tagline">摒弃伤胃的冰碴，选用纯玉米现压热面，配入浓郁热牛骨汤，爽滑劲道、暖身暖胃，搭配香酥锅包肉更是一绝。</div>
+      </div>
+
+      <div class="act-card">
+        <div class="act-header">
+          <span class="act-time-pill">正宗炭火烤肉</span>
+          <span class="act-intensity intensity-flat">代烤无油烟包厢</span>
+        </div>
+        <div class="act-name">
+          <span>梅花炭火烤肉品质包厢（延吉老牌朝鲜族烤肉）</span>
+          <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E6%A2%85%E8%8A%B1%E7%83%A4%E8%82%89" onclick="openDianping('延吉 梅花烤肉', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+        </div>
+        <div style="font-size:12px; color:#475569; margin:4px 0;">大众点评 4.8分 · 延吉炭火烤肉标杆 · 人均 ¥110-140 · 局子街核心区</div>
+        <div class="act-tagline">延吉老牌高品质朝鲜族炭火烤肉，专设独立无烟下排风包厢。专职服务生全程桌边代烤，严选本地顶级黄牛雪花肉、特选牛排肉与牛五花，外微焦而内鲜嫩多汁，肉质极其细腻无筋；搭配鲜嫩苏子叶包肉、解腻拌生菜与温热大酱汤，长辈免动牙力轻松品鉴地道烤肉风味。</div>
       </div>
 
       <div class="act-card">
@@ -1197,8 +1211,8 @@ ${cssContent}
         <button class="ov-pill active" onclick="filterOverviewMap('all')">全部全览 (All 6 Days)</button>
         <button class="ov-pill" onclick="filterOverviewMap('day1')">Day 1 到延休整</button>
         <button class="ov-pill" onclick="filterOverviewMap('day2')">Day 2 文博学府</button>
-        <button class="ov-pill" onclick="filterOverviewMap('day3')">Day 3 珲春帝王蟹</button>
-        <button class="ov-pill" onclick="filterOverviewMap('day4')">Day 4 万亩金浪</button>
+        <button class="ov-pill" onclick="filterOverviewMap('day3')">Day 3 市内炭火烤肉</button>
+        <button class="ov-pill" onclick="filterOverviewMap('day4')">Day 4 珲春帝王蟹</button>
         <button class="ov-pill" onclick="filterOverviewMap('day5')">Day 5 集市与蟹宴</button>
         <button class="ov-pill" onclick="filterOverviewMap('day6')">Day 6 从容返程</button>
       </div>
@@ -1525,23 +1539,22 @@ ${cssContent}
       d2_danmu: { name: '网红双语弹幕墙 (对街开阔远眺)', coord: [42.9080, 129.4870], day: 2 },
       d2_fengmao: { name: '丰茂烤串(旗舰无烟包房)', coord: [42.9120, 129.5150], day: 2 },
 
-      // Day 3 Option A: Hunchun Fangchuan Border & King Crab
-      d3_fangchuan: { name: '珲春防川 · 龙虎阁一眼望三国', coord: [42.4830, 130.6400], day: 3 },
-      d3_crab_hunchun: { name: '珲春海鲜街 · 活蒸帝王蟹', coord: [42.8620, 130.3650], day: 3 },
-      d3_quanzhou: { name: '全州拌饭百年老店', coord: [42.9040, 129.5090], day: 3 },
+      // Day 3: Yanji City Cultural Walk, Charcoal BBQ & Park
+      d3_daoyin: { name: '延吉道尹公署旧址(百年古建文化寻踪)', coord: [42.8930, 129.5080], day: 3 },
+      d3_meihua: { name: '梅花炭火烤肉品质包厢(延吉特色正宗烤肉)', coord: [42.9095, 129.5160], day: 3 },
+      d3_park: { name: '延吉人民公园百年古榆林海', coord: [42.9080, 129.5040], day: 3 },
+      d3_coffee: { name: '劳顶笨慢咖啡旗舰总店', coord: [42.9065, 129.5120], day: 3 },
+      d3_shunji: { name: '顺姬冷面旗舰店(玉米温面)', coord: [42.9075, 129.5085], day: 3 },
 
-      // Day 3 Option B: Tumen Border Port & Riguangshan
-      d3_tumen_port: { name: '图们口岸国门 & 86号界碑', coord: [42.9620, 129.8510], day: 3 },
-      d3_riguangshan: { name: '日光山森林公园观景台', coord: [42.9480, 129.8450], day: 3 },
-      d3_lixiang: { name: '李香石锅饭明太鱼馆', coord: [42.9650, 129.8480], day: 3 },
+      // Day 4 Option A: Hunchun Fangchuan Border & King Crab
+      d4_fangchuan: { name: '珲春防川 · 龙虎阁一眼望三国', coord: [42.4830, 130.6400], day: 4 },
+      d4_crab_hunchun: { name: '珲春海鲜街 · 活蒸帝王蟹盛宴', coord: [42.8620, 130.3650], day: 4 },
+      d4_quanzhou: { name: '全州拌饭百年老店', coord: [42.9040, 129.5090], day: 4 },
 
-      // Day 4: Longjing Rice Fields & Yanji Park
-      d4_rice: { name: '龙井良田百世万亩水稻金浪', coord: [42.7660, 129.4280], day: 4 },
-      d4_applepear: { name: '龙井亚洲最大苹果梨祖树园', coord: [42.7520, 129.4150], day: 4 },
-      d4_niupai: { name: '龙井海兰江黄牛排骨火锅', coord: [42.7710, 129.4320], day: 4 },
-      d4_park: { name: '延吉人民公园百年古榆林海', coord: [42.9080, 129.5040], day: 4 },
-      d4_coffee: { name: '劳顶笨慢咖啡旗舰总店', coord: [42.9065, 129.5120], day: 4 },
-      d4_shunji: { name: '顺姬冷面旗舰店(玉米温面)', coord: [42.9075, 129.5085], day: 4 },
+      // Day 4 Option B: Tumen Border Port & Riguangshan
+      d4_tumen_port: { name: '图们口岸国门 & 86号界碑', coord: [42.9620, 129.8510], day: 4 },
+      d4_riguangshan: { name: '日光山森林公园观景台', coord: [42.9480, 129.8450], day: 4 },
+      d4_lixiang: { name: '李香石锅饭明太鱼馆', coord: [42.9650, 129.8480], day: 4 },
 
       // Day 5: Morning Market, West Market & Yanji King Crab
       d5_watermarket: { name: '延吉水上市场露天晨市(现打打糕)', coord: [42.9125, 129.5180], day: 5 },
@@ -1613,45 +1626,44 @@ ${cssContent}
         totalDist = '约 22 km (网约打车起步价随叫随到)';
         totalSteps = '约 5,200 步 (木栈道缓坡与校园平步)';
       } else if (dayKey === 'day3') {
-        const d3Route = document.querySelector('input[name="d3_route"]:checked')?.value || 'go_hunchun';
-        const d3Trans = document.querySelector('input[name="d3_transport"]:checked')?.value || 'charter';
-        renderDay3Cards(d3Route, d3Trans);
+        stops.push(YJ_SPOTS.hotel);
+        stops.push(YJ_SPOTS.d3_daoyin);
+        stops.push(YJ_SPOTS.d3_meihua);
+        stops.push(YJ_SPOTS.hotel); // 中午回酒店午休
+        stops.push(YJ_SPOTS.d3_park);
+        stops.push(YJ_SPOTS.d3_coffee);
+        stops.push(YJ_SPOTS.d3_shunji);
+        stops.push(YJ_SPOTS.hotel);
 
-        if (d3Route === 'go_hunchun') {
+        totalDist = '约 12 km (市区打车起步价随叫随到)';
+        totalSteps = '约 4,500 步 (古建庭院与公园平步)';
+      } else if (dayKey === 'day4') {
+        const d4Route = document.querySelector('input[name="d4_route"]:checked')?.value || 'go_hunchun';
+        const d4Trans = document.querySelector('input[name="d4_transport"]:checked')?.value || 'charter';
+        renderDay4Cards(d4Route, d4Trans);
+
+        if (d4Route === 'go_hunchun') {
           stops.push(YJ_SPOTS.hotel);
-          stops.push(YJ_SPOTS.d3_fangchuan);
-          stops.push(YJ_SPOTS.d3_crab_hunchun);
+          stops.push(YJ_SPOTS.d4_fangchuan);
+          stops.push(YJ_SPOTS.d4_crab_hunchun); // 珲春鲜活活蒸帝王蟹盛宴
           stops.push(YJ_SPOTS.hotel); // 回酒店休整
-          stops.push(YJ_SPOTS.d3_quanzhou);
+          stops.push(YJ_SPOTS.d4_quanzhou);
           stops.push(YJ_SPOTS.hotel);
 
-          totalDist = (d3Trans === 'charter') ? '约 280 km (7座商务专车一车到底)' : '约 110 km (高铁40m + 珲春地接用车)';
+          totalDist = (d4Trans === 'charter') ? '约 280 km (7座商务专车一车到底)' : '约 110 km (高铁40m + 珲春地接用车)';
           totalSteps = '约 4,500 步 (龙虎阁直梯观景)';
         } else {
           stops.push(YJ_SPOTS.hotel);
-          stops.push(YJ_SPOTS.d3_tumen_port);
-          stops.push(YJ_SPOTS.d3_lixiang);
-          stops.push(YJ_SPOTS.d3_riguangshan);
+          stops.push(YJ_SPOTS.d4_tumen_port);
+          stops.push(YJ_SPOTS.d4_lixiang);
+          stops.push(YJ_SPOTS.d4_riguangshan);
           stops.push(YJ_SPOTS.hotel); // 回延吉午休
-          stops.push(YJ_SPOTS.d3_quanzhou);
+          stops.push(YJ_SPOTS.d4_quanzhou);
           stops.push(YJ_SPOTS.hotel);
 
           totalDist = '约 110 km (专车往返仅45分钟)';
           totalSteps = '约 3,800 步 (纯平江堤漫步)';
         }
-      } else if (dayKey === 'day4') {
-        stops.push(YJ_SPOTS.hotel);
-        stops.push(YJ_SPOTS.d4_rice);
-        stops.push(YJ_SPOTS.d4_applepear);
-        stops.push(YJ_SPOTS.d4_niupai);
-        stops.push(YJ_SPOTS.hotel); // 回酒店午休
-        stops.push(YJ_SPOTS.d4_park);
-        stops.push(YJ_SPOTS.d4_coffee);
-        stops.push(YJ_SPOTS.d4_shunji);
-        stops.push(YJ_SPOTS.hotel);
-
-        totalDist = '约 26 km (专车/打车便捷往返)';
-        totalSteps = '约 4,800 步 (小火车穿行稻海)';
       } else if (dayKey === 'day5') {
         stops.push(YJ_SPOTS.hotel);
         stops.push(YJ_SPOTS.d5_watermarket);
@@ -1719,8 +1731,8 @@ ${cssContent}
       }
     }
 
-    function renderDay3Cards(mode, transMode) {
-      const container = document.getElementById('d3_cards_container');
+    function renderDay4Cards(mode, transMode) {
+      const container = document.getElementById('d4_cards_container');
       if (!container) return;
 
       const isCharter = (transMode !== 'bullet_train');
@@ -2130,7 +2142,7 @@ ${cssContent}
           badge = '[强烈推荐 · 7座商务包车]';
           stepsInfo = '专职司机在希尔顿欢朋大堂迎送，门到门零换乘，长辈免除高铁站排队进出与安检折腾，随身物品放车上。';
           dropoffInfo = '推荐三大靠谱渠道：① 携程官方“私家包车一日游”（明码标价一价全包）；② 希尔顿欢朋酒店礼宾部协议车队；③ 滴滴按天包车。';
-          itineraryAdvice = '【出行确认】已在 Day 3 默认设为 7 座商务包车直达防川与海鲜街，全程四车道高速，长辈最省心！';
+          itineraryAdvice = '【出行确认】已在 Day 4 默认设为 7 座商务包车直达防川与海鲜街，全程四车道高速，长辈最省心！';
         } else if (text.includes('第一天') || text.includes('休整') || text.includes('不要安排') || text.includes('累了')) {
           title = '第一天（10/1）彻底零行程休整指令';
           rating = 'green';
@@ -2141,10 +2153,17 @@ ${cssContent}
         } else if (text.includes('帝王蟹') || text.includes('吃蟹') || text.includes('海鲜')) {
           title = '延吉 & 珲春双重鲜活帝王蟹盛宴';
           rating = 'green';
-          badge = '[尊享双蟹宴 · 清蒸滋补]';
+          badge = '[尊享双蟹宴 · 绝不替换烤肉]';
           stepsInfo = '帝王蟹整只清蒸，大腿肉雪白鲜甜软嫩，无需费力咀嚼，蟹膏做温热海鲜粥，滋阴养胃极适口。';
           dropoffInfo = '珲春安排在【海鲜街·醉香阁】现场活挑；延吉安排在市内活海鲜标杆【震海贝烤贝总店】独立包厢。';
-          itineraryAdvice = '【双重满足】已为您在 Day 3（珲春海鲜街）与 Day 5（延吉震海贝烤贝）分别安排了两顿不同风味的鲜活俄罗斯帝王蟹大餐！';
+          itineraryAdvice = '【双重满足 · 坚守不替】已为您在 Day 4（珲春海鲜街）与 Day 5（延吉震海贝烤贝）分别安排了两顿不同风味的鲜活俄罗斯帝王蟹大餐！两顿帝王蟹完全独立保留，绝不替换为烤肉！';
+        } else if (text.includes('烤肉') || text.includes('黄牛烤肉') || text.includes('炭火烤肉')) {
+          title = '梅花炭火烤肉（正宗朝鲜族炭火黄牛烤肉）';
+          rating = 'green';
+          badge = '[长辈首选 · 代烤无油烟包厢]';
+          stepsInfo = '独立无烟下排风包厢，专职服务生全程当桌代烤，严选本地上等黄牛雪花肉与牛排肉。';
+          dropoffInfo = '位于局子街核心商圈，距离希尔顿欢朋酒店仅 5 分钟车程，门前平坦路缘下客。';
+          itineraryAdvice = '【新增烤肉安排】已安排在 Day 3 特色午宴（替换原龙井午餐，绝不触碰两顿帝王蟹）！肉质外焦里嫩极软好咀嚼，搭配苏子叶与温热大酱汤，长辈吃得香又舒服。';
         } else if (text.includes('预约') || text.includes('门票') || text.includes('身份证') || text.includes('延大预约') || text.includes('博物馆预约')) {
           title = '延边博物馆与延边大学预约指南';
           rating = 'green';
@@ -2158,14 +2177,14 @@ ${cssContent}
           badge = '[坚决避坑 · 已按指令排除]';
           stepsInfo = '大型机械游乐场排队时间极长、人声嘈杂且大多设施长辈无法游玩，体能消耗大。';
           dropoffInfo = '门票昂贵且节假日园区暴晒，缺乏民族特色文化沉淀。';
-          itineraryAdvice = '【坚决排除】已按您的要求彻底剔除！长辈更适合 Day 2 的国家一级【延边博物馆】以及 Day 4 的【海兰江万亩稻浪】，文化深厚开阔怡情！';
+          itineraryAdvice = '【坚决排除】已按您的要求彻底剔除！长辈更适合 Day 2 的国家一级【延边博物馆】以及 Day 3 的【道尹公署古建漫步】与 Day 4 的【珲春三国交界】，文化深厚开阔怡情！';
         } else if (text.includes('民俗村') || text.includes('民俗园') || text.includes('朝鲜族民俗园')) {
           title = '中国朝鲜族民俗园 (商业人造景区)';
           rating = 'red';
           badge = '[坚决避坑 · 已按指令排除]';
           stepsInfo = '商业化租装拍照极其拥挤扎堆，几万名游客排队抢机位，嘈杂杂乱，长辈极易疲累。';
           dropoffInfo = '周边节假日严重堵车，停车排队通常超过 1 小时。';
-          itineraryAdvice = '【坚决排除】已按您的要求彻底剔除！系统为您安排了真正的【延边博物馆】（国家一级馆藏实景还原）与【龙井海兰江畔原生态稻乡】，真切自然又高雅。';
+          itineraryAdvice = '【坚决排除】已按您的要求彻底剔除！系统为您安排了真正的【延边博物馆】（国家一级馆藏实景还原）与【延吉道尹公署百年古建寻踪】，真切自然又高雅。';
         } else if (text.includes('冷面') || text.includes('大碗冷面') || text.includes('冰碴')) {
           title = '延吉冷面（极冰生冷需注意）';
           rating = 'yellow';
