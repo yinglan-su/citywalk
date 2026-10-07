@@ -3018,6 +3018,16 @@ ${cssContent}
       showToast('已成功存入延吉灵感池！');
     }
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
     function renderSavedIdeasList() {
       const container = document.getElementById('savedIdeasList');
       if (!container) return;
@@ -3030,16 +3040,18 @@ ${cssContent}
 
       let html = '';
       list.forEach(item => {
+        const safeText = escapeHtml(item.text);
+        const safeId = escapeHtml(item.id);
         html += \`
           <div class="idea-saved-item">
             <div class="isi-top">
               <div class="isi-meta">
-                <span class="isi-day">\${item.day}</span>
-                <span style="color:#94A3B8; font-size:10px;">\${item.createdAt || ''}</span>
+                <span class="isi-day">\${escapeHtml(item.day)}</span>
+                <span style="color:#94A3B8; font-size:10px;">\${escapeHtml(item.createdAt || '')}</span>
               </div>
-              <button class="isi-del-btn" onclick="deleteSavedIdea('\${item.id}')" title="删除">✕</button>
+              <button class="isi-del-btn" onclick="deleteSavedIdea('\${safeId}')" title="删除">✕</button>
             </div>
-            <div class="isi-text">\${item.text}</div>
+            <div class="isi-text">\${safeText}</div>
           </div>
         \`;
       });
