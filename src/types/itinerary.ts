@@ -11,6 +11,16 @@ export interface WizardConfig {
   customNotes?: string;
 }
 
+export interface ActivityAlternative {
+  name: string;
+  description: string;
+  photoTip?: string;
+  image?: string;
+  dropOffPoint?: string;
+  durationMinutes?: number;
+  timeSlot?: string;
+}
+
 export interface ActivityStop {
   type: "activity";
   id: string;
@@ -27,6 +37,7 @@ export interface ActivityStop {
   image?: string;
   elderKidNotes?: string;
   description: string;
+  alternatives?: ActivityAlternative[];
 }
 
 export interface TransitConnector {
@@ -39,6 +50,17 @@ export interface TransitConnector {
   navigationDetail: string; // e.g. "打车至延吉博物馆南门地下落客区，乘电梯直达1F"
 }
 
+export interface DiningAlternative {
+  restaurantName: string;
+  cuisineStyle: string;
+  recommendedDishes: string[];
+  elderKidSuitability?: string;
+  perPersonBudget: string;
+  addressOrDropOff?: string;
+  image?: string;
+  photoTip?: string;
+}
+
 export interface DiningCard {
   mealType: "早餐" | "午餐" | "晚餐" | "夜宵 / 甜品";
   restaurantName: string;
@@ -47,6 +69,9 @@ export interface DiningCard {
   elderKidSuitability: string; // e.g. "清淡少油，有包厢，免排队建议"
   perPersonBudget: string;
   addressOrDropOff: string;
+  image?: string;
+  photoTip?: string;
+  alternatives?: DiningAlternative[];
 }
 
 export interface ReservationItem {

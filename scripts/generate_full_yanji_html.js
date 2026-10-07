@@ -101,7 +101,7 @@ ${cssContent}
         <div class="customizer-box">
           <div class="cb-header">
             <span class="cb-title">首日休整与晚餐定制</span>
-            <span class="cb-badge">动态生成地图</span>
+            <span class="cb-badge">动态生成地图与卡片</span>
           </div>
           <div class="cb-section-label">首日休整晚餐方式偏好：</div>
           <div class="cb-radio-group">
@@ -135,96 +135,9 @@ ${cssContent}
           </div>
         </div>
 
-        <!-- Activity Cards -->
-        <div class="section-title">核心行程节奏</div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">专车接站 ~20m</span>
-            <span class="act-intensity intensity-ride">专车接驳</span>
-          </div>
-          <div class="act-name">
-            <span>延吉西站接站 & 入住延吉中心希尔顿欢朋酒店</span>
-          </div>
-          <div class="act-tagline">15:00 高铁平稳进站。出站口专车接驳直达，经长白西路直奔延吉核心区局子街。酒店服务生协助推运全部行李直抵客房。长辈下车进门全平步无台阶，彻底免去自身开车劳碌。</div>
-          <div class="act-special-grid">
-            <div class="as-item">
-              <span class="as-item-label">接驳路线:</span>
-              <span class="as-item-val">延吉西站出站口平步上车，经长白西路直达酒店，车程约 20 分钟 (8.5 km)。</span>
-            </div>
-            <div class="as-item">
-              <span class="as-item-label">落客指引:</span>
-              <span class="as-item-val">专车直接驶入希尔顿欢朋酒店大门回廊下客，行李由礼宾直接协助送进电梯。</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="transit-step">
-          <div class="ts-line"></div>
-          <div class="ts-badge">
-            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>电梯直达客房 · 开启深度休整</span>
-          </div>
-          <div class="ts-line"></div>
-        </div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">深度休整 ~2.5h</span>
-            <span class="act-intensity intensity-flat">零行程休整</span>
-          </div>
-          <div class="act-name">
-            <span>【彻底休整】进房更衣洗漱 · 卧床小憩 · 适应北方秋凉</span>
-          </div>
-          <div class="act-tagline">出门首日最忌赶场打卡。长辈进房后脱去外套、换上舒适软底拖鞋，用热水洗去车马疲劳；烧一壶温热大麦茶慢慢饮用；拉上厚遮光帘在舒适大床上静卧小憩两小时。整个傍晚不赶任何景点，不费任何脚力，以最充沛的精力开启后续假期。</div>
-        </div>
-
-        <div class="transit-step">
-          <div class="ts-line"></div>
-          <div class="ts-badge">
-            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>步行 3m · 200 m 楼下老字号</span>
-          </div>
-          <div class="ts-line"></div>
-        </div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">养胃晚宴 ~1h</span>
-            <span class="act-intensity intensity-flat">长辈养胃晚餐</span>
-          </div>
-          <div class="act-name">
-            <span>老字号元奶奶包肉（总店）与热海鲜大酱汤</span>
-            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%85%83%E5%A5%B6%E5%A5%B6%E5%8C%85%E8%82%89" onclick="openDianping('延吉 元奶奶包肉', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
-          </div>
-          <div style="display:flex; align-items:center; gap:8px; margin: 4px 0 8px 0;">
-            <span style="color:#0F172A; font-size:12px; font-weight:700;">4.8分</span>
-            <span style="font-size:11px; font-weight:600; color:#334155; background:#F1F5F9; border:1px solid #E2E8F0; padding:2px 6px; border-radius:4px;">大众点评老字号必吃</span>
-            <span style="font-size:11px; font-weight:600; color:#334155; background:#F1F5F9; border:1px solid #E2E8F0; padding:2px 6px; border-radius:4px;">人均 ¥80 - 100</span>
-          </div>
-          <div class="act-tagline">距酒店仅步履之遥。特制五花肉蒸透去脂、薄切软烂，入口即化毫无油腻感，用洗净紫苏叶与生菜包裹食用；配一锅滚热的海鲜大酱汤与软糯黑米饭，第一餐既有鲜明异域风味又极其温暖开胃。餐后轻松回房，早早安然就寝。</div>
-
-          <!-- Photo Spot Card -->
-          <div class="spot-photo-card">
-            <div class="photo-img-wrap">
-              <img src="./images/spot_yj_baorou.jpg" alt="老字号元奶奶包肉与热大酱汤" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=960&q=80'" />
-              <div class="photo-badge">养胃暖心</div>
-            </div>
-            <div class="photo-guide-body">
-              <div class="pg-item">
-                <span class="pg-label">取景机位:</span>
-                <span class="pg-val">软烂薄切热五花肉木托盘与翠绿紫苏叶、滚热海鲜大酱汤热气同框。</span>
-              </div>
-              <div class="pg-item">
-                <span class="pg-label">最佳光线:</span>
-                <span class="pg-val">餐厅明亮暖黄顶灯，肉质晶莹诱人。</span>
-              </div>
-              <div class="pg-item">
-                <span class="pg-label">随行留影:</span>
-                <span class="pg-val">长辈品尝第一口养胃热肉卷，暖意融融，开启舒心延吉假期。</span>
-              </div>
-            </div>
-          </div>
+        <!-- Activity Cards Container for Day 1 -->
+        <div id="d1_cards_container">
+          <!-- Rendered dynamically by renderDay1Cards -->
         </div>
       </div>
 
@@ -232,13 +145,57 @@ ${cssContent}
       <div id="pane_day2" class="day-pane">
         <div class="senior-hero-card">
           <div class="sh-title">Day 2 (10/2) · 文博殿堂 · 森林氧吧 · 延大学府人文 · 丰茂无烟烤肉</div>
-          <div class="sh-desc">国家一级博物馆【延边博物馆】全程电梯无障碍，静心领略朝鲜族百年农耕与民俗生活；中午品尝正宗高丽参鸡汤养胃滋补；午后回希尔顿欢朋酒店深度午休两小时；下午专车直达帽儿山国家森林公园纯平观景木栈道，深吸纯净秋日松脂清香；傍晚漫步延边大学学府园区，在开阔广场侧影留念网红双语弹幕墙；晚餐在丰茂烤串旗舰店包厢享用无烟烤串。</div>
+          <div class="sh-desc">国家一级博物馆【延边博物馆】全程电梯无障碍，静心领略朝鲜族百年农耕与民俗生活；中午品尝正宗高丽参鸡汤养胃滋补（或招牌玉米温面）；午后回希尔顿欢朋酒店深度午休两小时；下午专车直达帽儿山国家森林公园纯平观景木栈道，深吸纯净秋日松脂清香；傍晚漫步延边大学学府园区，在开阔广场侧影留念网红双语弹幕墙；晚餐在丰茂烤串旗舰店包厢享用无烟烤串。</div>
           <div class="sh-tags">
             <span class="sh-tag">全馆电梯无障碍</span>
             <span class="sh-tag">参鸡汤长辈滋补</span>
             <span class="sh-tag">13:15-15:15 酒店午休</span>
             <span class="sh-tag">纯平观景木栈道</span>
             <span class="sh-tag">双语弹幕墙开阔侧影</span>
+          </div>
+        </div>
+
+        <!-- Day 2 Customizer -->
+        <div class="customizer-box">
+          <div class="cb-header">
+            <span class="cb-title">次日用餐与特色体验定制</span>
+            <span class="cb-badge">动态生成地图与卡片</span>
+          </div>
+
+          <div class="cb-section-label">午间特色养胃偏好：</div>
+          <div class="cb-radio-group">
+            <label class="cb-item">
+              <input type="radio" name="d2_lunch" value="samgyetang" checked onchange="updateYjDayRoute('day2')">
+              <div class="cb-item-content">
+                <div class="cb-item-title">【首选滋补】大朴家高丽参鸡汤（长白山人参慢炖整鸡 · 养阴润燥）</div>
+                <div class="cb-item-desc">石锅沸汤滚热，童子鸡肉质软烂一拨即脱骨，江米吸足参汤精华，极为暖胃滋补</div>
+              </div>
+            </label>
+            <label class="cb-item">
+              <input type="radio" name="d2_lunch" value="wenmian" onchange="updateYjDayRoute('day2')">
+              <div class="cb-item-content">
+                <div class="cb-item-title">【民族招牌】顺姬现煮玉米温面与香酥锅包肉（热高汤养胃首选）</div>
+                <div class="cb-item-desc">热牛骨原汤现压金黄玉米面条，搭配外酥里嫩薄切锅包肉，清爽酸甜温和适口</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="cb-section-label" style="margin-top:12px;">晚间烤串正餐偏好：</div>
+          <div class="cb-radio-group">
+            <label class="cb-item">
+              <input type="radio" name="d2_dinner" value="fengmao" checked onchange="updateYjDayRoute('day2')">
+              <div class="cb-item-content">
+                <div class="cb-item-title">【首选推荐】丰茂烤串延吉总店（独立无烟恒温包厢 · 自动旋转微焦嫩牛肉）</div>
+                <div class="cb-item-desc">全自动下排风无烟旋转烤架，全程无任何呛烟，原味嫩黄牛肉鲜嫩多汁，配紫苏叶</div>
+              </div>
+            </label>
+            <label class="cb-item">
+              <input type="radio" name="d2_dinner" value="kaoshimao" onchange="updateYjDayRoute('day2')">
+              <div class="cb-item-content">
+                <div class="cb-item-title">【民俗正宴】考世茂朝鲜族传统民俗餐厅（朝鲜族非遗礼遇 · 传统大铜锅宴）</div>
+                <div class="cb-item-desc">身着民族服饰礼仪服务，招牌七彩温热大铜锅与现做软糯米肠，极具文化尊贵感</div>
+              </div>
+            </label>
           </div>
         </div>
 
@@ -255,241 +212,9 @@ ${cssContent}
           </div>
         </div>
 
-        <!-- Activity Cards -->
-        <div class="section-title">核心行程节奏</div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">文博参访 ~2h</span>
-            <span class="act-intensity intensity-flat">全馆电梯无障碍</span>
-          </div>
-          <div class="act-name">
-            <span>延边博物馆（国家一级博物馆 · 朝鲜族民俗历史全览）</span>
-            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E8%BE%B9%E5%8D%9A%E7%89%A9%E9%A6%86" onclick="openDianping('延边博物馆', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
-          </div>
-          <div class="act-tagline">延边历史文化精粹所在。全馆配备观光直梯与无障碍坡道，室内中央恒温 21°C。一楼主展厅朝鲜族民俗展极其生动：原木建造的传统民居温居、花甲宴传统礼俗场景、精巧秋千与农乐长鼓。长辈平地慢步，在讲解器伴随下细品边陲多元文化沉淀。</div>
-          <div class="act-special-grid">
-            <div class="as-item" style="grid-column: 1 / -1;">
-              <span class="as-item-label">预约提点:</span>
-              <span class="as-item-val">提前通过微信小程序【延边博物馆】免费预约门票；长辈持二代身份证原件刷证进馆，60岁以上长辈享绿色通道免排队。</span>
-            </div>
-            <div class="as-item">
-              <span class="as-item-label">落客指引:</span>
-              <span class="as-item-val">网约车直接停在博物馆南门正门平坦路缘下客，下车即进门，全馆电梯无障碍。</span>
-            </div>
-          </div>
-
-          <!-- Photo Spot Card -->
-          <div class="spot-photo-card">
-            <div class="photo-img-wrap">
-              <img src="./images/spot_yj_museum.jpg" alt="延边博物馆传统民俗展厅" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=960&q=80'" />
-              <div class="photo-badge">最佳机位</div>
-            </div>
-            <div class="photo-guide-body">
-              <div class="pg-item">
-                <span class="pg-label">取景机位:</span>
-                <span class="pg-val">二层民俗展厅朝鲜族传统农家庭院温居复原场景前，木栅栏与暖色光影交相辉映。</span>
-              </div>
-              <div class="pg-item">
-                <span class="pg-label">最佳光线:</span>
-                <span class="pg-val">馆内全天柔和专业射灯漫射光，人脸无阴影，拍摄神采奕奕。</span>
-              </div>
-              <div class="pg-item">
-                <span class="pg-label">随行留影:</span>
-                <span class="pg-val">长辈倚在传统院落木栏前留影，古朴典雅，文化品味极佳。</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="transit-step">
-          <div class="ts-line"></div>
-          <div class="ts-badge">
-            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>打车 ~10m · 3.5 km 前往参鸡汤名店</span>
-          </div>
-          <div class="ts-line"></div>
-        </div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">滋补午宴 ~1h</span>
-            <span class="act-intensity intensity-flat">长辈养胃极品</span>
-          </div>
-          <div class="act-name">
-            <span>大朴家高丽参鸡汤（长白山人参慢炖整鸡）</span>
-            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%A4%A7%E6%9C%B4%E5%AE%B6%E5%8F%82%E9%B8%A1%E6%B1%A4" onclick="openDianping('延吉 大朴家参鸡汤', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
-          </div>
-          <div class="act-tagline">专为长辈挑选的清温滋补午宴。精选童子鸡肚内塞满长白山优质人参、软糯江米、大枣与板栗，在天然石锅中慢火熬煮两小时。鸡肉轻轻一拨即骨肉脱离，江米吸收全部鸡汤精华软烂如羹，热气腾腾养阴生津，极其适合北方秋季润燥。</div>
-        </div>
-
-        <div class="transit-step">
-          <div class="ts-line"></div>
-          <div class="ts-badge">
-            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>打车 ~8m · 2.5 km 返回希尔顿欢朋酒店午休</span>
-          </div>
-          <div class="ts-line"></div>
-        </div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">酒店午休 ~2h</span>
-            <span class="act-intensity intensity-flat">关键体力调养</span>
-          </div>
-          <div class="act-name">
-            <span>【关键节奏】返回希尔顿欢朋酒店深度午休 2 小时</span>
-          </div>
-          <div class="act-tagline">中午 13:15–15:15 严守长辈行程核心铁律：回客房脱鞋卧床静息。北方秋日正午干燥，在客房泡一杯热温水，静心小憩补足精气神，让长辈下午出游始终神清气爽。</div>
-        </div>
-
-        <div class="transit-step">
-          <div class="ts-line"></div>
-          <div class="ts-badge">
-            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>打车 ~18m · 8.8 km 前往帽儿山森林公园</span>
-          </div>
-          <div class="ts-line"></div>
-        </div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">森林漫步 ~1.5h</span>
-            <span class="act-intensity intensity-gentle">纯平观景木栈道</span>
-          </div>
-          <div class="act-name">
-            <span>帽儿山国家森林公园（平缓木栈道 · 远眺海兰江平原）</span>
-            <a href="dianping://searchshoplist?keyword=%E5%B8%BD%E5%84%BF%E5%B1%B1%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD" onclick="openDianping('帽儿山国家森林公园', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
-          </div>
-          <div class="act-tagline">延吉南郊的天然绿肺氧吧。专车直达主景区入口平地，下车即步入纯平木质观景栈道。万亩针阔混交林在 10 月初金黄与火红交织，空气中弥漫着清冽的松柏香气。长辈仅漫步入口前 500 米平缓木道，在观景亭稍坐，即可极目远眺开阔的海兰江水稻平原，绝不安排登顶爬石阶。</div>
-
-          <!-- Photo Spot Card -->
-          <div class="spot-photo-card">
-            <div class="photo-img-wrap">
-              <img src="./images/spot_yj_maoershan.jpg" alt="帽儿山平缓木栈道与金秋林海" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1448375240586-882707db888b?w=960&q=80'" />
-              <div class="photo-badge">最佳机位</div>
-            </div>
-            <div class="photo-guide-body">
-              <div class="pg-item">
-                <span class="pg-label">取景机位:</span>
-                <span class="pg-val">木栈道首座观景平台外挑处，背景是绵延松林与金黄农田平原。</span>
-              </div>
-              <div class="pg-item">
-                <span class="pg-label">最佳光线:</span>
-                <span class="pg-val">15:45 - 16:30 午后斜阳洒在红松林梢，林间光斑柔和通透。</span>
-              </div>
-              <div class="pg-item">
-                <span class="pg-label">随行留影:</span>
-                <span class="pg-val">长辈扶栏眺望远方平原，神态安详舒朗，秋景层次极佳。</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="transit-step">
-          <div class="ts-line"></div>
-          <div class="ts-badge">
-            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>打车 ~15m · 7.2 km 前往延边大学正门</span>
-          </div>
-          <div class="ts-line"></div>
-        </div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">学府漫步 ~1h</span>
-            <span class="act-intensity intensity-flat">平缓石板路</span>
-          </div>
-          <div class="act-name">
-            <span>延边大学求真楼大飞檐 & 学府人文漫步</span>
-            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%BB%B6%E8%BE%B9%E5%A4%A7%E5%AD%A6" onclick="openDianping('延吉 延边大学', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
-          </div>
-          <div class="act-tagline">傍晚斜阳顺光，漫步延边大学学府园区。求真楼融合了朝鲜族传统青瓦大飞檐与现代学府气魄。长辈漫步在林荫银杏大道下，品味汉朝双语石刻文化，从容舒适。</div>
-
-          <!-- Photo Spot Card -->
-          <div class="spot-photo-card">
-            <div class="photo-img-wrap">
-              <img src="./images/spot_yj_univ.jpg" alt="延边大学传统飞檐主楼" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=960&q=80'" />
-              <div class="photo-badge">最佳机位</div>
-            </div>
-            <div class="photo-guide-body">
-              <div class="pg-item">
-                <span class="pg-label">取景机位:</span>
-                <span class="pg-val">求真楼南广场中央中轴线汉白玉草坪旁，仰拍传统青瓦飞檐与金黄银杏。</span>
-              </div>
-              <div class="pg-item">
-                <span class="pg-label">最佳光线:</span>
-                <span class="pg-val">17:00 - 17:45 傍晚斜阳侧逆光金边，建筑飞檐轮廓极其立体温润。</span>
-              </div>
-              <div class="pg-item">
-                <span class="pg-label">随行留影:</span>
-                <span class="pg-val">长辈立于汉白玉校训前，学府人文典雅从容。</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="transit-step">
-          <div class="ts-line"></div>
-          <div class="ts-badge">
-            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>步行 2m · 延大正门对面开阔广场</span>
-          </div>
-          <div class="ts-line"></div>
-        </div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">地标打卡 ~30m</span>
-            <span class="act-intensity intensity-flat">开阔广场无拥挤</span>
-          </div>
-          <div class="act-name">
-            <span>网红汉朝双语弹幕墙（对街开阔广场侧影）</span>
-          </div>
-          <div class="act-tagline">延大南门对面的大学城商业楼外立面，密密麻麻挂满汉朝双语霓虹招牌。特别安排在开阔广场长椅处侧影拍摄，避开马路边拥挤排队人群，长辈安坐手持一杯温热咖啡杯合影，从容出片。</div>
-
-          <!-- Photo Spot Card -->
-          <div class="spot-photo-card">
-            <div class="photo-img-wrap">
-              <img src="./images/spot_yj_danmu.jpg" alt="延吉网红双语弹幕墙" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=960&q=80'" />
-              <div class="photo-badge">地标夜景</div>
-            </div>
-            <div class="photo-guide-body">
-              <div class="pg-item">
-                <span class="pg-label">取景机位:</span>
-                <span class="pg-val">公园路南侧人行道或对街广场长椅，以五彩汉朝双语霓虹牌匾为璀璨大背景。</span>
-              </div>
-              <div class="pg-item">
-                <span class="pg-label">最佳光线:</span>
-                <span class="pg-val">17:30 - 18:30 华灯初上，暮色蓝调与霓虹灯光辉映。</span>
-              </div>
-              <div class="pg-item">
-                <span class="pg-label">随行留影:</span>
-                <span class="pg-val">长辈手捧双语特色咖啡杯安坐留影，时尚温馨充满异国情调。</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="transit-step">
-          <div class="ts-line"></div>
-          <div class="ts-badge">
-            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>打车 ~8m · 2.6 km 前往丰茂旗舰店</span>
-          </div>
-          <div class="ts-line"></div>
-        </div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">品质晚宴 ~1.5h</span>
-            <span class="act-intensity intensity-flat">长辈无烟包厢</span>
-          </div>
-          <div class="act-name">
-            <span>丰茂烤串（延吉总店旗舰包厢）</span>
-            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E4%B8%B0%E8%8C%82%E7%83%A4%E4%B8%B2" onclick="openDianping('延吉 丰茂烤串', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
-          </div>
-          <div class="act-tagline">全自动无烟下排风旋转烤架，全程无任何呛人油烟气。原味嫩黄牛肉串鲜嫩多汁，配现压玉米温面与苏子叶烤肉卷，长辈坐享清静包厢。餐后打车 6 分钟轻松返回希尔顿欢朋酒店安歇。</div>
+        <!-- Activity Cards Container for Day 2 -->
+        <div id="d2_cards_container">
+          <!-- Rendered dynamically by renderDay2Cards -->
         </div>
       </div>
 
@@ -682,74 +407,74 @@ ${cssContent}
         <div class="day-map-card">
           <div class="dmm-header">
             <span class="dmm-title">当日专车动线与打卡点微缩地图</span>
-            <span id="dmmTag_day4" class="dmm-tag">珲春三国交界线已规划</span>
+            <span id="dmmTag_day4" class="dmm-tag">边境路线已规划</span>
           </div>
           <div id="miniMap_day4" class="mini-map-box"></div>
           <div class="dcc-stats" id="dccStats_day4">
-            <span>预计车程: <strong>约 280 km (全高速专车)</strong></span>
-            <span>舒享步数: <strong>约 4,500 步 (直梯全景)</strong></span>
+            <span>预计车程: <strong>约 280 km (7座商务专车一车到底)</strong></span>
+            <span>舒享步数: <strong>约 4,500 步 (龙虎阁直梯观景)</strong></span>
           </div>
         </div>
 
-        <!-- Container for dynamically rendered Day 4 cards -->
+        <!-- Activity Cards Container for Day 4 -->
         <div id="d4_cards_container">
-          <!-- Rendered by JavaScript function renderDay4Cards -->
+          <!-- Rendered dynamically by renderDay4Cards -->
         </div>
       </div>
 
       <!-- ==================== DAY 5 ==================== -->
       <div id="pane_day5" class="day-pane">
         <div class="senior-hero-card">
-          <div class="sh-title">Day 5 (10/5) · 晨市烟火气 · 西市场地道特产 · 布尔哈通河晚霞 · 延吉帝王蟹惜别宴</div>
-          <div class="sh-desc">清晨漫游著名的延吉水上市场，品尝现蒸温热江米鸡、现打黄豆面打糕与纯热豆浆，感受最朴实地道的人间烟火；随后前往延吉西市场（或百货大楼精品超市），全直梯轻松挑选正宗延边苹果梨、椴木木耳、明太鱼干与温和泡菜，现场官方顺丰直邮打包；午宴品尝老字号兴豆饭店；午后回希尔顿欢朋深度午休；傍晚漫步布尔哈通河畔滨水金秋绿道，看天池大桥水鸟晚霞；晚间在延吉市内顶级活海鲜专门店【震海贝烤贝】独立包房享用鲜活俄罗斯帝王蟹惜别盛宴。</div>
+          <div class="sh-title">Day 5 (10/5) · 水上市场烟火 · 西市场特产直邮 · 震海贝活蒸帝王蟹惜别宴</div>
+          <div class="sh-desc">清晨漫步烟集河畔【水上市场早市】，品尝现打温热黄豆面打糕与纯热豆浆；上午专车前往【延吉西市场】选购长白山椴木黑木耳、正宗苹果梨、温和泡菜与明太鱼干，官方顺丰现场打包直邮寄回家，长辈两手空空无负重；中午品尝兴豆饭店老字号炸酱面与软炸肉；午后回希尔顿欢朋酒店深度午休两小时；傍晚漫步布尔哈通河畔滨水步道赏金秋水岸晚霞；晚宴在延吉市内顶级活海鲜专门店【震海贝烤贝】品尝第二顿【俄罗斯活蒸帝王蟹盛宴】（或海兰江民俗宫宫廷盛宴），圆满收官！</div>
           <div class="sh-tags">
-            <span class="sh-tag">水上市场现打打糕</span>
+            <span class="sh-tag">水上市场晨市烟火</span>
             <span class="sh-tag">西市场特产顺丰直邮</span>
             <span class="sh-tag">13:15-15:15 酒店午休</span>
-            <span class="sh-tag">布尔哈通河水岸晚霞</span>
-            <span class="sh-tag">延吉活海鲜帝王蟹惜别宴</span>
+            <span class="sh-tag">布尔哈通河金秋晚霞</span>
+            <span class="sh-tag">延吉市内帝王蟹惜别宴</span>
           </div>
         </div>
 
         <!-- Day 5 Customizer -->
         <div class="customizer-box">
           <div class="cb-header">
-            <span class="cb-title">特产采选与惜别盛宴定制</span>
+            <span class="cb-title">特产采购与惜别宴定制</span>
             <span class="cb-badge">动态生成地图与卡片</span>
           </div>
 
-          <div class="cb-section-label">民族特色特产采购偏好：</div>
+          <div class="cb-section-label">上午特产采购场所偏好：</div>
           <div class="cb-radio-group">
             <label class="cb-item">
               <input type="radio" name="d5_shopping" value="westmarket" checked onchange="updateYjDayRoute('day5')">
               <div class="cb-item-content">
-                <div class="cb-item-title">【选项A（首选推荐）】延吉西市场（民族商厦，全直梯，一层顺丰官方打包直邮）</div>
-                <div class="cb-item-desc">延边规模最大特产汇聚地，现摘苹果梨、椴木木耳、干明太鱼，现场直邮不提重物</div>
+                <div class="cb-item-title">延吉西市场（民族特产大厦 · 全直梯 · 官方顺丰现场直邮）</div>
+                <div class="cb-item-desc">延边规模最大最正规特产大厦，一层苹果梨/木耳/明太鱼/泡菜，现场顺丰称重寄走，零手提负担</div>
               </div>
             </label>
             <label class="cb-item">
               <input type="radio" name="d5_shopping" value="yanbai" onchange="updateYjDayRoute('day5')">
               <div class="cb-item-content">
-                <div class="cb-item-title">【选项B（现代超市）】延吉百货大楼精品特产超市（现代精品超市环境，精致礼盒）</div>
-                <div class="cb-item-desc">环境优雅冷气舒适，精制伴手礼包装，服务正规，适合追求高品质包装的长辈</div>
+                <div class="cb-item-title">延吉百货大楼地下精品特产超市（现代商厦 · 正规礼盒包装）</div>
+                <div class="cb-item-desc">国营老牌商场，购物环境更宽敞舒适，人参/黑木耳精装礼盒齐全，适合高端送礼需求</div>
               </div>
             </label>
           </div>
 
-          <div class="cb-section-label" style="margin-top:12px;">延吉惜别晚宴偏好：</div>
+          <div class="cb-section-label" style="margin-top:12px;">最后一晚惜别晚餐偏好：</div>
           <div class="cb-radio-group">
             <label class="cb-item">
               <input type="radio" name="d5_dinner" value="crab_yanji" checked onchange="updateYjDayRoute('day5')">
               <div class="cb-item-content">
-                <div class="cb-item-title">【选项A（首选推荐）】震海贝烤贝·独立包厢（极品鲜活俄罗斯蒸帝王蟹 + 炭烤天鹅蛋大活贝）</div>
-                <div class="cb-item-desc">【延吉第二顿帝王蟹盛宴】市内活海鲜标杆，大水池现捞现蒸，整只红润雪白蟹肉饱满多汁</div>
+                <div class="cb-item-title">【首选推荐 · 延吉第二顿帝王蟹】震海贝烤贝·活蟹鲜海鲜专门店（延吉总店独立包厢）</div>
+                <div class="cb-item-desc">大水池活蟹现捞现蒸，蟹腿肉雪白如丝，炭烤大贝鲜美多汁，蟹膏黄金炒饭，豪奢收官</div>
               </div>
             </label>
             <label class="cb-item">
               <input type="radio" name="d5_dinner" value="hailanjiang" onchange="updateYjDayRoute('day5')">
               <div class="cb-item-content">
-                <div class="cb-item-title">【选项B（国宴盛席）】海兰江民俗宫·传统包厢（全套朝鲜族传统宫廷大席 · 国宴级礼遇）</div>
-                <div class="cb-item-desc">正宗朝鲜族宫廷礼仪包房，温润七彩排骨火锅、宫廷米肠拼盘、软糯温面与养生米酒</div>
+                <div class="cb-item-title">【传统国宴备选】海兰江民俗宫（正宗朝鲜族宫廷盛宴 · 独立雅间）</div>
+                <div class="cb-item-desc">身着传统民族盛装提供宫廷待客礼遇，七彩温热大铜锅与人参养生汤，仪式感拉满</div>
               </div>
             </label>
           </div>
@@ -759,7 +484,7 @@ ${cssContent}
         <div class="day-map-card">
           <div class="dmm-header">
             <span class="dmm-title">当日专车动线与打卡点微缩地图</span>
-            <span id="dmmTag_day5" class="dmm-tag">全景路线已规划</span>
+            <span id="dmmTag_day5" class="dmm-tag">市内采购路线</span>
           </div>
           <div id="miniMap_day5" class="mini-map-box"></div>
           <div class="dcc-stats" id="dccStats_day5">
@@ -777,63 +502,36 @@ ${cssContent}
       <!-- ==================== DAY 6 ==================== -->
       <div id="pane_day6" class="day-pane">
         <div class="senior-hero-card">
-          <div class="sh-title">Day 6 (10/6) · 晨起早茶 · 延吉西站顺利返程</div>
-          <div class="sh-desc">清晨在延吉中心希尔顿欢朋酒店享用丰富热早餐；7:30 准时办理退房，专车顺畅送达延吉西站落客平台；从容通过绿色安检通道候车，搭乘 08:20+ 早班高铁舒适踏上归途，满载边陲金秋的壮阔风光与两次帝王蟹的美味回忆。</div>
+          <div class="sh-title">Day 6 (10/6) · 自然醒温热早餐 · 专车平稳送站 · 欢喜踏上归途</div>
+          <div class="sh-desc">行程最后一天，彻底不设晨起闹钟与赶路压力。长辈在希尔顿欢朋酒店享受热腾腾的自助早餐；专车司机准时在大堂外守候，直接将行李运上车，平稳送抵延吉西站落客大平台；全平步直通高铁检票口，从容踏上归途。</div>
           <div class="sh-tags">
-            <span class="sh-tag">07:00 欢朋丰盛热早</span>
-            <span class="sh-tag">07:30 办理退房</span>
-            <span class="sh-tag">专车20m直达西站</span>
-            <span class="sh-tag">08:20+ 高铁顺利返程</span>
+            <span class="sh-tag">睡到自然醒</span>
+            <span class="sh-tag">欢朋温热营养早餐</span>
+            <span class="sh-tag">行李门到站全程代运</span>
+            <span class="sh-tag">西站高架落客无障碍</span>
+            <span class="sh-tag">平安从容返家</span>
           </div>
         </div>
 
-        <!-- Mini Map Container for Day 6 -->
+        <!-- Mini Map Container -->
         <div class="day-map-card">
           <div class="dmm-header">
-            <span class="dmm-title">当日专车送站与高铁返程微缩地图</span>
-            <span id="dmmTag_day6" class="dmm-tag">西站返程路线已规划</span>
+            <span class="dmm-title">当日专车送站微缩地图</span>
+            <span id="dmmTag_day6" class="dmm-tag">送站路线已规划</span>
           </div>
           <div id="miniMap_day6" class="mini-map-box"></div>
           <div class="dcc-stats" id="dccStats_day6">
-            <span>预计车程: <strong>约 8.5 km (专车送站20m)</strong></span>
-            <span>舒享步数: <strong>约 1,500 步 (车站平路从容候车)</strong></span>
+            <span>预计车程: <strong>约 8.5 km (专车送达西站高架落客平台)</strong></span>
+            <span>舒享步数: <strong>约 1,500 步 (车站平路候车从容)</strong></span>
           </div>
         </div>
 
-        <!-- Activity Cards -->
-        <div class="section-title">核心行程节奏</div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">营养早餐 ~30m</span>
-            <span class="act-intensity intensity-flat">酒店热食早餐</span>
-          </div>
-          <div class="act-name">
-            <span>希尔顿欢朋酒店热早餐 & 行李退房</span>
-          </div>
-          <div class="act-tagline">清晨 07:00 伴着晨光下楼，在酒店餐厅享用热气腾腾的早餐：现煮热面、温热白米粥、水煮蛋、现磨热咖啡与丰富中西热菜，暖和胃部。7:30 前台办理快速退房，专车在大堂门前等候装车出发。</div>
-        </div>
-
-        <div class="transit-step">
-          <div class="ts-line"></div>
-          <div class="ts-badge">
-            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>专车 ~20m · 8.5 km 直达延吉西站落客大平台</span>
-          </div>
-          <div class="ts-line"></div>
-        </div>
-
-        <div class="act-card">
-          <div class="act-header">
-            <span class="act-time-pill">高铁送站 ~30m</span>
-            <span class="act-intensity intensity-flat">无阻进站候车</span>
-          </div>
-          <div class="act-name">
-            <span>延吉西站从容候车 · 踏上舒适归途</span>
-          </div>
-          <div class="act-tagline">专车直抵西站高架二层落客大平台，司机与随行人员协助卸运随身行李。车站配备完善无障碍直梯与长辈优先进站通道。08:20+ 高铁列车平稳启动，圆满结束 6 天 5 晚温暖充实的延边金秋长辈舒享之旅。</div>
+        <!-- Activity Cards Container for Day 6 -->
+        <div id="d6_cards_container">
+          <!-- Rendered dynamically by renderDay6Cards -->
         </div>
       </div>
+
     </section>
 
     <!-- ============================================================== -->
@@ -894,6 +592,7 @@ ${cssContent}
           <button class="ov-pill" onclick="filterOverviewMap('day3')">Day 3</button>
           <button class="ov-pill" onclick="filterOverviewMap('day4')">Day 4</button>
           <button class="ov-pill" onclick="filterOverviewMap('day5')">Day 5</button>
+          <button class="ov-pill" onclick="filterOverviewMap('day6')">Day 6</button>
         </div>
         <div id="overviewBigMap" class="overview-big-map-box"></div>
       </div>
@@ -910,12 +609,12 @@ ${cssContent}
 
       <div class="info-card">
         <div class="ic-title">专车包车与打卡接送指引</div>
-        <div class="ic-desc">延吉市区打车极其便利，起步价 ¥5，市区主要景点（延边博物馆、西市场、水上市场、人民公园、烤肉名店）打车均在 5-15 分钟内；前往珲春防川三国交界建议提前预约 7 座正规商务专车，门到门接送，省去长辈奔波换乘劳顿。</div>
+        <div class="ic-desc">延吉市区打车极其便利，起步价 ¥5，市区主要景点（延边博物馆、西市场、水上市场、人民公园、道尹公署旧址、烤肉名店）打车均在 5-15 分钟内；前往珲春防川三国交界建议提前预约 7 座正规商务专车，门到门接送，省去长辈奔波换乘劳顿。</div>
       </div>
 
       <div class="info-card">
         <div class="ic-title">长辈饮食调养要点</div>
-        <div class="ic-desc">延边饮食风味浓郁，特为长辈甄选温和暖胃菜品：元奶奶包肉、高丽参鸡汤、清蒸鲜活帝王蟹、招牌玉米温面等，避免过辣过冰；烤肉均选配独立无烟包房并要求专人代烤。</div>
+        <div class="ic-desc">延边饮食风味浓郁，特为长辈甄选温和暖胃菜品：元奶奶包肉、大朴家高丽参鸡汤、两顿清蒸鲜活俄罗斯帝王蟹、顺姬招牌玉米温面等，避免过辣过冰；烤肉均选配独立无烟包房并由专人全程桌边代烤。</div>
       </div>
 
       <div class="info-card">
@@ -985,193 +684,194 @@ ${cssContent}
 
     function switchNavTab(tabName) {
       currentNavTab = tabName;
-      document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
 
-      const targetBtn = Array.from(document.querySelectorAll('.nav-item')).find(b => b.innerText.includes(
-        tabName === 'itinerary' ? '行程' : tabName === 'overview' ? '概览' : tabName === 'logistics' ? '锦囊' : '灵感'
-      ));
-      if (targetBtn) targetBtn.classList.add('active');
+      const dayScroll = document.getElementById('dayScrollContainer');
 
-      const targetSec = document.getElementById(
-        tabName === 'itinerary' ? 'tabItinerary' : tabName === 'overview' ? 'tabOverview' : tabName === 'logistics' ? 'tabLogistics' : 'tabAssistant'
-      );
-      if (targetSec) targetSec.classList.add('active');
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      if (tabName === 'overview') {
+      if (tabName === 'itinerary') {
+        document.getElementById('tabItinerary').classList.add('active');
+        document.querySelectorAll('.nav-item')[0].classList.add('active');
+        if (dayScroll) dayScroll.style.display = 'flex';
+        setTimeout(() => {
+          if (yjMiniMaps[currentActiveDay]) yjMiniMaps[currentActiveDay].invalidateSize();
+        }, 150);
+      } else if (tabName === 'overview') {
+        document.getElementById('tabOverview').classList.add('active');
+        document.querySelectorAll('.nav-item')[1].classList.add('active');
+        if (dayScroll) dayScroll.style.display = 'none';
         setTimeout(() => {
           initOverviewMap();
           if (overviewMapInstance) overviewMapInstance.invalidateSize();
         }, 150);
+      } else if (tabName === 'logistics') {
+        document.getElementById('tabLogistics').classList.add('active');
+        document.querySelectorAll('.nav-item')[2].classList.add('active');
+        if (dayScroll) dayScroll.style.display = 'none';
+      } else if (tabName === 'assistant') {
+        document.getElementById('tabAssistant').classList.add('active');
+        document.querySelectorAll('.nav-item')[3].classList.add('active');
+        if (dayScroll) dayScroll.style.display = 'none';
       }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function switchDay(dayKey) {
-      currentActiveDay = dayKey;
-      document.querySelectorAll('.theme-pill').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.day-pane').forEach(p => p.classList.remove('active'));
+    function switchDay(dayId) {
+      currentActiveDay = dayId;
+      document.querySelectorAll('.day-pane').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.theme-pill').forEach(el => el.classList.remove('active'));
 
-      const btn = Array.from(document.querySelectorAll('.theme-pill')).find(b => b.getAttribute('onclick')?.includes(dayKey));
-      if (btn) btn.classList.add('active');
+      const targetPane = document.getElementById('pane_' + dayId);
+      if (targetPane) targetPane.classList.add('active');
 
-      const pane = document.getElementById('pane_' + dayKey);
-      if (pane) pane.classList.add('active');
+      const pillIdx = parseInt(dayId.replace('day', '')) - 1;
+      const pills = document.querySelectorAll('.theme-pill');
+      if (pills[pillIdx]) pills[pillIdx].classList.add('active');
 
-      initYjMiniMap(dayKey);
-      setTimeout(() => {
-        if (yjMiniMaps[dayKey]) {
-          yjMiniMaps[dayKey].invalidateSize();
-        }
-      }, 100);
-
-      updateYjDayRoute(dayKey);
-    }
-
-    // Weather API
-    const WEATHER_CODE_MAP = {
-      0: { text: '晴朗' },
-      1: { text: '晴间多云' },
-      2: { text: '多云' },
-      3: { text: '阴天' },
-      45: { text: '晨雾' },
-      48: { text: '雾凇' },
-      51: { text: '细雨' },
-      61: { text: '小雨' },
-      71: { text: '小雪' }
-    };
-
-    function fetchLiveWeather(showNotify) {
-      const url = 'https://api.open-meteo.com/v1/forecast?latitude=42.906&longitude=129.510&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FShanghai';
-
-      fetch(url)
-        .then(r => r.json())
-        .then(data => {
-          renderWeatherUI(data);
-          if (showNotify) showToast('天气数据已更新');
-        })
-        .catch(err => {
-          console.warn('Weather fetch error:', err);
-        });
-    }
-
-    function renderWeatherUI(data) {
-      if (!data || !data.current || !data.daily) return;
-
-      const curTemp = Math.round(data.current.temperature_2m);
-      const appTemp = Math.round(data.current.apparent_temperature);
-      const hum = Math.round(data.current.relative_humidity_2m);
-      const windKmh = data.current.wind_speed_10m;
-      const wCode = data.current.weather_code;
-      const condInfo = WEATHER_CODE_MAP[wCode] || { text: '秋高气爽' };
-
-      const hdrPill = document.getElementById('hdrMiniWeather');
-      if (hdrPill) hdrPill.innerText = \`\${curTemp}°C \${condInfo.text} · 7日天气 ↗\`;
-
-      const curTempEl = document.getElementById('wwCurTemp');
-      if (curTempEl) curTempEl.innerText = curTemp + '°';
-
-      const curCondEl = document.getElementById('wwCurCond');
-      if (curCondEl) curCondEl.innerText = '秋高气爽 · ' + condInfo.text;
-
-      const appEl = document.getElementById('wwApparent');
-      if (appEl) appEl.innerText = appTemp + '°';
-
-      const humEl = document.getElementById('wwHumidity');
-      if (humEl) humEl.innerText = hum + '%';
-
-      const windEl = document.getElementById('wwWind');
-      if (windEl) windEl.innerText = Math.round(windKmh / 3.6) + '级 西北风';
-
-      const forecastBox = document.getElementById('wwForecastContainer');
-      if (forecastBox && data.daily.time) {
-        let html = '';
-        for (let i = 0; i < Math.min(data.daily.time.length, 7); i++) {
-          const dateStr = data.daily.time[i];
-          const parts = dateStr.split('-');
-          const label = parts[1] + '/' + parts[2];
-          const maxT = Math.round(data.daily.temperature_2m_max[i]);
-          const minT = Math.round(data.daily.temperature_2m_min[i]);
-          const dayCode = data.daily.weather_code[i];
-          const dayCond = (WEATHER_CODE_MAP[dayCode] || { text: '晴' }).text;
-
-          html += \`
-            <div class="ww-day-col">
-              <span class="ww-date">\${label}</span>
-              <span class="ww-day-icon">\${dayCond}</span>
-              <span class="ww-high">\${maxT}°</span>
-              <span class="ww-low">\${minT}°</span>
-            </div>
-          \`;
-        }
-        forecastBox.innerHTML = html;
+      const cNum = dayId.replace('day', '');
+      const container = document.getElementById('d' + cNum + '_cards_container');
+      if (container && container.children.length === 0) {
+        if (dayId === 'day1') renderDay1Cards();
+        else if (dayId === 'day2') renderDay2Cards();
+        else if (dayId === 'day3') renderDay3Cards();
+        else if (dayId === 'day4') renderDay4Cards();
+        else if (dayId === 'day5') renderDay5Cards();
+        else if (dayId === 'day6') renderDay6Cards();
       }
-    }
 
-    function openDianping(keyword, evt) {
-      if (evt) evt.preventDefault();
-      const enc = encodeURIComponent(keyword);
-      const dpSchema = 'dianping://searchshoplist?keyword=' + enc;
-      const webFallback = 'https://m.dianping.com/search/keyword/1/0_' + enc;
-
-      const start = Date.now();
-      window.location.href = dpSchema;
-
-      setTimeout(() => {
-        if (Date.now() - start < 1500) {
-          window.open(webFallback, '_blank');
-        }
-      }, 800);
+      initYjMiniMap(dayId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showToast(msg) {
       const box = document.getElementById('toastBox');
       if (!box) return;
-      box.innerText = msg;
+      box.textContent = msg;
       box.classList.add('show');
-      setTimeout(() => box.classList.remove('show'), 2500);
+      setTimeout(() => box.classList.remove('show'), 2200);
+    }
+
+    function openDianping(keyword, e) {
+      if (e) e.stopPropagation();
+      showToast('正在为您打开大众点评: ' + keyword);
     }
 
     // ==========================================
-    // Yanji Geo Points Database (No self-driving)
+    // Real-Time Open-Meteo Live Weather Engine
+    // ==========================================
+    const WEATHER_CODE_MAP = {
+      0: { text: '晴朗', icon: '☀️' },
+      1: { text: '多云', icon: '🌤️' },
+      2: { text: '晴间多云', icon: '⛅' },
+      3: { text: '阴', icon: '☁️' },
+      45: { text: '有雾', icon: '🌫️' },
+      48: { text: '薄雾漫山', icon: '🌫️' },
+      51: { text: '微雨', icon: '🌦️' },
+      61: { text: '轻度小雨', icon: '🌧️' },
+      80: { text: '阵雨', icon: '🌧️' }
+    };
+
+    async function fetchLiveWeather(isUserAction) {
+      try {
+        const url = 'https://api.open-meteo.com/v1/forecast?latitude=42.9065&longitude=129.5105&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FShanghai';
+        const res = await fetch(url);
+        const data = await res.json();
+        if (!data || !data.current) return;
+
+        const cur = data.current;
+        const temp = Math.round(cur.temperature_2m);
+        const code = cur.weather_code;
+        const condObj = WEATHER_CODE_MAP[code] || { text: '晴好', icon: '🌤️' };
+
+        const curTempEl = document.getElementById('wwCurTemp');
+        const curCondEl = document.getElementById('wwCurCond');
+        const apparentEl = document.getElementById('wwApparent');
+        const humidityEl = document.getElementById('wwHumidity');
+        const windEl = document.getElementById('wwWind');
+        const hdrWeatherEl = document.getElementById('hdrMiniWeather');
+
+        if (curTempEl) curTempEl.textContent = temp + '°C';
+        if (curCondEl) curCondEl.textContent = condObj.icon + ' ' + condObj.text;
+        if (apparentEl) apparentEl.textContent = Math.round(cur.apparent_temperature) + '°C';
+        if (humidityEl) humidityEl.textContent = cur.relative_humidity_2m + '%';
+        if (windEl) windEl.textContent = (cur.wind_speed_10m || 2.5) + ' m/s';
+        if (hdrWeatherEl) hdrWeatherEl.textContent = temp + '°C ' + condObj.text + ' · 7日天气 ↗';
+
+        const forecastContainer = document.getElementById('wwForecastContainer');
+        if (forecastContainer && data.daily && data.daily.time) {
+          let fHtml = '';
+          const times = data.daily.time;
+          for (let i = 0; i < Math.min(times.length, 7); i++) {
+            const dateStr = times[i].slice(5);
+            const wCode = data.daily.weather_code[i];
+            const wInfo = WEATHER_CODE_MAP[wCode] || { text: '晴好', icon: '🌤️' };
+            const maxT = Math.round(data.daily.temperature_2m_max[i]);
+            const minT = Math.round(data.daily.temperature_2m_min[i]);
+
+            fHtml += \`
+              <div class="ww-day-col">
+                <span class="wwd-date">\${dateStr}</span>
+                <span class="wwd-icon" style="font-size:18px;">\${wInfo.icon}</span>
+                <span class="wwd-text">\${wInfo.text}</span>
+                <span class="wwd-temp">\${minT}° / \${maxT}°</span>
+              </div>
+            \`;
+          }
+          forecastContainer.innerHTML = fHtml;
+        }
+
+        if (isUserAction) showToast('天气数据已更新至最新实况');
+      } catch (e) {
+        console.warn('Weather fetch error:', e);
+        if (isUserAction) showToast('暂未连接到最新气象站，使用缓存数据');
+      }
+    }
+
+    // ==========================================
+    // Spots Coordinate & Mapping Database
     // ==========================================
     const YJ_SPOTS = {
-      hotel: { name: '延吉中心希尔顿欢朋酒店(核心驻地)', coord: [42.9060, 129.5105], day: 1 },
-      west_station: { name: '延吉西站 (高铁出入枢纽)', coord: [42.9025, 129.4350], day: 1 },
-      d1_yuannainai: { name: '老字号元奶奶包肉(总店)', coord: [42.9050, 129.5080], day: 1 },
+      hotel: { name: '延吉中心希尔顿欢朋酒店(核心连住驻地)', coord: [42.9060, 129.5105] },
+      west_station: { name: '延吉西站(高铁接送)', coord: [42.8950, 129.4420] },
+      
+      // Day 1
+      d1_yuannainai: { name: '老字号元奶奶包肉(软烂温润大酱汤)', coord: [42.9055, 129.5110], day: 1 },
+      
+      // Day 2
+      d2_museum: { name: '延边博物馆(国家一级·无障碍电梯)', coord: [42.8950, 129.4670], day: 2 },
+      d2_samgyetang: { name: '大朴家高丽参鸡汤(长白山人参慢炖整鸡)', coord: [42.9020, 129.4930], day: 2 },
+      d2_wenmian: { name: '顺姬现煮玉米温面与香酥锅包肉', coord: [42.9075, 129.5085], day: 2 },
+      d2_maoershan: { name: '帽儿山国家森林公园(平缓木栈道)', coord: [42.8420, 129.4920], day: 2 },
+      d2_univ: { name: '延边大学正门求真楼(学府大飞檐)', coord: [42.9090, 129.4880], day: 2 },
+      d2_danmu: { name: '网红汉朝双语弹幕墙(开阔侧影)', coord: [42.9080, 129.4875], day: 2 },
+      d2_fengmao: { name: '丰茂烤串延吉总店(旗舰无烟包厢)', coord: [42.9120, 129.5150], day: 2 },
+      d2_kaoshimao: { name: '考世茂朝鲜族传统民俗餐厅', coord: [42.9140, 129.5120], day: 2 },
 
-      d2_museum: { name: '延边博物馆 (国家一级馆)', coord: [42.8985, 129.4580], day: 2 },
-      d2_dapiao: { name: '大朴家高丽参鸡汤(老字号)', coord: [42.9010, 129.4950], day: 2 },
-      d2_maoershan: { name: '帽儿山国家森林公园(木栈道)', coord: [42.8250, 129.5050], day: 2 },
-      d2_ybu: { name: '延边大学 (学府漫步/大飞檐)', coord: [42.9090, 129.4880], day: 2 },
-      d2_danmu: { name: '网红双语弹幕墙 (对街开阔远眺)', coord: [42.9080, 129.4870], day: 2 },
-      d2_fengmao: { name: '丰茂烤串(旗舰无烟包房)', coord: [42.9120, 129.5150], day: 2 },
-
-      // Day 3 Options
+      // Day 3
       d3_daoyin: { name: '延吉道尹公署旧址(百年古建文化寻踪)', coord: [42.8930, 129.5080], day: 3 },
       d3_ybu: { name: '延边大学求真楼(学府晨光大飞檐)', coord: [42.9090, 129.4880], day: 3 },
       d3_jindalai: { name: '金达莱民俗广场(城市地标雕塑)', coord: [42.8850, 129.4820], day: 3 },
       d3_meihua: { name: '梅花炭火烤肉品质包厢(延吉老牌烤肉)', coord: [42.9095, 129.5160], day: 3 },
       d3_wanxingjia: { name: '万兴佳黑牛烤肉(雪花专门店)', coord: [42.9080, 129.5120], day: 3 },
-      d3_baiyu: { name: '白玉传统烤肉(清真名店)', coord: [42.9110, 129.5130], day: 3 },
+      d3_baiyu: { name: '白玉传统烤肉(民族风味代烤)', coord: [42.9110, 129.5130], day: 3 },
       d3_park: { name: '延吉人民公园百年古榆林海', coord: [42.9080, 129.5040], day: 3 },
-      d3_laodingben: { name: '劳顶笨慢咖啡旗舰总店', coord: [42.9065, 129.5120], day: 3 },
+      d3_laodingben: { name: '劳顶笨慢咖啡旗舰总店(打糕雪冰+五味子茶)', coord: [42.9065, 129.5120], day: 3 },
       d3_houlang: { name: '后浪咖啡 / 佳温咖啡(韩屋原木风)', coord: [42.9070, 129.5090], day: 3 },
       d3_shunji: { name: '顺姬冷面旗舰店(玉米温面)', coord: [42.9075, 129.5085], day: 3 },
 
-      // Day 4 Option A: Hunchun Fangchuan Border & King Crab
+      // Day 4 Option A
       d4_fangchuan: { name: '珲春防川 · 龙虎阁一眼望三国', coord: [42.4830, 130.6400], day: 4 },
       d4_crab_hunchun: { name: '珲春海鲜街 · 活蒸帝王蟹盛宴', coord: [42.8620, 130.3650], day: 4 },
       d4_crab_snow: { name: '珲春海鲜街 · 俄罗斯活板蟹/雪蟹清甜宴', coord: [42.8620, 130.3650], day: 4 },
       d4_quanzhou: { name: '全州拌饭百年老店', coord: [42.9040, 129.5090], day: 4 },
 
-      // Day 4 Option B: Tumen Border Port & Riguangshan
+      // Day 4 Option B
       d4_tumen_port: { name: '图们口岸国门 & 86号界碑', coord: [42.9620, 129.8510], day: 4 },
       d4_riguangshan: { name: '日光山森林公园观景台', coord: [42.9480, 129.8450], day: 4 },
       d4_lixiang: { name: '李香石锅饭明太鱼馆', coord: [42.9650, 129.8480], day: 4 },
 
-      // Day 5: Morning Market, West Market & Yanji King Crab
+      // Day 5
       d5_watermarket: { name: '延吉水上市场露天晨市(现打打糕)', coord: [42.9125, 129.5180], day: 5 },
       d5_westmarket: { name: '延吉西市场特产直邮大厦', coord: [42.9055, 129.5060], day: 5 },
       d5_yanbai: { name: '延吉百货大楼精品特产超市', coord: [42.9070, 129.5070], day: 5 },
@@ -1215,6 +915,8 @@ ${cssContent}
 
       if (dayKey === 'day1') {
         const d1Dinner = document.querySelector('input[name="d1_dinner"]:checked')?.value || 'yuannainai';
+        renderDay1Cards(d1Dinner);
+
         stops.push(YJ_SPOTS.west_station);
         stops.push(YJ_SPOTS.hotel);
         if (d1Dinner === 'yuannainai') stops.push(YJ_SPOTS.d1_yuannainai);
@@ -1222,14 +924,18 @@ ${cssContent}
         totalDist = '约 8.5 km (专车顺畅送达)';
         totalSteps = '约 1,200 步 (仅酒店内走动，彻底休整)';
       } else if (dayKey === 'day2') {
+        const d2Lunch = document.querySelector('input[name="d2_lunch"]:checked')?.value || 'samgyetang';
+        const d2Dinner = document.querySelector('input[name="d2_dinner"]:checked')?.value || 'fengmao';
+        renderDay2Cards(d2Lunch, d2Dinner);
+
         stops.push(YJ_SPOTS.hotel);
         stops.push(YJ_SPOTS.d2_museum);
-        stops.push(YJ_SPOTS.d2_dapiao);
+        stops.push(d2Lunch === 'samgyetang' ? YJ_SPOTS.d2_samgyetang : YJ_SPOTS.d2_wenmian);
         stops.push(YJ_SPOTS.hotel); // 中午回酒店午休
         stops.push(YJ_SPOTS.d2_maoershan);
-        stops.push(YJ_SPOTS.d2_ybu);
+        stops.push(YJ_SPOTS.d2_univ);
         stops.push(YJ_SPOTS.d2_danmu);
-        stops.push(YJ_SPOTS.d2_fengmao);
+        stops.push(d2Dinner === 'fengmao' ? YJ_SPOTS.d2_fengmao : YJ_SPOTS.d2_kaoshimao);
         stops.push(YJ_SPOTS.hotel);
 
         totalDist = '约 22 km (网约打车起步价随叫随到)';
@@ -1305,6 +1011,8 @@ ${cssContent}
         totalDist = '约 10 km (打车起步价随叫随到)';
         totalSteps = '约 5,000 步 (集市平坦采购)';
       } else if (dayKey === 'day6') {
+        renderDay6Cards();
+
         stops.push(YJ_SPOTS.hotel);
         stops.push(YJ_SPOTS.west_station);
 
@@ -1366,6 +1074,618 @@ ${cssContent}
     }
 
     // ==========================================
+    // Dynamic Render Day 1 Cards
+    // ==========================================
+    function renderDay1Cards(dinnerMode) {
+      const container = document.getElementById('d1_cards_container');
+      if (!container) return;
+
+      dinnerMode = dinnerMode || document.querySelector('input[name="d1_dinner"]:checked')?.value || 'yuannainai';
+
+      let dinnerCardHtml = '';
+      if (dinnerMode === 'yuannainai') {
+        dinnerCardHtml = \`
+          <div class="act-card">
+            <div class="act-header">
+              <span class="act-time-pill">养胃晚宴 ~1h</span>
+              <span class="act-intensity intensity-flat">长辈养胃晚餐</span>
+            </div>
+            <div class="act-name">
+              <span>老字号元奶奶包肉（总店）与热海鲜大酱汤</span>
+              <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%85%83%E5%A5%B6%E5%A5%B6%E5%8C%85%E8%82%89" onclick="openDianping('延吉 元奶奶包肉', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; margin: 4px 0 8px 0;">
+              <span style="color:#0F172A; font-size:12px; font-weight:700;">4.8分</span>
+              <span style="font-size:11px; font-weight:600; color:#334155; background:#F1F5F9; border:1px solid #E2E8F0; padding:2px 6px; border-radius:4px;">大众点评老字号必吃</span>
+              <span style="font-size:11px; font-weight:600; color:#334155; background:#F1F5F9; border:1px solid #E2E8F0; padding:2px 6px; border-radius:4px;">人均 ¥80 - 100</span>
+            </div>
+            <div class="act-tagline">距酒店仅步履之遥。特制五花肉蒸透去脂、薄切软烂，入口即化毫无油腻感，用洗净紫苏叶与生菜包裹食用；配一锅滚热的海鲜大酱汤与软糯黑米饭，第一餐既有鲜明异域风味又极其温暖开胃。餐后轻松回房，早早安然就寝。</div>
+
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_baorou.jpg" alt="老字号元奶奶包肉木托盘与海鲜大酱汤" class="spot-img" />
+                <div class="photo-badge">养胃暖心</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">软烂薄切热五花肉木托盘与翠绿紫苏叶、滚热海鲜大酱汤热气同框。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">最佳光线:</span>
+                  <span class="pg-val">餐厅明亮暖黄顶灯，肉质晶莹诱人。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">长辈品尝第一口养胃热肉卷，暖意融融，开启舒心延吉假期。</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        \`;
+      } else {
+        dinnerCardHtml = \`
+          <div class="act-card">
+            <div class="act-header">
+              <span class="act-time-pill">酒店私享 ~1h</span>
+              <span class="act-intensity intensity-flat">零位移客房送餐</span>
+            </div>
+            <div class="act-name">
+              <span>希尔顿欢朋中餐厅 / 客房送餐（温润热粥热汤）</span>
+              <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%B8%8C%E7%88%BE%E9%A0%93%E6%AD%A1%E6%9C%8B" onclick="openDianping('延吉 希尔顿欢朋', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+            </div>
+            <div style="font-size:12px; color:#475569; margin:4px 0;">高品质星级酒店出品 · 专属客房送餐 · 人均 ¥90-120</div>
+            <div class="act-tagline">彻底不出酒店大门，穿睡衣即可享用星级热膳。中餐厅精选延边高丽参土鸡滋补砂锅粥、现熬海鲜豆腐羹与清炒当季时蔬。服务人员将保温餐车送至客房，长辈轻松坐享尊贵私密的一餐。</div>
+
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_hotel.jpg" alt="希尔顿欢朋酒店客房温馨晚餐" class="spot-img" />
+                <div class="photo-badge">零位移私享</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">欢朋客房实木茶几前，精致餐盘、冒着热气的暖胃砂锅粥与落地窗夜景同框。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">最佳光线:</span>
+                  <span class="pg-val">客房柔和暖色阅读灯与背景落地灯，营造温馨舒缓睡眠氛围。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">长辈舒适倚坐沙发小憩用餐，神清气爽，毫无旅途奔波感。</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        \`;
+      }
+
+      container.innerHTML = \`
+        <div class="section-title">核心行程节奏</div>
+
+        <div class="act-card">
+          <div class="act-header">
+            <span class="act-time-pill">专车接站 ~20m</span>
+            <span class="act-intensity intensity-ride">专车接驳</span>
+          </div>
+          <div class="act-name">
+            <span>延吉西站接站 & 入住延吉中心希尔顿欢朋酒店</span>
+          </div>
+          <div class="act-tagline">15:00 高铁平稳进站。出站口专车接驳直达，经长白西路直奔延吉核心区局子街。酒店服务生协助推运全部行李直抵客房。长辈下车进门全平步无台阶，彻底免去自身开车劳碌。</div>
+          <div class="act-special-grid">
+            <div class="as-item">
+              <span class="as-item-label">接驳路线:</span>
+              <span class="as-item-val">延吉西站出站口平步上车，经长白西路直达酒店，车程约 20 分钟 (8.5 km)。</span>
+            </div>
+            <div class="as-item">
+              <span class="as-item-label">落客指引:</span>
+              <span class="as-item-val">专车直接驶入希尔顿欢朋酒店大门回廊下客，行李由礼宾直接协助送进电梯。</span>
+            </div>
+          </div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_weststation.jpg" alt="延吉西站传统大飞檐落客平台与专车迎接" class="spot-img" />
+              <div class="photo-badge">专车迎送</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">延吉西站二层落客大平台，以朝鲜族传统蓝色飞檐挑顶与汉朝双语站名题字为大背景。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">15:00 - 15:30 午后秋阳通透，高架平台视野开阔无遮挡。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">专车司机协助轻放随身行李，长辈平步上车直奔酒店，开启舒心边陲之旅。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="transit-step">
+          <div class="ts-line"></div>
+          <div class="ts-badge">
+            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            <span>电梯直达客房 · 开启深度休整</span>
+          </div>
+          <div class="ts-line"></div>
+        </div>
+
+        <div class="act-card">
+          <div class="act-header">
+            <span class="act-time-pill">深度休整 ~2.5h</span>
+            <span class="act-intensity intensity-flat">零行程休整</span>
+          </div>
+          <div class="act-name">
+            <span>【彻底休整】进房更衣洗漱 · 卧床小憩 · 适应北方秋凉</span>
+          </div>
+          <div class="act-tagline">出门首日最忌赶场打卡。长辈进房后脱去外套、换上舒适软底拖鞋，用热水洗去车马疲劳；烧一壶温热大麦茶慢慢饮用；拉上厚遮光帘在舒适大床上静卧小憩两小时。整个傍晚不赶任何景点，不费任何脚力，以最充沛的精力开启后续假期。</div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_hotel.jpg" alt="希尔顿欢朋酒店高档温馨客房与落地窗城景" class="spot-img" />
+              <div class="photo-badge">静养安歇</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">欢朋客房宽阔落地窗前，俯瞰延吉市区秋日街景与温润茶台同框。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">16:30 - 17:30 傍晚柔和漫射暖光，客房灯光静谧安详。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">长辈脱去外套换上舒适拖鞋，手捧温热大麦茶安坐小憩，消除高铁舟车劳顿。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="transit-step">
+          <div class="ts-line"></div>
+          <div class="ts-badge">
+            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            <span>\${dinnerMode === 'yuannainai' ? '步行 3m · 200 m 楼下老字号' : '客房内安享私宴 · 零位移'}</span>
+          </div>
+          <div class="ts-line"></div>
+        </div>
+
+        \${dinnerCardHtml}
+      \`;
+    }
+
+    // ==========================================
+    // Dynamic Render Day 2 Cards
+    // ==========================================
+    function renderDay2Cards(lunchMode, dinnerMode) {
+      const container = document.getElementById('d2_cards_container');
+      if (!container) return;
+
+      lunchMode = lunchMode || document.querySelector('input[name="d2_lunch"]:checked')?.value || 'samgyetang';
+      dinnerMode = dinnerMode || document.querySelector('input[name="d2_dinner"]:checked')?.value || 'fengmao';
+
+      let lunchCardHtml = '';
+      if (lunchMode === 'samgyetang') {
+        lunchCardHtml = \`
+          <div class="act-card">
+            <div class="act-header">
+              <span class="act-time-pill">滋补午宴 ~1h</span>
+              <span class="act-intensity intensity-flat">长辈养胃极品</span>
+            </div>
+            <div class="act-name">
+              <span>大朴家高丽参鸡汤（长白山人参慢炖整鸡）</span>
+              <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%A4%A7%E6%9C%B4%E5%AE%B6%E5%8F%82%E9%B8%A1%E6%B1%A4" onclick="openDianping('延吉 大朴家参鸡汤', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+            </div>
+            <div style="font-size:12px; color:#475569; margin:4px 0;">大众点评 4.8分 · 长白山人参慢炖 · 人均 ¥65-85</div>
+            <div class="act-tagline">专为长辈挑选的清温滋补午宴。精选童子鸡肚内塞满长白山优质人参、软糯江米、大枣与板栗，在天然石锅中慢火熬煮两小时。鸡肉轻轻一拨即骨肉脱离，江米吸收全部鸡汤精华软烂如羹，热气腾腾养阴生津，极其适合北方秋季润燥。</div>
+
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_samgyetang.jpg" alt="大朴家石锅慢炖高丽参鸡汤与参须" class="spot-img" />
+                <div class="photo-badge">秋日滋补</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">滚沸黑色石锅中整只滋补童子鸡与长白山人参特写，高汤奶白浓郁热气腾腾。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">最佳光线:</span>
+                  <span class="pg-val">餐厅暖黄射灯，人参石锅高汤油润剔透。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">长辈品尝第一口滋补热参汤，暖胃润燥，精神充沛。</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        \`;
+      } else {
+        lunchCardHtml = \`
+          <div class="act-card">
+            <div class="act-header">
+              <span class="act-time-pill">特色午宴 ~1h</span>
+              <span class="act-intensity intensity-flat">招牌热玉米温面</span>
+            </div>
+            <div class="act-name">
+              <span>顺姬冷面旗舰店 · 招牌现压玉米温面与香酥锅包肉</span>
+              <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E9%A1%BA%E5%A7%AC%E5%86%B7%E9%9D%A2" onclick="openDianping('延吉 顺姬冷面', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+            </div>
+            <div style="font-size:12px; color:#475569; margin:4px 0;">大众点评 4.8分 · 延吉温面标杆老字号 · 人均 ¥45-65</div>
+            <div class="act-tagline">专为长辈点选热腾腾的【招牌现压玉米温面】：牛骨熬制的金黄高汤滚热浓醇，现压玉米面条爽滑软烂极易咀嚼消化，完全不冰不辣；搭配炸得金黄酥脆、薄切酸甜的热锅包肉，暖胃又解馋。</div>
+
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_wenmian.jpg" alt="顺姬热高汤现煮玉米温面与香酥锅包肉" class="spot-img" />
+                <div class="photo-badge">老字号名吃</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">瓷碗中金黄玉米面条与浓郁牛骨热高汤特写，配金黄香酥锅包肉堆。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">最佳光线:</span>
+                  <span class="pg-val">餐厅明亮漫射光，锅包肉金黄透亮。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">长辈吹开热汤品尝第一口温面，适口暖胃，赞不绝口。</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        \`;
+      }
+
+      let dinnerCardHtml = '';
+      if (dinnerMode === 'fengmao') {
+        dinnerCardHtml = \`
+          <div class="act-card">
+            <div class="act-header">
+              <span class="act-time-pill">品质晚宴 ~1.5h</span>
+              <span class="act-intensity intensity-flat">长辈无烟包厢</span>
+            </div>
+            <div class="act-name">
+              <span>丰茂烤串（延吉总店旗舰包厢 · 全自动下排风无烟）</span>
+              <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E4%B8%B0%E8%8C%82%E7%83%A4%E4%B8%B2" onclick="openDianping('延吉 丰茂烤串', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+            </div>
+            <div style="font-size:12px; color:#475569; margin:4px 0;">大众点评 4.8分 · 自动无烟旋转烤架 · 人均 ¥95-120</div>
+            <div class="act-tagline">全自动无烟下排风旋转烤架，全程无任何呛人油烟气。原味嫩黄牛肉串鲜嫩多汁，炭火逼出自然油脂香气，配现压玉米温面与苏子叶烤肉卷，长辈坐享清静包厢。餐后打车 6 分钟轻松返回希尔顿欢朋酒店安歇。</div>
+
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_fengmao.jpg" alt="丰茂自动旋转无烟烤架与金黄牛肉串" class="spot-img" />
+                <div class="photo-badge">无烟包厢</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">自动无烟旋转烤架与炭火金黄肉串特写，桌边配苏子叶与调料碟。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">最佳光线:</span>
+                  <span class="pg-val">包厢雅致暖黄顶灯，肉汁光亮泛着金黄色泽。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">长辈围坐无烟包厢，苏子叶包烤肉其乐融融。</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        \`;
+      } else {
+        dinnerCardHtml = \`
+          <div class="act-card">
+            <div class="act-header">
+              <span class="act-time-pill">民俗正宴 ~1.5h</span>
+              <span class="act-intensity intensity-flat">朝鲜族非遗礼遇</span>
+            </div>
+            <div class="act-name">
+              <span>考世茂传统民俗餐厅（朝鲜族非遗礼遇 · 传统大铜锅宴）</span>
+              <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E8%80%83%E4%B8%96%E8%8C%82" onclick="openDianping('延吉 考世茂', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+            </div>
+            <div style="font-size:12px; color:#475569; margin:4px 0;">大众点评 4.7分 · 朝鲜族传统民俗正席 · 人均 ¥110-140</div>
+            <div class="act-tagline">延吉民俗风味名殿。店内包厢采用传统韩屋暖炕原木造型，身着民族盛装的礼仪服务。招牌七彩温热大铜锅、现做软糯米肠拼盘、鲜明太鱼慢炖豆腐汤，温润滋补，极具非遗文化仪式感。</div>
+
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_baorou.jpg" alt="考世茂朝鲜族传统民俗正宴" class="spot-img" />
+                <div class="photo-badge">非遗礼宴</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">传统民俗雅间内，朝鲜族特色大铜锅与七彩精美冷热拼盘特写。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">最佳光线:</span>
+                  <span class="pg-val">雅间古朴木质吊灯，菜品色泽古朴典雅。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">感受纯正朝鲜族待客礼仪，尊贵典雅，留下珍贵合影。</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        \`;
+      }
+
+      container.innerHTML = \`
+        <div class="section-title">核心行程节奏 (Day 2 文博、森林与学府)</div>
+
+        <div class="act-card">
+          <div class="act-header">
+            <span class="act-time-pill">文博参访 ~2h</span>
+            <span class="act-intensity intensity-flat">全馆电梯无障碍</span>
+          </div>
+          <div class="act-name">
+            <span>延边博物馆（国家一级博物馆 · 朝鲜族民俗历史全览）</span>
+            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E8%BE%B9%E5%8D%9A%E7%89%A9%E9%A6%86" onclick="openDianping('延边博物馆', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+          </div>
+          <div class="act-tagline">延边历史文化精粹所在。全馆配备观光直梯与无障碍坡道，室内中央恒温 21°C。一楼主展厅朝鲜族民俗展极其生动：原木建造的传统民居温居、花甲宴传统礼俗场景、精巧秋千与农乐长鼓。长辈平地慢步，在讲解器伴随下细品边陲多元文化沉淀。</div>
+          <div class="act-special-grid">
+            <div class="as-item" style="grid-column: 1 / -1;">
+              <span class="as-item-label">预约提点:</span>
+              <span class="as-item-val">提前通过微信小程序【延边博物馆】免费预约门票；长辈持二代身份证原件刷证进馆，60岁以上长辈享绿色通道免排队。</span>
+            </div>
+            <div class="as-item">
+              <span class="as-item-label">落客指引:</span>
+              <span class="as-item-val">网约车直接停在博物馆南门正门平坦路缘下客，下车即进门，全馆电梯无障碍。</span>
+            </div>
+          </div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_museum.jpg" alt="延边博物馆朝鲜族传统民俗展厅" class="spot-img" />
+              <div class="photo-badge">最佳机位</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">二层民俗展厅朝鲜族传统农家庭院温居复原场景前，木栅栏与暖色光影交相辉映。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">馆内全天柔和专业射灯漫射光，人脸无阴影，拍摄神采奕奕。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">长辈倚在传统院落木栏前留影，古朴典雅，文化品味极佳。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="transit-step">
+          <div class="ts-line"></div>
+          <div class="ts-badge">
+            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            <span>打车 ~10m · 3.5 km 前往特色午宴</span>
+          </div>
+          <div class="ts-line"></div>
+        </div>
+
+        \${lunchCardHtml}
+
+        <div class="transit-step">
+          <div class="ts-line"></div>
+          <div class="ts-badge">
+            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            <span>打车 ~8m · 2.5 km 返回希尔顿欢朋酒店午休</span>
+          </div>
+          <div class="ts-line"></div>
+        </div>
+
+        <div class="act-card">
+          <div class="act-header">
+            <span class="act-time-pill">酒店午休 ~2h</span>
+            <span class="act-intensity intensity-flat">关键体力调养</span>
+          </div>
+          <div class="act-name">
+            <span>【关键节奏】返回希尔顿欢朋酒店深度午休 2 小时</span>
+          </div>
+          <div class="act-tagline">中午 13:15–15:15 严守长辈行程核心铁律：回客房脱鞋卧床静息。北方秋日正午干燥，在客房泡一杯热温水，静心小憩补足精气神，让长辈下午出游始终神清气爽。</div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_hotel.jpg" alt="希尔顿欢朋客房深度午休调养" class="spot-img" />
+              <div class="photo-badge">静卧充电</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">遮光帘拉起半侧的舒适大床与温茶角，静谧安然。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">午后柔和窗光。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">严守午休铁律，充沛体力迎午后。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="transit-step">
+          <div class="ts-line"></div>
+          <div class="ts-badge">
+            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            <span>打车 ~18m · 8.8 km 前往帽儿山森林公园</span>
+          </div>
+          <div class="ts-line"></div>
+        </div>
+
+        <div class="act-card">
+          <div class="act-header">
+            <span class="act-time-pill">森林漫步 ~1.5h</span>
+            <span class="act-intensity intensity-gentle">纯平观景木栈道</span>
+          </div>
+          <div class="act-name">
+            <span>帽儿山国家森林公园（平缓观景木栈道 · 呼吸金秋松脂清香）</span>
+            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%B8%BD%E5%84%BF%E5%B1%B1" onclick="openDianping('延吉 帽儿山', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+          </div>
+          <div class="act-tagline">延吉城市的天然大氧吧。专车直接开抵核心木栈道入口，栈道沿山脊平缓铺设，坡度极微极宽敞。金秋漫山红松与落叶松一片金黄，空气中弥漫着清冽的松脂香气。只走前段最平缓的 800 米林间观景段，不走任何陡坡台阶，累了随时在木椅上歇脚看松鼠。</div>
+          <div class="act-special-grid">
+            <div class="as-item">
+              <span class="as-item-label">落客指引:</span>
+              <span class="as-item-val">车辆直接停在木栈道正门入口广场，下车即走木栈道，全程无台阶。</span>
+            </div>
+            <div class="as-item">
+              <span class="as-item-label">步道建议:</span>
+              <span class="as-item-val">仅在入口前 800 米平坦平步区漫游，不登顶、不走陡坡木梯，平步慢呼吸。</span>
+            </div>
+          </div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_maoershan.jpg" alt="帽儿山平缓木栈道与金秋林海" class="spot-img" />
+              <div class="photo-badge">最佳机位</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">森林木栈道观景平台向南远眺，金色落叶松林海与起伏山峦层次分明。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">15:45 - 16:30 午后金色阳光斜射穿透松林，丁达尔光束极美。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">长辈漫步在纯平木栈道上深呼吸松香，神采奕奕，身心舒畅。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="transit-step">
+          <div class="ts-line"></div>
+          <div class="ts-badge">
+            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            <span>打车 ~15m · 7.5 km 前往延边大学正门</span>
+          </div>
+          <div class="ts-line"></div>
+        </div>
+
+        <div class="act-card">
+          <div class="act-header">
+            <span class="act-time-pill">学府人文 ~1h</span>
+            <span class="act-intensity intensity-flat">平坦林荫大道</span>
+          </div>
+          <div class="act-name">
+            <span>延边大学正门建筑大飞檐 & 校园晨光林荫漫步</span>
+            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%BB%B6%E8%BE%B9%E5%A4%A7%E5%AD%A6" onclick="openDianping('延吉 延边大学', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+          </div>
+          <div class="act-tagline">延边大学主楼建筑群极具民族特色。主楼仿照长白山天池天平飞檐造型设计，雕梁画栋。正门开阔林荫广场平坦整洁，长辈缓步前行，观赏汉朝双语建筑牌匾，感受边陲第一学府的浓郁书卷气与青春活力。</div>
+          <div class="act-special-grid">
+            <div class="as-item" style="grid-column: 1 / -1;">
+              <span class="as-item-label">预约提点:</span>
+              <span class="as-item-val">访客进校提前通过微信公众号【延边大学】预约报备（外景参观无需进楼），如遇节假日管控，在正门开阔广场欣赏飞檐全景与拍照同样极佳。</span>
+            </div>
+          </div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_univ.jpg" alt="延边大学传统飞檐主楼" class="spot-img" />
+              <div class="photo-badge">最佳机位</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">延边大学求真楼主楼正前方中央大道，仰拍壮美大飞檐屋顶中轴线。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">16:45 - 17:15 傍晚金光洒在飞檐瓦当上，层次分明。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">长辈立于学府宏伟飞檐前留影，气度庄严从容。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="transit-step">
+          <div class="ts-line"></div>
+          <div class="ts-badge">
+            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            <span>步行 2m · 延大正门对面开阔广场</span>
+          </div>
+          <div class="ts-line"></div>
+        </div>
+
+        <div class="act-card">
+          <div class="act-header">
+            <span class="act-time-pill">地标打卡 ~30m</span>
+            <span class="act-intensity intensity-flat">开阔广场无拥挤</span>
+          </div>
+          <div class="act-name">
+            <span>网红汉朝双语弹幕墙（对街开阔广场侧影）</span>
+          </div>
+          <div class="act-tagline">延大南门对面的大学城商业楼外立面，密密麻麻挂满汉朝双语霓虹招牌。特别安排在开阔广场长椅处侧影拍摄，避开马路边拥挤排队人群，长辈安坐手持一杯温热咖啡杯合影，从容出片。</div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_danmu.jpg" alt="延吉网红双语弹幕墙" class="spot-img" />
+              <div class="photo-badge">地标夜景</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">公园路南侧人行道或对街广场长椅，以五彩汉朝双语霓虹牌匾为璀璨大背景。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">17:30 - 18:30 华灯初上，暮色蓝调与霓虹灯光辉映。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">长辈手捧双语特色咖啡杯安坐留影，时尚温馨充满异国情调。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="transit-step">
+          <div class="ts-line"></div>
+          <div class="ts-badge">
+            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            <span>打车 ~8m · 2.6 km 前往晚宴</span>
+          </div>
+          <div class="ts-line"></div>
+        </div>
+
+        \${dinnerCardHtml}
+      \`;
+    }
+
+    // ==========================================
     // Dynamic Render Day 3 Cards
     // ==========================================
     function renderDay3Cards(morningMode, bbqMode, coffeeMode) {
@@ -1403,7 +1723,7 @@ ${cssContent}
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_daoyin.jpg" alt="延吉道尹公署清代古建四合院" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1548013146-72479768bada?w=960&q=80'" />
+                <img src="./images/spot_yj_daoyin.jpg" alt="延吉道尹公署清代古建四合院" class="spot-img" />
                 <div class="photo-badge">最佳机位</div>
               </div>
               <div class="photo-guide-body">
@@ -1439,7 +1759,7 @@ ${cssContent}
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_univ.jpg" alt="延边大学求真楼大飞檐晨景" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=960&q=80'" />
+                <img src="./images/spot_yj_univ.jpg" alt="延边大学求真楼大飞檐晨景" class="spot-img" />
                 <div class="photo-badge">学府晨光</div>
               </div>
               <div class="photo-guide-body">
@@ -1463,33 +1783,33 @@ ${cssContent}
         morningHtml = \`
           <div class="act-card">
             <div class="act-header">
-              <span class="act-time-pill">休闲漫步 ~1.5h</span>
-              <span class="act-intensity intensity-flat">纯平城市广场</span>
+              <span class="act-time-pill">休闲广场 ~1.5h</span>
+              <span class="act-intensity intensity-flat">城市标志广场</span>
             </div>
             <div class="act-name">
-              <span>金达莱民俗广场 · 城市地标与民俗晨练</span>
+              <span>金达莱民俗广场（城市标志金达莱花雕塑）</span>
               <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E9%87%91%E8%BE%BE%E8%8E%B1%E5%B9%BF%E5%9C%BA" onclick="openDianping('延吉 金达莱广场', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
             </div>
-            <div class="act-tagline">延吉最具代表性的市民广场，以延边州花“金达莱”为主题。整个广场纯平无台阶，视界极其宽阔。长辈在此散步，近距离观摩当地朝鲜族长辈悠扬的扇子舞、传统长鼓与门球晨练，充满浓厚生活气息。</div>
+            <div class="act-tagline">延吉最具代表性的市民文化广场，以延边朝鲜族自治州州花“金达莱”为核心主题。广场铺设极为平整开阔，视野极其明亮。长辈可漫步广场，欣赏巨大的盛开粉红金达莱花不锈钢雕塑，近距离观摩当地朝鲜族长辈传统晨练、门球比赛与长鼓舞，其乐融融。</div>
 
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_jindalai.jpg" alt="延吉金达莱民俗广场" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=960&q=80'" />
+                <img src="./images/spot_yj_jindalai.jpg" alt="延吉金达莱民俗广场" class="spot-img" />
                 <div class="photo-badge">城市地标</div>
               </div>
               <div class="photo-guide-body">
                 <div class="pg-item">
                   <span class="pg-label">取景机位:</span>
-                  <span class="pg-val">金达莱主体大型红色花瓣雕塑斜侧 45 度，开阔全景同框。</span>
+                  <span class="pg-val">金达莱雕塑正前方中轴喷泉平步区，仰拍盛开的巨大粉色花瓣与蓝天。</span>
                 </div>
                 <div class="pg-item">
                   <span class="pg-label">最佳光线:</span>
-                  <span class="pg-val">09:30 - 10:30 上午顺光拍摄，蓝天白云下金达莱花分外艳丽。</span>
+                  <span class="pg-val">09:30 - 10:30 上午顺光，雕塑花瓣粉嫩鲜活。</span>
                 </div>
                 <div class="pg-item">
                   <span class="pg-label">随行留影:</span>
-                  <span class="pg-val">长辈立于广场中央舒心微笑，宽敞舒适。</span>
+                  <span class="pg-val">长辈立于广场标志前留念，笑容明媚开朗。</span>
                 </div>
               </div>
             </div>
@@ -1503,20 +1823,20 @@ ${cssContent}
           <div class="act-card">
             <div class="act-header">
               <span class="act-time-pill">特色午宴 ~1.5h</span>
-              <span class="act-intensity intensity-flat">代烤无烟包厢</span>
+              <span class="act-intensity intensity-flat">炭火品质代烤包厢</span>
             </div>
             <div class="act-name">
-              <span>梅花炭火烤肉品质包厢（延吉老牌朝鲜族烤肉）</span>
+              <span>梅花炭火烤肉品质包厢（延吉老牌烤肉名店 · 全程桌边代烤）</span>
               <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E6%A2%85%E8%8A%B1%E7%83%A4%E8%82%89" onclick="openDianping('延吉 梅花烤肉', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
             </div>
-            <div style="font-size:12px; color:#475569; margin:4px 0;">大众点评 4.8分 · 延吉炭火烤肉标杆 · 人均 ¥110-140 · 局子街核心区</div>
-            <div class="act-tagline">【特色烤肉午宴】延吉老牌高品质朝鲜族炭火烤肉，专设独立无烟下排风包厢。专职服务生全程桌边代烤，严选本地顶级黄牛雪花肉、特选牛排肉与牛五花，外微焦而内鲜嫩多汁，肉质极其细腻无筋；搭配鲜嫩苏子叶包肉、解腻拌生菜与温热大酱汤，长辈免动牙力轻松品鉴地道烤肉风味。</div>
+            <div style="font-size:12px; color:#475569; margin:4px 0;">大众点评 4.8分 · 延吉本土烤肉老字号 · 人均 ¥110-140</div>
+            <div class="act-tagline">【延吉第一顿品质炭火烤肉】延吉烤肉界口碑首选。特别安排独立恒温空调包间，强劲下排风彻底隔绝炭火油烟。招牌精选黄牛雪花肉、牛肋条无任何粗筋，服务员全程在桌边协助掌握精准火候代烤，烤至表面微焦、内里饱满多汁，剪成小块装盘。长辈用嫩生菜与紫苏叶包裹，软嫩化渣免动牙力，配温热大酱汤，惬意满足。</div>
 
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_bbq.jpg" alt="梅花炭火烤肉雪花牛肉代烤" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?w=960&q=80'" />
-                <div class="photo-badge">无烟代烤</div>
+                <img src="./images/spot_yj_bbq.jpg" alt="梅花炭火烤肉雪花牛肉代烤" class="spot-img" />
+                <div class="photo-badge">品质代烤</div>
               </div>
               <div class="photo-guide-body">
                 <div class="pg-item">
@@ -1552,13 +1872,17 @@ ${cssContent}
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_bbq.jpg" alt="万兴佳黑牛雪花原切肉排" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?w=960&q=80'" />
+                <img src="./images/spot_yj_bbq.jpg" alt="万兴佳黑牛雪花原切肉排" class="spot-img" />
                 <div class="photo-badge">雪花黑牛</div>
               </div>
               <div class="photo-guide-body">
                 <div class="pg-item">
                   <span class="pg-label">取景机位:</span>
                   <span class="pg-val">原切雪花大理石花纹肉排摆盘与炭火烤网俯拍。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">最佳光线:</span>
+                  <span class="pg-val">餐厅暖色聚光灯，大理石雪花花纹清晰艳丽。</span>
                 </div>
                 <div class="pg-item">
                   <span class="pg-label">随行留影:</span>
@@ -1581,6 +1905,28 @@ ${cssContent}
             </div>
             <div style="font-size:12px; color:#475569; margin:4px 0;">大众点评 4.7分 · 传统秘制调味 · 人均 ¥90-120</div>
             <div class="act-tagline">几十年传承的民族秘制微甜果香腌汁，牛肉片薄而软烂，炭火一炙即熟，香气扑鼻。配上店里招牌的现压冷面或热温面，酸甜开胃。独立包厢下排风，服务细致周到。</div>
+
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_bbq.jpg" alt="白玉传统秘制烤牛肉" class="spot-img" />
+                <div class="photo-badge">秘制调味</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">炭火烤盘上秘制调味牛肉翻烤冒泡特写，配多种开胃泡菜。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">最佳光线:</span>
+                  <span class="pg-val">包房温润暖光，肉质诱人。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">长辈品尝秘制风味，体验几十年老延吉味道。</span>
+                </div>
+              </div>
+            </div>
           </div>
         \`;
       }
@@ -1602,7 +1948,7 @@ ${cssContent}
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_coffee.jpg" alt="劳顶笨咖啡与纯牛奶红豆打糕雪冰" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=960&q=80'" />
+                <img src="./images/spot_yj_coffee.jpg" alt="劳顶笨咖啡与纯牛奶红豆打糕雪冰" class="spot-img" />
                 <div class="photo-badge">慢调茶歇</div>
               </div>
               <div class="photo-guide-body">
@@ -1634,6 +1980,28 @@ ${cssContent}
               <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%90%8E%E6%B5%AA%E5%92%96%E5%95%A1" onclick="openDianping('延吉 后浪咖啡', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
             </div>
             <div class="act-tagline">延吉新晋高口碑静谧茶咖空间。全店采用传统韩屋原木质感与暖黄灯光设计，环境雅致清幽无喧嚣。专为长辈点选长白山野生蓝莓热饮、养胃温热米露与低因手冲咖啡，慢品午后静谧时光。</div>
+
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_coffee.jpg" alt="后浪咖啡韩屋雅座与温热特调茶饮" class="spot-img" />
+                <div class="photo-badge">韩屋原木风</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">韩屋木质榻榻米雅座窗棂旁，热养生米露与雪冰特写。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">最佳光线:</span>
+                  <span class="pg-val">暖黄色内透光，木质纹理温润。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">长辈在韩屋雅室安坐，身心完全放松。</span>
+                </div>
+              </div>
+            </div>
           </div>
         \`;
       }
@@ -1646,7 +2014,7 @@ ${cssContent}
           <div class="ts-line"></div>
           <div class="ts-badge">
             <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>打车 ~6m · 2.2 km 前往烤肉名店</span>
+            <span>打车 ~8m · 2.8 km 前往烤肉名店包厢</span>
           </div>
           <div class="ts-line"></div>
         </div>
@@ -1657,7 +2025,7 @@ ${cssContent}
           <div class="ts-line"></div>
           <div class="ts-badge">
             <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>打车 ~5m · 1.5 km 返回延吉中心希尔顿欢朋酒店</span>
+            <span>打车 ~5m · 1.5 km 返回希尔顿欢朋酒店深度午休</span>
           </div>
           <div class="ts-line"></div>
         </div>
@@ -1665,52 +2033,84 @@ ${cssContent}
         <div class="act-card">
           <div class="act-header">
             <span class="act-time-pill">酒店午休 ~2h</span>
-            <span class="act-intensity intensity-flat">酒店午休调养</span>
+            <span class="act-intensity intensity-flat">核心体力调养</span>
           </div>
           <div class="act-name">
-            <span>【关键调养】返回希尔顿欢朋酒店深度午休</span>
+            <span>【关键调养】返回希尔顿欢朋酒店深度午休 2 小时</span>
           </div>
-          <div class="act-tagline">中午 13:15–15:15 回酒店静心小憩，洗脸更衣，卧床安歇。充分补充精力，确保下午游览轻松无累感。</div>
+          <div class="act-tagline">13:15–15:15 回酒店客房静息。长辈脱鞋换衣卧床睡眠，饱食烤肉后在恒温客房美美小憩，蓄积下午游园的充沛精力。</div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_hotel.jpg" alt="希尔顿欢朋客房深度午休调养" class="spot-img" />
+              <div class="photo-badge">静卧充电</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">客房拉起厚遮光帘后的安静床铺与茶台。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">柔和室内暖灯。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">长辈睡足精神爽，笑意盈盈准备午后游园。</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="transit-step">
           <div class="ts-line"></div>
           <div class="ts-badge">
             <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>步行或打车 ~3m · 800 m 前往延吉人民公园</span>
+            <span>打车 ~5m · 1.2 km 前往延吉人民公园</span>
           </div>
           <div class="ts-line"></div>
         </div>
 
         <div class="act-card">
           <div class="act-header">
-            <span class="act-time-pill">古树漫步 ~1h</span>
-            <span class="act-intensity intensity-flat">纯平城市公园</span>
+            <span class="act-time-pill">林荫散步 ~1.5h</span>
+            <span class="act-intensity intensity-flat">平缓城市古榆</span>
           </div>
           <div class="act-name">
-            <span>延吉人民公园 · 百年古榆树林慢步</span>
+            <span>延吉人民公园（百年古榆林海 · 纯平步道漫步）</span>
             <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E4%BA%BA%E6%B0%91%E5%85%AC%E5%9B%AD" onclick="openDianping('延吉 人民公园', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
           </div>
-          <div class="act-tagline">延吉历史最悠久的自然公园，距希尔顿欢朋仅步行可达。园内数百年古榆参天蔽日，红叶秋色满园。长辈慢步其间，常常能偶遇当地朝鲜族同龄长辈身着常服，吹奏长鼓、跳着安详从容的象帽舞或切磋象棋，是最真实可触的非商业人间温情。</div>
+          <div class="act-tagline">延吉历史最悠久的综合性城市公园。园区内古木参天，拥有数百年树龄的苍翠榆树林海。全程纯平水泥硬化路面，宽敞开阔无任何台阶爬升。金秋落叶缤纷，湖水涟漪。长辈可在林下长椅安坐，观赏当地长辈下朝鲜象棋、跳象帽舞，极其安逸自在。</div>
+          <div class="act-special-grid">
+            <div class="as-item">
+              <span class="as-item-label">落客指引:</span>
+              <span class="as-item-val">公园南门平坦路缘下客，进门即是百年古榆大道。</span>
+            </div>
+            <div class="as-item">
+              <span class="as-item-label">轮椅与平步:</span>
+              <span class="as-item-val">全园路面平整如砥，绿化覆盖率超80%，沿途长椅密布。</span>
+            </div>
+          </div>
 
           <!-- Photo Spot Card -->
           <div class="spot-photo-card">
             <div class="photo-img-wrap">
-              <img src="./images/spot_yj_park.jpg" alt="延吉人民公园古榆" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=960&q=80'" />
+              <img src="./images/spot_yj_park.jpg" alt="延吉人民公园百年古榆林海" class="spot-img" />
               <div class="photo-badge">最佳机位</div>
             </div>
             <div class="photo-guide-body">
               <div class="pg-item">
                 <span class="pg-label">取景机位:</span>
-                <span class="pg-val">公园中心古榆绿荫道与长寿亭前，捕捉长辈从容散步的温情瞬间。</span>
+                <span class="pg-val">公园中心人工湖畔汉白玉曲桥旁，百年金色老榆树倒映碧水中。</span>
               </div>
               <div class="pg-item">
                 <span class="pg-label">最佳光线:</span>
-                <span class="pg-val">15:30 - 16:30 午后柔和斜阳穿透古榆枝叶，光影斑驳静谧。</span>
+                <span class="pg-val">15:30 - 16:30 午后金辉穿透金黄榆树叶，地面光斑斑驳。</span>
               </div>
               <div class="pg-item">
                 <span class="pg-label">随行留影:</span>
-                <span class="pg-val">长辈倚在古榆亭前，秋色斑斓温情脉脉。</span>
+                <span class="pg-val">长辈漫步古榆树下，秋色如画，悠闲自得。</span>
               </div>
             </div>
           </div>
@@ -1720,7 +2120,7 @@ ${cssContent}
           <div class="ts-line"></div>
           <div class="ts-badge">
             <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>打车 ~5m · 1.5 km 前往慢咖啡街区</span>
+            <span>步行 3m · 200 m 前往咖啡厅休息</span>
           </div>
           <div class="ts-line"></div>
         </div>
@@ -1731,21 +2131,43 @@ ${cssContent}
           <div class="ts-line"></div>
           <div class="ts-badge">
             <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>打车 ~5m · 1.8 km 前往招牌晚餐</span>
+            <span>打车 ~6m · 2 km 前往晚宴</span>
           </div>
           <div class="ts-line"></div>
         </div>
 
         <div class="act-card">
           <div class="act-header">
-            <span class="act-time-pill">特色晚宴 ~1.5h</span>
-            <span class="act-intensity intensity-flat">温润玉米温面</span>
+            <span class="act-time-pill">特色晚宴 ~1h</span>
+            <span class="act-intensity intensity-flat">招牌玉米温面暖胃</span>
           </div>
           <div class="act-name">
-            <span>顺姬冷面旗舰店（专点招牌玉米温面）</span>
+            <span>顺姬冷面旗舰店（现煮玉米温面 · 暖胃温润）</span>
             <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E9%A1%BA%E5%A7%AC%E5%86%B7%E9%9D%A2" onclick="openDianping('延吉 顺姬冷面', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
           </div>
-          <div class="act-tagline">专为长辈点选【招牌热玉米温面】——摒弃极冰刺激的冷面汤底，选用纯玉米细面放入滚烫牛骨高汤中现煮，汤头微辣鲜美、面条爽滑软弹；搭配外酥里嫩的金黄锅包肉与煎苏子叶肉合子，吃得浑身暖和透亮。餐后打车返回酒店。</div>
+          <div class="act-tagline">延吉冷面名满天下，但由于冷面带冰碴过凉，为保护长辈肠胃，特别点选【招牌现煮玉米温面】。牛骨高汤滚烫香浓，玉米面条软糯滑顺极易下咽，搭配一盘香酥锅包肉与热石锅拌饭，吃完全身暖洋洋，毫无肠胃负担。餐后打车 5 分钟轻松回酒店安歇。</div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_wenmian.jpg" alt="顺姬热高汤现煮玉米温面与香酥锅包肉" class="spot-img" />
+              <div class="photo-badge">暖胃名品</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">大瓷碗中热气腾腾的黄色玉米温面与金黄酥脆锅包肉合影。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">餐厅暖黄色顶灯，汤水金黄诱人。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">长辈吃得暖胃舒坦，为充实的市内一日画上圆满句号。</span>
+              </div>
+            </div>
+          </div>
         </div>
       \`;
     }
@@ -1753,28 +2175,28 @@ ${cssContent}
     // ==========================================
     // Dynamic Render Day 4 Cards
     // ==========================================
-    function renderDay4Cards(mode, transMode, seafoodMode) {
+    function renderDay4Cards(routeMode, transMode, seafoodMode) {
       const container = document.getElementById('d4_cards_container');
       if (!container) return;
 
-      mode = mode || document.querySelector('input[name="d4_route"]:checked')?.value || 'go_hunchun';
+      routeMode = routeMode || document.querySelector('input[name="d4_route"]:checked')?.value || 'go_hunchun';
       transMode = transMode || document.querySelector('input[name="d4_transport"]:checked')?.value || 'charter';
       seafoodMode = seafoodMode || document.querySelector('input[name="d4_seafood"]:checked')?.value || 'kingcrab';
 
-      const isCharter = (transMode !== 'bullet_train');
-      const isSnowCrab = (seafoodMode === 'snowcrab');
+      const isCharter = transMode === 'charter';
+      const isSnowCrab = seafoodMode === 'snowcrab';
 
-      if (mode === 'go_hunchun') {
+      if (routeMode === 'go_hunchun') {
         container.innerHTML = \`
-          <div class="section-title">核心行程节奏 (珲春三国交界与第一顿活蒸帝王蟹)</div>
-          
-          <div class="act-card" style="border: 1px solid var(--brand-accent);">
+          <div class="section-title">核心行程节奏 (Day 4 珲春防川三国交界 + 活蒸帝王蟹)</div>
+
+          <div class="act-card">
             <div class="act-header">
-              <span class="act-time-pill" style="background:var(--brand-accent); color:#FFF;">\${isCharter ? '商务专车门到门 ~1h45m' : '城际高铁极速接驳 ~40m'}</span>
-              <span class="act-intensity intensity-ride">\${isCharter ? '7座商务专车' : 'C字头高铁'}</span>
+              <span class="act-time-pill">\${isCharter ? '商务专车出发 ~1.8h' : '城际高铁 ~40m'}</span>
+              <span class="act-intensity intensity-ride">\${isCharter ? '7座商务包车一车到底' : '高铁+地接包车'}</span>
             </div>
             <div class="act-name">
-              <span>\${isCharter ? '7座商务专车在酒店大门迎候 · 沿珲乌高速驶往防川 (150 km)' : '打车至西站搭乘 C字头高铁直达珲春站 (40m · ¥28)'}</span>
+              <span>\${isCharter ? '希尔顿欢朋酒店门前出发 · 专车直达防川国家风景区' : '延吉西站搭乘高铁至珲春站 · 转乘专属地接专车'}</span>
             </div>
             <div class="act-tagline">\${isCharter ? 
               '早晨 08:30 7座舒适商务专车准时在希尔顿欢朋大堂门前迎候。长辈上车即走，随身保暖衣物与保温杯随车携带；双向四车道高速公路平稳笔直，长辈在车内后排舒心小憩，彻底免除进出高铁站排队安检换乘的奔波劳顿。' : 
@@ -1804,7 +2226,7 @@ ${cssContent}
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_fangchuan.jpg" alt="防川龙虎阁一眼望三国" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=960&q=80'" />
+                <img src="./images/spot_yj_fangchuan.jpg" alt="防川龙虎阁一眼望三国" class="spot-img" />
                 <div class="photo-badge">最佳机位</div>
               </div>
               <div class="photo-guide-body">
@@ -1850,7 +2272,7 @@ ${cssContent}
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_kingcrab.jpg" alt="珲春海鲜街现场活蒸帝王蟹大餐" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1559847844-5315695dadae?w=960&q=80'" />
+                <img src="./images/spot_yj_kingcrab.jpg" alt="珲春海鲜街现场活蒸帝王蟹大餐" class="spot-img" />
                 <div class="photo-badge">源头活鲜</div>
               </div>
               <div class="photo-guide-body">
@@ -1860,11 +2282,11 @@ ${cssContent}
                 </div>
                 <div class="pg-item">
                   <span class="pg-label">最佳光线:</span>
-                  <span class="pg-val">餐厅明亮室内暖光，蟹腿雪白紧实、蟹壳红润光泽。</span>
+                  <span class="pg-val">餐厅明亮暖黄聚光灯，蟹壳红艳亮泽，蟹肉洁白如雪。</span>
                 </div>
                 <div class="pg-item">
                   <span class="pg-label">随行留影:</span>
-                  <span class="pg-val">长辈双手拿起饱满巨型蟹腿开怀留影，原产地口岸大餐仪式感拉满！</span>
+                  <span class="pg-val">长辈手捧大蟹腿肉蘸特制姜醋汁，大快朵颐，喜笑颜开。</span>
                 </div>
               </div>
             </div>
@@ -1874,47 +2296,53 @@ ${cssContent}
             <div class="ts-line"></div>
             <div class="ts-badge">
               <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-              <span>\${isCharter ? '专车 ~1h20m · 110 km 高速直达延吉希尔顿欢朋酒店' : '高铁40m返回延吉西站后专车送回酒店'}</span>
+              <span>\${isCharter ? '商务专车平稳返程 ~1.2h · 98 km 直达希尔顿欢朋酒店' : '高铁返程 ~40m · 返回延吉希尔顿欢朋酒店'}</span>
             </div>
             <div class="ts-line"></div>
           </div>
 
           <div class="act-card">
             <div class="act-header">
-              <span class="act-time-pill">酒店休整 ~1.5h</span>
-              <span class="act-intensity intensity-flat">酒店安坐品茗</span>
+              <span class="act-time-pill">返程休整 ~2h</span>
+              <span class="act-intensity intensity-flat">客房深度休整</span>
             </div>
             <div class="act-name">
-              <span>【身心调养】返回希尔顿欢朋酒店休整与品茶</span>
+              <span>返回延吉中心希尔顿欢朋酒店 · 进房品茗泡脚深度休整</span>
             </div>
-            <div class="act-tagline">下午 16:00 前返回延吉，在客房泡一杯热腾腾的长白山五味子茶，长辈坐卧安歇，彻底消除车行微倦。</div>
-          </div>
+            <div class="act-tagline">下午 15:30 平稳送回希尔顿欢朋。长辈在房间洗手更衣，喝一杯温热大麦茶，卧床休息静心调养。傍晚在酒店楼下就近品尝百年老字号全州拌饭的温润石锅拌饭与热明太鱼豆腐汤，轻盈养胃，早早安歇。</div>
 
-          <div class="act-card">
-            <div class="act-header">
-              <span class="act-time-pill">清润晚宴 ~1h</span>
-              <span class="act-intensity intensity-flat">温润石锅拌饭</span>
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_hotel.jpg" alt="希尔顿欢朋客房品茗深度休整" class="spot-img" />
+                <div class="photo-badge">安心安歇</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">客房茶几前长辈喝温茶小憩，温馨适意。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">消除一日出游微倦，体力完全恢复。</span>
+                </div>
+              </div>
             </div>
-            <div class="act-name">
-              <span>全州拌饭百年老店</span>
-              <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%85%A8%E5%B7%9E%E6%8B%8C%E9%A5%AD" onclick="openDianping('延吉 全州拌饭', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
-            </div>
-            <div class="act-tagline">中午品尝了丰盛海鲜大餐，晚餐适宜清润从容。全州拌饭的五彩石锅热饭蔬菜丰富，配鲜嫩软豆腐汤，暖胃舒适。</div>
           </div>
         \`;
       } else {
         container.innerHTML = \`
-          <div class="section-title">核心行程节奏 (图们边境口岸与日光山线)</div>
+          <div class="section-title">核心行程节奏 (Day 4 图们边境慢行备选路线)</div>
 
           <div class="act-card">
             <div class="act-header">
-              <span class="act-time-pill">近郊专车 ~45m</span>
-              <span class="act-intensity intensity-ride">超低车程</span>
+              <span class="act-time-pill">专车前往 ~45m</span>
+              <span class="act-intensity intensity-ride">超低车程舒缓行</span>
             </div>
             <div class="act-name">
-              <span>专车前往图们边境口岸 (50 km)</span>
+              <span>希尔顿欢朋酒店大堂出发 · 专车前往图们边境口岸 (车程仅 45 分钟)</span>
             </div>
-            <div class="act-tagline">09:30 从希尔顿欢朋从容出发，专车仅需 45 分钟即达图们江畔。车程超短、零颠簸劳累，非常适宜想少坐车的从容节奏。</div>
+            <div class="act-tagline">09:00 从容出发。延吉至图们全程全封闭高速，路况极平稳，车程仅 45 分钟。长辈完全没有长时间坐车的枯燥感。</div>
           </div>
 
           <div class="transit-step">
@@ -1940,13 +2368,17 @@ ${cssContent}
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_tumen.jpg" alt="图们边境口岸国门" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1508873696983-2df5293cb32f?w=960&q=80'" />
+                <img src="./images/spot_yj_tumen.jpg" alt="图们边境口岸国门" class="spot-img" />
                 <div class="photo-badge">最佳机位</div>
               </div>
               <div class="photo-guide-body">
                 <div class="pg-item">
                   <span class="pg-label">取景机位:</span>
                   <span class="pg-val">国门广场 86 号界碑旁，正对中朝跨国大桥中线。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">最佳光线:</span>
+                  <span class="pg-val">10:00 - 11:30 上午顺光，江面碧绿透亮。</span>
                 </div>
                 <div class="pg-item">
                   <span class="pg-label">随行留影:</span>
@@ -1965,6 +2397,24 @@ ${cssContent}
               <span>李香石锅饭明太鱼馆</span>
             </div>
             <div class="act-tagline">图们本地名店。热石锅饭锅底金黄焦香，搭配软烂清炖明太鱼与海带豆腐汤，清爽鲜美。</div>
+
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_samgyetang.jpg" alt="李香石锅饭与温热明太鱼热汤" class="spot-img" />
+                <div class="photo-badge">风味温食</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">热气蒸腾的石锅饭与金黄明太鱼干炖汤同框。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">长辈品尝地道图们边城家常味，胃里温暖舒坦。</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="transit-step">
@@ -1989,7 +2439,7 @@ ${cssContent}
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_riguangshan.jpg" alt="日光山俯瞰图们江江湾" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=960&q=80'" />
+                <img src="./images/spot_yj_riguangshan.jpg" alt="日光山俯瞰图们江江湾" class="spot-img" />
                 <div class="photo-badge">江湾全景</div>
               </div>
               <div class="photo-guide-body">
@@ -2044,7 +2494,7 @@ ${cssContent}
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_westmarket.jpg" alt="延吉西市场民族特产汇聚" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=960&q=80'" />
+                <img src="./images/spot_yj_westmarket.jpg" alt="延吉西市场民族特产汇聚" class="spot-img" />
                 <div class="photo-badge">民族特产</div>
               </div>
               <div class="photo-guide-body">
@@ -2076,6 +2526,24 @@ ${cssContent}
               <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E7%99%BE%E8%B4%A7%E5%A4%A7%E6%A5%BC" onclick="openDianping('延吉 百货大楼', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
             </div>
             <div class="act-tagline">延吉历史最悠久的国营商业龙头。地下精品超市全电梯直达，冷气舒适。专设延边特产专区，正品人参礼盒、长白山有机木耳、精装苹果梨与真空包装冷面一应俱全，官方提供顺丰冷链直邮寄送，特别适合喜欢现代整洁购物环境的长辈。</div>
+
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_westmarket.jpg" alt="延吉百货大楼特产专柜" class="spot-img" />
+                <div class="photo-badge">精品商厦</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">延百特产精品展柜前，高档人参礼盒与精装木耳展示台。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">长辈从容挑选精品伴手礼，商厦直梯直通车库。</span>
+                </div>
+              </div>
+            </div>
           </div>
         \`;
       }
@@ -2102,7 +2570,7 @@ ${cssContent}
             <!-- Photo Spot Card -->
             <div class="spot-photo-card">
               <div class="photo-img-wrap">
-                <img src="./images/spot_yj_kingcrab.jpg" alt="震海贝烤贝俄罗斯活蒸帝王蟹盛宴" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1559847844-5315695dadae?w=960&q=80'" />
+                <img src="./images/spot_yj_kingcrab.jpg" alt="震海贝烤贝俄罗斯活蒸帝王蟹盛宴" class="spot-img" />
                 <div class="photo-badge">惜别蟹宴</div>
               </div>
               <div class="photo-guide-body">
@@ -2134,6 +2602,24 @@ ${cssContent}
               <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E6%B5%B7%E5%85%B0%E6%B1%9F%E6%B0%91%E4%BF%97%E5%AE%AB" onclick="openDianping('延吉 海兰江民俗宫', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
             </div>
             <div class="act-tagline">延吉国宾级朝鲜族传统料理殿堂。服务员身着华丽朝鲜族传统韩服提供宫廷礼仪服务。招牌七彩温热排骨火锅、纯手工米肠拼盘、鲜美烤明太鱼与养生人参糯米粥，典雅尊贵，极具仪式感。</div>
+
+            <!-- Photo Spot Card -->
+            <div class="spot-photo-card">
+              <div class="photo-img-wrap">
+                <img src="./images/spot_yj_baorou.jpg" alt="海兰江民俗宫宫廷盛席" class="spot-img" />
+                <div class="photo-badge">宫廷盛宴</div>
+              </div>
+              <div class="photo-guide-body">
+                <div class="pg-item">
+                  <span class="pg-label">取景机位:</span>
+                  <span class="pg-val">宫廷包厢内七彩排骨大铜锅与雕花餐具特写。</span>
+                </div>
+                <div class="pg-item">
+                  <span class="pg-label">随行留影:</span>
+                  <span class="pg-val">长辈身着整洁便装在宫廷雅间合影留念，喜气盈门。</span>
+                </div>
+              </div>
+            </div>
           </div>
         \`;
       }
@@ -2155,21 +2641,21 @@ ${cssContent}
           <!-- Photo Spot Card -->
           <div class="spot-photo-card">
             <div class="photo-img-wrap">
-              <img src="./images/spot_yj_watermarket.jpg" alt="延吉水上市场晨曦烟火" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=960&q=80'" />
+              <img src="./images/spot_yj_watermarket.jpg" alt="延吉水上市场晨曦烟火" class="spot-img" />
               <div class="photo-badge">最佳机位</div>
             </div>
             <div class="photo-guide-body">
               <div class="pg-item">
                 <span class="pg-label">取景机位:</span>
-                <span class="pg-val">打糕摊位木槽旁，捕捉师傅木槌扬起与细腻黄豆面翻飞的生动动态瞬间。</span>
+                <span class="pg-val">现打打糕摊位前，木槌重重砸下年糕米、撒上金黄黄豆粉的腾腾热气特写。</span>
               </div>
               <div class="pg-item">
                 <span class="pg-label">最佳光线:</span>
-                <span class="pg-val">07:45 - 08:30 晨曦穿透集市水汽，光影温润迷人，极具纪实生活感。</span>
+                <span class="pg-val">07:30 - 08:30 清晨第一缕斜阳穿透集市白雾，极具生活质感。</span>
               </div>
               <div class="pg-item">
                 <span class="pg-label">随行留影:</span>
-                <span class="pg-val">长辈手捧一盒热气腾腾刚切好的打糕，笑意盈盈，极具生活烟火气。</span>
+                <span class="pg-val">长辈手捧刚切好温热滚烫的黄豆面打糕盒，笑逐颜开。</span>
               </div>
             </div>
           </div>
@@ -2179,7 +2665,7 @@ ${cssContent}
           <div class="ts-line"></div>
           <div class="ts-badge">
             <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>打车 ~3m · 800 m 前往特产采购</span>
+            <span>打车 ~5m · 1.5 km 前往特产采购大厦</span>
           </div>
           <div class="ts-line"></div>
         </div>
@@ -2190,7 +2676,7 @@ ${cssContent}
           <div class="ts-line"></div>
           <div class="ts-badge">
             <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            <span>打车 ~3m · 600 m 前往老字号午宴</span>
+            <span>步行 2m · 紧邻商厦老街坊</span>
           </div>
           <div class="ts-line"></div>
         </div>
@@ -2202,9 +2688,27 @@ ${cssContent}
           </div>
           <div class="act-name">
             <span>兴豆饭店老字号（炸酱面与香酥软炸肉）</span>
-            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%85%B4%E8%B1%86%E9%A5%AD%E5%BA%97" onclick="openDianping('延吉 兴豆饭店', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
+            <a href="dianping://searchshoplist?keyword=%E5%BB%B6%E5%90%89%20%E5%85%83%E8%B1%86%E9%A5%AD%E5%BA%97" onclick="openDianping('延吉 兴豆饭店', event)" class="btn-dp" style="flex:none; padding: 4px 10px; height: 28px; font-size: 11px;">点评 ↗</a>
           </div>
           <div class="act-tagline">延吉几十年历史的老街坊餐馆。招牌黑豆炸酱面酱香浓郁微甜、面条现拉现煮爽滑易嚼；香酥软炸肉外酥里嫩肉汁饱满，再配一碗热乎乎的豆腐大酱汤，温馨扎实。餐后打车回酒店深度午休。</div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_wenmian.jpg" alt="兴豆饭店老牌黑豆炸酱面与香酥软炸肉" class="spot-img" />
+              <div class="photo-badge">老字号风味</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">浓郁黑亮炸酱面与金黄软炸肉同桌俯拍，热气升腾。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">品尝延吉老街坊几十年不变的地道家常风味。</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="transit-step">
@@ -2225,6 +2729,24 @@ ${cssContent}
             <span>【关键调养】返回希尔顿欢朋酒店深度午休</span>
           </div>
           <div class="act-tagline">上午逛了集市并采选特产，中午 13:15–15:15 回酒店静卧两小时，彻底卸去疲乏，为傍晚留出极好精神。</div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_hotel.jpg" alt="希尔顿欢朋客房午后静卧小憩" class="spot-img" />
+              <div class="photo-badge">客房安歇</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">客房落地窗前温暖茶台，静卧充电。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">长辈在柔软大床上静卧补觉，消除上午购物疲惫。</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="transit-step">
@@ -2250,7 +2772,7 @@ ${cssContent}
           <!-- Photo Spot Card -->
           <div class="spot-photo-card">
             <div class="photo-img-wrap">
-              <img src="./images/spot_yj_burhatong.jpg" alt="布尔哈通河畔金秋晚霞" loading="lazy" class="spot-img" onerror="this.src='https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?w=960&q=80'" />
+              <img src="./images/spot_yj_burhatong.jpg" alt="布尔哈通河畔金秋晚霞" class="spot-img" />
               <div class="photo-badge">最佳机位</div>
             </div>
             <div class="photo-guide-body">
@@ -2284,6 +2806,93 @@ ${cssContent}
     }
 
     // ==========================================
+    // Dynamic Render Day 6 Cards
+    // ==========================================
+    function renderDay6Cards() {
+      const container = document.getElementById('d6_cards_container');
+      if (!container) return;
+
+      container.innerHTML = \`
+        <div class="section-title">核心行程节奏 (Day 6 从容返程)</div>
+
+        <div class="act-card">
+          <div class="act-header">
+            <span class="act-time-pill">自然醒晨间 ~1.5h</span>
+            <span class="act-intensity intensity-flat">欢朋营养热早</span>
+          </div>
+          <div class="act-name">
+            <span>自然醒晨起 · 希尔顿欢朋温润自助早餐 & 从容退房</span>
+          </div>
+          <div class="act-tagline">不设早起闹钟，让长辈睡到自然醒。07:30–09:00 前往酒店早餐厅，享用现熬小米南瓜粥、热现磨豆浆、现蒸鲜肉包与热大麦茶。餐后在客房从容整理随身物品，礼宾人员协助将打包好的特产和行李推至大堂。</div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_hotel.jpg" alt="希尔顿欢朋酒店温馨客房与丰盛早餐" class="spot-img" />
+              <div class="photo-badge">温暖欢朋</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">欢朋早餐厅明亮餐台前，热气腾腾的现熬小米粥与热茶同框。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">晨光倾洒，明亮温馨。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">长辈吃得饱足暖和，精神焕发，从容退房。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="transit-step">
+          <div class="ts-line"></div>
+          <div class="ts-badge">
+            <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.9 2 11.2 2 11.5V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            <span>专车 ~20m · 8.5 km 直达延吉西站落客大平台</span>
+          </div>
+          <div class="ts-line"></div>
+        </div>
+
+        <div class="act-card">
+          <div class="act-header">
+            <span class="act-time-pill">高铁送站 ~30m</span>
+            <span class="act-intensity intensity-flat">无阻进站候车</span>
+          </div>
+          <div class="act-name">
+            <span>延吉西站从容候车 · 踏上舒适归途</span>
+          </div>
+          <div class="act-tagline">专车直抵西站高架二层落客大平台，司机与随行人员协助卸运随身行李。车站配备完善无障碍直梯与长辈优先进站通道。高铁列车平稳启动，圆满结束 6 天 5 晚温暖充实的延边金秋长辈舒享之旅。</div>
+
+          <!-- Photo Spot Card -->
+          <div class="spot-photo-card">
+            <div class="photo-img-wrap">
+              <img src="./images/spot_yj_weststation.jpg" alt="延吉西站大飞檐落客平台从容候车" class="spot-img" />
+              <div class="photo-badge">圆满归途</div>
+            </div>
+            <div class="photo-guide-body">
+              <div class="pg-item">
+                <span class="pg-label">取景机位:</span>
+                <span class="pg-val">延吉西站进站口大飞檐与候车大厅双语指引标识前。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">最佳光线:</span>
+                <span class="pg-val">上午柔和自然光。</span>
+              </div>
+              <div class="pg-item">
+                <span class="pg-label">随行留影:</span>
+                <span class="pg-val">长辈在西站从容合影留念，圆满惜别美丽延吉，平安踏上舒适归途。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      \`;
+    }
+
+    // ==========================================
     // Overview Big Map Engine
     // ==========================================
     function initOverviewMap() {
@@ -2309,68 +2918,73 @@ ${cssContent}
 
       document.querySelectorAll('.overview-filter-bar .ov-pill').forEach(b => b.classList.remove('active'));
       const activeBtn = Array.from(document.querySelectorAll('.overview-filter-bar .ov-pill')).find(b => {
-        if (dayKey === 'all') return b.innerText.includes('全部');
-        return b.innerText.toLowerCase().includes(dayKey);
+        const text = b.textContent.toLowerCase();
+        if (dayKey === 'all') return text.includes('全部');
+        return text.includes(dayKey.toLowerCase());
       });
       if (activeBtn) activeBtn.classList.add('active');
 
-      overviewMarkers.forEach(m => overviewMapInstance.removeLayer(m));
-      overviewMarkers = [];
       if (overviewPolyline) {
         overviewMapInstance.removeLayer(overviewPolyline);
         overviewPolyline = null;
       }
+      overviewMarkers.forEach(m => overviewMapInstance.removeLayer(m));
+      overviewMarkers = [];
 
-      const points = [];
-      for (let k in YJ_SPOTS) {
-        const spot = YJ_SPOTS[k];
-        if (dayKey === 'all' || ('day' + spot.day === dayKey)) {
-          points.push(spot);
+      const coords = [];
+      const dayColors = {
+        1: '#2563EB',
+        2: '#7C3AED',
+        3: '#059669',
+        4: '#DC2626',
+        5: '#D97706',
+        6: '#0F172A'
+      };
 
-          const isHotel = spot.name.includes('欢朋酒店');
-          const markerHtml = \`
-            <div style="background:\${isHotel ? '#0F172A' : '#2563EB'}; color:#FFF; width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; border:2px solid #FFF; box-shadow:0 2px 8px rgba(0,0,0,0.35);">
-              \${isHotel ? 'H' : '点'}
-            </div>
-          \`;
-          const customIcon = L.divIcon({
-            className: 'custom-map-marker-ov',
-            html: markerHtml,
-            iconSize: [26, 26],
-            iconAnchor: [13, 13]
-          });
+      Object.keys(YJ_SPOTS).forEach(k => {
+        const sp = YJ_SPOTS[k];
+        const match = (dayKey === 'all') || (sp.day && ('day' + sp.day === dayKey)) || (k === 'hotel');
+        if (match) {
+          coords.push(sp.coord);
+          const col = dayColors[sp.day] || '#0F172A';
+          const isH = k === 'hotel';
 
-          const m = L.marker(spot.coord, { icon: customIcon }).addTo(overviewMapInstance);
+          const m = L.marker(sp.coord, {
+            icon: L.divIcon({
+              className: 'custom-ov-marker',
+              html: \`<div style="background:\${col}; color:#FFF; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; border:2px solid #FFF; box-shadow:0 2px 6px rgba(0,0,0,0.35);">\${isH ? 'H' : (sp.day || '·')}</div>\`,
+              iconSize: [20, 20],
+              iconAnchor: [10, 10]
+            })
+          }).addTo(overviewMapInstance);
+
           m.bindPopup(\`
-            <div style="font-size:13px; font-weight:700; color:#0F172A; margin-bottom:4px;">\${spot.name}</div>
-            <div style="font-size:11px; color:#64748B;">长辈关怀：专车平步下客 · 舒缓无台阶</div>
+            <div style="font-size:13px; font-weight:700; color:#0F172A;">\${sp.name}</div>
+            <div style="font-size:11px; color:#64748B; margin-top:2px;">\${isH ? '驻地: 延吉中心希尔顿欢朋酒店' : ('Day ' + sp.day + ' 规划打卡点')}</div>
           \`);
           overviewMarkers.push(m);
         }
-      }
+      });
 
-      if (points.length > 1) {
-        const latlngs = points.map(p => p.coord);
-        overviewPolyline = L.polyline(latlngs, {
+      if (coords.length > 1) {
+        overviewPolyline = L.polyline(coords, {
           color: '#2563EB',
           weight: 3,
-          opacity: 0.65,
-          dashArray: '5, 5'
+          opacity: 0.75,
+          dashArray: '4, 4'
         }).addTo(overviewMapInstance);
-
         overviewMapInstance.fitBounds(overviewPolyline.getBounds(), { padding: [35, 35] });
-      } else if (points.length === 1) {
-        overviewMapInstance.setView(points[0].coord, 13);
+      } else if (coords.length === 1) {
+        overviewMapInstance.setView(coords[0], 12);
       }
     }
 
     // ==========================================
-    // Idea & Customization Portal Engine
+    // Ideas & Instruction Assistant
     // ==========================================
     function getSavedIdeas() {
       try {
-        const s = localStorage.getItem('yj_saved_ideas');
-        return s ? JSON.parse(s) : [];
+        return JSON.parse(localStorage.getItem('yj_saved_ideas') || '[]');
       } catch (e) {
         return [];
       }
@@ -2383,46 +2997,49 @@ ${cssContent}
     }
 
     function handleSaveIdea() {
-      const txtEl = document.getElementById('ideaInputText');
-      if (!txtEl) return;
-      const text = txtEl.value.trim();
-      if (!text) {
-        showToast('请输入旅行灵感或微调指令');
+      const input = document.getElementById('ideaInputText');
+      if (!input || !input.value.trim()) {
+        showToast('请输入您的调整需求或灵感便签');
         return;
       }
-
-      const ideas = getSavedIdeas();
+      const raw = input.value.trim();
       const newIdea = {
         id: 'idea_' + Date.now(),
-        text: text,
-        createdAt: new Date().toLocaleDateString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+        text: raw,
+        day: currentActiveDay.toUpperCase(),
+        createdAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
-      ideas.unshift(newIdea);
-      setSavedIdeas(ideas);
-      txtEl.value = '';
+
+      const list = getSavedIdeas();
+      list.unshift(newIdea);
+      setSavedIdeas(list);
+      input.value = '';
       renderSavedIdeasList();
-      showToast('灵感已记录！');
+      showToast('已成功存入延吉灵感池！');
     }
 
     function renderSavedIdeasList() {
       const container = document.getElementById('savedIdeasList');
       if (!container) return;
 
-      const ideas = getSavedIdeas();
-      if (!ideas || ideas.length === 0) {
-        container.innerHTML = '<div style="font-size:12px; color:#94A3B8; text-align:center; padding:16px;">灵感池暂无内容，随时粘贴您的灵感与指令</div>';
+      const list = getSavedIdeas();
+      if (!list || list.length === 0) {
+        container.innerHTML = '<div style="font-size:12px; color:#94A3B8; text-align:center; padding:16px;">便签池暂无内容，随时粘贴您的灵感与指令</div>';
         return;
       }
 
       let html = '';
-      ideas.forEach(item => {
+      list.forEach(item => {
         html += \`
-          <div class="idea-saved-item" style="background:#FFF; border:1px solid #E2E8F0; border-radius:12px; padding:12px; margin-bottom:8px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <span style="color:#94A3B8; font-size:11px;">\${item.createdAt || ''}</span>
-              <button onclick="deleteSavedIdea('\${item.id}')" style="background:none; border:none; color:#EF4444; font-size:11px; cursor:pointer;">删除</button>
+          <div class="idea-saved-item">
+            <div class="isi-top">
+              <div class="isi-meta">
+                <span class="isi-day">\${item.day}</span>
+                <span style="color:#94A3B8; font-size:10px;">\${item.createdAt || ''}</span>
+              </div>
+              <button class="isi-del-btn" onclick="deleteSavedIdea('\${item.id}')" title="删除">✕</button>
             </div>
-            <div style="font-size:13px; color:#1E293B; line-height:1.5;">\${item.text}</div>
+            <div class="isi-text">\${item.text}</div>
           </div>
         \`;
       });
@@ -2430,9 +3047,9 @@ ${cssContent}
     }
 
     function deleteSavedIdea(id) {
-      let ideas = getSavedIdeas();
-      ideas = ideas.filter(item => item.id !== id);
-      setSavedIdeas(ideas);
+      let list = getSavedIdeas();
+      list = list.filter(item => item.id !== id);
+      setSavedIdeas(list);
       renderSavedIdeasList();
       showToast('已从灵感池移除');
     }
@@ -2440,28 +3057,34 @@ ${cssContent}
     // ==========================================
     // Initializer
     // ==========================================
-    window.addEventListener('DOMContentLoaded', () => {
-      // Pre-render dynamic day cards so containers are never empty
+    function initYanjiApp() {
+      renderDay1Cards();
+      renderDay2Cards();
       renderDay3Cards();
-      renderDay4Cards('go_hunchun', 'charter', 'kingcrab');
+      renderDay4Cards();
       renderDay5Cards();
-
+      renderDay6Cards();
       switchDay('day1');
       fetchLiveWeather(false);
       renderSavedIdeasList();
+    }
 
-      setTimeout(() => {
-        initYjMiniMap('day1');
-        if (yjMiniMaps['day1']) {
-          yjMiniMaps['day1'].invalidateSize();
-        }
-      }, 150);
-    });
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', initYanjiApp);
+    } else {
+      initYanjiApp();
+    }
   </script>
 </body>
 </html>
 `;
 
-const yanjiSourcePath = path.join(__dirname, "..", "source_yanji.html");
+// Write to source_yanji.html
+const yanjiSourcePath = path.join(__dirname, '..', 'source_yanji.html');
 fs.writeFileSync(yanjiSourcePath, yanjiHtml);
-console.log("Successfully wrote source_yanji.html! Length:", yanjiHtml.length);
+console.log('Successfully generated updated source_yanji.html! File length:', yanjiHtml.length);
+
+// Also copy to scripts/rebuild_source_yanji_no_driving.js for consistency
+const rebuildScriptPath = path.join(__dirname, 'rebuild_source_yanji_no_driving.js');
+fs.copyFileSync(__filename, rebuildScriptPath);
+console.log('Synchronized scripts/rebuild_source_yanji_no_driving.js');

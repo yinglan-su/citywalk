@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { ActivityStop, DayItinerary, TravelPlan } from "@/types/itinerary";
 import { DailyMap } from "./DailyMap";
-import { compressPlan } from "@/lib/storage";
+import { compressPlan, saveLocalPlan } from "@/lib/storage";
 import { generateOfflineHtml } from "@/lib/export-html";
 
 interface ItineraryDashboardProps {
@@ -208,6 +208,79 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
     executeAITweak(
       `请将第 ${currentDay.dayNumber} 天的${mealType}（目前是「${currentRestaurant}」）替换为同商圈其他口碑好、适口性佳的特色餐厅。`
     );
+  };
+
+  const handleSelectActivityAlternative = (actIdx: number, altIdx: number) => {
+    const updatedPlan = JSON.parse(JSON.stringify(localPlan));
+    const day = updatedPlan.days[activeDayIndex];
+    const currentAct = day.timeline[actIdx];
+    if (!currentAct || currentAct.type !== "activity" || !currentAct.alternatives) return;
+    const selectedAlt = currentAct.alternatives[altIdx];
+
+    const oldAsAlt = {
+      name: currentAct.name,
+      description: currentAct.description,
+      photoTip: currentAct.photoTip,
+      image: currentAct.image,
+      dropOffPoint: currentAct.dropOffPoint,
+      durationMinutes: currentAct.durationMinutes,
+      timeSlot: currentAct.timeSlot,
+    };
+    const newAlternatives = [...currentAct.alternatives];
+    newAlternatives[altIdx] = oldAsAlt;
+
+    currentAct.name = selectedAlt.name;
+    currentAct.description = selectedAlt.description;
+    currentAct.photoTip = selectedAlt.photoTip;
+    currentAct.image = selectedAlt.image;
+    if (selectedAlt.dropOffPoint) currentAct.dropOffPoint = selectedAlt.dropOffPoint;
+    if (selectedAlt.durationMinutes) currentAct.durationMinutes = selectedAlt.durationMinutes;
+    if (selectedAlt.timeSlot) currentAct.timeSlot = selectedAlt.timeSlot;
+    currentAct.alternatives = newAlternatives;
+
+    setLocalPlan(updatedPlan);
+    onPlanUpdated?.(updatedPlan);
+    saveLocalPlan(updatedPlan);
+    showToast(`已切换打卡点: ${selectedAlt.name.split("（")[0]}`);
+  };
+
+  const handleSelectDiningAlternative = (mealType: "lunch" | "dinner", altIdx: number) => {
+    const updatedPlan = JSON.parse(JSON.stringify(localPlan));
+    const day = updatedPlan.days[activeDayIndex];
+    const currentMeal = day.meals?.[mealType];
+    if (!currentMeal || !currentMeal.alternatives) return;
+    const selectedAlt = currentMeal.alternatives[altIdx];
+
+    const oldAsAlt = {
+      restaurantName: currentMeal.restaurantName,
+      cuisineStyle: currentMeal.cuisineStyle,
+      recommendedDishes: currentMeal.recommendedDishes,
+      elderKidSuitability: currentMeal.elderKidSuitability,
+      perPersonBudget: currentMeal.perPersonBudget,
+      addressOrDropOff: currentMeal.addressOrDropOff,
+      image: currentMeal.image,
+      photoTip: currentMeal.photoTip,
+    };
+    const newAlternatives = [...currentMeal.alternatives];
+    newAlternatives[altIdx] = oldAsAlt;
+
+    day.meals[mealType] = {
+      mealType: currentMeal.mealType,
+      restaurantName: selectedAlt.restaurantName,
+      cuisineStyle: selectedAlt.cuisineStyle,
+      recommendedDishes: selectedAlt.recommendedDishes,
+      elderKidSuitability: selectedAlt.elderKidSuitability || currentMeal.elderKidSuitability,
+      perPersonBudget: selectedAlt.perPersonBudget,
+      addressOrDropOff: selectedAlt.addressOrDropOff || currentMeal.addressOrDropOff,
+      image: selectedAlt.image,
+      photoTip: selectedAlt.photoTip,
+      alternatives: newAlternatives,
+    };
+
+    setLocalPlan(updatedPlan);
+    onPlanUpdated?.(updatedPlan);
+    saveLocalPlan(updatedPlan);
+    showToast(`已切换餐厅至: ${selectedAlt.restaurantName}`);
   };
 
   const currentDay: DayItinerary =
@@ -584,7 +657,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                       src={act.image}
                       alt={act.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
+                      loading="eager"
                     />
                     <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-medium flex items-center gap-1.5 shadow-xs">
                       <Camera className="w-3 h-3 text-[#C5A880]" />
@@ -612,6 +685,27 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                     </span>
                   </div>
                 )}
+
+                {/* Alternative Activities Switcher if available */}
+                {act.alternatives && act.alternatives.length > 0 && (
+                  <div className="mt-3 pt-2.5 border-t border-stone-200/70 flex flex-wrap items-center gap-1.5 text-[11px]">
+                    <span className="text-zinc-500 font-semibold flex items-center gap-1 shrink-0">
+                      <RefreshCw className="w-3 h-3 text-[#C5A880]" />
+                      备选打卡点:
+                    </span>
+                    {act.alternatives.map((alt, altI) => (
+                      <button
+                        key={altI}
+                        type="button"
+                        onClick={() => handleSelectActivityAlternative(idx, altI)}
+                        className="px-2.5 py-1 rounded-full bg-stone-100 hover:bg-[#C5A880]/15 hover:text-zinc-900 border border-stone-200 text-zinc-700 font-medium transition cursor-pointer flex items-center gap-1"
+                        title={alt.description}
+                      >
+                        <span>⇄ {alt.name.split("（")[0]}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             );
           })}
@@ -626,90 +720,182 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {currentDay.meals?.lunch && (
-              <div className="p-4 rounded-2xl bg-stone-50 border border-stone-100 relative group">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-bold text-xs text-zinc-900">
-                    午餐 · {currentDay.meals.lunch.restaurantName}
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-semibold text-zinc-500">
-                      {currentDay.meals.lunch.perPersonBudget}
+              <div className="p-4 rounded-2xl bg-stone-50 border border-stone-100 relative group flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-bold text-xs text-zinc-900">
+                      午餐 · {currentDay.meals.lunch.restaurantName}
                     </span>
-                    <button
-                      type="button"
-                      disabled={isTweaking}
-                      onClick={() =>
-                        currentDay.meals?.lunch &&
-                        handleSwapDining(
-                          "午餐",
-                          currentDay.meals.lunch.restaurantName
-                        )
-                      }
-                      className="text-[10px] text-zinc-400 hover:text-zinc-900 flex items-center gap-0.5 hover:underline transition disabled:opacity-40"
-                      title="AI 换一家同商圈餐厅"
-                    >
-                      <RefreshCw className="w-2.5 h-2.5" />
-                      换一家
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[11px] font-semibold text-zinc-500">
+                        {currentDay.meals.lunch.perPersonBudget}
+                      </span>
+                      <button
+                        type="button"
+                        disabled={isTweaking}
+                        onClick={() =>
+                          currentDay.meals?.lunch &&
+                          handleSwapDining(
+                            "午餐",
+                            currentDay.meals.lunch.restaurantName
+                          )
+                        }
+                        className="text-[10px] text-zinc-400 hover:text-zinc-900 flex items-center gap-0.5 hover:underline transition disabled:opacity-40"
+                        title="AI 换一家同商圈餐厅"
+                      >
+                        <RefreshCw className="w-2.5 h-2.5" />
+                        换一家
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Meal Photo if available */}
+                  {currentDay.meals.lunch.image && (
+                    <div className="relative w-full aspect-video rounded-xl overflow-hidden my-2.5 bg-stone-100 border border-stone-200/80 group">
+                      <img
+                        src={currentDay.meals.lunch.image}
+                        alt={currentDay.meals.lunch.restaurantName}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="eager"
+                      />
+                      <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-medium flex items-center gap-1 shadow-xs">
+                        <Utensils className="w-2.5 h-2.5 text-[#C5A880]" />
+                        <span>地道风味</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {currentDay.meals.lunch.photoTip && (
+                    <div className="my-1.5 px-2.5 py-1.5 rounded-lg bg-amber-50/70 border border-amber-200/70 text-amber-900 text-[11px] flex items-start gap-1.5">
+                      <Camera className="w-3 h-3 text-amber-700 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-semibold text-zinc-900">特色亮点: </span>
+                        {currentDay.meals.lunch.photoTip}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex flex-wrap gap-1 my-2">
+                    {currentDay.meals.lunch.recommendedDishes.map((dish, i) => (
+                      <span
+                        key={i}
+                        className="px-2 py-0.5 rounded-full bg-white text-zinc-700 border border-stone-200 text-[10px] font-medium"
+                      >
+                        {dish}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="text-[11px] text-zinc-500">
+                    适口建议: {currentDay.meals.lunch.elderKidSuitability}
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-1 my-2">
-                  {currentDay.meals.lunch.recommendedDishes.map((dish, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-0.5 rounded-full bg-white text-zinc-700 border border-stone-200 text-[10px] font-medium"
-                    >
-                      {dish}
-                    </span>
-                  ))}
-                </div>
-                <div className="text-[11px] text-zinc-500">
-                  适口建议: {currentDay.meals.lunch.elderKidSuitability}
-                </div>
+
+                {/* Alternatives for lunch */}
+                {currentDay.meals.lunch.alternatives && currentDay.meals.lunch.alternatives.length > 0 && (
+                  <div className="mt-2.5 pt-2 border-t border-stone-200/70 flex flex-wrap items-center gap-1.5 text-[10px]">
+                    <span className="text-zinc-500 font-medium shrink-0">备选风味:</span>
+                    {currentDay.meals.lunch.alternatives.map((alt, altI) => (
+                      <button
+                        key={altI}
+                        type="button"
+                        onClick={() => handleSelectDiningAlternative("lunch", altI)}
+                        className="px-2 py-0.5 rounded-full bg-white hover:bg-stone-100 border border-stone-200 text-zinc-700 font-medium transition cursor-pointer"
+                      >
+                        ⇄ {alt.restaurantName}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
             {currentDay.meals?.dinner && (
-              <div className="p-4 rounded-2xl bg-stone-50 border border-stone-100 relative group">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-bold text-xs text-zinc-900">
-                    晚餐 · {currentDay.meals.dinner.restaurantName}
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-semibold text-zinc-500">
-                      {currentDay.meals.dinner.perPersonBudget}
+              <div className="p-4 rounded-2xl bg-stone-50 border border-stone-100 relative group flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-bold text-xs text-zinc-900">
+                      晚餐 · {currentDay.meals.dinner.restaurantName}
                     </span>
-                    <button
-                      type="button"
-                      disabled={isTweaking}
-                      onClick={() =>
-                        currentDay.meals?.dinner &&
-                        handleSwapDining(
-                          "晚餐",
-                          currentDay.meals.dinner.restaurantName
-                        )
-                      }
-                      className="text-[10px] text-zinc-400 hover:text-zinc-900 flex items-center gap-0.5 hover:underline transition disabled:opacity-40"
-                      title="AI 换一家同商圈餐厅"
-                    >
-                      <RefreshCw className="w-2.5 h-2.5" />
-                      换一家
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[11px] font-semibold text-zinc-500">
+                        {currentDay.meals.dinner.perPersonBudget}
+                      </span>
+                      <button
+                        type="button"
+                        disabled={isTweaking}
+                        onClick={() =>
+                          currentDay.meals?.dinner &&
+                          handleSwapDining(
+                            "晚餐",
+                            currentDay.meals.dinner.restaurantName
+                          )
+                        }
+                        className="text-[10px] text-zinc-400 hover:text-zinc-900 flex items-center gap-0.5 hover:underline transition disabled:opacity-40"
+                        title="AI 换一家同商圈餐厅"
+                      >
+                        <RefreshCw className="w-2.5 h-2.5" />
+                        换一家
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Dinner Photo if available */}
+                  {currentDay.meals.dinner.image && (
+                    <div className="relative w-full aspect-video rounded-xl overflow-hidden my-2.5 bg-stone-100 border border-stone-200/80 group">
+                      <img
+                        src={currentDay.meals.dinner.image}
+                        alt={currentDay.meals.dinner.restaurantName}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="eager"
+                      />
+                      <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-medium flex items-center gap-1 shadow-xs">
+                        <Utensils className="w-2.5 h-2.5 text-[#C5A880]" />
+                        <span>地道风味</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {currentDay.meals.dinner.photoTip && (
+                    <div className="my-1.5 px-2.5 py-1.5 rounded-lg bg-amber-50/70 border border-amber-200/70 text-amber-900 text-[11px] flex items-start gap-1.5">
+                      <Camera className="w-3 h-3 text-amber-700 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-semibold text-zinc-900">特色亮点: </span>
+                        {currentDay.meals.dinner.photoTip}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex flex-wrap gap-1 my-2">
+                    {currentDay.meals.dinner.recommendedDishes.map((dish, i) => (
+                      <span
+                        key={i}
+                        className="px-2 py-0.5 rounded-full bg-white text-zinc-700 border border-stone-200 text-[10px] font-medium"
+                      >
+                        {dish}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="text-[11px] text-zinc-500">
+                    适口建议: {currentDay.meals.dinner.elderKidSuitability}
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-1 my-2">
-                  {currentDay.meals.dinner.recommendedDishes.map((dish, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-0.5 rounded-full bg-white text-zinc-700 border border-stone-200 text-[10px] font-medium"
-                    >
-                      {dish}
-                    </span>
-                  ))}
-                </div>
-                <div className="text-[11px] text-zinc-500">
-                  适口建议: {currentDay.meals.dinner.elderKidSuitability}
-                </div>
+
+                {/* Alternatives for dinner */}
+                {currentDay.meals.dinner.alternatives && currentDay.meals.dinner.alternatives.length > 0 && (
+                  <div className="mt-2.5 pt-2 border-t border-stone-200/60 flex flex-wrap items-center gap-1.5 text-[10px]">
+                    <span className="text-zinc-500 font-medium shrink-0">备选风味:</span>
+                    {currentDay.meals.dinner.alternatives.map((alt, altI) => (
+                      <button
+                        key={altI}
+                        type="button"
+                        onClick={() => handleSelectDiningAlternative("dinner", altI)}
+                        className="px-2 py-0.5 rounded-full bg-white hover:bg-stone-100 border border-stone-200 text-zinc-700 font-medium transition cursor-pointer"
+                      >
+                        ⇄ {alt.restaurantName}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>

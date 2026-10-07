@@ -8,3 +8,9 @@ source_yanji.html
 build_encrypted_yanji.js
 dist_yanji
 .vercel
+.env
+.env*.local
+node_modules
+.next
+out
+dist
