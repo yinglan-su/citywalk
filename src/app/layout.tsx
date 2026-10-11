@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,7 +22,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased font-sans bg-[#FAF9F6] text-zinc-900 min-h-screen">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>

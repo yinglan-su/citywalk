@@ -119,8 +119,11 @@ const diningCardSchema = {
       type: Type.STRING,
       description: "Dietary suitability for elders or children, spice level, seating comfort",
     },
-    perPersonBudget: { type: Type.STRING, description: "e.g. ¥60 - ¥100 / 人" },
+    perPersonBudget: { type: Type.STRING, description: "e.g. ¥60 - ¥100 / 人 or $15 - $25 / person" },
     addressOrDropOff: { type: Type.STRING },
+    googleRating: { type: Type.STRING, description: "e.g. 4.6★ (Google Reviews)" },
+    googleMapsUrl: { type: Type.STRING, description: "Google Maps direct link or query" },
+    dianpingUrl: { type: Type.STRING, description: "Dianping link if in China" },
   },
   required: [
     "mealType",
@@ -343,9 +346,15 @@ ${config.interests.includes("foodie") ? "   - FOODIE FOCUS: Heavily prioritize i
 ${config.interests.includes("culture") ? "   - CULTURE FOCUS: Highlight historical heritage, architectural landmarks, museum treasures, folk customs, and in-depth cultural context." : ""}
 ${config.interests.includes("nature") ? "   - NATURE FOCUS: Emphasize coastal views, mountain panoramas, botanical gardens, fresh air retreats, and leisurely landscape walks." : ""}
 
+9. MULTI-LANGUAGE & REVIEW ECOSYSTEM:
+${config.locale === "en" ? `   - LANGUAGE REQUIREMENT: The user requests ENGLISH output (locale=en). All titles, descriptions, themes, drop-off landmarks, dietary notes, dishes, and tips MUST be written in natural, fluent English. For non-English spots (e.g. Kyoto, Paris, Qingdao, Yanji), include romanized/local names alongside English explanations.
+   - REVIEWS & RATINGS: For all dining spots, provide estimated Google Review ratings (e.g. "4.6★ (Google Reviews)") and note local dining etiquette.` : `   - LANGUAGE REQUIREMENT: Output in Simplified Chinese (zh-CN).
+   - REVIEWS & RATINGS: For destinations outside mainland China, provide Google Reviews ratings & advice alongside local food recommendations.`}
+
 TARGET TRIP SPECIFICATIONS:
 - Destinations: ${config.destinations}
 - Duration: ${config.durationDays} Days
+- Language / Locale: ${config.locale || "zh"}
 ${config.startDate ? `- Departure Date: ${config.startDate}` : ""}
 ${config.endDate ? `- Return Date: ${config.endDate}` : ""}
 - Mobility: ${config.mobility} (${isLowMobility ? "<5000 steps, taxi-friendly, no stairs" : config.mobility === "moderate" ? "8000-12000 steps" : "15000+ steps trekker"})

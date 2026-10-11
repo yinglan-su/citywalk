@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { GalleryItem, TravelPlan, WizardConfig } from "@/types/itinerary";
 import { decompressPlan } from "@/lib/storage";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface GalleryViewProps {
   onSelectPlan: (plan: TravelPlan) => void;
@@ -23,6 +24,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
   onSelectPlan,
   onRemixPlan,
 }) => {
+  const { locale, t } = useLanguage();
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -86,7 +88,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
       {/* Header: Title + Search Bar side-by-side */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 sm:mb-8">
         <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight shrink-0">
-          精选实操路线
+          {t("galleryTitle")}
         </h2>
 
         {/* Search Bar next to Title */}
@@ -104,7 +106,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                 fetchGallery("");
               }
             }}
-            placeholder="搜索城市或路线 (如 延吉、青岛)..."
+            placeholder={locale === "en" ? "Search destination (e.g. Kyoto, Yanji)..." : "搜索城市或路线 (如 延吉、青岛)..."}
             className="w-full pl-9 pr-8 py-2 rounded-full bg-white border border-stone-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-900 shadow-xs transition"
           />
           {search && (
@@ -163,11 +165,11 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                   {/* Top Floating Glass Badge */}
                   <div className="absolute top-3 left-3 flex items-center gap-2">
                     <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
-                      {item.durationDays} 天行程
+                      {item.durationDays} {t("daysUnit")}
                     </span>
                     {item.isCurated && (
                       <span className="px-2.5 py-1 rounded-full bg-zinc-950/80 border border-[#C5A880]/40 backdrop-blur-md text-[#C5A880] text-[10px] font-bold">
-                        官方精选
+                        {t("curatedBadge")}
                       </span>
                     )}
                   </div>
@@ -193,12 +195,12 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
 
                 {/* Compact Tag Pills */}
                 <div className="flex flex-wrap gap-1.5 mt-2.5 px-1">
-                  {item.tags.slice(0, 3).map((t) => (
+                  {item.tags.slice(0, 3).map((tagStr) => (
                     <span
-                      key={t}
+                      key={tagStr}
                       className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-stone-100 text-zinc-600"
                     >
-                      {t}
+                      {tagStr}
                     </span>
                   ))}
                 </div>
@@ -212,11 +214,11 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                   className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-600 hover:text-zinc-900 py-1 transition"
                 >
                   <GitFork className="w-3.5 h-3.5 text-zinc-400" />
-                  基于此定制
+                  {t("remixTrip")}
                 </button>
 
                 <div className="inline-flex items-center gap-1 text-xs font-bold text-zinc-900 group-hover:translate-x-0.5 transition-transform">
-                  查看攻略
+                  {t("viewItinerary")}
                   <ChevronRight className="w-3.5 h-3.5" />
                 </div>
               </div>

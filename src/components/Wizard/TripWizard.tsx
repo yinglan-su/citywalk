@@ -12,69 +12,74 @@ import {
   Search,
 } from "lucide-react";
 import { TravelPlan, WizardConfig } from "@/types/itinerary";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface TripWizardProps {
   onPlanGenerated: (plan: TravelPlan) => void;
   initialConfig?: Partial<WizardConfig>;
 }
 
-const RECOMMENDED_CITIES = [
-  "延吉",
-  "珲春",
-  "长白山",
-  "青岛",
-  "威海",
-  "成都",
-  "西安",
-  "京都",
-];
-
-const TRIP_FOCUS_OPTIONS = [
-  { value: "foodie", label: "美食探店 (地道风味 · 必吃口碑)" },
-  { value: "culture", label: "人文历史 (古建文博 · 深度叙事)" },
-  { value: "nature", label: "自然山水 (滨海风光 · 户外疗愈)" },
-];
-
-const COMPANION_PILLS = [
-  { value: "elders", label: "长辈同行 (65+)" },
-  { value: "kids", label: "携儿童 / 推车" },
-  { value: "couple", label: "情侣 / 朋友" },
-  { value: "solo", label: "独行探索" },
-  { value: "pets", label: "携带宠物" },
-  { value: "wheelchair", label: "无障碍出行" },
-];
-
-const MOBILITY_PILLS = [
-  { value: "low" as const, label: "轻松 (<5000步 · 电梯优先)" },
-  { value: "moderate" as const, label: "适中 (8000-12000步)" },
-  { value: "high" as const, label: "暴走 (15000+步)" },
-];
-
-const BUDGET_PILLS = [
-  { value: "budget" as const, label: "经济实惠" },
-  { value: "comfort" as const, label: "品质舒适" },
-  { value: "luxury" as const, label: "高阶奢享" },
-];
-
-const TRANSPORT_PILLS = [
-  { value: "charter_taxi" as const, label: "打车 / 包车优先" },
-  { value: "public_transit" as const, label: "地铁 / 公交" },
-  { value: "driving" as const, label: "自驾租车" },
-];
-
 const SLIDER_PRESETS = [1, 3, 5, 7, 14, 30];
-
-const GENERATING_STEPS = [
-  "正在规划最优动线，消除折返跑...",
-  "正在核实场馆周一闭馆规则与实名预约...",
-  "正在筛选长辈清淡菜系与地道口碑美食...",
-  "正在编排点位地图与落客门廊...",
-];
 
 export const TripWizard: React.FC<TripWizardProps> = ({
   onPlanGenerated,
   initialConfig,
 }) => {
+  const { locale, t } = useLanguage();
+
+  const recommendedCities =
+    locale === "en"
+      ? ["Kyoto", "Tokyo", "Paris", "Qingdao", "Yanji", "Seoul", "London"]
+      : ["延吉", "珲春", "长白山", "青岛", "威海", "成都", "西安", "京都"];
+
+  const tripFocusOptions = [
+    { value: "foodie", label: t("focusFoodie") },
+    { value: "culture", label: t("focusCulture") },
+    { value: "nature", label: t("focusNature") },
+  ];
+
+  const companionPills = [
+    { value: "elders", label: t("compElders") },
+    { value: "kids", label: t("compKids") },
+    { value: "couple", label: t("compCouple") },
+    { value: "solo", label: t("compSolo") },
+    { value: "pets", label: t("compPets") },
+    { value: "wheelchair", label: t("compWheelchair") },
+  ];
+
+  const mobilityPills = [
+    { value: "low" as const, label: t("mobilityLow") },
+    { value: "moderate" as const, label: t("mobilityMod") },
+    { value: "high" as const, label: t("mobilityHigh") },
+  ];
+
+  const budgetPills = [
+    { value: "budget" as const, label: t("budgetLow") },
+    { value: "comfort" as const, label: t("budgetMid") },
+    { value: "luxury" as const, label: t("budgetHigh") },
+  ];
+
+  const transportPills = [
+    { value: "charter_taxi" as const, label: t("transportTaxi") },
+    { value: "public_transit" as const, label: t("transportPublic") },
+    { value: "driving" as const, label: t("transportDrive") },
+  ];
+
+  const generatingSteps =
+    locale === "en"
+      ? [
+          "Optimizing logistics & eliminating backtracking...",
+          "Verifying attraction opening hours & Monday closures...",
+          "Curating mild, authentic local dining with top reviews...",
+          "Arranging interactive map coordinates & drop-off points...",
+        ]
+      : [
+          "正在规划最优动线，消除折返跑...",
+          "正在核实场馆周一闭馆规则与实名预约...",
+          "正在筛选长辈清淡菜系与地道口碑美食...",
+          "正在编排点位地图与落客门廊...",
+        ];
+
   // Collapsed by default per user request
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
@@ -148,11 +153,11 @@ export const TripWizard: React.FC<TripWizardProps> = ({
     let timer: NodeJS.Timeout;
     if (isLoading) {
       timer = setInterval(() => {
-        setPhaseIdx((i) => (i + 1) % GENERATING_STEPS.length);
+        setPhaseIdx((i) => (i + 1) % generatingSteps.length);
       }, 2500);
     }
     return () => clearInterval(timer);
-  }, [isLoading]);
+  }, [isLoading, generatingSteps.length]);
 
   // Destination manipulation
   const toggleCity = (city: string) => {
@@ -237,6 +242,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
       transportMode,
       startDate: dateMode === "calendar" ? startDate : undefined,
       customNotes: customNotes.trim(),
+      locale,
     };
 
     try {
@@ -300,7 +306,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
           {/* Quick city chips & Expand CTA */}
           <div className="flex items-center justify-between sm:justify-end gap-2 border-t sm:border-t-0 pt-2 sm:pt-0 border-stone-100">
             <div className="hidden md:flex items-center gap-1.5">
-              {RECOMMENDED_CITIES.slice(0, 4).map((city) => (
+              {recommendedCities.slice(0, 4).map((city) => (
                 <button
                   key={city}
                   type="button"
@@ -409,9 +415,9 @@ export const TripWizard: React.FC<TripWizardProps> = ({
             {/* Recommended Quick Toggle Chips */}
             <div className="flex flex-wrap gap-1.5 mt-2.5 items-center">
               <span className="text-[11px] font-medium text-zinc-400 mr-1">
-                快捷推荐:
+                {t("recommendedDestinations")}:
               </span>
-              {RECOMMENDED_CITIES.map((c) => {
+              {recommendedCities.map((c) => {
                 const isSelected = selectedCities.includes(c);
                 return (
                   <button
@@ -566,14 +572,14 @@ export const TripWizard: React.FC<TripWizardProps> = ({
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-zinc-900 uppercase tracking-wider">
-                行程重点偏好 (可多选)
+                {t("focusLabel")}
               </span>
               <span className="text-[11px] text-zinc-400">
-                已选 {tripFocus.length} 项
+                {tripFocus.length}
               </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              {TRIP_FOCUS_OPTIONS.map((f) => {
+              {tripFocusOptions.map((f) => {
                 const selected = tripFocus.includes(f.value);
                 return (
                   <button
@@ -596,10 +602,10 @@ export const TripWizard: React.FC<TripWizardProps> = ({
           {/* 4. Who is Traveling? */}
           <div>
             <div className="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2">
-              同行偏好 (多选)
+              {t("companionsLabel")}
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {COMPANION_PILLS.map((p) => {
+              {companionPills.map((p) => {
                 const selected = companions.includes(p.value);
                 return (
                   <button
@@ -622,10 +628,10 @@ export const TripWizard: React.FC<TripWizardProps> = ({
           {/* 4. Mobility / Pace */}
           <div>
             <div className="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2">
-              体能与节奏
+              {t("mobilityLabel")}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              {MOBILITY_PILLS.map((m) => (
+              {mobilityPills.map((m) => (
                 <button
                   key={m.value}
                   type="button"
@@ -646,10 +652,10 @@ export const TripWizard: React.FC<TripWizardProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <div className="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2">
-                预算级别
+                {t("budgetLabel")}
               </div>
               <div className="flex gap-1.5">
-                {BUDGET_PILLS.map((b) => (
+                {budgetPills.map((b) => (
                   <button
                     key={b.value}
                     type="button"
@@ -668,21 +674,21 @@ export const TripWizard: React.FC<TripWizardProps> = ({
 
             <div>
               <div className="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2">
-                首选出行
+                {t("transportLabel")}
               </div>
               <div className="flex gap-1.5">
-                {TRANSPORT_PILLS.map((t) => (
+                {transportPills.map((tPill) => (
                   <button
-                    key={t.value}
+                    key={tPill.value}
                     type="button"
-                    onClick={() => setTransportMode(t.value)}
+                    onClick={() => setTransportMode(tPill.value)}
                     className={`flex-1 py-1.5 rounded-xl text-xs font-bold border transition select-none ${
-                      transportMode === t.value
+                      transportMode === tPill.value
                         ? "bg-zinc-900 text-white border-zinc-900"
                         : "bg-stone-50 hover:bg-stone-100 text-zinc-700 border-stone-200"
                     }`}
                   >
-                    {t.label}
+                    {tPill.label}
                   </button>
                 ))}
               </div>
@@ -717,7 +723,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
               <div className="p-4 rounded-2xl bg-zinc-900 text-white text-center space-y-2">
                 <div className="inline-block animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
                 <div className="text-xs font-semibold text-stone-300">
-                  {GENERATING_STEPS[phaseIdx]}
+                  {generatingSteps[phaseIdx]}
                 </div>
               </div>
             ) : (
@@ -726,7 +732,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                 onClick={handleGenerate}
                 className="w-full py-3.5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 active:scale-[0.99] text-white font-extrabold text-sm transition-all shadow-md tracking-wider flex items-center justify-center"
               >
-                生成
+                {t("generateBtn")}
               </button>
             )}
           </div>

@@ -19,11 +19,15 @@ import {
   Sparkles,
   Camera,
   Eye,
+  Star,
+  ExternalLink,
+  Compass,
 } from "lucide-react";
 import { ActivityStop, DayItinerary, TravelPlan } from "@/types/itinerary";
 import { DailyMap } from "./DailyMap";
 import { compressPlan, saveLocalPlan } from "@/lib/storage";
 import { generateOfflineHtml } from "@/lib/export-html";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ItineraryDashboardProps {
   plan: TravelPlan;
@@ -43,6 +47,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
   onBack,
   onPlanUpdated,
 }) => {
+  const { locale, t } = useLanguage();
   const [localPlan, setLocalPlan] = useState<TravelPlan>(plan);
   const [activeDayIndex, setActiveDayIndex] = useState(0);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -579,11 +584,11 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                   </span>
                   <span className="text-zinc-900 font-semibold">
                     {item.mode === "taxi"
-                      ? "打车"
+                      ? t("transitTaxi")
                       : item.mode === "charter"
-                      ? "包车"
-                      : "步行"}{" "}
-                    {item.estimatedMinutes}分钟 ({item.distanceKm}km)
+                      ? t("transitCharter")
+                      : t("transitWalk")}{" "}
+                    {item.estimatedMinutes} {t("mins")} ({item.distanceKm}km)
                   </span>
                   <span className="hidden sm:inline text-zinc-400">
                     · {item.navigationDetail}
@@ -654,12 +659,26 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                   游玩约 {act.durationMinutes} 分钟
                 </div>
 
-                {/* Drop-off landmark badge */}
-                <div className="my-2.5 px-3 py-1.5 rounded-xl bg-stone-50 border border-stone-200/90 text-xs text-zinc-800 flex items-center gap-2">
-                  <MapPin className="w-3.5 h-3.5 text-[#C5A880] shrink-0" />
-                  <div>
-                    <strong>落客导航目标:</strong> {act.dropOffPoint}
+                {/* Drop-off landmark badge & Google Maps Navigation */}
+                <div className="my-2.5 px-3 py-1.5 rounded-xl bg-stone-50 border border-stone-200/90 text-xs text-zinc-800 flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <MapPin className="w-3.5 h-3.5 text-[#C5A880] shrink-0" />
+                    <div className="truncate">
+                      <strong>{t("dropOffNavTarget")}:</strong> {act.dropOffPoint}
+                    </div>
                   </div>
+                  {act.coordinates && act.coordinates.length === 2 && (
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${act.coordinates[0]},${act.coordinates[1]}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 text-blue-600 hover:text-blue-800 text-[11px] font-semibold flex items-center gap-1 hover:underline ml-2"
+                      title={t("openInGoogleMaps")}
+                    >
+                      <span>Google Maps</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  )}
                 </div>
 
                 {/* Reservation badge */}
@@ -739,7 +758,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
         <div className="bg-white rounded-3xl border border-stone-200 p-5 sm:p-6 shadow-xs">
           <div className="text-xs font-bold text-zinc-900 uppercase tracking-wider flex items-center gap-1.5 mb-3">
             <Utensils className="w-3.5 h-3.5 text-[#C5A880]" />
-            当日地道美食推荐
+            {t("diningSectionTitle")}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -748,7 +767,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-bold text-xs text-zinc-900">
-                      午餐 · {currentDay.meals.lunch.restaurantName}
+                      {t("lunch")} · {currentDay.meals.lunch.restaurantName}
                     </span>
                     <div className="flex items-center gap-2">
                       <span className="text-[11px] font-semibold text-zinc-500">
@@ -810,7 +829,46 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                     ))}
                   </div>
                   <div className="text-[11px] text-zinc-500">
-                    适口建议: {currentDay.meals.lunch.elderKidSuitability}
+                    {t("dietarySuitability")}: {currentDay.meals.lunch.elderKidSuitability}
+                  </div>
+
+                  {/* Google Reviews & Dianping Links */}
+                  <div className="flex flex-wrap items-center gap-1.5 mt-2.5">
+                    <a
+                      href={
+                        currentDay.meals.lunch.googleMapsUrl ||
+                        `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                          currentDay.meals.lunch.restaurantName +
+                            " " +
+                            (currentDay.meals.lunch.addressOrDropOff ||
+                              localPlan.meta.destinations.join(" "))
+                        )}`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-50/90 hover:bg-blue-100 text-blue-700 border border-blue-200/70 text-[10px] font-semibold transition"
+                      title={t("viewGoogleReviewsTip")}
+                    >
+                      <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-500" />
+                      <span>{t("googleReviews")}</span>
+                      <ExternalLink className="w-2.5 h-2.5 text-blue-500" />
+                    </a>
+
+                    <a
+                      href={
+                        currentDay.meals.lunch.dianpingUrl ||
+                        `https://m.dianping.com/search?keyword=${encodeURIComponent(
+                          currentDay.meals.lunch.restaurantName
+                        )}`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-50/80 hover:bg-amber-100 text-amber-800 border border-amber-200/70 text-[10px] font-medium transition"
+                      title="在 大众点评 查看"
+                    >
+                      <span>{t("dianpingReviews")}</span>
+                      <ExternalLink className="w-2.5 h-2.5 text-amber-600" />
+                    </a>
                   </div>
                 </div>
 
@@ -838,7 +896,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-bold text-xs text-zinc-900">
-                      晚餐 · {currentDay.meals.dinner.restaurantName}
+                      {t("dinner")} · {currentDay.meals.dinner.restaurantName}
                     </span>
                     <div className="flex items-center gap-2">
                       <span className="text-[11px] font-semibold text-zinc-500">
@@ -900,7 +958,46 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                     ))}
                   </div>
                   <div className="text-[11px] text-zinc-500">
-                    适口建议: {currentDay.meals.dinner.elderKidSuitability}
+                    {t("dietarySuitability")}: {currentDay.meals.dinner.elderKidSuitability}
+                  </div>
+
+                  {/* Google Reviews & Dianping Links */}
+                  <div className="flex flex-wrap items-center gap-1.5 mt-2.5">
+                    <a
+                      href={
+                        currentDay.meals.dinner.googleMapsUrl ||
+                        `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                          currentDay.meals.dinner.restaurantName +
+                            " " +
+                            (currentDay.meals.dinner.addressOrDropOff ||
+                              localPlan.meta.destinations.join(" "))
+                        )}`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-50/90 hover:bg-blue-100 text-blue-700 border border-blue-200/70 text-[10px] font-semibold transition"
+                      title={t("viewGoogleReviewsTip")}
+                    >
+                      <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-500" />
+                      <span>{t("googleReviews")}</span>
+                      <ExternalLink className="w-2.5 h-2.5 text-blue-500" />
+                    </a>
+
+                    <a
+                      href={
+                        currentDay.meals.dinner.dianpingUrl ||
+                        `https://m.dianping.com/search?keyword=${encodeURIComponent(
+                          currentDay.meals.dinner.restaurantName
+                        )}`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-50/80 hover:bg-amber-100 text-amber-800 border border-amber-200/70 text-[10px] font-medium transition"
+                      title="在 大众点评 查看"
+                    >
+                      <span>{t("dianpingReviews")}</span>
+                      <ExternalLink className="w-2.5 h-2.5 text-amber-600" />
+                    </a>
                   </div>
                 </div>
 

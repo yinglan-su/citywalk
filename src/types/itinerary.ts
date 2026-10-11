@@ -9,6 +9,7 @@ export interface WizardConfig {
   startDate?: string;
   endDate?: string;
   customNotes?: string;
+  locale?: "zh" | "en";
 }
 
 export interface ActivityAlternative {
@@ -59,10 +60,13 @@ export interface DiningAlternative {
   addressOrDropOff?: string;
   image?: string;
   photoTip?: string;
+  googleRating?: string;
+  googleMapsUrl?: string;
+  dianpingUrl?: string;
 }
 
 export interface DiningCard {
-  mealType: "早餐" | "午餐" | "晚餐" | "夜宵 / 甜品";
+  mealType: string;
   restaurantName: string;
   cuisineStyle: string;
   recommendedDishes: string[];
@@ -71,6 +75,9 @@ export interface DiningCard {
   addressOrDropOff: string;
   image?: string;
   photoTip?: string;
+  googleRating?: string;
+  googleMapsUrl?: string;
+  dianpingUrl?: string;
   alternatives?: DiningAlternative[];
 }
 
@@ -126,6 +133,7 @@ export interface TravelPlan {
     isPublic?: boolean;
     viewsCount?: number;
     likesCount?: number;
+    locale?: "zh" | "en";
   };
   overview: {
     highlights: string[];

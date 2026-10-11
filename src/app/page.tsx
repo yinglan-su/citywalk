@@ -8,6 +8,7 @@ import { SavedPlansView } from "@/components/Saved/SavedPlansView";
 import { ItineraryDashboard } from "@/components/Itinerary/ItineraryDashboard";
 import { TravelPlan, WizardConfig } from "@/types/itinerary";
 import { decompressPlan, getLocalPlans, saveLocalPlan } from "@/lib/storage";
+import { useLanguage } from "@/context/LanguageContext";
 
 const HERO_BACKGROUNDS = [
   { url: "/images/spot_badaguan.jpg", title: "青岛 · 八大关红瓦绿树" },
@@ -18,6 +19,7 @@ const HERO_BACKGROUNDS = [
 ];
 
 export default function Home() {
+  const { locale, t } = useLanguage();
   const [viewMode, setViewMode] = useState<"home" | "saved" | "itinerary">("home");
   const [currentPlan, setCurrentPlan] = useState<TravelPlan | null>(null);
   const [remixConfig, setRemixConfig] = useState<Partial<WizardConfig> | undefined>(undefined);
@@ -135,7 +137,7 @@ export default function Home() {
                 <div className="relative z-10 max-w-3xl mx-auto">
                   <div className="text-center mb-6 sm:mb-8">
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-900 tracking-tight drop-shadow-xs">
-                      探索你的下一段旅程
+                      {locale === "en" ? "Explore Your Next Journey" : "探索你的下一段旅程"}
                     </h1>
                     {/* Location Caption Badge */}
                     <div className="mt-2.5 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-stone-200/90 text-[11px] text-zinc-700 font-semibold shadow-xs">

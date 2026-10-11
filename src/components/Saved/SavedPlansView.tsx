@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Bookmark, Clock, Trash2, ChevronRight, Sparkles } from "lucide-react";
 import { TravelPlan, WizardConfig } from "@/types/itinerary";
 import { getLocalPlans, deleteLocalPlan } from "@/lib/storage";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface SavedPlansViewProps {
   onSelectPlan: (plan: TravelPlan) => void;
@@ -14,6 +15,7 @@ export const SavedPlansView: React.FC<SavedPlansViewProps> = ({
   onSelectPlan,
   onGoToWizard,
 }) => {
+  const { locale, t } = useLanguage();
   const [plans, setPlans] = useState<TravelPlan[]>([]);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export const SavedPlansView: React.FC<SavedPlansViewProps> = ({
 
   const handleDelete = (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
-    if (confirm("确定要删除这条保存的行程吗？")) {
+    if (confirm(locale === "en" ? "Are you sure you want to delete this saved itinerary?" : "确定要删除这条保存的行程吗？")) {
       deleteLocalPlan(id);
       setPlans(getLocalPlans());
     }
@@ -33,29 +35,31 @@ export const SavedPlansView: React.FC<SavedPlansViewProps> = ({
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-100 text-zinc-700 text-xs font-semibold mb-3 border border-stone-200">
           <Bookmark className="w-3.5 h-3.5 text-[#C5A880]" />
-          本地行程档案
+          {locale === "en" ? "Private Archive" : "本地行程档案"}
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
-          我的行程档案
+          {locale === "en" ? "My Saved Itineraries" : "我的行程档案"}
         </h1>
         <p className="mt-2 text-sm text-zinc-500 max-w-xl mx-auto">
-          您在本机生成或查看过的所有路线均已自动保存在本地，无需登录，随时查阅。
+          {locale === "en"
+            ? "All journeys created or viewed on this device are automatically preserved in your private browser cache."
+            : "您在本机生成或查看过的所有路线均已自动保存在本地，无需登录，随时查阅。"}
         </p>
       </div>
 
       {plans.length === 0 ? (
         <div className="text-center py-16 bg-white rounded-3xl border border-dashed border-stone-200 p-8">
           <Bookmark className="w-10 h-10 text-stone-300 mx-auto mb-2" />
-          <div className="text-sm font-semibold text-zinc-700">暂无保存的行程</div>
+          <div className="text-sm font-semibold text-zinc-700">{t("noSavedTrips")}</div>
           <p className="text-xs text-zinc-400 mt-1 mb-4">
-            开启您的下一趟专属之旅。
+            {locale === "en" ? "Craft your next journey with AI." : "开启您的下一趟专属之旅。"}
           </p>
           <button
             type="button"
             onClick={onGoToWizard}
             className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-zinc-900 text-white text-xs font-bold hover:bg-zinc-800 transition shadow-xs"
           >
-            开始定制
+            {t("newTrip")}
           </button>
         </div>
       ) : (
