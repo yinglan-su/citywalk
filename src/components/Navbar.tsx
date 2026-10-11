@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Bookmark, Lock } from "lucide-react";
+import { Bookmark } from "lucide-react";
 
 interface NavbarProps {
   onGoToSaved: () => void;
@@ -38,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Right Actions: 我的行程 & 安全锁定 */}
+        {/* Right Actions: 我的行程 */}
         <div className="flex items-center gap-2 sm:gap-3">
           <button
             type="button"
@@ -52,18 +52,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {savedCount}
               </span>
             )}
-          </button>
-
-          <button
-            type="button"
-            onClick={async () => {
-              await fetch("/api/auth/verify", { method: "DELETE" });
-              window.location.href = "/unlock";
-            }}
-            title="锁定站点会话"
-            className="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200/80 text-zinc-500 hover:text-zinc-800 transition flex items-center justify-center border border-stone-200/80"
-          >
-            <Lock className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
