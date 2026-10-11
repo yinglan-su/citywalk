@@ -18,6 +18,7 @@ import {
   RefreshCw,
   Sparkles,
   Camera,
+  Eye,
 } from "lucide-react";
 import { ActivityStop, DayItinerary, TravelPlan } from "@/types/itinerary";
 import { DailyMap } from "./DailyMap";
@@ -47,6 +48,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isPublishing, setIsPublishing] = useState(false);
   const [isPublished, setIsPublished] = useState(plan.meta.isPublic || false);
+  const [viewsCount, setViewsCount] = useState<number | null>(null);
 
   // AI Tweak State (Tier 1)
   const [isTweaking, setIsTweaking] = useState(false);
@@ -55,6 +57,22 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
 
   useEffect(() => {
     setLocalPlan(plan);
+
+    // Track visit telemetry to Supabase
+    if (plan?.id) {
+      fetch("/api/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug: plan.id }),
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          if (typeof data.viewCount === "number") {
+            setViewsCount(data.viewCount);
+          }
+        })
+        .catch(() => {});
+    }
   }, [plan]);
 
   const showToast = (msg: string) => {
@@ -363,6 +381,12 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
               #{tag}
             </span>
           ))}
+          {viewsCount !== null && viewsCount > 0 && (
+            <span className="px-2.5 py-1 rounded-full bg-amber-50/80 text-amber-800 border border-amber-200/60 text-xs font-semibold flex items-center gap-1 shadow-2xs">
+              <Eye className="w-3.5 h-3.5 text-amber-700" />
+              <span>{viewsCount} 次查阅</span>
+            </span>
+          )}
         </div>
 
         <h1 className="text-xl sm:text-2xl font-bold text-zinc-900 leading-snug">

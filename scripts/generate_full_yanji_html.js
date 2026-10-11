@@ -27,6 +27,9 @@ const yanjiHtml = `<!DOCTYPE html>
   <link rel="stylesheet" href="./vendor/leaflet/leaflet.css" onerror="this.onerror=null;this.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'"/>
   <script src="./vendor/leaflet/leaflet.js" onerror="this.onerror=null;this.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'"></script>
 
+  <!-- Vercel Web Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+
   <style>
 ${cssContent}
   </style>
@@ -39,6 +42,7 @@ ${cssContent}
       <div class="header-title-box">
         <span class="header-title">延吉边陲秋韵</span>
         <span class="senior-badge">长辈舒享</span>
+        <span id="yjVisitCountBadge" class="senior-badge" style="background:#FEF3C7; color:#92400E; display:none;">👀 <span id="yjVisitCountNum">0</span> 次查阅</span>
       </div>
       <button class="weather-mini-pill" onclick="switchNavTab('overview')">
         <span class="live-dot" style="width:6px;height:6px;"></span>
@@ -3066,6 +3070,28 @@ ${cssContent}
       showToast('已从灵感池移除');
     }
 
+    function fetchAndRenderViewCount() {
+      try {
+        const u = 'https://kbjxxancnfmrglrhpgdt.supabase.co';
+        const k = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtianh4YW5jbmZtcmdscmhwZ2R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1MTcxMjgsImV4cCI6MjA4OTA5MzEyOH0.RdzRACARqdgrQ9D1n4A1Ya45NsKoJYuEACnwHkFI-a4';
+        fetch(u + '/rest/v1/guide_view_counts?slug=eq.yanji-hunchun-6d&select=view_count', {
+          headers: { 'apikey': k, 'Authorization': 'Bearer ' + k }
+        })
+          .then(r => r.json())
+          .then(rows => {
+            if (rows && rows[0] && rows[0].view_count > 0) {
+              const badge = document.getElementById('yjVisitCountBadge');
+              const num = document.getElementById('yjVisitCountNum');
+              if (badge && num) {
+                num.textContent = rows[0].view_count;
+                badge.style.display = 'inline-flex';
+              }
+            }
+          })
+          .catch(() => {});
+      } catch(e) {}
+    }
+
     // ==========================================
     // Initializer
     // ==========================================
@@ -3079,6 +3105,7 @@ ${cssContent}
       switchDay('day1');
       fetchLiveWeather(false);
       renderSavedIdeasList();
+      fetchAndRenderViewCount();
     }
 
     if (document.readyState === 'loading') {
