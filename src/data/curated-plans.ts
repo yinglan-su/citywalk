@@ -4784,4 +4784,1127 @@ export const CURATED_PLANS: TravelPlan[] = [
       }
     ]
   }
+,
+  {
+    id: "curated_singapore_4d",
+    meta: {
+      tripTitle: "新加坡 4天3晚 · 花园城市极致无障碍与南洋温润慢游",
+      destinations: ["新加坡"],
+      durationDays: 4,
+      travelerProfile: [
+        "花园城市",
+        "极致无障碍",
+        "长辈舒享",
+        "南洋美食",
+        "全冷气连廊"
+      ],
+      budgetTier: "luxury",
+      transportMode: "charter_taxi",
+      generatedAt: "2026-10-12T09:00:00.000Z",
+      coverImage: "/images/spot_singapore_garden.jpg",
+      isPublic: true,
+      viewsCount: 2890,
+      likesCount: 265
+    },
+    overview: {
+      highlights: [
+        "滨海湾花园花穹与云雾林双冷室恒温24℃，全平坦步道与观景直梯，避暑避雨吸氧",
+        "乘坐新加坡河复古木质驳船 (Bumboat)，平稳巡游克拉码头至滨海湾金沙天际线，水上零步行",
+        "国家美术馆与星耀樟宜室内雨漩涡瀑布，全天候全空调无障碍长廊与长者爱心电动轮椅",
+        "松发肉骨茶温润胡椒排骨原汤、天天海南鸡饭软嫩去骨、珍宝海鲜旗舰店麦片虾与清蒸笋壳鱼",
+        "入住新加坡浮尔顿酒店 (The Fullerton Hotel)，毗邻新加坡河畔平坦步道，每日两小时下午茶静养"
+      ],
+      logisticsSummary: "新加坡为全球无障碍设计最高典范。全程专车直达各景点无障碍专用车道，所有公共场所均配备医用级超大升降梯与自动感应电动门，严控日均步行在1.8公里以内，全域覆盖 Google Reviews 4.4★+ 评价认证与 Google Maps 实时直达。",
+      weatherAndPacking: [
+        "热带雨林气候常年温暖（26℃ - 31℃），室内商场与冷室空调充足，建议备防风薄开衫与轻柔披肩",
+        "长辈出行备好英标转换插头、常用日常降压保健药及便携遮阳折叠伞",
+        "公共饮水机遍布各景点与展馆，冷热水均可随取，八达卡或Visa/Mastercard信用卡全岛通行"
+      ]
+    },
+    days: [
+      {
+        dayNumber: 1,
+        dateOrLabel: "Day 1 · 狮城初遇 & 浮尔顿古典入住 & 新加坡河水上巡礼",
+        theme: "初抵狮城 · 浮尔顿传奇海景入住 · 新加坡河复古游船",
+        paceScore: "relaxed",
+        mapConfig: {
+          center: [1.2868, 103.8545],
+          zoom: 15
+        },
+        hotelRestBlock: {
+          enabled: true,
+          recommendedTime: "13:30 - 15:30",
+          reason: "抵新后在客房午休静养，避开午后高温烈日"
+        },
+        timeline: [
+          {
+            type: "activity",
+            id: "sg_d1_hotel",
+            name: "新加坡浮尔顿酒店 (The Fullerton Hotel) · 历史文化遗产尊享入住",
+            category: "rest",
+            timeSlot: "11:30 - 12:30",
+            durationMinutes: 60,
+            coordinates: [1.2868, 103.8545],
+            dropOffPoint: "1 Fullerton Square 酒店大堂专用门廊落客区",
+            openingHours: "全天候接待",
+            reservationRequired: true,
+            reservationChannel: "官方预订",
+            photoTip: "新古典主义巨大多立克石柱与大堂挑空玻璃天井光影",
+            elderKidNotes: "原为百年中央邮政总局国家古迹，全套医用级无障碍升降电梯，礼宾提供免费轮椅租借与行李管家服务",
+            description: "专车自樟宜机场接送直达新加坡河畔历史地标浮尔顿酒店。古典典雅的石雕拱廊与柔和的冷气迎宾，在客房内尽览新加坡河与滨海湾璀璨水岸。"
+          },
+          {
+            type: "transit",
+            fromStop: "sg_d1_hotel",
+            toStop: "sg_d1_lunch",
+            mode: "walk",
+            distanceKm: 0.3,
+            estimatedMinutes: 5,
+            navigationDetail: "经酒店有盖平坦遮阴连廊缓步走至克拉码头松发肉骨茶"
+          },
+          {
+            type: "activity",
+            id: "sg_d1_lunch",
+            name: "松发肉骨茶 (Song Fa Bak Kut Teh 克拉码头总店) · 潮汕白胡椒暖胃排骨汤",
+            category: "food",
+            timeSlot: "12:30 - 13:45",
+            durationMinutes: 75,
+            coordinates: [1.2885, 103.8475],
+            dropOffPoint: "11 New Bridge Rd 松发正门前平整落客点",
+            openingHours: "10:30 - 21:30",
+            reservationRequired: false,
+            photoTip: "砂锅中翻滚的肉骨原汤与整颗绵软蒜头、金黄油条小蝶",
+            elderKidNotes: "排骨慢火炖透至离骨软烂，白胡椒汤底温胃去湿不上火，服务员提供无限次免费续温热原汤",
+            description: "品尝新加坡必比登推介五十年老字号松发肉骨茶。骨肉软烂轻抿即化，浓郁温润的白胡椒原汤搭配泡透的脆油条与香米饭，暖心暖胃消除疲惫。"
+          },
+          {
+            type: "transit",
+            fromStop: "sg_d1_lunch",
+            toStop: "sg_d1_hotel_rest",
+            mode: "walk",
+            distanceKm: 0.3,
+            estimatedMinutes: 5,
+            navigationDetail: "经遮阴林荫连廊平步返回浮尔顿酒店客房"
+          },
+          {
+            type: "activity",
+            id: "sg_d1_hotel_rest",
+            name: "浮尔顿客房深度午休 & 传统英式红茶静养",
+            category: "rest",
+            timeSlot: "14:00 - 16:00",
+            durationMinutes: 120,
+            coordinates: [1.2868, 103.8545],
+            dropOffPoint: "酒店客房内",
+            openingHours: "全天候",
+            reservationRequired: false,
+            photoTip: "窗前远眺驳船在新加坡河上划出波纹",
+            elderKidNotes: "平躺静卧午休1.5小时，室内恒温25℃避暑，舒缓飞行肌肉酸痛",
+            description: "在静谧雅致的客房中平躺小睡，享受宁静的下午时光，恢复饱满体力。"
+          },
+          {
+            type: "transit",
+            fromStop: "sg_d1_hotel_rest",
+            toStop: "sg_d1_river_cruise",
+            mode: "walk",
+            distanceKm: 0.1,
+            estimatedMinutes: 3,
+            navigationDetail: "出酒店地下步道直通浮尔顿码头无障碍登船跳板"
+          },
+          {
+            type: "activity",
+            id: "sg_d1_river_cruise",
+            name: "新加坡河水上巡礼 (Singapore River Cruise) · 复古木驳船游河看暮色",
+            category: "nature",
+            timeSlot: "17:00 - 18:15",
+            durationMinutes: 75,
+            coordinates: [1.286, 103.8535],
+            dropOffPoint: "Fullerton Jetty 码头平缓无阶梯坡道",
+            openingHours: "09:00 - 23:00",
+            reservationRequired: true,
+            reservationChannel: "官网或Klook提前订电子票，扫码登船",
+            photoTip: "驳船驶过安德森桥与鱼尾狮雕像，夕阳洒在金沙酒店三座塔楼玻璃幕墙上",
+            elderKidNotes: "木驳船航行极度平稳无摇晃，上下船有专业地勤协助扶持，舱内设有遮阳棚与软座，全程坐着游览零步行",
+            description: "搭乘传统木质驳船从浮尔顿码头平缓启航。迎着傍晚凉爽河风，经安德森桥、克拉码头缓缓驶入滨海湾，饱览历史驳船码头与现代摩天楼群的和谐画卷。"
+          }
+        ],
+        meals: {
+          lunch: {
+            mealType: "午餐",
+            restaurantName: "松发肉骨茶 (Song Fa Bak Kut Teh 克拉码头总店)",
+            cuisineStyle: "米其林必比登传统南洋肉骨茶",
+            recommendedDishes: ["特级龙骨汤（肉厚软嫩）", "招牌卤猪脚（软烂入味）", "卤花生与咸菜", "热浸油条"],
+            elderKidSuitability: "肉烂汤浓，胡椒温胃暖胃，汤汁免费无限续杯，老幼极宜",
+            perPersonBudget: "S$18 - S$28 / 人",
+            addressOrDropOff: "11 New Bridge Rd, #01-01 (Clarke Quay)",
+            googleRating: "4.4★ (Google Reviews 14,000+ 评价)",
+            googleMapsUrl: "https://maps.google.com/?q=Song+Fa+Bak+Kut+Teh+Clarke+Quay"
+          },
+          dinner: {
+            mealType: "晚餐",
+            restaurantName: "珍宝海鲜 (Jumbo Seafood 河畔旗舰店)",
+            cuisineStyle: "享誉狮城传统新加坡海鲜名宴",
+            recommendedDishes: ["招牌辣椒蟹配现炸黄金小馒头（酸甜微辛开胃）", "黄金香脆麦片虾（酥脆去皮）", "清蒸笋壳鱼（鲜嫩无小刺）", "海鲜皇炒饭"],
+            elderKidSuitability: "清蒸笋壳鱼肉质软嫩鲜甜无细刺，麦片虾香甜酥化，河畔独立冷气包厢环境宽敞",
+            perPersonBudget: "S$65 - S$95 / 人",
+            addressOrDropOff: "30 Merchant Rd, #01-01/02 Riverside Point",
+            googleRating: "4.5★ (Google Reviews 8,800+ 评价)",
+            googleMapsUrl: "https://maps.google.com/?q=Jumbo+Seafood+Riverside+Point"
+          }
+        },
+        dailyTips: [
+          "珍宝海鲜河畔店人气旺盛，建议提前两周让酒店礼宾预约18:30河畔室内空调景观位",
+          "新加坡公共室内冷气普遍强劲，游船与用餐时为长辈备好开衫保暖"
+        ]
+      },
+      {
+        dayNumber: 2,
+        dateOrLabel: "Day 2 · 滨海湾花园双冷室全平步 & 天天海南鸡饭",
+        theme: "恒温冷室花园 · 花穹平步看千花 · 云雾林高空瀑布吸氧",
+        paceScore: "relaxed",
+        mapConfig: {
+          center: [1.2816, 103.8636],
+          zoom: 15
+        },
+        hotelRestBlock: {
+          enabled: true,
+          recommendedTime: "14:00 - 15:30",
+          reason: "自冷室游览后返回浮尔顿客房午睡静养，恢复体能"
+        },
+        timeline: [
+          {
+            type: "transit",
+            fromStop: "sg_d2_hotel",
+            toStop: "sg_d2_gardens",
+            mode: "charter",
+            distanceKm: 2.8,
+            estimatedMinutes: 8,
+            navigationDetail: "专车穿过滨海湾大桥送达滨海湾花园花穹专用无障碍落客平台"
+          },
+          {
+            type: "activity",
+            id: "sg_d2_gardens",
+            name: "滨海湾花园 · 花穹 (Flower Dome) 与云雾林 (Cloud Forest) 恒温慢步",
+            category: "nature",
+            timeSlot: "09:30 - 12:30",
+            durationMinutes: 180,
+            coordinates: [1.2816, 103.8636],
+            dropOffPoint: "18 Marina Gardens Dr 花穹冷室主入口无障碍车道",
+            openingHours: "09:00 - 21:00",
+            reservationRequired: true,
+            reservationChannel: "官网或App提前购买双馆指定时段门票",
+            photoTip: "云雾林35米高巨大室内植物瀑布水雾飞溅，花穹千岁地中海橄榄树与娇艳兰花",
+            elderKidNotes: "两大冷室常年恒温23-25℃，空气湿润清爽，全馆铺设平坦防滑塑石坡道，配大型无障碍全景观光直梯，游客中心免费提供轻量轮椅借用",
+            description: "走进全球最大的无柱冷室玻璃温室。在花穹漫步观赏来自全球五大洲的奇花异草与千岁古橄榄树；深入云雾林，乘电梯直达高空树冠步道，在清凉水雾与蕨类植物间惬意深呼吸。"
+          },
+          {
+            type: "transit",
+            fromStop: "sg_d2_gardens",
+            toStop: "sg_d2_lunch",
+            mode: "charter",
+            distanceKm: 3.5,
+            estimatedMinutes: 10,
+            navigationDetail: "专车送至麦士威熟食中心平坦入场通道"
+          },
+          {
+            type: "activity",
+            id: "sg_d2_lunch",
+            name: "天天海南鸡饭 (Tian Tian Hainanese Chicken Rice) · 米其林名厨盛赞之滑嫩肉香",
+            category: "food",
+            timeSlot: "12:45 - 13:45",
+            durationMinutes: 60,
+            coordinates: [1.2805, 103.8445],
+            dropOffPoint: "1 Kadayanallur St 麦士威中心落客处",
+            openingHours: "10:00 - 19:30 (周一休)",
+            reservationRequired: false,
+            photoTip: "油亮诱人的招牌白斩鸡肉切盘，搭配黄瓜片与三色特调蘸酱（黑酱油/姜蓉/辣椒）",
+            elderKidNotes: "鸡肉经过独家高汤冰镇，皮脆肉嫩去骨无渣，鸡油饭粒粒分明松软吸饱鸡汤香，极易嚼烂吞咽",
+            description: "品尝被安东尼·波登盛赞的狮城国民美食天天海南鸡饭。软嫩多汁的白切鸡蘸取特调鲜姜蓉与浓甜黑酱油，搭配喷香鸡油饭，朴实中见真章。"
+          },
+          {
+            type: "transit",
+            fromStop: "sg_d2_lunch",
+            toStop: "sg_d2_hotel_rest",
+            mode: "charter",
+            distanceKm: 2,
+            estimatedMinutes: 6,
+            navigationDetail: "专车送回浮尔顿酒店"
+          },
+          {
+            type: "activity",
+            id: "sg_d2_hotel_rest",
+            name: "酒店客房舒适午间深睡静养",
+            category: "rest",
+            timeSlot: "14:00 - 16:00",
+            durationMinutes: 120,
+            coordinates: [1.2868, 103.8545],
+            dropOffPoint: "浮尔顿客房内",
+            openingHours: "全天候",
+            reservationRequired: false,
+            photoTip: "静享午後安宁",
+            elderKidNotes: "平躺午睡2小时，彻底放松足部与关节",
+            description: "客房内静养休整，喝一杯润燥温开水，消除上午冷室步行的体力消耗。"
+          },
+          {
+            type: "transit",
+            fromStop: "sg_d2_hotel_rest",
+            toStop: "sg_d2_supertree",
+            mode: "charter",
+            distanceKm: 2.8,
+            estimatedMinutes: 8,
+            navigationDetail: "专车经滨海通道送达擎天树丛主看台专用落客区"
+          },
+          {
+            type: "activity",
+            id: "sg_d2_supertree",
+            name: "擎天树丛灯光音乐秀 (Garden Rhapsody) · 璀璨魔幻夜曲漫赏",
+            category: "photo",
+            timeSlot: "19:15 - 20:30",
+            durationMinutes: 75,
+            coordinates: [1.282, 103.864],
+            dropOffPoint: "擎天树丛平坦主看台长椅区",
+            openingHours: "全天开放 (灯光秀每晚 19:45 与 20:45 两场)",
+            reservationRequired: false,
+            photoTip: "仰望50米高擎天巨树在交响乐声中伴随光影变幻出红金紫蓝奇幻光晕",
+            elderKidNotes: "看台广场全平坦硬化草坪砖，长辈可在树下长椅仰卧仰观，无需站立，夜风温和凉爽",
+            description: "夜幕降临，置身阿凡达般的巨型擎天树丛下。伴随动人心弦的经典交响乐，十二棵擎天树在夜空中绚丽起舞，光影璀璨梦幻，如临仙境。"
+          }
+        ],
+        meals: {
+          dinner: {
+            mealType: "晚餐",
+            restaurantName: "黄亚细肉骨茶 / 乐皇小笼包 (金宝汇滨海湾金沙店)",
+            cuisineStyle: "精细江南小笼与滋补清润粤菜",
+            recommendedDishes: ["原味纯鲜猪肉小笼包（皮薄多汁）", "鲜淮山炒百合（清甜爽口）", "浓白老鸭原汤", "清蒸鳕鱼"],
+            elderKidSuitability: "金沙购物中心内全空调无障碍环境，直梯平达，菜品清淡少盐软熟易嚼",
+            perPersonBudget: "S$40 - S$60 / 人",
+            addressOrDropOff: "2 Bayfront Ave, The Shoppes at Marina Bay Sands",
+            googleRating: "4.4★ (Google Reviews 3,600+ 评价)",
+            googleMapsUrl: "https://maps.google.com/?q=Paradise+Dynasty+Marina+Bay+Sands"
+          }
+        },
+        dailyTips: [
+          "擎天树灯光秀每晚19:45第一场人流适中，建议19:15提前由专车送达并占好中心平坦长椅位置",
+          "滨海湾金沙商场内设有超大型无障碍卫生间与无障碍直梯，推行轮椅畅通无阻"
+        ]
+      },
+      {
+        dayNumber: 3,
+        dateOrLabel: "Day 3 · 新加坡国家美术馆艺术长廊 & 莆田米其林一星",
+        theme: "历史市政厅建筑 · 现代艺术通透回廊 · 莆田黄鱼煨面暖胃",
+        paceScore: "relaxed",
+        mapConfig: {
+          center: [1.2903, 103.8519],
+          zoom: 15
+        },
+        hotelRestBlock: {
+          enabled: true,
+          recommendedTime: "13:30 - 15:30",
+          reason: "美术馆静雅漫步后返回酒店午休休整"
+        },
+        timeline: [
+          {
+            type: "transit",
+            fromStop: "sg_d3_hotel",
+            toStop: "sg_d3_art_gallery",
+            mode: "charter",
+            distanceKm: 0.8,
+            estimatedMinutes: 4,
+            navigationDetail: "专车过桥平稳送达国家美术馆地下落客区专用电梯口"
+          },
+          {
+            type: "activity",
+            id: "sg_d3_art_gallery",
+            name: "新加坡国家美术馆 (National Gallery) · 前最高法院古迹与艺术长廊",
+            category: "culture",
+            timeSlot: "09:30 - 12:00",
+            durationMinutes: 150,
+            coordinates: [1.2903, 103.8519],
+            dropOffPoint: "1 St Andrew's Rd Coleman Wing 专用无障碍落客大厅",
+            openingHours: "10:00 - 19:00",
+            reservationRequired: true,
+            reservationChannel: "官网或现场凭护照购买展馆门票",
+            photoTip: "连接两座殖民历史建筑的巨大树状木质金属采光天顶，光影洒落中庭",
+            elderKidNotes: "全馆无任何台阶门槛，每层均配大型静音升降电梯，走廊极其宽阔通透，休息真皮软凳随处可见，冷气柔和安静",
+            description: "漫步由前最高法院与政府大厦合璧打造的东南亚最大现代艺术博物馆。在金色光影的穹顶连廊下，欣赏丰富的南洋艺术瑰宝与吴冠中大师的水墨墨韵。"
+          },
+          {
+            type: "transit",
+            fromStop: "sg_d3_art_gallery",
+            toStop: "sg_d3_lunch",
+            mode: "charter",
+            distanceKm: 2.2,
+            estimatedMinutes: 6,
+            navigationDetail: "专车经维多利亚街送达莆田米其林一星本店"
+          },
+          {
+            type: "activity",
+            id: "sg_d3_lunch",
+            name: "莆田餐厅 (PUTIEN 吉真那路本店) · 新加坡米其林一星温润福建名菜",
+            category: "food",
+            timeSlot: "12:15 - 13:30",
+            durationMinutes: 75,
+            coordinates: [1.3115, 103.8565],
+            dropOffPoint: "127 Kitchener Rd 莆田本店门口平坦落客道",
+            openingHours: "11:30 - 15:00",
+            reservationRequired: true,
+            reservationChannel: "官网提前预订包厢席位",
+            photoTip: "雪白浓醇的百秒黄花鱼与热腾腾的莆田卤面大瓷碗",
+            elderKidNotes: "连续多年摘得米其林一星，百秒黄花鱼极嫩无腥，莆田卤面高汤慢煨面条软熟爽滑，温胃润肠极适宜老人咀嚼",
+            description: "品尝从新加坡走向全球的米其林一星福建名府莆田。现煨的百秒黄花鱼肉质如蒜瓣般细嫩，搭配浓汤莆田卤面与手工扁肉汤，尽享温润鲜美。"
+          },
+          {
+            type: "transit",
+            fromStop: "sg_d3_lunch",
+            toStop: "sg_d3_hotel_rest",
+            mode: "charter",
+            distanceKm: 3.5,
+            estimatedMinutes: 10,
+            navigationDetail: "专车接回浮尔顿酒店"
+          },
+          {
+            type: "activity",
+            id: "sg_d3_hotel_rest",
+            name: "酒店客房安稳午睡静养",
+            category: "rest",
+            timeSlot: "14:00 - 16:00",
+            durationMinutes: 120,
+            coordinates: [1.2868, 103.8545],
+            dropOffPoint: "酒店客房内",
+            openingHours: "全天候",
+            reservationRequired: false,
+            photoTip: "客房静歇",
+            elderKidNotes: "平躺静养2小时，补充精力",
+            description: "在典雅舒适的客房中安静休养，品一杯温润菊花茶，放松肌肉关节。"
+          },
+          {
+            type: "transit",
+            fromStop: "sg_d3_hotel_rest",
+            toStop: "sg_d3_orchard",
+            mode: "charter",
+            distanceKm: 3.8,
+            estimatedMinutes: 12,
+            navigationDetail: "专车送至乌节路百丽宫商场平坦无障碍落客平台"
+          },
+          {
+            type: "activity",
+            id: "sg_d3_orchard",
+            name: "乌节路 (Orchard Road) · 绿荫大道平步漫游 & 传统乌节路面包夹冰淇淋",
+            category: "leisure",
+            timeSlot: "16:45 - 18:00",
+            durationMinutes: 75,
+            coordinates: [1.304, 103.832],
+            dropOffPoint: "Paragon 百丽宫百货落客门厅",
+            openingHours: "全天开放",
+            reservationRequired: false,
+            photoTip: "遮阳大树下经典的流动老爷爷冰淇淋推车，切开香甜薄荷或榴莲冰淇淋夹入七彩松软吐司",
+            elderKidNotes: "乌节路人行步道极度宽阔平整，全程绿树遮荫无暴晒，百丽宫与义安城商场内设平缓直梯与舒适空调座椅",
+            description: "漫步在新加坡著名林荫大道乌节路。绿树成荫，品尝路边推车制作的新加坡特色彩虹面包夹冰淇淋，感受南洋都会的悠闲生活气息。"
+          }
+        ],
+        meals: {
+          dinner: {
+            mealType: "晚餐",
+            restaurantName: "御宝阁潮塘菜 (Imperial Treasure Fine Teochew Cuisine 乌节路店)",
+            cuisineStyle: "米其林一星正宗潮州功夫菜",
+            recommendedDishes: ["潮州卤水鹅肉（皮香肉嫩多汁）", "潮式冻红花蟹", "温润胡椒咸菜猪肚汤", "潮州反沙芋头与白果甜芋泥"],
+            elderKidSuitability: "潮州菜以清炖清蒸少油见长，白果芋泥温软香甜，包厢安静私密有专用直梯",
+            perPersonBudget: "S$70 - S$110 / 人",
+            addressOrDropOff: "391 Orchard Rd, #04-20A Takashimaya Shopping Centre",
+            googleRating: "4.5★ (Google Reviews 1,800+ 评价)",
+            googleMapsUrl: "https://maps.google.com/?q=Imperial+Treasure+Fine+Teochew+Cuisine+ION"
+          }
+        },
+        dailyTips: [
+          "国家美术馆顶层顶楼设有观景天台，可推着轮椅平步俯瞰政府大厦大草场与金沙全景",
+          "伴手礼推荐选购 Bengawan Solo 斑兰绿蛋糕（松软轻盈少糖）与百胜厨肋沙拉面礼盒"
+        ]
+      },
+      {
+        dayNumber: 4,
+        dateOrLabel: "Day 4 · 星耀樟宜雨漩涡室内瀑布 & 满载狮城温情归程",
+        theme: "世界最佳机场 · 室内巨型雨漩涡 · 轻松舒适启程",
+        paceScore: "relaxed",
+        mapConfig: {
+          center: [1.3602, 103.9898],
+          zoom: 15
+        },
+        timeline: [
+          {
+            type: "transit",
+            fromStop: "sg_d4_hotel",
+            toStop: "sg_d4_jewel",
+            mode: "charter",
+            distanceKm: 20,
+            estimatedMinutes: 25,
+            navigationDetail: "专车载长辈与全套行李经东海岸公园大道高速平稳直达樟宜机场星耀樟宜落客大厅"
+          },
+          {
+            type: "activity",
+            id: "sg_d4_jewel",
+            name: "星耀樟宜 (Jewel Changi) · 40米高资生堂森林谷室内雨漩涡慢赏",
+            category: "nature",
+            timeSlot: "10:00 - 12:00",
+            durationMinutes: 120,
+            coordinates: [1.3602, 103.9898],
+            dropOffPoint: "Jewel Changi 2楼无障碍落客平台",
+            openingHours: "全天开放",
+            reservationRequired: false,
+            photoTip: "巨大的圆顶天窗中央，40米高雨漩涡倾泻而下，水雾氤氲中森林谷绿意盎然",
+            elderKidNotes: "星耀樟宜全馆无障碍平缓设计，配多部巨型直升电梯，1至5层均有平缓环形观景台俯瞰瀑布，设有专属长者与推车无障碍休息座椅",
+            description: "漫步在被誉为“自然与科技奇迹”的星耀樟宜。在凉爽宜人的空调环境中，欣赏40米高的全球最大室内瀑布倾泻而下，郁郁葱葱的灌木森林环绕四周，震撼而宁静。"
+          },
+          {
+            type: "transit",
+            fromStop: "sg_d4_jewel",
+            toStop: "sg_d4_lunch",
+            mode: "walk",
+            distanceKm: 0.1,
+            estimatedMinutes: 3,
+            navigationDetail: "平步漫行至星耀樟宜B2层美珍香与传统美食区"
+          },
+          {
+            type: "activity",
+            id: "sg_d4_lunch",
+            name: "亚坤咖椰吐司 (Ya Kun Kaya Toast 星耀樟宜店) · 南洋传统经典早茶告别宴",
+            category: "food",
+            timeSlot: "12:15 - 13:15",
+            durationMinutes: 60,
+            coordinates: [1.36, 103.99],
+            dropOffPoint: "Jewel Changi B2美食层",
+            openingHours: "07:00 - 22:00",
+            reservationRequired: false,
+            photoTip: "炭烤酥脆咖椰牛油吐司、两颗半熟养生蛋淋上黑酱油胡椒粉，配一杯温热浓醇南洋咖啡",
+            elderKidNotes: "半熟蛋温润嫩滑易吞咽，高钙高营养，咖椰酱香甜可口不油腻，老少咸宜",
+            description: "以新加坡标志性的亚坤传统咖椰吐司为狮城之行画上温暖句号。炭烤香脆的吐司抹上浓郁斑兰咖椰酱与冰牛油，拌入滑嫩半熟蛋，回味无穷。"
+          },
+          {
+            type: "transit",
+            fromStop: "sg_d4_lunch",
+            toStop: "sg_d4_departure",
+            mode: "walk",
+            distanceKm: 0.2,
+            estimatedMinutes: 5,
+            navigationDetail: "通过冷气平坦人行步道直接进入T1/T2/T3航站楼值机大厅"
+          },
+          {
+            type: "activity",
+            id: "sg_d4_departure",
+            name: "樟宜机场专属爱心值机 · 踏上从容归途",
+            category: "rest",
+            timeSlot: "13:30 - 14:30",
+            durationMinutes: 60,
+            coordinates: [1.3644, 103.9915],
+            dropOffPoint: "航站楼出发层爱心特殊协助服务柜台",
+            openingHours: "全天候",
+            reservationRequired: false,
+            photoTip: "满载花园城市舒心记忆从容登机",
+            elderKidNotes: "樟宜机场设世界一流无障碍服务，提供免费电动接驳车直接送达登机口，轮椅优先登机",
+            description: "在星耀樟宜办理提前值机与行李托运，免去推拉重物烦恼，长辈轻松步入候机区，满载美好回忆启程归家。"
+          }
+        ],
+        meals: {
+          lunch: {
+            mealType: "午餐",
+            restaurantName: "亚坤咖椰吐司 (Ya Kun Kaya Toast 星耀樟宜店)",
+            cuisineStyle: "新加坡八十年非遗传统南洋咖啡茶美点",
+            recommendedDishes: ["传统咖椰牛油吐司套餐", "蒸温热咖椰面包 (松软温润)", "养生半熟蛋两颗 (淋黑酱油与白胡椒)", "温热南洋拉茶 (Teh C)"],
+            elderKidSuitability: "蒸面包松软如云，半熟蛋温热营养极易消化，清淡可口无任何油腻",
+            perPersonBudget: "S$8 - S$14 / 人",
+            addressOrDropOff: "78 Airport Blvd, #B2-211 Jewel Changi Airport",
+            googleRating: "4.4★ (Google Reviews 3,500+ 评价)",
+            googleMapsUrl: "https://maps.google.com/?q=Ya+Kun+Kaya+Toast+Jewel+Changi"
+          }
+        },
+        dailyTips: [
+          "星耀樟宜提供 Early Check-in（提前值机与行李托运服务），可在起飞前最长24小时提前托运行李，彻底解放双手",
+          "樟宜机场航站楼内配备大量软皮倾斜躺椅与静音休息区，长辈候机极其舒适"
+        ]
+      }
+    ],
+    reservationChecklist: [
+      {
+        spotName: "滨海湾花园双冷室 (Flower Dome & Cloud Forest)",
+        daysInAdvance: 7,
+        platform: "官方网站【Gardens by the Bay】或 Klook",
+        ticketPrice: "S$53 / 标准双馆联票（60岁以上老人持有效证件享长者优惠票S$43）",
+        requiresRealNameId: false,
+        bookingTip: "提前购买电子票指定入场日期，现场直接扫二维码走无障碍闸机入馆"
+      },
+      {
+        spotName: "新加坡河水上巡礼驳船 (Singapore River Cruise)",
+        daysInAdvance: 3,
+        platform: "官网或各大旅游平台",
+        ticketPrice: "S$28 / 人",
+        requiresRealNameId: false,
+        bookingTip: "购买通票后直接在浮尔顿码头凭二维码登船，无需另外排队换纸质票"
+      }
+    ],
+    emergencyContacts: [
+      {
+        role: "新加坡中央医院 (Singapore General Hospital, SGH - 全球顶尖公立综合医院)",
+        phone: "+65-6222-3322",
+        note: "Outram Rd, 距离浮尔顿酒店仅2.8公里，医疗技术与老年急救实力全亚洲第一"
+      },
+      {
+        role: "莱佛士医院 (Raffles Hospital - 顶尖国际私立医院)",
+        phone: "+65-6311-1555",
+        note: "585 North Bridge Rd, 设24小时全科国际急诊与中文接诊"
+      },
+      {
+        role: "新加坡紧急救护与消防呼叫 (民防部队救护车)",
+        phone: "995",
+        note: "新加坡全境紧急医疗呼叫热线，快速调度救护车"
+      }
+    ]
+  },
+  {
+    id: "curated_taipei_4d",
+    meta: {
+      tripTitle: "台北 4天3晚 · 故宫瑰宝传世与北投温润泉汤慢养",
+      destinations: ["台北", "北投"],
+      durationDays: 4,
+      travelerProfile: [
+        "传世国宝",
+        "长辈舒享",
+        "北投温泉",
+        "米其林台菜",
+        "全平缓无障碍"
+      ],
+      budgetTier: "comfort",
+      transportMode: "charter_taxi",
+      generatedAt: "2026-10-12T09:00:00.000Z",
+      coverImage: "/images/spot_taipei_palace.jpg",
+      isPublic: true,
+      viewsCount: 2540,
+      likesCount: 231
+    },
+    overview: {
+      highlights: [
+        "台北故宫博物院全馆无障碍平缓通道，细品翠玉白菜、肉形石与毛公鼎传世国宝",
+        "故宫晶华国宝午宴，品尝象形翠玉白菜高汤鲜笋与弦纹鼎佛跳墙，舌尖品味历史",
+        "大稻埕迪化街全平整红砖巴洛克骑楼漫步，防雨遮阳选购地道南北干货与养生花茶",
+        "入住北投日胜生加贺屋正统日式温泉饭店，温润白磺温泉滋养关节与腰背，深度驱散疲劳",
+        "欣叶台菜创始店温润红蟳米糕与老菜脯蛋、鼎泰丰黄金十八褶小笼与清炖牛肉汤"
+      ],
+      logisticsSummary: "全行程依托舒适商务专车点对点门到门接送。故宫与展馆全线配置宽幅平缓缓坡与大型医疗级升降机，提供免费轮椅借用；第3日转场北投温泉乡，享受纯正无障碍和风温泉客房，节奏闲适静雅。",
+      weatherAndPacking: [
+        "台北春秋气温温和宜人（18℃ - 25℃），山区偶有阵雨，建议携带轻便折叠防风雨伞与薄外套",
+        "赴台需随身携带有效入台证件原件，长辈备好常用慢性病药物与保温杯",
+        "北投温泉为酸性硫酸盐泉（白磺泉），浸泡单次建议控制在15-20分钟，入池前充分补充温水"
+      ]
+    },
+    days: [
+      {
+        dayNumber: 1,
+        dateOrLabel: "Day 1 · 宝岛初临 & 台北晶华酒店入住 & 欣叶古早味台菜",
+        theme: "初抵台北 · 晶华五星名邸 · 欣叶经典古早味晚膳",
+        paceScore: "relaxed",
+        mapConfig: {
+          center: [25.0535, 121.5238],
+          zoom: 15
+        },
+        hotelRestBlock: {
+          enabled: true,
+          recommendedTime: "13:30 - 15:30",
+          reason: "抵台后客房静养补眠，舒缓航程疲乏"
+        },
+        timeline: [
+          {
+            type: "activity",
+            id: "tp_d1_hotel",
+            name: "台北晶华酒店 (Regent Taipei) · 中山区林荫名邸入住",
+            category: "rest",
+            timeSlot: "11:30 - 12:30",
+            durationMinutes: 60,
+            coordinates: [25.0535, 121.5238],
+            dropOffPoint: "台北市中山北路二段39巷3号酒店落客车道",
+            openingHours: "全天候接待",
+            reservationRequired: true,
+            reservationChannel: "官方预订",
+            photoTip: "挑高中庭大堂经典水晶吊灯与中山北路樟树林荫窗景",
+            elderKidNotes: "酒店设专用无障碍坡道与大型电梯，客房卫浴宽敞平坦，配全套安全扶手与防滑地垫，礼宾协助轮椅与行李照料",
+            description: "专车自松山或桃园机场送抵中山区绿荫环绕的台北晶华酒店。步入典雅大堂，感受温润细致的台式待客礼遇，在宽敞静谧的客房内舒心安顿。"
+          },
+          {
+            type: "transit",
+            fromStop: "tp_d1_hotel",
+            toStop: "tp_d1_lunch",
+            mode: "walk",
+            distanceKm: 0.4,
+            estimatedMinutes: 6,
+            navigationDetail: "步行穿过平整人行道即至欣叶台菜双城创始店"
+          },
+          {
+            type: "activity",
+            id: "tp_d1_lunch",
+            name: "欣叶台菜 (双城创始店) · 四十年非遗传承正宗古早味台菜",
+            category: "food",
+            timeSlot: "12:30 - 13:45",
+            durationMinutes: 75,
+            coordinates: [25.0645, 121.526],
+            dropOffPoint: "台北市双城街34-1号正门",
+            openingHours: "11:00 - 21:30",
+            reservationRequired: true,
+            reservationChannel: "电话或官网提前订座",
+            photoTip: "金黄圆润厚切老菜脯蛋翻开冒着热气，红蟳米糕蟹黄饱满糯米喷香",
+            elderKidNotes: "老菜脯蛋厚软松嫩咸香适口，红蟳米糕糯米软熟黏糯极易咀嚼，温润地瓜稀饭无限供应暖胃养肠",
+            description: "品尝代表台湾传统家庭风味的欣叶台菜。招牌厚煎菜脯蛋松软可口，红蟳米糕蟹香浓郁，搭配绵密暖胃的地瓜稀饭与招牌手打杏仁豆腐，倍感亲切温润。"
+          },
+          {
+            type: "transit",
+            fromStop: "tp_d1_lunch",
+            toStop: "tp_d1_hotel_rest",
+            mode: "walk",
+            distanceKm: 0.4,
+            estimatedMinutes: 6,
+            navigationDetail: "平步返回晶华酒店客房休息"
+          },
+          {
+            type: "activity",
+            id: "tp_d1_hotel_rest",
+            name: "晶华酒店客房深度午休 & 台湾高山乌龙茶品茗",
+            category: "rest",
+            timeSlot: "14:00 - 16:00",
+            durationMinutes: 120,
+            coordinates: [25.0535, 121.5238],
+            dropOffPoint: "酒店客房内",
+            openingHours: "全天候",
+            reservationRequired: false,
+            photoTip: "客房窗前一杯清香冻顶乌龙茶，窗外绿树摇曳",
+            elderKidNotes: "平躺静卧午休1.5小时，舒展腰背，调养精神",
+            description: "客房内静卧休养两小时，品尝迎宾阿里山高山乌龙茶，清香甘醇，彻底消解旅途劳顿。"
+          },
+          {
+            type: "transit",
+            fromStop: "tp_d1_hotel_rest",
+            toStop: "tp_d1_park",
+            mode: "walk",
+            distanceKm: 0.2,
+            estimatedMinutes: 4,
+            navigationDetail: "出酒店沿平坦步道即达中山区十四号公园林荫步道"
+          },
+          {
+            type: "activity",
+            id: "tp_d1_park",
+            name: "康乐公园与中山林荫道 · 樟树大道平缓散步 & 感受都会微风",
+            category: "nature",
+            timeSlot: "16:45 - 18:00",
+            durationMinutes: 75,
+            coordinates: [25.0525, 121.5255],
+            dropOffPoint: "南京东路康乐公园入口平坦处",
+            openingHours: "全天开放",
+            reservationRequired: false,
+            photoTip: "百年老樟树绿荫垂挂，斜阳在花岗岩平整步道上洒落斑驳光斑",
+            elderKidNotes: "公园纯平硬化防滑步道，老树参天遮阴凉爽，绿地座椅密布，环境安详清静无车喧",
+            description: "傍晚漫步在晶华酒店旁的林荫公园，老树苍翠，微风轻拂。听鸟雀欢唱，看当地老人在树下悠然下棋闲聊，体会台北深藏的温和与从容。"
+          }
+        ],
+        meals: {
+          lunch: {
+            mealType: "午餐",
+            restaurantName: "欣叶台菜 (双城创始店)",
+            cuisineStyle: "米其林必比登传统台菜元老名家",
+            recommendedDishes: ["正宗正红蟳米糕（蟹膏甘香，糯米极软）", "经典菜脯蛋（厚软多汁）", "古早味煎猪肝", "手作杏仁豆腐 (软糯Q弹润肺)"],
+            elderKidSuitability: "菜品温和不辣，地瓜稀饭温热滋补，菜脯蛋松软好咀嚼",
+            perPersonBudget: "NT$800 - NT$1,200 / 人",
+            addressOrDropOff: "台北市中山区双城街34-1号",
+            googleRating: "4.4★ (Google Reviews 5,200+ 评价)",
+            googleMapsUrl: "https://maps.google.com/?q=Shin+Yeh+Taiwanese+Cuisine+Original"
+          },
+          dinner: {
+            mealType: "晚餐",
+            restaurantName: "林东芳牛肉面 (经典名铺)",
+            cuisineStyle: "传承半世纪传统药膳清润牛肉面",
+            recommendedDishes: ["半筋半肉牛肉面（牛筋如冻胶般软化）", "药膳温润高汤", "特制花干（吸饱老牛肉汤）", "烫时令青菜"],
+            elderKidSuitability: "牛肉与牛筋慢炖数小时入口即化，药膳高汤甘甜润燥不油腻，面条软硬适中",
+            perPersonBudget: "NT$260 - NT$380 / 人",
+            addressOrDropOff: "台北市中山区八德路二段322号（专车接送门口）",
+            googleRating: "4.3★ (Google Reviews 7,900+ 评价)",
+            googleMapsUrl: "https://maps.google.com/?q=Lin+Dong+Fang+Beef+Noodles"
+          }
+        },
+        dailyTips: [
+          "林东芳牛肉面可根据长辈口味选择不辣原汤底，牛筋煮透极富天然胶原蛋白",
+          "台北晶华酒店地下1-2层即为丽晶精品免税名品街，室内全平缓直梯连通，雨天逛街轻松无阻"
+        ]
+      },
+      {
+        dayNumber: 2,
+        dateOrLabel: "Day 2 · 台北故宫博物院国宝鉴赏 & 迪化街红砖骑楼",
+        theme: "外双溪翠玉白菜 · 故宫晶华国宝午宴 · 大稻埕巴洛克老骑楼",
+        paceScore: "relaxed",
+        mapConfig: {
+          center: [25.1024, 121.5485],
+          zoom: 15
+        },
+        hotelRestBlock: {
+          enabled: true,
+          recommendedTime: "14:00 - 15:30",
+          reason: "故宫观展后返回客房静养补眠，舒展双腿"
+        },
+        timeline: [
+          {
+            type: "transit",
+            fromStop: "tp_d2_hotel",
+            toStop: "tp_d2_palace",
+            mode: "charter",
+            distanceKm: 8.5,
+            estimatedMinutes: 20,
+            navigationDetail: "商务专车载长辈出市区，沿自强隧道直达故宫地下一层无障碍VIP落客区"
+          },
+          {
+            type: "activity",
+            id: "tp_d2_palace",
+            name: "台北故宫博物院 · 传世国宝鉴赏 (翠玉白菜/肉形石/毛公鼎)",
+            category: "culture",
+            timeSlot: "09:30 - 12:00",
+            durationMinutes: 150,
+            coordinates: [25.1024, 121.5485],
+            dropOffPoint: "士林区至善路二段221号故宫B1正门无障碍大车道旁",
+            openingHours: "09:00 - 17:00 (周一闭馆)",
+            reservationRequired: true,
+            reservationChannel: "台北故宫官网提前预约参观场次",
+            photoTip: "黄瓦红柱中国宫殿外观倒映在至善园水池中，展厅内精雕细琢的翠玉白菜与东坡肉形石",
+            elderKidNotes: "B1设平坦电动轮椅通道与观光大电梯直达三楼核心国宝展厅，免爬正门百级台阶，展区全平坦地面，软皮休息座椅充足，免费借用轮椅",
+            description: "专车直达地下一层无障碍入口，直通展厅。近距离瞻仰闻名中外的清代翠玉白菜、肉形石与西周重器毛公鼎，在专业解说耳麦中体味中华文明近七十万件国宝文物的深厚底蕴。"
+          },
+          {
+            type: "transit",
+            fromStop: "tp_d2_palace",
+            toStop: "tp_d2_lunch",
+            mode: "walk",
+            distanceKm: 0.1,
+            estimatedMinutes: 3,
+            navigationDetail: "自展馆主楼经连廊平步移至故宫晶华餐厅"
+          },
+          {
+            type: "activity",
+            id: "tp_d2_lunch",
+            name: "故宫晶华 (Silks Palace) · 舌尖上的国宝经典名宴",
+            category: "food",
+            timeSlot: "12:15 - 13:30",
+            durationMinutes: 75,
+            coordinates: [25.1015, 121.549],
+            dropOffPoint: "故宫晶华正门无障碍直梯处",
+            openingHours: "11:30 - 14:30",
+            reservationRequired: true,
+            reservationChannel: "提前线上预订国宝宴席位",
+            photoTip: "仿古毛公鼎内热汤翻滚的佛跳墙与象形翠玉白菜点心巧夺天工",
+            elderKidNotes: "菜品将文博国宝融入精美粤台名点中，鲜笋娃娃菜清炖甘甜，佛跳墙高汤慢熬温润滋补，环境典雅静谧",
+            description: "在故宫院内的故宫晶华享用国宝美馔。主厨将镇馆之宝化为餐桌佳肴：象形翠玉白菜多汁鲜甜、仿古铜鼎佛跳墙浓白暖胃，将文化与美食融为一体。"
+          },
+          {
+            type: "transit",
+            fromStop: "tp_d2_lunch",
+            toStop: "tp_d2_hotel_rest",
+            mode: "charter",
+            distanceKm: 8.5,
+            estimatedMinutes: 20,
+            navigationDetail: "专车接回台北晶华酒店"
+          },
+          {
+            type: "activity",
+            id: "tp_d2_hotel_rest",
+            name: "晶华酒店客房安稳午睡静养",
+            category: "rest",
+            timeSlot: "14:00 - 15:45",
+            durationMinutes: 105,
+            coordinates: [25.0535, 121.5238],
+            dropOffPoint: "晶华客房内",
+            openingHours: "全天候",
+            reservationRequired: false,
+            photoTip: "静享午後安宁",
+            elderKidNotes: "平躺午睡1.5小时，舒缓腰背肌肉",
+            description: "客房内静养休整，喝一杯养生牛蒡茶，恢复体力。"
+          },
+          {
+            type: "transit",
+            fromStop: "tp_d2_hotel_rest",
+            toStop: "tp_d2_dihua",
+            mode: "charter",
+            distanceKm: 3.2,
+            estimatedMinutes: 10,
+            navigationDetail: "专车经南京西路平稳送达迪化街永乐市场平坦落客道"
+          },
+          {
+            type: "activity",
+            id: "tp_d2_dihua",
+            name: "大稻埕迪化街 · 百年巴洛克红砖骑楼遮阳慢步 & 养生药材花茶铺",
+            category: "culture",
+            timeSlot: "16:30 - 18:00",
+            durationMinutes: 90,
+            coordinates: [25.0555, 121.5098],
+            dropOffPoint: "台北市大同区迪化街一段永乐市场平坦路面",
+            openingHours: "全天开放",
+            reservationRequired: false,
+            photoTip: "红砖拱圈骑楼深处散发着沉香与人参药香，霞海城隍庙香火缕缕",
+            elderKidNotes: "整条老街两侧均为台湾传统“亭仔脚”防雨遮阳骑楼，地面全平整无台阶，药材行与老茶庄提供温热养生茶试饮",
+            description: "慢步在台北保存最完整的历史老街迪化街。走在避雨遮阳的红砖骑楼下，欣赏精美的巴洛克石雕门楣，闻着百年汉药铺扑鼻的当归与人参香气，感受百年老台北的商贾风华。"
+          }
+        ],
+        meals: {
+          dinner: {
+            mealType: "晚餐",
+            restaurantName: "金蓬莱遵古台菜 (米其林一星士林天母总店)",
+            cuisineStyle: "米其林一星七十年古法酒家菜传承",
+            recommendedDishes: ["招牌放山白斩古早鸡（皮脆油香肉嫩）", "放山土鸡佛跳墙", "自制蓬莱排骨酥", "清蒸野生大沙公米糕"],
+            elderKidSuitability: "白斩鸡肉质细腻无肉渣，佛跳墙文火慢煨软糯鲜香，老字号包厢宽敞舒适无台阶",
+            perPersonBudget: "NT$1,000 - NT$1,500 / 人",
+            addressOrDropOff: "台北市士林区天母东路101号（专车直达大门）",
+            googleRating: "4.4★ (Google Reviews 4,100+ 评价)",
+            googleMapsUrl: "https://maps.google.com/?q=Golden+Formosa+Taipei"
+          }
+        },
+        dailyTips: [
+          "台北故宫严格控温在20℃左右，务必随身携带防风外套，避免温差引起感冒",
+          "迪化街推荐选购台湾野生爱玉子、野生乌鱼子或手工黑糖桂圆红枣茶砖作为伴手礼"
+        ]
+      },
+      {
+        dayNumber: 3,
+        dateOrLabel: "Day 3 · 转场北投温泉乡 & 加贺屋日式温泉旅馆 & 白磺泉养生",
+        theme: "北投温泉乡 · 日胜生加贺屋极上和风 · 白磺泉舒筋活络",
+        paceScore: "relaxed",
+        mapConfig: {
+          center: [25.1368, 121.5065],
+          zoom: 15
+        },
+        hotelRestBlock: {
+          enabled: true,
+          recommendedTime: "14:00 - 16:00",
+          reason: "加贺屋榻榻米客房安睡与私人汤屋温润浸泡，深度养生"
+        },
+        timeline: [
+          {
+            type: "transit",
+            fromStop: "tp_d3_hotel",
+            toStop: "tp_d3_beitou_hotel",
+            mode: "charter",
+            distanceKm: 12,
+            estimatedMinutes: 25,
+            navigationDetail: "专车载长辈与全套行李出市区，经洲美快速道路平稳送达北投加贺屋饭店"
+          },
+          {
+            type: "activity",
+            id: "tp_d3_beitou_hotel",
+            name: "日胜生加贺屋国际温泉饭店 (Radium Kagaya) · 纯正日式管家管内迎宾",
+            category: "rest",
+            timeSlot: "11:30 - 12:30",
+            durationMinutes: 60,
+            coordinates: [25.1368, 121.5065],
+            dropOffPoint: "北投区光明路236号加贺屋大门前专车专属回车道",
+            openingHours: "全天候接待",
+            reservationRequired: true,
+            reservationChannel: "官方预订",
+            photoTip: "身着华美和服的管家在桧木数寄屋玄关前行礼迎宾，中庭古筝琴音袅袅",
+            elderKidNotes: "全馆无障碍平缓设计，配有直梯直达温泉楼层与客房，客房卫浴设天然白磺温泉独立汤池与平稳安全防滑防摔扶手",
+            description: "抵北投温泉胜地。入住传承日本石川县百年名宿精神的日胜生加贺屋。专属内管家奉上温热抹茶与和果子，在散发着淡雅桧木清香的和风客房中，体验极致尊宠放松。"
+          },
+          {
+            type: "transit",
+            fromStop: "tp_d3_beitou_hotel",
+            toStop: "tp_d3_lunch",
+            mode: "walk",
+            distanceKm: 0.1,
+            estimatedMinutes: 2,
+            navigationDetail: "乘加贺屋无障碍直梯至3楼天翔日式餐厅"
+          },
+          {
+            type: "activity",
+            id: "tp_d3_lunch",
+            name: "加贺屋 天翔餐厅 (Tensho) · 旬彩和风会席午宴",
+            category: "food",
+            timeSlot: "12:30 - 13:45",
+            durationMinutes: 75,
+            coordinates: [25.1368, 121.5065],
+            dropOffPoint: "加贺屋饭店3层餐厅大堂",
+            openingHours: "11:30 - 14:00",
+            reservationRequired: true,
+            reservationChannel: "酒店前台代订",
+            photoTip: "九宫格漆器托盘内晶莹精致的时令前菜与热气腾腾的日式和牛纸火锅",
+            elderKidNotes: "采用当季最鲜嫩食材，少油少盐，火锅汤头清甜温热，豆腐软滑，和牛极嫩入口即化",
+            description: "在俯瞰北投公园绿意的天翔餐厅品尝正统日本会席料理。精致的旬彩小钵、鲜美纸火锅与温热茶碗蒸，清雅怡人，滋养身心。"
+          },
+          {
+            type: "transit",
+            fromStop: "tp_d3_lunch",
+            toStop: "tp_d3_hotel_onsen",
+            mode: "walk",
+            distanceKm: 0.1,
+            estimatedMinutes: 2,
+            navigationDetail: "返回客房享受私人客房白磺温泉"
+          },
+          {
+            type: "activity",
+            id: "tp_d3_hotel_onsen",
+            name: "客房独立白磺泉温润私汤浸泡 & 舒筋活络午休",
+            category: "rest",
+            timeSlot: "14:00 - 16:00",
+            durationMinutes: 120,
+            coordinates: [25.1368, 121.5065],
+            dropOffPoint: "加贺屋客房独立汤屋内",
+            openingHours: "全天候",
+            reservationRequired: false,
+            photoTip: "青玉石汤池中乳白色天然白磺温泉热气氤氲，窗外绿竹映衬",
+            elderKidNotes: "白磺泉呈乳白色（又称牛奶汤），水温恒定温润，浸泡15分钟能有效舒缓长辈关节酸痛与神经疲劳，池旁备有防滑安全扶手",
+            description: "在客房内尽享北投天然纯正白磺温泉私汤。温热的矿物泉水包裹全身，深度活络经脉血液循环，泡后换上舒适棉质浴衣安稳小睡，疲劳尽消。"
+          },
+          {
+            type: "transit",
+            fromStop: "tp_d3_hotel_onsen",
+            toStop: "tp_d3_beitou_park",
+            mode: "walk",
+            distanceKm: 0.1,
+            estimatedMinutes: 3,
+            navigationDetail: "自饭店平坦侧门缓步走出即达北投公园绿荫步道"
+          },
+          {
+            type: "activity",
+            id: "tp_d3_beitou_park",
+            name: "北投公园与温泉博物馆 · 绿建筑图书馆平缓木道散策",
+            category: "nature",
+            timeSlot: "16:45 - 18:00",
+            durationMinutes: 75,
+            coordinates: [25.136, 121.505],
+            dropOffPoint: "光明路与中山路交界北投公园平坦步道入口",
+            openingHours: "全天开放",
+            reservationRequired: false,
+            photoTip: "全木造“全球最美公立图书馆”北投分馆在老树绿意环绕下的温暖原木立面",
+            elderKidNotes: "沿北投溪修筑全平木栈道与缓坡，两旁古树参天，空气中弥漫着淡淡硫磺与桧木香气，平缓零台阶",
+            description: "漫步在绿意葱茏的北投公园。溪水潺潺，白烟在溪石间升腾，欣赏被誉为全球最美图书馆的北投木造绿建筑，呼吸清新的山林负氧离子。"
+          }
+        ],
+        meals: {
+          dinner: {
+            mealType: "晚餐",
+            restaurantName: "加贺屋 本格会席料理 (加贺屋宴席厅)",
+            cuisineStyle: "石川县能登半岛正宗温泉怀石料理",
+            recommendedDishes: ["能登牛朴叶味噌烧（香气扑鼻，软嫩多汁）", "鲜蒸活海鱼", "加贺传统治部煮（温和清甜汤品）", "和风季节炊饭"],
+            elderKidSuitability: "治部煮汤品极其温润护胃，海鱼软滑无刺，席间由专属女将细致分餐照料",
+            perPersonBudget: "NT$2,200 - NT$3,200 / 人",
+            addressOrDropOff: "日胜生加贺屋饭店宴会厅",
+            googleRating: "4.5★ (Google Reviews 4,800+ 评价)",
+            googleMapsUrl: "https://maps.google.com/?q=Radium+Kagaya+International+Hotel"
+          }
+        },
+        dailyTips: [
+          "长辈泡温泉切忌空腹或刚吃饱，泡汤前饮一杯温水，泡15分钟后擦干保暖，切勿受凉",
+          "北投公园傍晚山风微凉，随身穿戴酒店提供的厚保暖和服羽织外套"
+        ]
+      },
+      {
+        dayNumber: 4,
+        dateOrLabel: "Day 4 · 鼎泰丰黄金十八褶小笼 & 满载温情从容返程",
+        theme: "鼎泰丰米其林点心 · 清炖牛肉汤暖胃 · 舒心满载归程",
+        paceScore: "relaxed",
+        mapConfig: {
+          center: [25.0631, 121.5516],
+          zoom: 15
+        },
+        timeline: [
+          {
+            type: "transit",
+            fromStop: "tp_d4_hotel",
+            toStop: "tp_d4_lunch",
+            mode: "charter",
+            distanceKm: 14,
+            estimatedMinutes: 25,
+            navigationDetail: "专车载长辈出北投，平稳送达鼎泰丰新生旗舰店无障碍落客平台"
+          },
+          {
+            type: "activity",
+            id: "tp_d4_lunch",
+            name: "鼎泰丰 (新生旗舰店) · 黄金十八褶米其林小笼包告别宴",
+            category: "food",
+            timeSlot: "11:30 - 13:00",
+            durationMinutes: 90,
+            coordinates: [25.0335, 121.533],
+            dropOffPoint: "台北市信义路二段206号正门平整无台阶落客区",
+            openingHours: "10:30 - 21:00",
+            reservationRequired: true,
+            reservationChannel: "通过APP或专车提前代取号码牌",
+            photoTip: "蒸笼掀开热气蒸腾，小笼包外皮晶莹剔透，姜丝黑醋碟精致小巧",
+            elderKidNotes: "旗舰店设无障碍升降电梯与宽敞洗手间，小笼包皮薄馅嫩汤汁鲜甜，清炖牛肉汤温胃顺口，极易消化",
+            description: "以享誉全球的鼎泰丰为台湾之行圆满收官。品尝手工十八折招牌原味小笼包，轻咬破薄皮吸吮鲜美汤汁，搭配温润清甜的元盅牛肉汤与丝瓜虾仁小笼，鲜美回甘。"
+          },
+          {
+            type: "transit",
+            fromStop: "tp_d4_lunch",
+            toStop: "tp_d4_departure",
+            mode: "charter",
+            distanceKm: 4.5,
+            estimatedMinutes: 15,
+            navigationDetail: "商务专车接载直达台北松山机场国际出发层（若桃园机场约40分钟高速）"
+          },
+          {
+            type: "activity",
+            id: "tp_d4_departure",
+            name: "专车平稳送抵松山/桃园机场 · 踏上温馨归程",
+            category: "rest",
+            timeSlot: "13:30 - 14:30",
+            durationMinutes: 60,
+            coordinates: [25.0631, 121.5516],
+            dropOffPoint: "松山机场国际航站楼出境无障碍落客平台",
+            openingHours: "全天候",
+            reservationRequired: false,
+            photoTip: "满载宝岛温润人情味回忆从容登机",
+            elderKidNotes: "松山机场市区内极其便捷，专车司机协助行李卸车至特殊爱心服务柜台，专人优先登机",
+            description: "专车直达航站楼出发口，协助托运凤梨酥与伴手礼行李，长辈轻松步入安检通关口，带着温泉舒畅与国宝回忆满意归程。"
+          }
+        ],
+        meals: {
+          lunch: {
+            mealType: "午餐",
+            restaurantName: "鼎泰丰 (新生旗舰店)",
+            cuisineStyle: "全球米其林享誉中华经典点心",
+            recommendedDishes: ["招牌原味小笼包 (黄金18褶)", "丝瓜虾仁小笼包 (清甜多汁)", "元盅清炖牛肉汤 (暖胃温润)", "虾仁肉丝蛋炒饭 (粒粒分明松软)"],
+            elderKidSuitability: "皮薄馅嫩多汁，肉质极细，清炖牛肉汤温热养胃，炒饭干香不硬，老幼皆宜",
+            perPersonBudget: "NT$500 - NT$750 / 人",
+            addressOrDropOff: "台北市中正区信义路二段206号（独立旗舰大楼，配直梯）",
+            googleRating: "4.5★ (Google Reviews 16,000+ 评价)",
+            googleMapsUrl: "https://maps.google.com/?q=Din+Tai+Fung+Xinsheng+Branch"
+          }
+        },
+        dailyTips: [
+          "鼎泰丰新生旗舰店比信义老店空间宽敞数倍且设无障碍电梯，推行轮椅用餐极其方便",
+          "伴手礼推荐选购微热山丘纯凤梨酥、佳德凤梨酥或旧振南绿豆椪"
+        ]
+      }
+    ],
+    reservationChecklist: [
+      {
+        spotName: "台北故宫博物院",
+        daysInAdvance: 7,
+        platform: "官方网站【国立故宫博物院】",
+        ticketPrice: "NT$350 / 人（65岁以上长者平日免费，假日半价NT$75）",
+        requiresRealNameId: true,
+        bookingTip: "提前实名预约入场时段，长者凭证件直接走B1无障碍爱心通道进馆"
+      },
+      {
+        spotName: "北投日胜生加贺屋国际温泉饭店",
+        daysInAdvance: 30,
+        platform: "官方网站【Radium Kagaya】",
+        ticketPrice: "和风温泉客房每晚约 NT$15,000 起（含早晚餐与私汤）",
+        requiresRealNameId: true,
+        bookingTip: "提前1个月预订无障碍平整榻榻米客房，并备注长者白磺泉私汤需求"
+      }
+    ],
+    emergencyContacts: [
+      {
+        role: "台北荣民总医院 (国家顶尖医学中心 / 老年医学与急诊全台第一)",
+        phone: "+886-2-2871-2121",
+        note: "台北市北投区石牌路二段201号，距离加贺屋温泉仅2.2公里，老年多发病急救保障中心"
+      },
+      {
+        role: "国立台湾大学医学院附设医院 (台大医院)",
+        phone: "+886-2-2312-3456",
+        note: "台北市中正区中山南路7号，市区顶尖综合实力医院"
+      },
+      {
+        role: "台湾紧急医疗救护呼叫 (消防局救护车)",
+        phone: "119",
+        note: "全天候即时派车免费紧急送医"
+      }
+    ]
+  }
 ];
