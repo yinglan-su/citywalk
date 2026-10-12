@@ -229,7 +229,7 @@ export const DailyMap: React.FC<DailyMapProps> = ({ day }) => {
           }`}
           title="Switch to AutoNavi AMap tiles (China optimal)"
         >
-          高德 AMap
+          {locale === "en" ? "AMap" : "高德 AMap"}
         </button>
         <button
           type="button"
@@ -241,13 +241,17 @@ export const DailyMap: React.FC<DailyMapProps> = ({ day }) => {
           }`}
           title="Switch to Global CartoDB/OSM tiles (Worldwide optimal)"
         >
-          全球 Global
+          {locale === "en" ? "Global" : "全球 Global"}
         </button>
       </div>
 
       {/* Bottom Right: Smart indicator */}
       <div className="absolute bottom-2 right-2 z-[400] bg-white/80 backdrop-blur-xs px-2 py-0.5 rounded text-[10px] text-zinc-500 border border-stone-200 pointer-events-none">
-        {mapLayer === "amap" ? "高德矢量底图 (中国)" : "CartoDB / OpenStreetMap (Global)"}
+        {mapLayer === "amap"
+          ? locale === "en"
+            ? "AMap Vector (China)"
+            : "高德矢量底图 (中国)"
+          : "CartoDB / OpenStreetMap (Global)"}
       </div>
     </div>
   );

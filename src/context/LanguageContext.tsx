@@ -41,7 +41,10 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   const t = (key: keyof TranslationDictionary): string => {
     const dict = translations[locale] || translations.zh;
-    return dict[key] || translations.zh[key] || String(key);
+    const val = dict[key] ?? translations.zh[key];
+    if (typeof val === "string") return val;
+    if (Array.isArray(val)) return val.join(", ");
+    return String(key);
   };
 
   return (

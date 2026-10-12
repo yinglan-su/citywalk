@@ -29,6 +29,7 @@ import { DailyMap } from "./DailyMap";
 import { compressPlan, saveLocalPlan } from "@/lib/storage";
 import { generateOfflineHtml } from "@/lib/export-html";
 import { useLanguage } from "@/context/LanguageContext";
+import { localizeCuratedPlan } from "@/lib/curated-plans-provider";
 
 interface ItineraryDashboardProps {
   plan: TravelPlan;
@@ -36,11 +37,18 @@ interface ItineraryDashboardProps {
   onPlanUpdated?: (updatedPlan: TravelPlan) => void;
 }
 
-const PRESET_TWEAK_CHIPS = [
+const PRESET_TWEAK_CHIPS_ZH = [
   "长辈脚力减负 · 减少台阶与爬坡",
   "换清淡中餐 · 避免辛辣油腻",
   "下午增加特色咖啡馆漫步",
   "增加特色早市 / 夜市打卡",
+];
+
+const PRESET_TWEAK_CHIPS_EN = [
+  "Reduce walking & avoid steep stairs",
+  "Swap to mild non-spicy meal",
+  "Add afternoon specialty cafe / tea break",
+  "Add morning / night market visit",
 ];
 
 export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
@@ -49,7 +57,10 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
   onPlanUpdated,
 }) => {
   const { locale, t } = useLanguage();
-  const [localPlan, setLocalPlan] = useState<TravelPlan>(plan);
+  const presetChips = locale === "en" ? PRESET_TWEAK_CHIPS_EN : PRESET_TWEAK_CHIPS_ZH;
+  const [localPlan, setLocalPlan] = useState<TravelPlan>(() =>
+    localizeCuratedPlan(plan, locale)
+  );
   const [activeDayIndex, setActiveDayIndex] = useState(0);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isPublishing, setIsPublishing] = useState(false);
@@ -60,10 +71,15 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
   const [isTweakOpen, setIsTweakOpen] = useState(false);
   const [isTweaking, setIsTweaking] = useState(false);
   const [tweakInput, setTweakInput] = useState("");
-  const [tweakLoadingText, setTweakLoadingText] = useState("AI 正在根据您的要求重新编排动线与落客点...");
+  const [tweakLoadingText, setTweakLoadingText] = useState(
+    locale === "en"
+      ? "AI is rearranging the route and drop-off points..."
+      : "AI 正在根据您的要求重新编排动线与落客点..."
+  );
 
   useEffect(() => {
-    setLocalPlan(plan);
+    const localized = localizeCuratedPlan(plan, locale);
+    setLocalPlan(localized);
 
     // Track visit telemetry to Supabase
     if (plan?.id) {
@@ -92,33 +108,34 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
       const compressed = compressPlan(localPlan);
       const shareUrl = `${window.location.origin}/#plan=${compressed}`;
       navigator.clipboard.writeText(shareUrl);
-      showToast("已复制分享链接！任何人打开即看。");
+      showToast(t("linkCopied"));
     } catch (err) {
-      showToast("复制链接失败");
+      showToast(t("copyFailed"));
     }
   };
 
   const handleDownloadOfflineHtml = () => {
     try {
-      const htmlContent = generateOfflineHtml(localPlan);
+      const htmlContent = generateOfflineHtml(localPlan, locale);
       const blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${localPlan.meta.tripTitle.replace(/\s+/g, "_")}_离线攻略.html`;
+      const suffix = locale === "en" ? "_offline_guide.html" : "_离线攻略.html";
+      a.download = `${localPlan.meta.tripTitle.replace(/\s+/g, "_")}${suffix}`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast("已下载离线网页！无网无信号均可打开。");
+      showToast(t("offlineDownloaded"));
     } catch (err) {
-      showToast("导出离线网页失败");
+      showToast(t("exportFailed"));
     }
   };
 
   const handlePublishToGallery = async () => {
     if (isPublished) {
-      showToast("该路线已在探索广场中！");
+      showToast(t("alreadyPublic"));
       return;
     }
 
@@ -132,10 +149,10 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
       const data = await resp.json();
       if (data.success) {
         setIsPublished(true);
-        showToast("已发布至「探索广场」！");
+        showToast(t("publishedSuccess"));
       }
     } catch (err) {
-      showToast("发布失败，请重试");
+      showToast(t("publishFailed"));
     } finally {
       setIsPublishing(false);
     }
@@ -147,7 +164,11 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
   const executeAITweak = async (instruction: string) => {
     if (!instruction.trim()) return;
     setIsTweaking(true);
-    setTweakLoadingText("AI 正在根据您的要求重新编排动线与落客点...");
+    setTweakLoadingText(
+      locale === "en"
+        ? "AI is rearranging the route and drop-off points..."
+        : "AI 正在根据您的要求重新编排动线与落客点..."
+    );
 
     try {
       const resp = await fetch("/api/tweak-plan", {
@@ -161,15 +182,15 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
 
       const data = await resp.json();
       if (!resp.ok || !data.success) {
-        throw new Error(data.error || "微调失败，请稍后重试");
+        throw new Error(data.error || t("tweakFailed"));
       }
 
       setLocalPlan(data.plan);
       onPlanUpdated?.(data.plan);
       setTweakInput("");
-      showToast("已成功为您微调行程！");
+      showToast(t("tweakSuccess"));
     } catch (err: any) {
-      showToast(err.message || "微调失败，请重试");
+      showToast(err.message || t("tweakFailed"));
     } finally {
       setIsTweaking(false);
     }
@@ -195,7 +216,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
 
     setLocalPlan(updated);
     onPlanUpdated?.(updated);
-    showToast("已删除该点位，地图路径已更新");
+    showToast(t("spotDeleted"));
   };
 
   const handleMoveActivity = (itemIdx: number, direction: "up" | "down") => {
@@ -220,19 +241,23 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
 
     setLocalPlan(updated);
     onPlanUpdated?.(updated);
-    showToast("已调整点位游览顺序");
+    showToast(t("orderUpdated"));
   };
 
   const handleSwapActivity = (actName: string) => {
-    executeAITweak(
-      `请将第 ${currentDay.dayNumber} 天的景点「${actName}」替换为同区域其他适合的特色景点或漫步点位，确保落客和动线顺畅。`
-    );
+    const prompt =
+      locale === "en"
+        ? `Please replace the spot "${actName}" on Day ${currentDay.dayNumber} with another suitable specialty attraction or relaxing walking spot in the same neighborhood, ensuring convenient drop-offs and seamless logistics.`
+        : `请将第 ${currentDay.dayNumber} 天的景点「${actName}」替换为同区域其他适合的特色景点或漫步点位，确保落客和动线顺畅。`;
+    executeAITweak(prompt);
   };
 
   const handleSwapDining = (mealType: string, currentRestaurant: string) => {
-    executeAITweak(
-      `请将第 ${currentDay.dayNumber} 天的${mealType}（目前是「${currentRestaurant}」）替换为同商圈其他口碑好、适口性佳的特色餐厅。`
-    );
+    const prompt =
+      locale === "en"
+        ? `Please replace Day ${currentDay.dayNumber}'s ${mealType} (currently "${currentRestaurant}") with another well-regarded dining spot in the same area offering great flavors and comfort.`
+        : `请将第 ${currentDay.dayNumber} 天的${mealType}（目前是「${currentRestaurant}」）替换为同商圈其他口碑好、适口性佳的特色餐厅。`;
+    executeAITweak(prompt);
   };
 
   const handleSelectActivityAlternative = (actIdx: number, altIdx: number) => {
@@ -266,7 +291,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
     setLocalPlan(updatedPlan);
     onPlanUpdated?.(updatedPlan);
     saveLocalPlan(updatedPlan);
-    showToast(`已切换打卡点: ${selectedAlt.name.split("（")[0]}`);
+    showToast(`${t("spotSwapped")}: ${selectedAlt.name.split("（")[0]}`);
   };
 
   const handleSelectDiningAlternative = (mealType: "lunch" | "dinner", altIdx: number) => {
@@ -305,7 +330,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
     setLocalPlan(updatedPlan);
     onPlanUpdated?.(updatedPlan);
     saveLocalPlan(updatedPlan);
-    showToast(`已切换餐厅至: ${selectedAlt.restaurantName}`);
+    showToast(`${t("restaurantSwapped")} ${selectedAlt.restaurantName}`);
   };
 
   const currentDay: DayItinerary =
@@ -329,7 +354,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-stone-200 text-zinc-700 text-xs font-semibold hover:bg-stone-50 transition shadow-xs"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
-          返回画廊
+          {locale === "en" ? "Back to Gallery" : "返回画廊"}
         </button>
 
         <div className="flex items-center gap-2">
@@ -344,7 +369,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
             }`}
           >
             <Globe className="w-3.5 h-3.5 text-[#C5A880]" />
-            <span>{isPublished ? "已公开" : "公开到广场"}</span>
+            <span>{isPublished ? t("published") : t("publishToSquare")}</span>
           </button>
 
           <button
@@ -353,7 +378,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
             className="px-3 py-1.5 rounded-full bg-white hover:bg-stone-100 text-zinc-700 text-xs font-semibold transition flex items-center gap-1 border border-stone-200"
           >
             <Share2 className="w-3.5 h-3.5 text-[#C5A880]" />
-            <span>分享</span>
+            <span>{t("shareTrip")}</span>
           </button>
 
           <button
@@ -362,7 +387,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
             className="px-3.5 py-1.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold transition shadow-xs flex items-center gap-1"
           >
             <Download className="w-3.5 h-3.5" />
-            <span>离线保存</span>
+            <span>{t("exportDoc")}</span>
           </button>
         </div>
       </div>
@@ -371,14 +396,14 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
       <div className="bg-white rounded-3xl border border-stone-200/90 p-6 sm:p-8 shadow-xs mb-6">
         <div className="flex flex-wrap items-center gap-2 mb-3">
           <span className="px-3 py-1 rounded-full bg-zinc-900 text-white text-xs font-bold">
-            {localPlan.meta.durationDays} 天行程
+            {localPlan.meta.durationDays} {locale === "en" ? "Days Trip" : "天行程"}
           </span>
           <span className="px-2.5 py-1 rounded-full bg-stone-100 text-zinc-700 text-xs font-semibold">
             {localPlan.meta.budgetTier === "budget"
-              ? "经济"
+              ? t("budgetLow")
               : localPlan.meta.budgetTier === "comfort"
-              ? "品质"
-              : "奢享"}
+              ? t("budgetMid")
+              : t("budgetHigh")}
           </span>
           {localPlan.meta.travelerProfile.map((tag) => (
             <span
@@ -429,7 +454,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
         </div>
 
         <div className="flex items-center gap-2">
-          {PRESET_TWEAK_CHIPS.slice(0, 2).map((chip) => (
+          {presetChips.slice(0, 2).map((chip) => (
             <button
               key={chip}
               type="button"
@@ -461,7 +486,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
             <div className="flex items-center gap-2 mb-3">
               <AlertTriangle className="w-4 h-4 text-[#C5A880]" />
               <span className="font-bold text-xs text-zinc-900 uppercase tracking-wide">
-                提前预约放票提醒
+                {t("checklistTitle")}
               </span>
             </div>
 
@@ -483,7 +508,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                     </div>
                   </div>
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-zinc-900 text-white shrink-0">
-                    提前{res.daysInAdvance}天
+                    {locale === "en" ? `${res.daysInAdvance} days ahead` : `提前${res.daysInAdvance}天`}
                   </span>
                 </div>
               ))}
@@ -523,7 +548,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
               </h2>
             </div>
             <span className="text-xs text-zinc-500 font-medium self-start sm:self-auto">
-              主题: {currentDay.theme}
+              {locale === "en" ? "Theme: " : "主题: "}{currentDay.theme}
             </span>
           </div>
 
@@ -533,7 +558,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
               <Clock className="w-4 h-4 text-[#C5A880]" />
               <div>
                 <strong>
-                  午间酒店休整 ({currentDay.hotelRestBlock.recommendedTime})
+                  {t("middayRest")} ({currentDay.hotelRestBlock.recommendedTime})
                 </strong>
                 : {currentDay.hotelRestBlock.reason}
               </div>
@@ -595,7 +620,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                       disabled={isTweaking}
                       onClick={() => handleSwapActivity(act.name)}
                       className="p-1.5 rounded-full text-zinc-400 hover:text-zinc-800 hover:bg-stone-100 transition disabled:opacity-40"
-                      title="AI 换一个同区域景点"
+                      title={t("swapSpotAI")}
                     >
                       <RefreshCw className="w-3.5 h-3.5" />
                     </button>
@@ -604,7 +629,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                         type="button"
                         onClick={() => handleMoveActivity(idx, "up")}
                         className="p-1.5 rounded-full text-zinc-400 hover:text-zinc-800 hover:bg-stone-100 transition"
-                        title="上移顺序"
+                        title={t("moveUp")}
                       >
                         <ArrowUp className="w-3.5 h-3.5" />
                       </button>
@@ -614,7 +639,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                         type="button"
                         onClick={() => handleMoveActivity(idx, "down")}
                         className="p-1.5 rounded-full text-zinc-400 hover:text-zinc-800 hover:bg-stone-100 transition"
-                        title="下移顺序"
+                        title={t("moveDown")}
                       >
                         <ArrowDown className="w-3.5 h-3.5" />
                       </button>
@@ -623,7 +648,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                       type="button"
                       onClick={() => handleDeleteActivity(idx)}
                       className="p-1.5 rounded-full text-zinc-400 hover:text-red-600 hover:bg-red-50 transition"
-                      title="删除该点位"
+                      title={t("deleteSpot")}
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
@@ -631,7 +656,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                 </div>
 
                 <div className="text-xs text-zinc-400 mb-2">
-                  游玩约 {act.durationMinutes} 分钟
+                  {t("durationMins")} {act.durationMinutes} {t("mins")}
                 </div>
 
                 {/* Drop-off landmark badge & Google Maps Navigation */}
@@ -660,7 +685,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                 {act.reservationRequired && (
                   <div className="my-2 px-3 py-1 rounded-xl bg-stone-100 text-zinc-800 text-xs font-medium border border-stone-200 flex items-center gap-1.5">
                     <AlertTriangle className="w-3.5 h-3.5 text-[#C5A880] shrink-0" />
-                    <span>需预约: {act.reservationChannel}</span>
+                    <span>{t("reservationRequired")}: {act.reservationChannel}</span>
                   </div>
                 )}
 
@@ -679,7 +704,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                     />
                     <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-medium flex items-center gap-1.5 shadow-xs">
                       <Camera className="w-3 h-3 text-[#C5A880]" />
-                      <span>最佳打卡机位</span>
+                      <span>{t("photoSpotAdvice")}</span>
                     </div>
                   </div>
                 )}
@@ -689,7 +714,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                   <div className="my-2 px-3 py-2 rounded-xl bg-amber-50/70 border border-amber-200/70 text-amber-900 text-xs flex items-start gap-2">
                     <Camera className="w-3.5 h-3.5 text-amber-700 shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-semibold text-zinc-900">取景打卡指引: </span>
+                      <span className="font-semibold text-zinc-900">{t("photoTipLabel")}</span>
                       {act.photoTip}
                     </div>
                   </div>
@@ -709,7 +734,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                   <div className="mt-3 pt-2.5 border-t border-stone-200/70 flex flex-wrap items-center gap-1.5 text-[11px]">
                     <span className="text-zinc-500 font-semibold flex items-center gap-1 shrink-0">
                       <RefreshCw className="w-3 h-3 text-[#C5A880]" />
-                      备选打卡点:
+                      {t("altSpotsLabel")}
                     </span>
                     {act.alternatives.map((alt, altI) => (
                       <button
@@ -754,15 +779,15 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                         onClick={() =>
                           currentDay.meals?.lunch &&
                           handleSwapDining(
-                            "午餐",
+                            locale === "en" ? "Lunch" : "午餐",
                             currentDay.meals.lunch.restaurantName
                           )
                         }
                         className="text-[10px] text-zinc-400 hover:text-zinc-900 flex items-center gap-0.5 hover:underline transition disabled:opacity-40"
-                        title="AI 换一家同商圈餐厅"
+                        title={locale === "en" ? "Swap with similar restaurant" : "AI 换一家同商圈餐厅"}
                       >
                         <RefreshCw className="w-2.5 h-2.5" />
-                        换一家
+                        {t("swapRestaurant")}
                       </button>
                     </div>
                   </div>
@@ -778,7 +803,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                       />
                       <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-medium flex items-center gap-1 shadow-xs">
                         <Utensils className="w-2.5 h-2.5 text-[#C5A880]" />
-                        <span>地道风味</span>
+                        <span>{t("authenticFlavor")}</span>
                       </div>
                     </div>
                   )}
@@ -787,7 +812,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                     <div className="my-1.5 px-2.5 py-1.5 rounded-lg bg-amber-50/70 border border-amber-200/70 text-amber-900 text-[11px] flex items-start gap-1.5">
                       <Camera className="w-3 h-3 text-amber-700 shrink-0 mt-0.5" />
                       <div>
-                        <span className="font-semibold text-zinc-900">特色亮点: </span>
+                        <span className="font-semibold text-zinc-900">{t("signatureHighlights")}: </span>
                         {currentDay.meals.lunch.photoTip}
                       </div>
                     </div>
@@ -839,7 +864,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-50/80 hover:bg-amber-100 text-amber-800 border border-amber-200/70 text-[10px] font-medium transition"
-                      title="在 大众点评 查看"
+                      title={locale === "en" ? "View on Dianping" : "在 大众点评 查看"}
                     >
                       <span>{t("dianpingReviews")}</span>
                       <ExternalLink className="w-2.5 h-2.5 text-amber-600" />
@@ -850,7 +875,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                 {/* Alternatives for lunch */}
                 {currentDay.meals.lunch.alternatives && currentDay.meals.lunch.alternatives.length > 0 && (
                   <div className="mt-2.5 pt-2 border-t border-stone-200/70 flex flex-wrap items-center gap-1.5 text-[10px]">
-                    <span className="text-zinc-500 font-medium shrink-0">备选风味:</span>
+                    <span className="text-zinc-500 font-medium shrink-0">{t("altFlavorsLabel")}</span>
                     {currentDay.meals.lunch.alternatives.map((alt, altI) => (
                       <button
                         key={altI}
@@ -883,15 +908,15 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                         onClick={() =>
                           currentDay.meals?.dinner &&
                           handleSwapDining(
-                            "晚餐",
+                            locale === "en" ? "Dinner" : "晚餐",
                             currentDay.meals.dinner.restaurantName
                           )
                         }
                         className="text-[10px] text-zinc-400 hover:text-zinc-900 flex items-center gap-0.5 hover:underline transition disabled:opacity-40"
-                        title="AI 换一家同商圈餐厅"
+                        title={locale === "en" ? "Swap with similar restaurant" : "AI 换一家同商圈餐厅"}
                       >
                         <RefreshCw className="w-2.5 h-2.5" />
-                        换一家
+                        {t("swapRestaurant")}
                       </button>
                     </div>
                   </div>
@@ -907,7 +932,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                       />
                       <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-medium flex items-center gap-1 shadow-xs">
                         <Utensils className="w-2.5 h-2.5 text-[#C5A880]" />
-                        <span>地道风味</span>
+                        <span>{t("authenticFlavor")}</span>
                       </div>
                     </div>
                   )}
@@ -916,7 +941,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                     <div className="my-1.5 px-2.5 py-1.5 rounded-lg bg-amber-50/70 border border-amber-200/70 text-amber-900 text-[11px] flex items-start gap-1.5">
                       <Camera className="w-3 h-3 text-amber-700 shrink-0 mt-0.5" />
                       <div>
-                        <span className="font-semibold text-zinc-900">特色亮点: </span>
+                        <span className="font-semibold text-zinc-900">{t("signatureHighlights")}: </span>
                         {currentDay.meals.dinner.photoTip}
                       </div>
                     </div>
@@ -968,7 +993,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-50/80 hover:bg-amber-100 text-amber-800 border border-amber-200/70 text-[10px] font-medium transition"
-                      title="在 大众点评 查看"
+                      title={locale === "en" ? "View on Dianping" : "在 大众点评 查看"}
                     >
                       <span>{t("dianpingReviews")}</span>
                       <ExternalLink className="w-2.5 h-2.5 text-amber-600" />
@@ -979,7 +1004,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                 {/* Alternatives for dinner */}
                 {currentDay.meals.dinner.alternatives && currentDay.meals.dinner.alternatives.length > 0 && (
                   <div className="mt-2.5 pt-2 border-t border-stone-200/60 flex flex-wrap items-center gap-1.5 text-[10px]">
-                    <span className="text-zinc-500 font-medium shrink-0">备选风味:</span>
+                    <span className="text-zinc-500 font-medium shrink-0">{t("altFlavorsLabel")}</span>
                     {currentDay.meals.dinner.alternatives.map((alt, altI) => (
                       <button
                         key={altI}
@@ -1000,7 +1025,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
         {/* Daily Tips */}
         {currentDay.dailyTips && currentDay.dailyTips.length > 0 && (
           <div className="bg-stone-50 rounded-3xl p-5 border border-stone-200/80">
-            <div className="text-xs font-bold text-zinc-900 mb-2">当日贴士</div>
+            <div className="text-xs font-bold text-zinc-900 mb-2">{t("dailyTips")}</div>
             <ul className="space-y-1 text-xs text-zinc-600">
               {currentDay.dailyTips.map((tip, i) => (
                 <li key={i} className="flex items-start gap-1.5">
@@ -1022,7 +1047,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
         className={`fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3 rounded-full bg-zinc-950 text-white shadow-2xl hover:bg-zinc-800 transition-all duration-300 active:scale-95 border border-stone-800/80 group cursor-pointer ${
           isTweakOpen ? "hidden" : "flex"
         }`}
-        title="打开 AI 行程管家微调"
+        title={t("openCopilot")}
       >
         <div className="relative flex items-center justify-center">
           <Sparkles className="w-4 h-4 text-[#C5A880] group-hover:rotate-12 transition-transform" />
@@ -1064,7 +1089,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
             type="button"
             onClick={() => setIsTweakOpen(false)}
             className="w-7 h-7 rounded-full hover:bg-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center transition cursor-pointer"
-            title="最小化"
+            title={t("close")}
           >
             <X className="w-4 h-4" />
           </button>
@@ -1090,7 +1115,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
               {locale === "en" ? "Quick Presets" : "快捷微调指令"}
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {PRESET_TWEAK_CHIPS.map((chip) => (
+              {presetChips.map((chip) => (
                 <button
                   key={chip}
                   type="button"

@@ -4,8 +4,9 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "7ka · 私人实操级旅行规划",
-  description: "基于大模型的精准落客、预约防坑与适老适幼多目的地定制平台",
+  title: "7ka · Bespoke Slow Travel | 私人实操级旅行规划",
+  description:
+    "AI-powered gentle travel engine with zero-backtrack routes, verified drop-offs & family-friendly dining. 适老适幼精准落客与深度漫步定制平台。",
 };
 
 export default function RootLayout({

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { CURATED_PLANS } from "@/data/curated-plans";
+import { getCuratedPlans } from "@/lib/curated-plans-provider";
+import { Locale } from "@/lib/i18n";
 import { getSupabase } from "@/lib/supabase";
 import { compressPlan } from "@/lib/storage";
 import { GalleryItem, TravelPlan } from "@/types/itinerary";
@@ -12,9 +13,12 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const search = searchParams.get("search")?.toLowerCase().trim() || "";
     const tag = searchParams.get("tag")?.trim() || "";
+    const locale = (searchParams.get("locale") === "en" ? "en" : "zh") as Locale;
+
+    const curatedPlans = getCuratedPlans(locale);
 
     // 1. Convert curated plans into gallery items
-    const curatedGalleryItems: GalleryItem[] = CURATED_PLANS.map((p) => ({
+    const curatedGalleryItems: GalleryItem[] = curatedPlans.map((p) => ({
       id: p.id,
       title: p.meta.tripTitle,
       destination: p.meta.destinations.join(" + "),
@@ -72,7 +76,7 @@ export async function GET(req: NextRequest) {
         item.destination.toLowerCase().includes(search) ||
         item.tags.some((t) => t.toLowerCase().includes(search));
 
-      const matchTag = !tag || tag === "全部" || item.tags.includes(tag);
+      const matchTag = !tag || tag === "全部" || tag === "All" || item.tags.includes(tag);
       return matchSearch && matchTag;
     });
 

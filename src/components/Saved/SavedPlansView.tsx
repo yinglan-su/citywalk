@@ -5,6 +5,7 @@ import { Bookmark, Clock, Trash2, ChevronRight, Sparkles } from "lucide-react";
 import { TravelPlan, WizardConfig } from "@/types/itinerary";
 import { getLocalPlans, deleteLocalPlan } from "@/lib/storage";
 import { useLanguage } from "@/context/LanguageContext";
+import { localizeCuratedPlan } from "@/lib/curated-plans-provider";
 
 interface SavedPlansViewProps {
   onSelectPlan: (plan: TravelPlan) => void;
@@ -64,7 +65,9 @@ export const SavedPlansView: React.FC<SavedPlansViewProps> = ({
         </div>
       ) : (
         <div className="space-y-3">
-          {plans.map((p) => (
+          {plans.map((origP) => {
+            const p = localizeCuratedPlan(origP, locale);
+            return (
             <div
               key={p.id}
               onClick={() => onSelectPlan(p)}
@@ -74,10 +77,10 @@ export const SavedPlansView: React.FC<SavedPlansViewProps> = ({
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-900 text-white flex items-center gap-1">
                     <Clock className="w-3 h-3 text-[#C5A880]" />
-                    {p.meta.durationDays} 天行程
+                    {p.meta.durationDays} {t("daysUnit")}
                   </span>
                   <span className="text-xs text-zinc-400">
-                    生成于: {new Date(p.meta.generatedAt).toLocaleDateString()}
+                    {locale === "en" ? "Created: " : "生成于: "} {new Date(p.meta.generatedAt).toLocaleDateString()}
                   </span>
                 </div>
                 <h3 className="font-bold text-base text-zinc-900 group-hover:text-black transition">
@@ -100,17 +103,18 @@ export const SavedPlansView: React.FC<SavedPlansViewProps> = ({
                   type="button"
                   onClick={(e) => handleDelete(e, p.id)}
                   className="p-2 rounded-full text-zinc-400 hover:text-red-600 hover:bg-red-50 transition"
-                  title="删除"
+                  title={locale === "en" ? "Delete" : "删除"}
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
                 <div className="text-xs font-bold text-zinc-900 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                  打开
+                  {locale === "en" ? "Open" : "打开"}
                   <ChevronRight className="w-4 h-4" />
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

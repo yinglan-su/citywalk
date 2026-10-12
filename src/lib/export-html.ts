@@ -1,17 +1,90 @@
 import { TravelPlan } from "@/types/itinerary";
+import { Locale } from "./i18n";
 
 /**
  * Generates a self-contained, offline-ready single HTML document for a travel plan
  */
-export function generateOfflineHtml(plan: TravelPlan): string {
+export function generateOfflineHtml(plan: TravelPlan, locale?: Locale): string {
+  const isEn =
+    locale === "en" ||
+    (!locale && !/[\u4e00-\u9fa5]/.test(plan.meta.tripTitle));
+
   const jsonString = JSON.stringify(plan).replace(/</g, "\\u003c");
 
+  const texts = isEn
+    ? {
+        titleSuffix: " · Offline Travel Guide",
+        bar: "✓ Fully Cached · No Internet Connection Required",
+        daysUnit: "Days Trip",
+        budgetBudget: "Budget / Value",
+        budgetComfort: "Comfortable",
+        budgetLuxury: "Luxury",
+        transportTaxi: "Taxi / Charter Priority",
+        transportPublic: "Public Transit",
+        highlights: "Trip Highlights",
+        logistics: "Logistics & Transportation Advice",
+        reservationChecklist: "Advance Reservation Checklist",
+        daysAhead: "days ahead",
+        channel: "Channel",
+        price: "Price",
+        realName: "Real-Name ID",
+        noId: "No ID Required",
+        tip: "Tip",
+        theme: "Theme",
+        middayRest: "Midday Hotel Rest",
+        min: "mins",
+        dropOff: "Drop-off Landmark",
+        advanceBooking: "Advance Booking Required",
+        accessibility: "Accessibility & Family Notes",
+        photoSpot: "Photo Angle Advice",
+        lunch: "Lunch",
+        dinner: "Dinner",
+        cuisine: "Cuisine",
+        budget: "Budget",
+        suitability: "Suitability",
+        dailyTips: "Daily Tips",
+        emergency: "Emergency Contacts & Support",
+      }
+    : {
+        titleSuffix: " · 离线完整攻略",
+        bar: "✓ 已完全缓存 · 无需网络离线运行",
+        daysUnit: "天行程",
+        budgetBudget: "高性价比",
+        budgetComfort: "品质舒适",
+        budgetLuxury: "奢华体验",
+        transportTaxi: "包车/打车优先",
+        transportPublic: "公共交通",
+        highlights: "行程亮点与特色",
+        logistics: "交通与后勤建议",
+        reservationChecklist: "提前预约清单",
+        daysAhead: "提前",
+        channel: "渠道",
+        price: "票价",
+        realName: "实名身份证",
+        noId: "免证件",
+        tip: "建议",
+        theme: "主题",
+        middayRest: "午间休整充电",
+        min: "分钟",
+        dropOff: "落客导航点",
+        advanceBooking: "需提前预约",
+        accessibility: "无障碍/照料建议",
+        photoSpot: "拍照位点",
+        lunch: "午餐推荐",
+        dinner: "晚餐推荐",
+        cuisine: "菜系",
+        budget: "人均",
+        suitability: "适宜人群",
+        dailyTips: "当日贴士",
+        emergency: "紧急联络与医疗保障",
+      };
+
   return `<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="${isEn ? "en" : "zh-CN"}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>${plan.meta.tripTitle} · 离线完整攻略</title>
+  <title>${plan.meta.tripTitle}${texts.titleSuffix}</title>
   <style>
     :root {
       --primary: #2563EB;
@@ -32,15 +105,15 @@ export function generateOfflineHtml(plan: TravelPlan): string {
       padding-bottom: 60px;
     }
     .container { max-width: 768px; margin: 0 auto; background: var(--bg-card); min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
-    .header { background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%); color: #fff; padding: 24px 20px; position: sticky; top: 0; z-index: 50; }
+    .header { background: linear-gradient(135deg, #18181B 0%, #27272A 100%); color: #fff; padding: 24px 20px; position: sticky; top: 0; z-index: 50; }
     .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
     .badges { display: flex; flex-wrap: wrap; gap: 6px; }
-    .badge { background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); padding: 3px 8px; border-radius: 6px; font-size: 12px; }
+    .badge { background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); padding: 3px 8px; border-radius: 6px; font-size: 12px; }
     
     .nav-tabs { display: flex; overflow-x: auto; background: #fff; border-bottom: 1px solid var(--border); padding: 8px 16px; gap: 8px; position: sticky; top: 92px; z-index: 40; }
     .nav-tabs::-webkit-scrollbar { display: none; }
     .tab-btn { padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; border: 1px solid var(--border); background: #fff; color: var(--text-muted); cursor: pointer; white-space: nowrap; }
-    .tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); font-weight: 600; }
+    .tab-btn.active { background: #18181B; color: #fff; border-color: #18181B; font-weight: 600; }
     
     .content-section { padding: 16px; }
     .card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
@@ -51,12 +124,12 @@ export function generateOfflineHtml(plan: TravelPlan): string {
     .timeline { position: relative; padding-left: 20px; margin-top: 10px; }
     .timeline::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: #E2E8F0; }
     .timeline-node { position: relative; margin-bottom: 18px; }
-    .timeline-dot { position: absolute; left: -20px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); border: 2px solid #fff; box-shadow: 0 0 0 2px var(--primary-light); }
+    .timeline-dot { position: absolute; left: -20px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: #18181B; border: 2px solid #fff; box-shadow: 0 0 0 2px #E4E4E7; }
     .stop-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4px; }
     .stop-name { font-size: 15px; font-weight: 700; color: var(--text-main); }
-    .stop-time { font-size: 12px; color: var(--primary); font-weight: 600; background: var(--primary-light); padding: 2px 6px; border-radius: 4px; }
+    .stop-time { font-size: 12px; color: #18181B; font-weight: 600; background: #F4F4F5; padding: 2px 6px; border-radius: 4px; }
     
-    .dropoff-badge { background: #F1F5F9; border-left: 3px solid var(--primary); padding: 6px 10px; border-radius: 0 6px 6px 0; font-size: 12px; color: #334155; margin: 6px 0; }
+    .dropoff-badge { background: #F1F5F9; border-left: 3px solid #C5A880; padding: 6px 10px; border-radius: 0 6px 6px 0; font-size: 12px; color: #334155; margin: 6px 0; }
     .reservation-badge { background: #FEF2F2; border: 1px solid #FEE2E2; color: #DC2626; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; margin: 4px 0; display: inline-block; }
     
     .transit-block { background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 8px; padding: 8px 12px; margin: 10px 0 14px -6px; font-size: 12px; color: #475569; display: flex; align-items: center; gap: 8px; }
@@ -67,7 +140,7 @@ export function generateOfflineHtml(plan: TravelPlan): string {
     
     .tips-list { list-style: none; }
     .tips-list li { font-size: 13px; color: #475569; margin-bottom: 6px; padding-left: 16px; position: relative; }
-    .tips-list li::before { content: "•"; position: absolute; left: 4px; color: var(--primary); font-weight: bold; }
+    .tips-list li::before { content: "•"; position: absolute; left: 4px; color: #C5A880; font-weight: bold; }
     
     .offline-bar { background: #10B981; color: #fff; text-align: center; padding: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
 
@@ -81,46 +154,48 @@ export function generateOfflineHtml(plan: TravelPlan): string {
   </style>
 </head>
 <body>
-  <div class="offline-bar">✓ 已完全缓存 · 无需网络离线运行</div>
+  <div class="offline-bar">${texts.bar}</div>
   <div class="container">
     <header class="header">
       <h1>${plan.meta.tripTitle}</h1>
       <div class="badges">
-        <span class="badge">${plan.meta.durationDays} 天行程</span>
-        <span class="badge">${plan.meta.budgetTier === "budget" ? "高性价比" : plan.meta.budgetTier === "comfort" ? "品质舒适" : "奢华体验"}</span>
-        <span class="badge">${plan.meta.transportMode === "charter_taxi" ? "包车/打车优先" : "公共交通"}</span>
+        <span class="badge">${plan.meta.durationDays} ${texts.daysUnit}</span>
+        <span class="badge">${plan.meta.budgetTier === "budget" ? texts.budgetBudget : plan.meta.budgetTier === "comfort" ? texts.budgetComfort : texts.budgetLuxury}</span>
+        <span class="badge">${plan.meta.transportMode === "charter_taxi" ? texts.transportTaxi : texts.transportPublic}</span>
         ${plan.meta.travelerProfile.map((t) => `<span class="badge">${t}</span>`).join("")}
       </div>
     </header>
 
     <div class="content-section">
       <div class="card">
-        <div class="card-title"> 行程亮点与特色</div>
+        <div class="card-title">${texts.highlights}</div>
         <ul class="tips-list">
           ${plan.overview.highlights.map((h) => `<li>${h}</li>`).join("")}
         </ul>
       </div>
 
       <div class="card">
-        <div class="card-title"> 交通与后勤建议</div>
+        <div class="card-title">${texts.logistics}</div>
         <p style="font-size: 13px; color: #475569;">${plan.overview.logisticsSummary}</p>
       </div>
 
+      ${plan.reservationChecklist && plan.reservationChecklist.length > 0 ? `
       <div class="card">
-        <div class="card-title"> 提前预约清单</div>
+        <div class="card-title">${texts.reservationChecklist}</div>
         ${plan.reservationChecklist.map((r) => `
           <div style="border-bottom: 1px solid #F1F5F9; padding: 8px 0;">
             <div style="font-size: 13px; font-weight: 600; display: flex; justify-content: space-between;">
               <span>${r.spotName}</span>
-              <span style="color: #2563EB;">提前 ${r.daysInAdvance} 天</span>
+              <span style="color: #2563EB;">${isEn ? `${r.daysInAdvance} ${texts.daysAhead}` : `${texts.daysAhead} ${r.daysInAdvance} 天`}</span>
             </div>
             <div style="font-size: 12px; color: #64748B; margin-top: 2px;">
-              渠道: ${r.platform} | 票价: ${r.ticketPrice} | ${r.requiresRealNameId ? "实名身份证" : "免证件"}
+              ${texts.channel}: ${r.platform} | ${texts.price}: ${r.ticketPrice} | ${r.requiresRealNameId ? texts.realName : texts.noId}
             </div>
-            <div style="font-size: 11px; color: #059669; margin-top: 2px;">建议: ${r.bookingTip}</div>
+            <div style="font-size: 11px; color: #059669; margin-top: 2px;">${texts.tip}: ${r.bookingTip}</div>
           </div>
         `).join("")}
       </div>
+      ` : ""}
     </div>
 
     <!-- Day Navigation -->
@@ -138,13 +213,13 @@ export function generateOfflineHtml(plan: TravelPlan): string {
         <div class="day-section" id="dayContent_${day.dayNumber}" style="${idx === 0 ? "display:block" : "display:none"}">
           <div style="margin-bottom: 12px;">
             <h2 style="font-size: 18px; font-weight: 700; color: #1E293B;">${day.dateOrLabel}</h2>
-            <div style="font-size: 13px; color: #2563EB; font-weight: 500;">主题: ${day.theme}</div>
+            <div style="font-size: 13px; color: #2563EB; font-weight: 500;">${texts.theme}: ${day.theme}</div>
           </div>
 
           ${day.hotelRestBlock && day.hotelRestBlock.enabled ? `
             <div class="rest-banner">
               <div>
-                <strong>午间休整充电 (${day.hotelRestBlock.recommendedTime})</strong>
+                <strong>${texts.middayRest} (${day.hotelRestBlock.recommendedTime})</strong>
                 <div style="font-size: 12px; margin-top: 2px;">${day.hotelRestBlock.reason}</div>
               </div>
             </div>
@@ -153,12 +228,15 @@ export function generateOfflineHtml(plan: TravelPlan): string {
           <div class="timeline">
             ${day.timeline.map((item) => {
               if (item.type === "transit") {
+                const modeText = isEn
+                  ? item.mode === "taxi" ? "Taxi" : item.mode === "charter" ? "Charter" : "Walk"
+                  : item.mode === "taxi" ? "打车" : item.mode === "charter" ? "包车" : "步行";
                 return `
                   <div class="transit-block">
                     <span>➔</span>
                     <div>
                       <strong>${item.fromStop} ➔ ${item.toStop}</strong>
-                      <span style="color: #2563EB; margin-left: 6px;">${item.mode === "taxi" ? "打车" : item.mode === "charter" ? "包车" : "步行"}约 ${item.estimatedMinutes} 分钟 (${item.distanceKm} km)</span>
+                      <span style="color: #2563EB; margin-left: 6px;">${modeText} ~${item.estimatedMinutes} ${texts.min} (${item.distanceKm} km)</span>
                       <div style="font-size: 11px; color: #64748B; margin-top: 2px;">${item.navigationDetail}</div>
                     </div>
                   </div>
@@ -173,12 +251,12 @@ export function generateOfflineHtml(plan: TravelPlan): string {
                     </div>
                     
                     <div class="dropoff-badge">
-                      <strong>落客导航点:</strong> ${item.dropOffPoint}
+                      <strong>${texts.dropOff}:</strong> ${item.dropOffPoint}
                     </div>
 
                     ${item.reservationRequired ? `
                       <div class="reservation-badge">
-                        需提前预约: ${item.reservationChannel || "请提前查看官方通道"}
+                        ${texts.advanceBooking}: ${item.reservationChannel || (isEn ? "Check official booking channel" : "请提前查看官方通道")}
                       </div>
                     ` : ""}
 
@@ -186,13 +264,13 @@ export function generateOfflineHtml(plan: TravelPlan): string {
                     
                     ${item.elderKidNotes ? `
                       <div style="font-size: 12px; color: #059669; margin-top: 4px;">
-                        • 无障碍/照料建议: ${item.elderKidNotes}
+                        • ${texts.accessibility}: ${item.elderKidNotes}
                       </div>
                     ` : ""}
 
                     ${item.photoTip ? `
                       <div style="font-size: 12px; color: #D97706; margin-top: 2px;">
-                        • 拍照位点: ${item.photoTip}
+                        • ${texts.photoSpot}: ${item.photoTip}
                       </div>
                     ` : ""}
                   </div>
@@ -204,46 +282,50 @@ export function generateOfflineHtml(plan: TravelPlan): string {
           <!-- Meals -->
           ${day.meals.lunch ? `
             <div class="dining-card">
-              <div class="dining-title">午餐推荐: ${day.meals.lunch.restaurantName}</div>
-              <div style="font-size: 12px; color: #166534; margin-bottom: 4px;">菜系: ${day.meals.lunch.cuisineStyle} | 人均: ${day.meals.lunch.perPersonBudget}</div>
+              <div class="dining-title">${texts.lunch}: ${day.meals.lunch.restaurantName}</div>
+              <div style="font-size: 12px; color: #166534; margin-bottom: 4px;">${texts.cuisine}: ${day.meals.lunch.cuisineStyle} | ${texts.budget}: ${day.meals.lunch.perPersonBudget}</div>
               <div>
                 ${day.meals.lunch.recommendedDishes.map((dish) => `<span class="dish-tag">${dish}</span>`).join("")}
               </div>
-              <div style="font-size: 12px; color: #15803D; margin-top: 6px;">适宜人群: ${day.meals.lunch.elderKidSuitability}</div>
+              <div style="font-size: 12px; color: #15803D; margin-top: 6px;">${texts.suitability}: ${day.meals.lunch.elderKidSuitability}</div>
             </div>
           ` : ""}
 
           ${day.meals.dinner ? `
             <div class="dining-card" style="background:#FFF7ED; border-color:#FFEDD5;">
-              <div class="dining-title" style="color:#9A3412;">晚餐推荐: ${day.meals.dinner.restaurantName}</div>
-              <div style="font-size: 12px; color: #9A3412; margin-bottom: 4px;">菜系: ${day.meals.dinner.cuisineStyle} | 人均: ${day.meals.dinner.perPersonBudget}</div>
+              <div class="dining-title" style="color:#9A3412;">${texts.dinner}: ${day.meals.dinner.restaurantName}</div>
+              <div style="font-size: 12px; color: #9A3412; margin-bottom: 4px;">${texts.cuisine}: ${day.meals.dinner.cuisineStyle} | ${texts.budget}: ${day.meals.dinner.perPersonBudget}</div>
               <div>
                 ${day.meals.dinner.recommendedDishes.map((dish) => `<span class="dish-tag" style="background:#FFEDD5; color:#C2410C;">${dish}</span>`).join("")}
               </div>
-              <div style="font-size: 12px; color: #C2410C; margin-top: 6px;">适宜人群: ${day.meals.dinner.elderKidSuitability}</div>
+              <div style="font-size: 12px; color: #C2410C; margin-top: 6px;">${texts.suitability}: ${day.meals.dinner.elderKidSuitability}</div>
             </div>
           ` : ""}
 
           <!-- Daily Tips -->
+          ${day.dailyTips && day.dailyTips.length > 0 ? `
           <div class="card" style="margin-top: 14px;">
-            <div class="card-title"> 当日贴士</div>
+            <div class="card-title">${texts.dailyTips}</div>
             <ul class="tips-list">
               ${day.dailyTips.map((tip) => `<li>${tip}</li>`).join("")}
             </ul>
           </div>
+          ` : ""}
         </div>
       `).join("")}
     </div>
 
     <!-- Emergency contacts footer -->
+    ${plan.emergencyContacts && plan.emergencyContacts.length > 0 ? `
     <div class="content-section" style="border-top: 1px solid #E2E8F0; margin-top: 20px;">
-      <h3 style="font-size: 14px; font-weight: 700; color: #475569; margin-bottom: 8px;">紧急联络与医疗保障</h3>
+      <h3 style="font-size: 14px; font-weight: 700; color: #475569; margin-bottom: 8px;">${texts.emergency}</h3>
       ${plan.emergencyContacts.map((c) => `
         <div style="font-size: 12px; color: #64748B; margin-bottom: 4px;">
           <strong>${c.role}:</strong> ${c.phone} (${c.note})
         </div>
       `).join("")}
     </div>
+    ` : ""}
   </div>
 
   <script>

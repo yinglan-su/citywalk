@@ -11,11 +11,11 @@ import { decompressPlan, getLocalPlans, saveLocalPlan } from "@/lib/storage";
 import { useLanguage } from "@/context/LanguageContext";
 
 const HERO_BACKGROUNDS = [
-  { url: "/images/spot_badaguan.jpg", title: "青岛 · 八大关红瓦绿树" },
-  { url: "/images/spot_yj_danmu.jpg", title: "延吉 · 延边大学双语霓虹" },
-  { url: "/images/spot_zhanqiao.jpg", title: "青岛 · 栈桥海天一色" },
-  { url: "/images/spot_yj_rice.jpg", title: "海兰江 · 稻田风光与民俗村" },
-  { url: "/images/spot_taiqing.jpg", title: "崂山 · 太清山海相依" },
+  { url: "/images/spot_badaguan.jpg", title: "青岛 · 八大关红瓦绿树", titleEn: "Qingdao · Badaguan Seaside Villas" },
+  { url: "/images/spot_yj_danmu.jpg", title: "延吉 · 延边大学双语霓虹", titleEn: "Yanji · Yanbian University Neon Wall" },
+  { url: "/images/spot_zhanqiao.jpg", title: "青岛 · 栈桥海天一色", titleEn: "Qingdao · Zhanqiao Pier Ocean View" },
+  { url: "/images/spot_yj_rice.jpg", title: "海兰江 · 稻田风光与民俗村", titleEn: "Hailan River · Paddy Fields & Folk Village" },
+  { url: "/images/spot_taiqing.jpg", title: "崂山 · 太清山海相依", titleEn: "Mount Lao · Taiqing Temple Coastline" },
 ];
 
 export default function Home() {
@@ -124,7 +124,7 @@ export default function Home() {
                     >
                       <img
                         src={bg.url}
-                        alt={bg.title}
+                        alt={locale === "en" ? bg.titleEn : bg.title}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -142,7 +142,7 @@ export default function Home() {
                     {/* Location Caption Badge */}
                     <div className="mt-2.5 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-stone-200/90 text-[11px] text-zinc-700 font-semibold shadow-xs">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
-                      <span>{HERO_BACKGROUNDS[bgIndex]?.title}</span>
+                      <span>{locale === "en" ? HERO_BACKGROUNDS[bgIndex]?.titleEn : HERO_BACKGROUNDS[bgIndex]?.title}</span>
                     </div>
                   </div>
 
@@ -194,7 +194,7 @@ export default function Home() {
       <footer className="border-t border-stone-200/80 bg-white py-6 mt-16 text-center text-xs text-zinc-500">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="font-semibold text-zinc-700">
-            7ka · 私人实操级旅行规划
+            {t("footerTagline")}
           </div>
           <div className="text-zinc-400">
             Powered by Google Gemini 3.8 Flash & Next.js

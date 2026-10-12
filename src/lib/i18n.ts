@@ -133,6 +133,68 @@ export interface TranslationDictionary {
   savedCountPrefix: string;
   noSavedTrips: string;
   startExplore: string;
+
+  // Copilot & Floating Tweak
+  openCopilot: string;
+  copilotBannerDesc: string;
+  copilotDrawerTitle: string;
+  copilotDrawerSubtitle: string;
+  copilotWelcome: string;
+  quickPresets: string;
+  copilotInputPlaceholder: string;
+  copilotTuning: string;
+  copilotSend: string;
+  presetChips: string[];
+
+  // Toast & Share & Export
+  published: string;
+  publishToSquare: string;
+  linkCopied: string;
+  copyFailed: string;
+  offlineDownloaded: string;
+  exportFailed: string;
+  alreadyPublic: string;
+  publishedSuccess: string;
+  publishFailed: string;
+  tweakSuccess: string;
+  tweakFailed: string;
+  spotDeleted: string;
+  orderUpdated: string;
+  spotSwapped: string;
+  restaurantSwapped: string;
+
+  // Itinerary Details
+  dailyTips: string;
+  themePrefix: string;
+  approxDuration: string;
+  photoTipLabel: string;
+  signatureLabel: string;
+  dietaryLabel: string;
+  altFlavorsLabel: string;
+  altSpotsLabel: string;
+  daysAhead: string;
+  roundTrip: string;
+  nightsUnit: string;
+
+  // Wizard specifics
+  selectedCountText: string;
+  addCityPlaceholder: string;
+  addCityBtn: string;
+  datesAndDuration: string;
+  calendarTab: string;
+  sliderTab: string;
+  departureDate: string;
+  durationSliderLabel: string;
+  calendarOptimizedTip: string;
+  slideAdjust: string;
+  specialRequestsLabel: string;
+  specialRequestsPlaceholder: string;
+  destinationRequired: string;
+  failedToGenerate: string;
+  timeoutError: string;
+
+  // Hero & Footer
+  footerTagline: string;
 }
 
 export const translations: Record<Locale, TranslationDictionary> = {
@@ -269,6 +331,73 @@ export const translations: Record<Locale, TranslationDictionary> = {
     savedCountPrefix: "已保存行程",
     noSavedTrips: "您暂未保存任何定制行程",
     startExplore: "去发现更多灵感",
+
+    // Copilot & Floating Tweak
+    openCopilot: "打开管家微调",
+    copilotBannerDesc: "偏好调整、避开台阶、餐饮替换？点击开启右下角管家微调",
+    copilotDrawerTitle: "AI 行程管家微调",
+    copilotDrawerSubtitle: "定向增量微调 · 自动保留坐标与落客点",
+    copilotWelcome: "您好！我是您的 7ka 专属行程管家。想避开台阶爬坡、换成温热清淡滋补晚餐、增加午后茶歇，或是替换某个景点？点击下方快捷指令或输入具体要求，我将自动重新规划动线。",
+    quickPresets: "快捷微调指令",
+    copilotInputPlaceholder: "输入调整要求（如：第二天下午想去海边漫步、把晚餐换成参鸡汤...）",
+    copilotTuning: "编排中...",
+    copilotSend: "微调",
+    presetChips: [
+      "长辈脚力减负 · 减少台阶与爬坡",
+      "换清淡中餐 · 避免辛辣油腻",
+      "下午增加特色咖啡馆漫步",
+      "增加特色早市 / 夜市打卡",
+    ],
+
+    // Toast & Share & Export
+    published: "已公开",
+    publishToSquare: "公开到广场",
+    linkCopied: "已复制分享链接！任何人打开即看。",
+    copyFailed: "复制链接失败",
+    offlineDownloaded: "已下载离线网页！无网无信号均可打开。",
+    exportFailed: "导出离线网页失败",
+    alreadyPublic: "该路线已在探索广场中！",
+    publishedSuccess: "已发布至「探索广场」！",
+    publishFailed: "发布失败，请重试",
+    tweakSuccess: "已成功为您微调行程！",
+    tweakFailed: "微调失败，请重试",
+    spotDeleted: "已删除该点位，地图路径已更新",
+    orderUpdated: "已调整点位游览顺序",
+    spotSwapped: "已切换打卡点",
+    restaurantSwapped: "已切换餐厅至",
+
+    // Itinerary Details
+    dailyTips: "当日贴士",
+    themePrefix: "主题: ",
+    approxDuration: "游玩约",
+    photoTipLabel: "取景打卡指引: ",
+    signatureLabel: "特色亮点: ",
+    dietaryLabel: "适口与避坑: ",
+    altFlavorsLabel: "备选风味: ",
+    altSpotsLabel: "备选打卡点: ",
+    daysAhead: "提前",
+    roundTrip: "往返",
+    nightsUnit: "晚",
+
+    // Wizard specifics
+    selectedCountText: "个城市/区域",
+    addCityPlaceholder: "输入城市或景区，按回车添加...",
+    addCityBtn: "添加",
+    datesAndDuration: "出行日期与天数",
+    calendarTab: "日历排期 (规避闭馆)",
+    sliderTab: "1-30天滑块",
+    departureDate: "出发日期",
+    durationSliderLabel: "行程天数 (1-30天)",
+    calendarOptimizedTip: "已开启场馆实际开放日智能校准 (规避闭馆)",
+    slideAdjust: "滑动调整天数:",
+    specialRequestsLabel: "特殊要求与心愿 (选填)",
+    specialRequestsPlaceholder: "例如：必吃当地地道海鲜；第一天下午才到；长辈不能吃辣...",
+    destinationRequired: "请至少选择或输入一个目的地",
+    failedToGenerate: "生成失败，请稍后重试",
+    timeoutError: "请求超时或网络异常，请重试",
+
+    // Hero & Footer
+    footerTagline: "7ka · 私人实操级旅行规划",
   },
 
   en: {
@@ -404,5 +533,72 @@ export const translations: Record<Locale, TranslationDictionary> = {
     savedCountPrefix: "Saved Itineraries",
     noSavedTrips: "No saved itineraries yet",
     startExplore: "Explore Inspiration",
+
+    // Copilot & Floating Tweak
+    openCopilot: "Open Copilot",
+    copilotBannerDesc: "Need to adjust pacing, avoid stairs, or swap meals? Open copilot anytime.",
+    copilotDrawerTitle: "AI Itinerary Concierge",
+    copilotDrawerSubtitle: "Incremental tweaking · Keeps drop-offs and routes intact",
+    copilotWelcome: "Hello! I am your 7ka travel copilot. Need to avoid steep hills, swap dinner to a mild soup, add a tea break, or adjust pacing? Tap a preset below or message me!",
+    quickPresets: "Quick Presets",
+    copilotInputPlaceholder: "e.g. Change Day 2 dinner to non-spicy soup, add seaside stroll...",
+    copilotTuning: "Tuning...",
+    copilotSend: "Tweak",
+    presetChips: [
+      "Reduce walking & avoid steep stairs",
+      "Swap to mild non-spicy meal",
+      "Add afternoon specialty cafe / tea break",
+      "Add morning / night market visit",
+    ],
+
+    // Toast & Share & Export
+    published: "Published",
+    publishToSquare: "Publish to Gallery",
+    linkCopied: "Link copied to clipboard! Anyone with the link can view.",
+    copyFailed: "Failed to copy link",
+    offlineDownloaded: "Offline guide downloaded! Viewable without internet.",
+    exportFailed: "Failed to export offline guide",
+    alreadyPublic: "This itinerary is already public in the gallery!",
+    publishedSuccess: "Published to Discovery Gallery!",
+    publishFailed: "Failed to publish. Please try again.",
+    tweakSuccess: "Itinerary updated successfully!",
+    tweakFailed: "Failed to update itinerary. Please try again.",
+    spotDeleted: "Spot removed and route updated",
+    orderUpdated: "Stop order re-arranged",
+    spotSwapped: "Spot replaced with alternative",
+    restaurantSwapped: "Restaurant swapped to",
+
+    // Itinerary Details
+    dailyTips: "Daily Tips",
+    themePrefix: "Theme: ",
+    approxDuration: "Duration ~",
+    photoTipLabel: "Photo Advice: ",
+    signatureLabel: "Signature Highlights: ",
+    dietaryLabel: "Dietary & Pacing: ",
+    altFlavorsLabel: "Alternative Dining: ",
+    altSpotsLabel: "Alternative Spots: ",
+    daysAhead: "days in advance",
+    roundTrip: "Round-trip",
+    nightsUnit: "Nights",
+
+    // Wizard specifics
+    selectedCountText: "cities/regions selected",
+    addCityPlaceholder: "Enter city or attraction, press Enter...",
+    addCityBtn: "Add",
+    datesAndDuration: "Dates & Duration",
+    calendarTab: "Calendar (Avoid Closures)",
+    sliderTab: "1-30 Days Slider",
+    departureDate: "Departure Date",
+    durationSliderLabel: "Duration (1-30 Days)",
+    calendarOptimizedTip: "Smart calendar optimization enabled (avoiding Monday closures)",
+    slideAdjust: "Adjust Duration:",
+    specialRequestsLabel: "Special Requests & Wishes (Optional)",
+    specialRequestsPlaceholder: "e.g. Must try local king crab; arriving in afternoon on Day 1; elders cannot eat spicy...",
+    destinationRequired: "Please select or enter at least one destination",
+    failedToGenerate: "Failed to generate itinerary. Please try again.",
+    timeoutError: "Request timed out or network error. Please try again.",
+
+    // Hero & Footer
+    footerTagline: "7ka · Bespoke Slow-Travel Concierge",
   },
 };

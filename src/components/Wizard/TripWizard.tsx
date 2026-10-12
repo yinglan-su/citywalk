@@ -84,7 +84,9 @@ export const TripWizard: React.FC<TripWizardProps> = ({
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   // Multi-select destinations array
-  const [selectedCities, setSelectedCities] = useState<string[]>(["延吉", "珲春"]);
+  const [selectedCities, setSelectedCities] = useState<string[]>(
+    locale === "en" ? ["Kyoto", "Tokyo"] : ["延吉", "珲春"]
+  );
   const [cityInput, setCityInput] = useState<string>("");
 
   // Multi-select Trip Focus: foodie, culture, nature
@@ -122,7 +124,9 @@ export const TripWizard: React.FC<TripWizardProps> = ({
   >(initialConfig?.transportMode || "charter_taxi");
   const [customNotes, setCustomNotes] = useState(
     initialConfig?.customNotes ||
-      "必须吃东方水产帝王蟹；第一天抵达不排紧凑，让长辈充分休整；不吃辣。"
+      (locale === "en"
+        ? "Prefer mild non-spicy food; gentle pacing on arrival day; scenic views."
+        : "必须吃东方水产帝王蟹；第一天抵达不排紧凑，让长辈充分休整；不吃辣。")
   );
 
   const [isLoading, setIsLoading] = useState(false);
@@ -198,10 +202,21 @@ export const TripWizard: React.FC<TripWizardProps> = ({
 
   // Compute date schedule details
   const getCalendarSummary = () => {
-    if (!startDate) return `${durationDays} 天行程`;
+    if (!startDate) {
+      return locale === "en" ? `${durationDays} Days Itinerary` : `${durationDays} 天行程`;
+    }
     const start = new Date(startDate);
     const end = new Date(start);
     end.setDate(start.getDate() + (durationDays - 1));
+
+    if (locale === "en") {
+      const weekdaysEn = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const monthsEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const startStr = `${monthsEn[start.getMonth()]} ${start.getDate()} (${weekdaysEn[start.getDay()]})`;
+      const endStr = `${monthsEn[end.getMonth()]} ${end.getDate()} (${weekdaysEn[end.getDay()]})`;
+      const nights = durationDays > 1 ? ` · ${durationDays - 1} Nights` : "";
+      return `${startStr} - ${endStr} · Total ${durationDays} Days${nights}`;
+    }
 
     const weekdays = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
     const startStr = `${start.getMonth() + 1}月${start.getDate()}日 (${weekdays[start.getDay()]})`;
@@ -224,7 +239,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
     }
 
     if (finalDestinations.length === 0) {
-      setErrorMsg("请至少选择或输入一个目的地");
+      setErrorMsg(t("destinationRequired"));
       return;
     }
 
@@ -254,12 +269,12 @@ export const TripWizard: React.FC<TripWizardProps> = ({
 
       const data = await resp.json();
       if (!resp.ok || !data.success) {
-        throw new Error(data.error || "生成失败，请稍后重试");
+        throw new Error(data.error || t("failedToGenerate"));
       }
 
       onPlanGenerated(data.plan);
     } catch (err: any) {
-      setErrorMsg(err.message || "请求超时或网络异常，请重试");
+      setErrorMsg(err.message || t("timeoutError"));
     } finally {
       setIsLoading(false);
     }
@@ -282,7 +297,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
             </div>
             <div>
               <div className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
-                目的地
+                {t("destLabel")}
               </div>
               <div className="text-sm font-bold text-zinc-900 flex items-center gap-1.5 flex-wrap">
                 {selectedCities.length > 0 ? (
@@ -296,7 +311,9 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                   ))
                 ) : (
                   <span className="text-zinc-400 font-normal">
-                    选择目的地，开启专属定制...
+                    {locale === "en"
+                      ? "Select destination to start crafting..."
+                      : "选择目的地，开启专属定制..."}
                   </span>
                 )}
               </div>
@@ -331,7 +348,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
               onClick={() => setIsExpanded(true)}
               className="px-5 py-2.5 rounded-full bg-zinc-900 text-white text-xs font-bold hover:bg-zinc-800 transition flex items-center gap-1.5 shrink-0 shadow-xs"
             >
-              <span>开始定制</span>
+              <span>{locale === "en" ? "Customize" : "开始定制"}</span>
               <ChevronDown className="w-3.5 h-3.5 text-[#C5A880]" />
             </button>
           </div>
@@ -345,10 +362,10 @@ export const TripWizard: React.FC<TripWizardProps> = ({
           <div className="flex items-center justify-between border-b border-stone-100 pb-4">
             <div>
               <h2 className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight">
-                行程专属配置
+                {t("wizardTitle")}
               </h2>
               <p className="text-xs text-zinc-400 mt-0.5">
-                支持多目的地规划、周一避让与实操级动线编排
+                {t("wizardSubtitle")}
               </p>
             </div>
             <button
@@ -356,7 +373,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
               onClick={() => setIsExpanded(false)}
               className="text-xs font-semibold text-zinc-500 hover:text-zinc-900 px-3 py-1.5 rounded-full hover:bg-stone-100 transition flex items-center gap-1"
             >
-              <span>收起</span>
+              <span>{locale === "en" ? "Collapse" : "收起"}</span>
               <ChevronUp className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -365,10 +382,12 @@ export const TripWizard: React.FC<TripWizardProps> = ({
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-zinc-900 uppercase tracking-wider">
-                目的地 (可多选组合)
+                {locale === "en" ? "Destinations (Multi-Select)" : "目的地 (可多选组合)"}
               </span>
               <span className="text-[11px] text-zinc-400">
-                已选 {selectedCities.length} 个城市/区域
+                {locale === "en"
+                  ? `Selected ${selectedCities.length} ${t("selectedCountText")}`
+                  : `已选 ${selectedCities.length} 个城市/区域`}
               </span>
             </div>
 
@@ -397,7 +416,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                   value={cityInput}
                   onChange={(e) => setCityInput(e.target.value)}
                   onKeyDown={handleCityKeyDown}
-                  placeholder="输入城市或景区，按回车添加..."
+                  placeholder={t("addCityPlaceholder")}
                   className="w-full text-xs font-medium py-1 px-2.5 bg-transparent text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
                 />
                 {cityInput.trim() && (
@@ -406,7 +425,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                     onClick={handleAddCityInput}
                     className="px-2.5 py-1 rounded-full bg-zinc-800 text-white text-[11px] font-bold shrink-0 hover:bg-zinc-900"
                   >
-                    添加
+                    {t("addCityBtn")}
                   </button>
                 )}
               </div>
@@ -441,7 +460,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-zinc-900 uppercase tracking-wider">
-                出行日期与天数
+                {t("datesAndDuration")}
               </span>
 
               {/* Mode Switcher */}
@@ -456,7 +475,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                   }`}
                 >
                   <Calendar className="w-3 h-3 text-[#C5A880]" />
-                  <span>日历排期 (规避闭馆)</span>
+                  <span>{t("calendarTab")}</span>
                 </button>
 
                 <button
@@ -469,7 +488,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                   }`}
                 >
                   <Sliders className="w-3 h-3 text-[#C5A880]" />
-                  <span>1-30天滑块</span>
+                  <span>{t("sliderTab")}</span>
                 </button>
               </div>
             </div>
@@ -480,7 +499,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                 <div className="flex flex-col sm:flex-row items-center gap-3">
                   <div className="flex-1 w-full">
                     <label className="block text-[11px] font-medium text-zinc-500 mb-1">
-                      出发日期
+                      {t("departureDate")}
                     </label>
                     <input
                       type="date"
@@ -492,7 +511,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
 
                   <div className="w-full sm:w-44">
                     <label className="block text-[11px] font-medium text-zinc-500 mb-1">
-                      行程天数 (1-30天)
+                      {t("durationSliderLabel")}
                     </label>
                     <div className="flex items-center gap-2">
                       <input
@@ -506,7 +525,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                         className="w-full accent-zinc-900 cursor-pointer"
                       />
                       <span className="font-extrabold text-xs text-zinc-900 shrink-0 w-8">
-                        {durationDays}天
+                        {durationDays}{t("daysUnit")}
                       </span>
                     </div>
                   </div>
@@ -518,7 +537,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                     {getCalendarSummary()}
                   </span>
                   <span className="text-zinc-700 font-medium bg-stone-100 px-2 py-0.5 rounded-md border border-stone-200">
-                    已开启场馆实际开放日智能校准 (规避闭馆)
+                    {t("calendarOptimizedTip")}
                   </span>
                 </div>
               </div>
@@ -527,11 +546,11 @@ export const TripWizard: React.FC<TripWizardProps> = ({
               <div className="p-4 rounded-2xl bg-stone-50/70 border border-stone-200/80 space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-zinc-600 font-medium">
-                    滑动调整天数:
+                    {t("slideAdjust")}
                   </span>
                   <span className="text-sm font-extrabold text-zinc-900 px-3 py-1 rounded-full bg-white border border-stone-200 shadow-xs">
-                    {durationDays} 天{" "}
-                    {durationDays > 1 ? `${durationDays - 1} 晚` : "往返"}
+                    {durationDays} {t("daysUnit")}{" "}
+                    {durationDays > 1 ? `${durationDays - 1} ${t("nightsUnit")}` : t("roundTrip")}
                   </span>
                 </div>
 
@@ -560,7 +579,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                           : "bg-white text-zinc-600 border border-stone-200 hover:bg-stone-100"
                       }`}
                     >
-                      {day}天
+                      {day}{t("daysUnit")}
                     </button>
                   ))}
                 </div>
@@ -698,13 +717,13 @@ export const TripWizard: React.FC<TripWizardProps> = ({
           {/* 6. Custom Wishlist */}
           <div>
             <div className="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2">
-              特殊要求与心愿 (选填)
+              {t("specialRequestsLabel")}
             </div>
             <input
               type="text"
               value={customNotes}
               onChange={(e) => setCustomNotes(e.target.value)}
-              placeholder="例如：必吃东方水产帝王蟹；第一天下午才到；长辈不能吃辣..."
+              placeholder={t("specialRequestsPlaceholder")}
               className="w-full px-3.5 py-2.5 rounded-2xl border border-stone-200 text-xs font-medium text-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-900 bg-stone-50/50"
             />
           </div>

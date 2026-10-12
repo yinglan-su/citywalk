@@ -327,16 +327,20 @@ CRITICAL PLANNING RULES:
 ${(() => {
   if (config.startDate) {
     const start = new Date(config.startDate);
-    const weekdays = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+    const isEn = config.locale === "en";
+    const weekdaysZh = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+    const weekdaysEn = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const monthsEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const scheduleLines: string[] = [];
     for (let i = 0; i < config.durationDays; i++) {
       const cur = new Date(start);
       cur.setDate(start.getDate() + i);
-      const ymStr = `${cur.getMonth() + 1}月${cur.getDate()}日`;
-      const wkStr = weekdays[cur.getDay()];
+      const ymStr = isEn ? `${monthsEn[cur.getMonth()]} ${cur.getDate()}` : `${cur.getMonth() + 1}月${cur.getDate()}日`;
+      const wkStr = isEn ? weekdaysEn[cur.getDay()] : weekdaysZh[cur.getDay()];
       scheduleLines.push(`   * Day ${i + 1}: ${ymStr} (${wkStr}) [Check actual operating schedule for all visited spots: place museums only on open days; schedule nature/market/scenic walks if any specific museum is closed]`);
     }
-    return `   EXACT TRIP SCHEDULE:\n${scheduleLines.join("\n")}\n   You MUST reflect these exact dates and weekdays in each day.dateOrLabel (e.g. "Day 1 · 10月01日 (周四) · 抵达延吉").`;
+    const exampleLabel = isEn ? "Day 1 · Oct 01 (Thu) · Arrival & Scenic Stroll" : "Day 1 · 10月01日 (周四) · 抵达延吉";
+    return `   EXACT TRIP SCHEDULE:\n${scheduleLines.join("\n")}\n   You MUST reflect these exact dates and weekdays in each day.dateOrLabel (e.g. "${exampleLabel}").`;
   }
   return "   - Check if attractions are public museums/monuments. Verify actual opening days and schedule museum visits on days they are confirmed open.";
 })()}

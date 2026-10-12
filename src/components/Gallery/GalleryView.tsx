@@ -34,6 +34,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
     try {
       const q = new URLSearchParams();
       if (s) q.set("search", s);
+      q.set("locale", locale);
 
       const res = await fetch(`/api/gallery?${q.toString()}`);
       const data = await res.json();
@@ -49,7 +50,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
 
   useEffect(() => {
     fetchGallery(search);
-  }, []);
+  }, [locale]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,7 +71,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
       }
     }
 
-    alert("无法加载此行程详情");
+    alert(locale === "en" ? "Unable to load itinerary details" : "无法加载此行程详情");
   };
 
   const handleRemixClick = (e: React.MouseEvent, item: GalleryItem) => {
@@ -78,7 +79,10 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
     onRemixPlan({
       destinations: item.destination,
       durationDays: item.durationDays,
-      companions: item.tags.includes("长辈友好") ? ["elders"] : [],
+      companions:
+        item.tags.includes("长辈友好") || item.tags.includes("Senior Friendly")
+          ? ["elders"]
+          : [],
       mobility: "low",
     });
   };
@@ -128,13 +132,21 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
       {isLoading ? (
         <div className="text-center py-20">
           <div className="inline-block animate-spin rounded-full h-8 w-8 border-3 border-zinc-900 border-t-transparent mb-3" />
-          <div className="text-xs font-medium text-zinc-400">探索路线精选中...</div>
+          <div className="text-xs font-medium text-zinc-400">
+            {locale === "en" ? "Curating handpicked itineraries..." : "探索路线精选中..."}
+          </div>
         </div>
       ) : items.length === 0 ? (
         <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-stone-200 p-8">
           <Compass className="w-10 h-10 text-stone-300 mx-auto mb-2" />
-          <div className="text-sm font-bold text-zinc-800">暂无匹配路线</div>
-          <p className="text-xs text-zinc-400 mt-1">试试搜索其他城市，或在上方开启专属定制。</p>
+          <div className="text-sm font-bold text-zinc-800">
+            {locale === "en" ? "No matching itineraries found" : "暂无匹配路线"}
+          </div>
+          <p className="text-xs text-zinc-400 mt-1">
+            {locale === "en"
+              ? "Try searching other cities, or customize your own above."
+              : "试试搜索其他城市，或在上方开启专属定制。"}
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
