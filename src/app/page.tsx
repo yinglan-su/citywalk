@@ -205,8 +205,8 @@ export default function Home() {
         title="View Ultra-Premium Atelier Edition Demo"
       >
         <span className="w-2 h-2 rounded-full bg-[#C5A880] group-hover:scale-125 transition-transform" />
-        <span className="font-serif italic text-zinc-900">
-          {locale === "en" ? "Atelier Demo" : "奢享工坊版演示"}
+        <span className="font-serif text-zinc-900">
+          {locale === "en" ? "Atelier View" : "新版设计"}
         </span>
         <span className="text-[10px] text-zinc-400 font-normal">→</span>
       </Link>

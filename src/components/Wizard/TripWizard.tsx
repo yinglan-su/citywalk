@@ -68,16 +68,16 @@ export const TripWizard: React.FC<TripWizardProps> = ({
   const generatingSteps =
     locale === "en"
       ? [
-          "Optimizing logistics & eliminating backtracking...",
-          "Verifying attraction opening hours & Monday closures...",
-          "Curating mild, authentic local dining with top reviews...",
-          "Arranging interactive map coordinates & drop-off points...",
+          "Optimizing smooth routes and daily pacing...",
+          "Checking opening hours and visit recommendations...",
+          "Curating mild, authentic local dining with high ratings...",
+          "Organizing map coordinates and convenient drop-off spots...",
         ]
       : [
-          "正在规划最优动线，消除折返跑...",
-          "正在核实场馆周一闭馆规则与实名预约...",
-          "正在筛选长辈清淡菜系与地道口碑美食...",
-          "正在编排点位地图与落客门廊...",
+          "正在规划顺畅舒缓的每日路线...",
+          "正在核对场馆开放时间与参访建议...",
+          "正在甄选清淡适口的地道口碑美食...",
+          "正在整理地图坐标与便捷落客点...",
         ];
 
   // Collapsed by default per user request

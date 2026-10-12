@@ -3788,7 +3788,7 @@ export const CURATED_PLANS: TravelPlan[] = [
       {
         dayNumber: 1,
         dateOrLabel: "Day 1 · 皇居外苑二重桥漫步 & 叙叙苑和牛暖味",
-        theme: "抵东瀛 · 半岛酒店奢享入住 · 皇居古松绿茵漫游",
+        theme: "抵东瀛 · 半岛酒店入住 · 皇居古松漫步",
         paceScore: "relaxed",
         mapConfig: {
           center: [35.6795, 139.757],
@@ -4380,7 +4380,7 @@ export const CURATED_PLANS: TravelPlan[] = [
           {
             type: "activity",
             id: "xm_d1_hotel",
-            name: "厦门康莱德酒店 (Conrad Xiamen) · 世茂双子塔海景奢享入住",
+            name: "厦门康莱德酒店 (Conrad Xiamen) · 世茂双子塔海景客房入住",
             category: "rest",
             timeSlot: "11:30 - 12:30",
             durationMinutes: 60,

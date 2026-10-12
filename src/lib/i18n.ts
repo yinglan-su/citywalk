@@ -248,7 +248,7 @@ export const translations: Record<Locale, TranslationDictionary> = {
     budgetLabel: "预算偏好",
     budgetLow: "经济实惠",
     budgetMid: "品质舒适",
-    budgetHigh: "高阶奢享",
+    budgetHigh: "高端品质",
     transportLabel: "交通偏好",
     transportTaxi: "专车 / 打车",
     transportPublic: "公共交通",

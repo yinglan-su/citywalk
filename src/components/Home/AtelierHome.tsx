@@ -89,26 +89,26 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
   const categories = [
     {
       id: "all" as const,
-      labelEn: "All Journeys",
-      labelZh: "全部路线",
+      labelEn: "All",
+      labelZh: "全部",
       count: plans.length,
     },
     {
       id: "zen" as const,
       labelEn: "Zen & Heritage",
-      labelZh: "禅意文博",
+      labelZh: "禅意古韵",
       count: categoryMap.zen.length,
     },
     {
       id: "coastal" as const,
-      labelEn: "Coastal Calm",
-      labelZh: "海滨慢调",
+      labelEn: "Coastal Breeze",
+      labelZh: "海风慢调",
       count: categoryMap.coastal.length,
     },
     {
       id: "culinary" as const,
-      labelEn: "Gastronomy & Border",
-      labelZh: "风味与边陲",
+      labelEn: "Local Flavors",
+      labelZh: "特色风味",
       count: categoryMap.culinary.length,
     },
   ];
@@ -120,16 +120,13 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
       {/* ------------------------------------------------------------- */}
       {spotlightPlan && (
         <section className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#C5A880] animate-pulse" />
-              <span className="text-[11px] font-bold tracking-widest uppercase text-zinc-500 font-sans">
-                {locale === "en" ? "Curator's Spotlight · Season's Pick" : "策展特选 · 季节焦点"}
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
+              <span className="text-xs font-semibold text-zinc-600 font-sans">
+                {locale === "en" ? "Featured Route" : "精选推荐"}
               </span>
             </div>
-            <span className="text-xs text-zinc-400 font-serif italic">
-              {locale === "en" ? "Autumn / Winter Curation" : "秋冬精选辑"}
-            </span>
           </div>
 
           <div
@@ -153,13 +150,13 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
                 {/* Badges */}
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="px-3 py-1 rounded-full bg-[#C5A880] text-zinc-950 text-xs font-bold tracking-wide">
-                    {spotlightPlan.meta.durationDays} {locale === "en" ? "Days Expedition" : "天专属行程"}
+                    {spotlightPlan.meta.durationDays} {locale === "en" ? "Days" : "天"}
                   </span>
                   <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-medium">
-                    {locale === "en" ? "Gentle Pace (<5k steps)" : "轻度步调 (<5000步)"}
+                    {locale === "en" ? "Gentle Pace" : "轻松步调"}
                   </span>
                   <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-medium">
-                    {locale === "en" ? "Barrier-Free Verified" : "无障碍动线实勘"}
+                    {locale === "en" ? "Step-Free Paths" : "平缓少台阶"}
                   </span>
                 </div>
 
@@ -181,7 +178,7 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
                     onClick={handleSpotlightSelect}
                     className="px-6 py-2.5 rounded-full bg-white text-zinc-950 text-xs font-bold hover:bg-[#FAF9F6] transition flex items-center gap-2 shadow-md group-hover:translate-x-0.5 transition-transform"
                   >
-                    <span>{locale === "en" ? "Explore Journey" : "查阅完整路线"}</span>
+                    <span>{locale === "en" ? "View Itinerary" : "查看路线"}</span>
                     <ArrowRight className="w-3.5 h-3.5 text-zinc-950" />
                   </button>
 
@@ -191,7 +188,7 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
                     className="px-4 py-2.5 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md text-white text-xs font-semibold transition flex items-center gap-1.5 border border-white/20"
                   >
                     <GitFork className="w-3.5 h-3.5 text-[#C5A880]" />
-                    <span>{locale === "en" ? "Customize This" : "基于此定制"}</span>
+                    <span>{locale === "en" ? "Customize" : "以此定制"}</span>
                   </button>
                 </div>
               </div>
@@ -201,16 +198,13 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
       )}
 
       {/* ------------------------------------------------------------- */}
-      {/* 2. THE THREE TENETS OF 7KA (Quiet Luxury Atelier Standards)    */}
+      {/* 2. THE THREE TENETS (Comfort & Thoughtful Design)              */}
       {/* ------------------------------------------------------------- */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="border-y border-stone-200/80 py-12 sm:py-16">
           <div className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
-            <span className="text-[11px] font-bold tracking-widest uppercase text-[#C5A880]">
-              {locale === "en" ? "Atelier Standards" : "工坊实操标准"}
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 mt-1">
-              {locale === "en" ? "The Three Tenets of Slow Travel" : "慢调旅行的三项铁律"}
+            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900">
+              {locale === "en" ? "Designed for Comfort & Ease" : "专为舒适漫步而设计"}
             </h3>
           </div>
 
@@ -222,12 +216,12 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
               </div>
               <h4 className="text-base font-bold text-zinc-900 tracking-tight flex items-center gap-2">
                 <Footprints className="w-4 h-4 text-zinc-500" />
-                {locale === "en" ? "Zero-Backtrack Logistics" : "动线零折返与午休"}
+                {locale === "en" ? "Smooth Pacing & Rest" : "顺畅节奏与午间休整"}
               </h4>
               <p className="text-xs text-zinc-500 leading-relaxed font-normal">
                 {locale === "en"
-                  ? "Daily routes are strictly limited to 2–3 meaningful highlights with a mandatory 2-hour midday rest break, eliminating rush and backtracking."
-                  : "每日仅安排 2 至 3 处核心亮点，强制预留 2 小时午间休整，严谨测算单向动线，杜绝折返跑与体力透支。"}
+                  ? "Daily plans are kept to 2–3 highlights with plenty of midday rest, moving naturally without backtracking."
+                  : "每日仅规划 2 至 3 处核心亮点，预留充足午休时间。路线顺畅前行，不走回头路。"}
               </p>
             </div>
 
@@ -238,12 +232,12 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
               </div>
               <h4 className="text-base font-bold text-zinc-900 tracking-tight flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-zinc-500" />
-                {locale === "en" ? "Doorstep Drop-offs" : "实勘落客门廊与平缓道"}
+                {locale === "en" ? "Gentle Paths & Close Drop-offs" : "平缓步道与就近落客"}
               </h4>
               <p className="text-xs text-zinc-500 leading-relaxed font-normal">
                 {locale === "en"
-                  ? "Every stop features designated vehicle drop-off platforms, flat ramps, and elevator priority routing to spare elders and children steep climbs."
-                  : "每个点位均精确指定专车落客门廊或平缓步道入口，核查电梯与无障碍设施，让长辈与推车从容抵达。"}
+                  ? "We prioritize elevator access, gentle slopes, and direct drop-off spots so travelers can arrive with ease."
+                  : "优先平缓坡道与直达电梯，标明专车与出租车落客点，让长辈与推车轻松进出。"}
               </p>
             </div>
 
@@ -254,12 +248,12 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
               </div>
               <h4 className="text-base font-bold text-zinc-900 tracking-tight flex items-center gap-2">
                 <Utensils className="w-4 h-4 text-zinc-500" />
-                {locale === "en" ? "Digestible Gastronomy" : "温和养胃的地道珍馐"}
+                {locale === "en" ? "Mild & Authentic Local Dining" : "清淡地道的美食甄选"}
               </h4>
               <p className="text-xs text-zinc-500 leading-relaxed font-normal">
                 {locale === "en"
-                  ? "Locally renowned culinary icons rigorously selected for mild, stomach-friendly flavors, soft textures, and Google 4.5★+ reviews."
-                  : "严选温和低刺激、清淡清鲜的老字号与口碑黑珍珠/米其林餐厅，适口易嚼，兼顾家庭各代成员的口味。"}
+                  ? "Handpicked local favorites known for fresh, mild flavors and high ratings, welcoming for all generations."
+                  : "精选清淡少油、口味温和的老字号与口碑餐厅，全家各年龄段都能舒心享用。"}
               </p>
             </div>
           </div>
@@ -273,11 +267,8 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
         {/* Section Header & Thematic Filter Tabs */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <span className="text-[11px] font-bold tracking-widest uppercase text-[#C5A880]">
-              {locale === "en" ? "The Atelier Archive" : "工坊精选档案"}
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 mt-1">
-              {locale === "en" ? "Curated Collections" : "慢行灵感合集"}
+            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900">
+              {locale === "en" ? "Curated Destinations" : "精选目的地"}
             </h3>
           </div>
 

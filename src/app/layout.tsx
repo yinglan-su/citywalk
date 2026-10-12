@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | 7ka",
   },
   description:
-    "AI-powered gentle travel engine with zero-backtrack routes, verified drop-offs, barrier-free access, and curated family dining across Kyoto, Tokyo, Beijing, Shanghai, Chengdu, and beyond.",
+    "Thoughtful, gentle travel planning with smooth routes, step-free access, and curated dining across Kyoto, Tokyo, Beijing, Shanghai, Chengdu, and beyond.",
   keywords: [
     "7ka",
     "slow travel",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     "适老化旅行定制",
     "无障碍旅行",
     "家庭亲子慢行",
-    "0折返动线规划",
+    "舒适慢行规划",
   ],
   authors: [{ name: "7ka Bespoke Travel" }],
   creator: "7ka",
