@@ -110,7 +110,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                 fetchGallery("");
               }
             }}
-            placeholder={locale === "en" ? "Search destination (e.g. Kyoto, Yanji)..." : "搜索城市或路线 (如 延吉、青岛)..."}
+            placeholder={locale === "en" ? "Search destinations..." : "搜索目的地..."}
             className="w-full pl-9 pr-8 py-2 rounded-full bg-white border border-stone-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-900 shadow-xs transition"
           />
           {search && (

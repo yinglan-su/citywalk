@@ -33,19 +33,10 @@ export const SavedPlansView: React.FC<SavedPlansViewProps> = ({
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-100 text-zinc-700 text-xs font-semibold mb-3 border border-stone-200">
-          <Bookmark className="w-3.5 h-3.5 text-[#C5A880]" />
-          {locale === "en" ? "Private Archive" : "本地行程档案"}
-        </div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
-          {locale === "en" ? "My Saved Itineraries" : "我的行程档案"}
+      <div className="mb-6">
+        <h1 className="text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">
+          {locale === "en" ? "Saved Itineraries" : "我的行程"}
         </h1>
-        <p className="mt-2 text-sm text-zinc-500 max-w-xl mx-auto">
-          {locale === "en"
-            ? "All journeys created or viewed on this device are automatically preserved in your private browser cache."
-            : "您在本机生成或查看过的所有路线均已自动保存在本地，无需登录，随时查阅。"}
-        </p>
       </div>
 
       {plans.length === 0 ? (

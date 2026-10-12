@@ -432,52 +432,6 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
         )}
       </div>
 
-      {/* ------------------------------------------------------------- */}
-      {/* Tier 1: AI Concierge Copilot Bar (Opens Floating Chat)        */}
-      {/* ------------------------------------------------------------- */}
-      <div className="bg-stone-50/90 rounded-2xl border border-stone-200/80 px-4 py-3 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
-        <div className="flex items-center gap-2.5">
-          <div className="w-6 h-6 rounded-full bg-zinc-900 text-[#C5A880] flex items-center justify-center text-xs font-serif font-black shrink-0">
-            7
-          </div>
-          <div className="text-xs">
-            <span className="font-bold text-zinc-900">
-              {locale === "en" ? "AI Itinerary Concierge" : "AI 行程管家"}
-            </span>
-            <span className="text-zinc-400 mx-1.5">·</span>
-            <span className="text-zinc-500">
-              {locale === "en"
-                ? "Need to tweak spots, pacing or meals? Click to open copilot."
-                : "偏好调整、避开台阶、餐饮替换？点击开启右下角管家微调"}
-            </span>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          {presetChips.slice(0, 2).map((chip) => (
-            <button
-              key={chip}
-              type="button"
-              disabled={isTweaking}
-              onClick={() => {
-                setIsTweakOpen(true);
-                executeAITweak(chip);
-              }}
-              className="hidden md:inline-flex text-[11px] px-2.5 py-1 rounded-full bg-white hover:bg-stone-100 text-zinc-700 border border-stone-200 transition disabled:opacity-50 select-none active:scale-[0.98]"
-            >
-              + {chip.split("·")[0].trim()}
-            </button>
-          ))}
-          <button
-            type="button"
-            onClick={() => setIsTweakOpen(true)}
-            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold transition shadow-xs shrink-0 self-start sm:self-auto cursor-pointer"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#C5A880]" />
-            <span>{locale === "en" ? "Open Copilot" : "打开管家微调"}</span>
-          </button>
-        </div>
-      </div>
 
       {/* Reservation Checklist Banner */}
       {localPlan.reservationChecklist &&
@@ -548,7 +502,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
               </h2>
             </div>
             <span className="text-xs text-zinc-500 font-medium self-start sm:self-auto">
-              {locale === "en" ? "Theme: " : "主题: "}{currentDay.theme}
+              {currentDay.theme}
             </span>
           </div>
 

@@ -312,8 +312,8 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                 ) : (
                   <span className="text-zinc-400 font-normal">
                     {locale === "en"
-                      ? "Select destination to start crafting..."
-                      : "选择目的地，开启专属定制..."}
+                      ? "Select destination..."
+                      : "选择目的地..."}
                   </span>
                 )}
               </div>
@@ -348,7 +348,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
               onClick={() => setIsExpanded(true)}
               className="px-5 py-2.5 rounded-full bg-zinc-900 text-white text-xs font-bold hover:bg-zinc-800 transition flex items-center gap-1.5 shrink-0 shadow-xs"
             >
-              <span>{locale === "en" ? "Customize" : "开始定制"}</span>
+              <span>{locale === "en" ? "Customize" : "定制"}</span>
               <ChevronDown className="w-3.5 h-3.5 text-[#C5A880]" />
             </button>
           </div>
@@ -360,14 +360,9 @@ export const TripWizard: React.FC<TripWizardProps> = ({
         <div className="bg-white rounded-3xl border border-stone-200 shadow-sm p-6 sm:p-8 space-y-7 transition-all animate-fadeIn">
           {/* Header with Title and Collapse Button */}
           <div className="flex items-center justify-between border-b border-stone-100 pb-4">
-            <div>
-              <h2 className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight">
-                {t("wizardTitle")}
-              </h2>
-              <p className="text-xs text-zinc-400 mt-0.5">
-                {t("wizardSubtitle")}
-              </p>
-            </div>
+            <h2 className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight">
+              {t("wizardTitle")}
+            </h2>
             <button
               type="button"
               onClick={() => setIsExpanded(false)}
@@ -382,12 +377,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-zinc-900 uppercase tracking-wider">
-                {locale === "en" ? "Destinations (Multi-Select)" : "目的地 (可多选组合)"}
-              </span>
-              <span className="text-[11px] text-zinc-400">
-                {locale === "en"
-                  ? `Selected ${selectedCities.length} ${t("selectedCountText")}`
-                  : `已选 ${selectedCities.length} 个城市/区域`}
+                {t("destLabel")}
               </span>
             </div>
 
@@ -531,13 +521,10 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                   </div>
                 </div>
 
-                {/* Schedule Summary & Smart Closure Avoidance badge */}
-                <div className="flex flex-wrap items-center justify-between gap-1 text-[11px] pt-1.5 border-t border-stone-200/60">
-                  <span className="font-bold text-zinc-800">
+                {/* Schedule Summary */}
+                <div className="flex items-center justify-between text-[11px] pt-1.5 border-t border-stone-200/60">
+                  <span className="font-semibold text-zinc-700">
                     {getCalendarSummary()}
-                  </span>
-                  <span className="text-zinc-700 font-medium bg-stone-100 px-2 py-0.5 rounded-md border border-stone-200">
-                    {t("calendarOptimizedTip")}
                   </span>
                 </div>
               </div>
@@ -589,13 +576,8 @@ export const TripWizard: React.FC<TripWizardProps> = ({
 
           {/* 3. Trip Focus (Multi-select: Foodie, Culture, Nature) */}
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold text-zinc-900 uppercase tracking-wider">
-                {t("focusLabel")}
-              </span>
-              <span className="text-[11px] text-zinc-400">
-                {tripFocus.length}
-              </span>
+            <div className="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2">
+              {t("focusLabel")}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               {tripFocusOptions.map((f) => {

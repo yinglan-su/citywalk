@@ -31,14 +31,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               7
             </span>
           </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-bold text-lg tracking-tight text-zinc-900">
-              7ka<span className="text-[#C5A880]">.</span>
-            </span>
-            <span className="text-[9px] tracking-widest text-zinc-400 font-medium uppercase mt-0.5">
-              {t("brandTagline")}
-            </span>
-          </div>
+          <span className="font-bold text-xl tracking-tight text-zinc-900">
+            7ka<span className="text-[#C5A880]">.</span>
+          </span>
         </div>
 
         {/* Right Actions: 语言切换 & 我的行程 */}

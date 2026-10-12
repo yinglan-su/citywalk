@@ -137,13 +137,8 @@ export default function Home() {
                 <div className="relative z-10 max-w-3xl mx-auto">
                   <div className="text-center mb-6 sm:mb-8">
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-900 tracking-tight drop-shadow-xs">
-                      {locale === "en" ? "Explore Your Next Journey" : "探索你的下一段旅程"}
+                      {locale === "en" ? "Bespoke Slow Travel" : "慢调旅行 · 专属定制"}
                     </h1>
-                    {/* Location Caption Badge */}
-                    <div className="mt-2.5 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-stone-200/90 text-[11px] text-zinc-700 font-semibold shadow-xs">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
-                      <span>{locale === "en" ? HERO_BACKGROUNDS[bgIndex]?.titleEn : HERO_BACKGROUNDS[bgIndex]?.title}</span>
-                    </div>
                   </div>
 
                   <TripWizard
@@ -191,13 +186,13 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-stone-200/80 bg-white py-6 mt-16 text-center text-xs text-zinc-500">
+      <footer className="border-t border-stone-200/80 bg-white py-8 mt-16 text-xs text-zinc-400">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="font-semibold text-zinc-700">
+          <div className="font-medium text-zinc-600">
             {t("footerTagline")}
           </div>
           <div className="text-zinc-400">
-            Powered by Google Gemini 3.8 Flash & Next.js
+            © 7ka
           </div>
         </div>
       </footer>
