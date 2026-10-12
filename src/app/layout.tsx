@@ -1,8 +1,15 @@
 import type { Metadata, Viewport } from "next";
+import { Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { StructuredData } from "@/components/Seo/StructuredData";
 import "./globals.css";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   themeColor: "#FAF9F6",
@@ -112,7 +119,7 @@ export default function RootLayout({
         <meta name="geo.placename" content="Bespoke Slow Travel" />
         <StructuredData />
       </head>
-      <body className="antialiased font-sans bg-[#FAF9F6] text-zinc-900 min-h-screen">
+      <body className={`${playfair.variable} antialiased font-sans bg-[#FAF9F6] text-zinc-900 min-h-screen`}>
         <LanguageProvider>
           {children}
         </LanguageProvider>

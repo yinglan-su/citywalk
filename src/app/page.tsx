@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { TripWizard } from "@/components/Wizard/TripWizard";
 import { GalleryView } from "@/components/Gallery/GalleryView";
@@ -196,6 +197,19 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Floating Demo Preview Switcher */}
+      <Link
+        href="/demo"
+        className="fixed bottom-6 left-6 z-40 hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/95 backdrop-blur-md text-zinc-800 shadow-lg hover:shadow-xl hover:border-stone-400 transition-all border border-stone-200/90 text-xs font-semibold select-none group"
+        title="View Ultra-Premium Atelier Edition Demo"
+      >
+        <span className="w-2 h-2 rounded-full bg-[#C5A880] group-hover:scale-125 transition-transform" />
+        <span className="font-serif italic text-zinc-900">
+          {locale === "en" ? "Atelier Demo" : "奢享工坊版演示"}
+        </span>
+        <span className="text-[10px] text-zinc-400 font-normal">→</span>
+      </Link>
     </div>
   );
 }
