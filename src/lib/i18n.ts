@@ -335,7 +335,7 @@ export const translations: Record<Locale, TranslationDictionary> = {
     // Copilot & Floating Tweak
     openCopilot: "行程管家",
     copilotBannerDesc: "",
-    copilotDrawerTitle: "AI 行程管家",
+    copilotDrawerTitle: "行程管家",
     copilotDrawerSubtitle: "定向微调 · 优化动线与落客点",
     copilotWelcome: "您好！我是您的 7ka 专属行程管家。想避开台阶爬坡、换成清淡滋补餐饮，或是替换景点？输入具体要求即可自动调整动线。",
     quickPresets: "快捷指令",
@@ -514,7 +514,7 @@ export const translations: Record<Locale, TranslationDictionary> = {
     mapProviderHint: "Map layer optimized for region",
 
     // Interactive Actions & Tweak
-    aiTweakTitle: "AI Tweak",
+    aiTweakTitle: "Custom Tweak",
     aiTweakPlaceholder: "e.g. Add a quiet teahouse, switch to indoor venue...",
     aiTweakBtn: "Tweak",
     aiTweaking: "Optimizing...",
@@ -537,7 +537,7 @@ export const translations: Record<Locale, TranslationDictionary> = {
     // Copilot & Floating Tweak
     openCopilot: "Concierge",
     copilotBannerDesc: "",
-    copilotDrawerTitle: "AI Concierge",
+    copilotDrawerTitle: "Concierge Copilot",
     copilotDrawerSubtitle: "Route & Pacing Tweak",
     copilotWelcome: "Hello! I am your 7ka travel concierge. Need to reduce steps, swap meals, or switch attractions? Let me know and I will re-optimize your route.",
     quickPresets: "Presets",

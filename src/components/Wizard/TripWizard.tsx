@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
   MapPin,
   Calendar,
@@ -10,9 +10,17 @@ import {
   ChevronUp,
   X,
   Search,
+  Globe,
+  Check,
 } from "lucide-react";
 import { TravelPlan, WizardConfig } from "@/types/itinerary";
 import { useLanguage } from "@/context/LanguageContext";
+import {
+  searchWorldCities,
+  getCityDisplayName,
+  getCityPrimaryName,
+  isRecognizedCity,
+} from "@/data/world-cities";
 
 interface TripWizardProps {
   onPlanGenerated: (plan: TravelPlan) => void;
@@ -83,11 +91,39 @@ export const TripWizard: React.FC<TripWizardProps> = ({
   // Collapsed by default per user request
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  // Multi-select destinations array
-  const [selectedCities, setSelectedCities] = useState<string[]>(
-    locale === "en" ? ["Kyoto", "Tokyo"] : ["延吉", "珲春"]
-  );
+  // Multi-select destinations array (starts empty without hardcoded defaults)
+  const [selectedCities, setSelectedCities] = useState<string[]>(() => {
+    if (initialConfig?.destinations) {
+      return initialConfig.destinations
+        .split(/[+,/、\s]+/)
+        .map((s) => s.trim())
+        .filter(Boolean);
+    }
+    return [];
+  });
   const [cityInput, setCityInput] = useState<string>("");
+  const [isCitySuggestionsOpen, setIsCitySuggestionsOpen] = useState(false);
+  const cityInputContainerRef = useRef<HTMLDivElement>(null);
+
+  // Live matching from world cities database
+  const matchingCities = useMemo(() => {
+    if (!cityInput.trim()) return [];
+    return searchWorldCities(cityInput, (locale as "zh" | "en") || "zh", 7);
+  }, [cityInput, locale]);
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        cityInputContainerRef.current &&
+        !cityInputContainerRef.current.contains(e.target as Node)
+      ) {
+        setIsCitySuggestionsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Multi-select Trip Focus: foodie, culture, nature
   const [tripFocus, setTripFocus] = useState<string[]>(
@@ -122,11 +158,8 @@ export const TripWizard: React.FC<TripWizardProps> = ({
   const [transportMode, setTransportMode] = useState<
     "charter_taxi" | "public_transit" | "driving"
   >(initialConfig?.transportMode || "charter_taxi");
-  const [customNotes, setCustomNotes] = useState(
-    initialConfig?.customNotes ||
-      (locale === "en"
-        ? "Prefer mild non-spicy food; gentle pacing on arrival day; scenic views."
-        : "必须吃东方水产帝王蟹；第一天抵达不排紧凑，让长辈充分休整；不吃辣。")
+  const [customNotes, setCustomNotes] = useState<string>(
+    initialConfig?.customNotes || ""
   );
 
   const [isLoading, setIsLoading] = useState(false);
@@ -184,19 +217,30 @@ export const TripWizard: React.FC<TripWizardProps> = ({
     );
   };
 
-  const handleAddCityInput = () => {
-    const trimmed = cityInput.trim();
+  const handleAddCityInput = (cityName?: string) => {
+    const trimmed = (cityName || cityInput).trim();
     if (!trimmed) return;
     if (!selectedCities.includes(trimmed)) {
       setSelectedCities((prev) => [...prev, trimmed]);
     }
     setCityInput("");
+    setIsCitySuggestionsOpen(false);
   };
 
   const handleCityKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      handleAddCityInput();
+      if (matchingCities.length > 0) {
+        const topMatch = getCityPrimaryName(
+          matchingCities[0],
+          (locale as "zh" | "en") || "zh"
+        );
+        handleAddCityInput(topMatch);
+      } else {
+        handleAddCityInput();
+      }
+    } else if (e.key === "Escape") {
+      setIsCitySuggestionsOpen(false);
     }
   };
 
@@ -400,23 +444,121 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                 </span>
               ))}
 
-              <div className="flex items-center gap-1 flex-1 min-w-[200px]">
+              <div
+                ref={cityInputContainerRef}
+                className="relative flex items-center gap-1 flex-1 min-w-[220px]"
+              >
                 <input
                   type="text"
                   value={cityInput}
-                  onChange={(e) => setCityInput(e.target.value)}
+                  onChange={(e) => {
+                    setCityInput(e.target.value);
+                    setIsCitySuggestionsOpen(true);
+                  }}
+                  onFocus={() => {
+                    if (cityInput.trim()) setIsCitySuggestionsOpen(true);
+                  }}
                   onKeyDown={handleCityKeyDown}
-                  placeholder={t("addCityPlaceholder")}
+                  placeholder={
+                    selectedCities.length === 0
+                      ? locale === "en"
+                        ? "Type a world city (e.g. Kyoto, Paris, Tokyo)..."
+                        : "输入全球城市名称（如：京都、巴黎、成都）..."
+                      : t("addCityPlaceholder")
+                  }
                   className="w-full text-xs font-medium py-1 px-2.5 bg-transparent text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
                 />
                 {cityInput.trim() && (
                   <button
                     type="button"
-                    onClick={handleAddCityInput}
-                    className="px-2.5 py-1 rounded-full bg-zinc-800 text-white text-[11px] font-bold shrink-0 hover:bg-zinc-900"
+                    onClick={() => handleAddCityInput()}
+                    className="px-2.5 py-1 rounded-full bg-zinc-800 text-white text-[11px] font-bold shrink-0 hover:bg-zinc-900 cursor-pointer"
                   >
                     {t("addCityBtn")}
                   </button>
+                )}
+
+                {/* World City Autocomplete Suggestions */}
+                {isCitySuggestionsOpen && cityInput.trim() && (
+                  <div className="absolute top-full left-0 mt-2 w-80 max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-xl border border-stone-200 z-50 overflow-hidden py-1.5 animate-fadeIn">
+                    <div className="px-3 py-1 text-[10px] font-semibold text-zinc-400 uppercase tracking-wider border-b border-stone-100 flex items-center justify-between">
+                      <span className="flex items-center gap-1">
+                        <Globe className="w-3 h-3 text-[#C5A880]" />
+                        <span>
+                          {locale === "en"
+                            ? "World Cities Database"
+                            : "全球权威城市库验证"}
+                        </span>
+                      </span>
+                      <span className="text-[9px] text-zinc-400">
+                        {matchingCities.length > 0
+                          ? locale === "en"
+                            ? `${matchingCities.length} found`
+                            : `匹配到 ${matchingCities.length} 个城市`
+                          : locale === "en"
+                          ? "Custom entry"
+                          : "自定义名称"}
+                      </span>
+                    </div>
+
+                    {matchingCities.length > 0 ? (
+                      <div className="max-h-60 overflow-y-auto">
+                        {matchingCities.map((city) => {
+                          const primaryName = getCityPrimaryName(
+                            city,
+                            (locale as "zh" | "en") || "zh"
+                          );
+                          const isAlreadySelected = selectedCities.includes(primaryName);
+                          return (
+                            <button
+                              key={city.id}
+                              type="button"
+                              onClick={() => handleAddCityInput(primaryName)}
+                              className="w-full px-3 py-2 text-left hover:bg-stone-50 transition flex items-center justify-between gap-2 text-xs group cursor-pointer border-b border-stone-50 last:border-b-0"
+                            >
+                              <div className="flex items-center gap-2 truncate">
+                                <MapPin className="w-3.5 h-3.5 text-zinc-400 group-hover:text-zinc-900 shrink-0" />
+                                <span className="font-semibold text-zinc-900">
+                                  {locale === "en" ? city.nameEn : city.nameZh}
+                                </span>
+                                <span className="text-[11px] text-zinc-400 truncate">
+                                  {locale === "en" ? city.nameZh : city.nameEn}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-1.5 shrink-0">
+                                <span className="text-[10px] px-2 py-0.5 rounded-full bg-stone-100 text-zinc-600 font-medium">
+                                  {locale === "en" ? city.countryEn : city.countryZh}
+                                </span>
+                                {isAlreadySelected && (
+                                  <Check className="w-3 h-3 text-emerald-600" />
+                                )}
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div className="p-3 text-xs">
+                        <div className="flex items-start gap-2 text-zinc-600 bg-stone-50 p-2.5 rounded-xl border border-stone-200/80 mb-2">
+                          <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5 text-[#C5A880]" />
+                          <div className="text-[11px] leading-relaxed">
+                            {locale === "en"
+                              ? `"${cityInput.trim()}" is not in the top world cities directory, but can still be planned.`
+                              : `「${cityInput.trim()}」未收录在全球主要旅游城市库中，仍可为您规划，请确认拼写准确。`}
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleAddCityInput()}
+                          className="w-full py-1.5 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold transition text-center cursor-pointer shadow-xs"
+                        >
+                          {locale === "en"
+                            ? `Add "${cityInput.trim()}" as custom destination`
+                            : `确认添加「${cityInput.trim()}」为目的地`}
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             </div>

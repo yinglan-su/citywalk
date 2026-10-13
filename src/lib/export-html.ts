@@ -1,6 +1,37 @@
 import { TravelPlan } from "@/types/itinerary";
 import { Locale } from "./i18n";
 
+function resolveStopDisplay(
+  stop: string,
+  timeline?: any[],
+  allDays?: any[]
+): string {
+  if (!stop) return "";
+  if (!/^[a-z]{2}_d\d+/.test(stop)) {
+    return stop;
+  }
+  if (timeline) {
+    const act = timeline.find((t) => t.type === "activity" && t.id === stop);
+    if (act?.name) return act.name.split(" · ")[0].trim();
+  }
+  if (allDays) {
+    for (const d of allDays) {
+      const act = (d.timeline || []).find((t: any) => t.type === "activity" && t.id === stop);
+      if (act?.name) return act.name.split(" · ")[0].trim();
+    }
+  }
+  if (stop.includes("hotel") || stop.includes("rest")) {
+    if (allDays && allDays.length > 0) {
+      const hotelAct = (allDays[0].timeline || []).find(
+        (t: any) => t.type === "activity" && (t.id?.includes("hotel") || t.category === "rest")
+      );
+      if (hotelAct?.name) return hotelAct.name.split(" · ")[0].trim();
+    }
+    return "酒店";
+  }
+  return stop;
+}
+
 /**
  * Generates a self-contained, offline-ready single HTML document for a travel plan
  */
@@ -179,6 +210,27 @@ export function generateOfflineHtml(plan: TravelPlan, locale?: Locale): string {
         <p style="font-size: 13px; color: #475569;">${plan.overview.logisticsSummary}</p>
       </div>
 
+      ${plan.hotelOptions && plan.hotelOptions.length > 0 ? `
+      <div class="card">
+        <div class="card-title">${isEn ? "Accommodations & Hotels" : "推荐精选酒店"}</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 8px;">
+          ${plan.hotelOptions.map((h) => `
+            <div style="border: 1px solid ${h.isSelected ? "#18181B" : "#E2E8F0"}; background: ${h.isSelected ? "#FAFAF9" : "#FFFFFF"}; border-radius: 12px; padding: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <span style="font-size: 10px; font-weight: bold; background: ${h.isSelected ? "#18181B" : "#F1F5F9"}; color: ${h.isSelected ? "#FFFFFF" : "#64748B"}; padding: 2px 6px; border-radius: 999px;">
+                  ${h.isSelected ? (isEn ? "✓ Selected" : "✓ 已选用") : (isEn ? "Option" : "备选")}
+                </span>
+                <span style="font-size: 11px; font-weight: 600; color: #18181B;">${h.priceRange}</span>
+              </div>
+              <div style="font-size: 13px; font-weight: bold; color: #0F172A; margin-bottom: 2px;">${h.name}</div>
+              <div style="font-size: 11px; color: #B45309; margin-bottom: 4px;">${h.starOrStyle}</div>
+              <div style="font-size: 11px; color: #64748B;">📍 ${h.locationDetail}</div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+      ` : ""}
+
       ${plan.reservationChecklist && plan.reservationChecklist.length > 0 ? `
       <div class="card">
         <div class="card-title">${texts.reservationChecklist}</div>
@@ -235,7 +287,7 @@ export function generateOfflineHtml(plan: TravelPlan, locale?: Locale): string {
                   <div class="transit-block">
                     <span>➔</span>
                     <div>
-                      <strong>${item.fromStop} ➔ ${item.toStop}</strong>
+                      <strong>${resolveStopDisplay(item.fromStop, day.timeline, plan.days)} ➔ ${resolveStopDisplay(item.toStop, day.timeline, plan.days)}</strong>
                       <span style="color: #2563EB; margin-left: 6px;">${modeText} ~${item.estimatedMinutes} ${texts.min} (${item.distanceKm} km)</span>
                       <div style="font-size: 11px; color: #64748B; margin-top: 2px;">${item.navigationDetail}</div>
                     </div>

@@ -44,7 +44,7 @@ export const SavedPlansView: React.FC<SavedPlansViewProps> = ({
           <Bookmark className="w-10 h-10 text-stone-300 mx-auto mb-2" />
           <div className="text-sm font-semibold text-zinc-700">{t("noSavedTrips")}</div>
           <p className="text-xs text-zinc-400 mt-1 mb-4">
-            {locale === "en" ? "Craft your next journey with AI." : "开启您的下一趟专属之旅。"}
+            {locale === "en" ? "Craft your next journey." : "开启您的下一趟专属之旅。"}
           </p>
           <button
             type="button"

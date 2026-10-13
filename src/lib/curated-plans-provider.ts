@@ -2,9 +2,19 @@ import { CURATED_PLANS as CURATED_PLANS_ZH } from "@/data/curated-plans";
 import { CURATED_PLANS_EN } from "@/data/curated-plans-en";
 import { Locale } from "./i18n";
 import { TravelPlan } from "@/types/itinerary";
+import { getDefaultHotelsForPlan } from "@/data/default-hotels";
 
 export function getCuratedPlans(locale: Locale): TravelPlan[] {
-  return locale === "en" ? CURATED_PLANS_EN : CURATED_PLANS_ZH;
+  const plans = locale === "en" ? CURATED_PLANS_EN : CURATED_PLANS_ZH;
+  return plans.map((p) => {
+    if (!p.hotelOptions || p.hotelOptions.length === 0) {
+      return {
+        ...p,
+        hotelOptions: getDefaultHotelsForPlan(p, locale),
+      };
+    }
+    return p;
+  });
 }
 
 export function getCuratedPlanById(id: string, locale: Locale): TravelPlan | undefined {
@@ -18,6 +28,12 @@ export function localizeCuratedPlan(plan: TravelPlan, locale: Locale): TravelPla
     if (matched) {
       return matched;
     }
+  }
+  if (!plan.hotelOptions || plan.hotelOptions.length === 0) {
+    return {
+      ...plan,
+      hotelOptions: getDefaultHotelsForPlan(plan, locale),
+    };
   }
   return plan;
 }

@@ -17,9 +17,11 @@ export function getNextApiKey(): string {
 }
 
 export const FALLBACK_MODELS = [
+  "gemini-2.5-flash",
+  "gemini-3.5-flash",
+  "gemini-2.5-flash-lite",
   "gemini-3.8-flash",
   "gemini-3.7-flash",
-  "gemini-2.5-flash",
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -78,8 +80,14 @@ const transitConnectorSchema = {
   type: Type.OBJECT,
   properties: {
     type: { type: Type.STRING, enum: ["transit"] },
-    fromStop: { type: Type.STRING },
-    toStop: { type: Type.STRING },
+    fromStop: {
+      type: Type.STRING,
+      description: "Human-readable departure spot name, e.g. 厦门康莱德酒店 (NEVER use internal id slugs like xm_d1_hotel)",
+    },
+    toStop: {
+      type: Type.STRING,
+      description: "Human-readable arrival spot name, e.g. 堂宴·老厦门私房菜 (NEVER use internal id slugs like xm_d1_lunch)",
+    },
     mode: {
       type: Type.STRING,
       enum: ["taxi", "charter", "walk", "metro", "bus", "high_speed_rail"],
@@ -302,6 +310,7 @@ CRITICAL PLANNING RULES:
 
 2. TRANSIT CONNECTORS:
    - Between consecutive stops, ALWAYS insert a transit connector specifying mode, exact distance in km, driving/transit minutes, and specific boarding/alighting instructions.
+   - fromStop and toStop MUST be clean, human-readable spot names (e.g. "厦门康莱德酒店", "堂宴·老厦门私房菜"), NEVER internal ID slugs or placeholders like "xm_d1_hotel" or "xm_d1_lunch".
 
 3. ADVANCE RESERVATION ACCURACY:
    - In China and popular Asian cities, popular museums (e.g. 延吉博物馆, 青岛啤酒博物馆, 故宫), universities (e.g. 延边大学), and monuments require real-name booking on WeChat mini-programs.
@@ -372,9 +381,36 @@ Generate the complete travel plan adhering strictly to the JSON schema.`;
 }
 
 
+function resolveStopId(stop: string, timeline?: any[], allDays?: any[]): string {
+  if (!stop) return "";
+  if (!/^[a-z]{2}_d\d+/.test(stop)) {
+    return stop;
+  }
+  if (timeline) {
+    const act = timeline.find((t) => t.type === "activity" && t.id === stop);
+    if (act?.name) return act.name.split(" · ")[0].trim();
+  }
+  if (allDays) {
+    for (const d of allDays) {
+      const act = (d.timeline || []).find((t: any) => t.type === "activity" && t.id === stop);
+      if (act?.name) return act.name.split(" · ")[0].trim();
+    }
+  }
+  if (stop.includes("hotel") || stop.includes("rest")) {
+    if (allDays && allDays.length > 0) {
+      const hotelAct = (allDays[0].timeline || []).find(
+        (t: any) => t.type === "activity" && (t.id?.includes("hotel") || t.category === "rest")
+      );
+      if (hotelAct?.name) return hotelAct.name.split(" · ")[0].trim();
+    }
+    return "酒店";
+  }
+  return stop;
+}
+
 // Helper to normalize timeline format (convert {activity: ...} or {transit: ...} to flat items)
 function normalizeDays(days: any[]): any[] {
-  return (days || []).map((day: any) => {
+  const normalized = (days || []).map((day: any) => {
     const flatTimeline: any[] = [];
     if (Array.isArray(day.timeline)) {
       for (const item of day.timeline) {
@@ -388,6 +424,17 @@ function normalizeDays(days: any[]): any[] {
       timeline: flatTimeline,
     };
   });
+
+  for (const day of normalized) {
+    for (const item of day.timeline) {
+      if (item.type === "transit") {
+        if (item.fromStop) item.fromStop = resolveStopId(item.fromStop, day.timeline, normalized);
+        if (item.toStop) item.toStop = resolveStopId(item.toStop, day.timeline, normalized);
+      }
+    }
+  }
+
+  return normalized;
 }
 
 // ---------------------------------------------------------------------------
@@ -454,13 +501,110 @@ export async function generateTravelPlan(config: WizardConfig): Promise<TravelPl
   return travelPlan;
 }
 
+function parseTargetDay(instruction: string, activeDayIndex?: number, totalDays = 1): number | null {
+  const isGlobal = /整体|全部|所有天|整趟|每天|对调|交换|调换|增加.*天|删.*天|延长|缩短/i.test(instruction);
+  if (isGlobal) return null;
+
+  const matchNum = instruction.match(/(?:第\s*(\d+)\s*天|Day\s*(\d+))/i);
+  if (matchNum) {
+    const idx = parseInt(matchNum[1] || matchNum[2], 10) - 1;
+    if (idx >= 0 && idx < totalDays) return idx;
+  }
+  const zhMap: Record<string, number> = { "一": 0, "二": 1, "三": 2, "四": 3, "五": 4, "六": 5, "七": 6 };
+  const matchZh = instruction.match(/第\s*([一二三四五六七])\s*天/);
+  if (matchZh) {
+    const idx = zhMap[matchZh[1]];
+    if (idx !== undefined && idx < totalDays) return idx;
+  }
+  if (activeDayIndex !== undefined && activeDayIndex >= 0 && activeDayIndex < totalDays) {
+    const isDaySpecific = /今日|今天|当前|这天|避开台阶|换为清淡|午休|茶歇|替换|换|附近|同商圈|同区域|微调|午餐|晚餐|景点|餐厅|特色/i.test(instruction);
+    if (isDaySpecific) {
+      return activeDayIndex;
+    }
+  }
+  return null;
+}
+
 // ---------------------------------------------------------------------------
 // Tweak Existing Plan with Incremental Instruction
 // ---------------------------------------------------------------------------
 export async function tweakTravelPlan(
   existingPlan: TravelPlan,
-  instruction: string
+  instruction: string,
+  activeDayIndex?: number
 ): Promise<TravelPlan> {
+  const targetDayIndex = parseTargetDay(instruction, activeDayIndex, existingPlan.days.length);
+
+  // Fast single-day tweak when targeting a specific day (sub-5s latency & 100% preservation of other days)
+  if (targetDayIndex !== null && existingPlan.days[targetDayIndex]) {
+    try {
+      const targetDay = existingPlan.days[targetDayIndex];
+      const singleDaySystemPrompt = `You are a world-class travel route editor and concierge.
+You are modifying Day ${targetDay.dayNumber} of a travel itinerary for ${existingPlan.meta?.destinations?.join(", ") || "the trip"}.
+
+CRITICAL EDITING RULES:
+1. PRESERVATION FIRST:
+   - Keep all unaffected activities, coordinates, drop-off landmarks, and dining choices unchanged.
+2. FOCUSED EXECUTION:
+   - Apply the user's modifications precisely (e.g. swapping a spot, replacing a meal, adding a rest block, adjusting pacing).
+   - If a stop is removed or added, update the transit connectors before and after it with realistic transit mode, duration, distance, and boarding advice.
+   - fromStop and toStop MUST be clean, human-readable destination spot names (e.g. "厦门康莱德酒店", "堂宴·老厦门私房菜"), NEVER internal ID slugs or placeholders like "xm_d1_hotel".
+3. FORMAT:
+   - Return the complete, updated DayItinerary adhering strictly to the JSON schema.`;
+
+      const singleDayUserPrompt = `Here is the current Day ${targetDay.dayNumber} itinerary JSON:
+${JSON.stringify(targetDay)}
+
+USER MODIFICATION REQUEST:
+"${instruction}"
+
+Please return the updated Day ${targetDay.dayNumber} JSON adhering to the schema.`;
+
+      let rawDayText = "";
+      for (const model of FALLBACK_MODELS) {
+        try {
+          const apiKey = getNextApiKey();
+          const ai = new GoogleGenAI({ apiKey });
+
+          const response = await ai.models.generateContent({
+            model,
+            contents: [{ role: "user", parts: [{ text: singleDayUserPrompt }] }],
+            config: {
+              systemInstruction: singleDaySystemPrompt,
+              responseMimeType: "application/json",
+              responseJsonSchema: dayItinerarySchema,
+            },
+          });
+
+          rawDayText = response.text ?? "";
+          if (rawDayText) break;
+        } catch (err) {
+          console.warn(`Single-day tweak with model ${model} failed, trying next fallback:`, err);
+          continue;
+        }
+      }
+
+      if (rawDayText) {
+        const rawDayObj = JSON.parse(rawDayText);
+        const normalizedDay = normalizeDays([rawDayObj])[0];
+        const updatedDays = [...existingPlan.days];
+        updatedDays[targetDayIndex] = {
+          ...targetDay,
+          ...normalizedDay,
+          dayNumber: targetDay.dayNumber,
+        };
+
+        return {
+          ...existingPlan,
+          days: updatedDays,
+        };
+      }
+    } catch (err) {
+      console.warn("Single-day tweak failed, falling back to full-plan tweak:", err);
+    }
+  }
+
+  // Full-plan tweak (global instructions or multi-day restructuring)
   const systemPrompt = `You are a world-class travel route editor and concierge.
 You are given an existing high-precision travel plan in JSON format, and a specific user modification request.
 
@@ -474,6 +618,7 @@ CRITICAL EDITING RULES:
 2. FOCUSED EXECUTION:
    - Apply the user's modifications precisely (e.g. replacing a meal, removing a strenuous stop, adding a cafe walk, shortening/reordering an activity).
    - If a stop is removed or added, smoothly update the transit connectors before and after it, and ensure coordinates are accurate.
+   - fromStop and toStop MUST be clean, human-readable spot names (e.g. "厦门康莱德酒店", "堂宴·老厦门私房菜"), NEVER internal ID slugs or placeholders like "xm_d1_hotel".
    - Ensure elderly/kid/mobility constraints and reservation checklist remain consistent with the new plan.
 3. FORMAT:
    - Return the complete, updated TravelPlan adhering strictly to the JSON schema.`;

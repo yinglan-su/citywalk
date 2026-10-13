@@ -141,8 +141,19 @@ export interface TravelPlan {
     weatherAndPacking: string[];
   };
   days: DayItinerary[];
+  hotelOptions?: HotelOption[];
   reservationChecklist: ReservationItem[];
   emergencyContacts: EmergencyContact[];
+}
+
+export interface HotelOption {
+  id: string;
+  name: string;
+  starOrStyle: string;
+  priceRange: string;
+  locationDetail: string;
+  highlights: string[];
+  isSelected?: boolean;
 }
 
 export interface GalleryItem {

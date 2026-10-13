@@ -23,13 +23,18 @@ import {
   ExternalLink,
   Compass,
   X,
+  Check,
+  Building2,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
-import { ActivityStop, DayItinerary, TravelPlan } from "@/types/itinerary";
+import { ActivityStop, DayItinerary, TransitConnector, TravelPlan } from "@/types/itinerary";
 import { DailyMap } from "./DailyMap";
 import { compressPlan, saveLocalPlan } from "@/lib/storage";
 import { generateOfflineHtml } from "@/lib/export-html";
 import { useLanguage } from "@/context/LanguageContext";
 import { localizeCuratedPlan } from "@/lib/curated-plans-provider";
+import { getDefaultHotelsForPlan } from "@/data/default-hotels";
 
 interface ItineraryDashboardProps {
   plan: TravelPlan;
@@ -51,6 +56,44 @@ const PRESET_TWEAK_CHIPS_EN = [
   "Add morning / night market visit",
 ];
 
+const resolveStopDisplay = (
+  stop: string,
+  timeline?: (ActivityStop | TransitConnector)[],
+  allDays?: DayItinerary[]
+): string => {
+  if (!stop) return "";
+  if (!/^[a-z]{2}_d\d+/.test(stop)) {
+    return stop;
+  }
+  if (timeline) {
+    const act = timeline.find(
+      (t) => t.type === "activity" && (t as ActivityStop).id === stop
+    ) as ActivityStop | undefined;
+    if (act?.name) return act.name.split(" · ")[0].trim();
+  }
+  if (allDays) {
+    for (const d of allDays) {
+      const act = d.timeline.find(
+        (t) => t.type === "activity" && (t as ActivityStop).id === stop
+      ) as ActivityStop | undefined;
+      if (act?.name) return act.name.split(" · ")[0].trim();
+    }
+  }
+  if (stop.includes("hotel") || stop.includes("rest")) {
+    if (allDays && allDays.length > 0) {
+      const hotelAct = allDays[0].timeline.find(
+        (t) =>
+          t.type === "activity" &&
+          ((t as ActivityStop).id?.includes("hotel") ||
+            (t as ActivityStop).category === "rest")
+      ) as ActivityStop | undefined;
+      if (hotelAct?.name) return hotelAct.name.split(" · ")[0].trim();
+    }
+    return "酒店";
+  }
+  return stop;
+};
+
 export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
   plan,
   onBack,
@@ -58,27 +101,45 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
 }) => {
   const { locale, t } = useLanguage();
   const presetChips = locale === "en" ? PRESET_TWEAK_CHIPS_EN : PRESET_TWEAK_CHIPS_ZH;
-  const [localPlan, setLocalPlan] = useState<TravelPlan>(() =>
-    localizeCuratedPlan(plan, locale)
-  );
+  const [localPlan, setLocalPlan] = useState<TravelPlan>(() => {
+    const localized = localizeCuratedPlan(plan, locale);
+    if (!localized.hotelOptions || localized.hotelOptions.length === 0) {
+      localized.hotelOptions = getDefaultHotelsForPlan(localized, locale);
+    }
+    return localized;
+  });
   const [activeDayIndex, setActiveDayIndex] = useState(0);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isPublishing, setIsPublishing] = useState(false);
   const [isPublished, setIsPublished] = useState(plan.meta.isPublic || false);
   const [viewsCount, setViewsCount] = useState<number | null>(null);
 
-  // AI Tweak State (Tier 1)
+  // AI Tweak State (Tier 1: Global / Floating Copilot)
   const [isTweakOpen, setIsTweakOpen] = useState(false);
   const [isTweaking, setIsTweaking] = useState(false);
   const [tweakInput, setTweakInput] = useState("");
   const [tweakLoadingText, setTweakLoadingText] = useState(
     locale === "en"
-      ? "AI is rearranging the route and drop-off points..."
-      : "AI 正在根据您的要求重新编排动线与落客点..."
+      ? "Rearranging the route and drop-off points..."
+      : "正在根据您的要求重新编排动线与落客点..."
   );
+
+  // Hotel Selection & AI Recommendation State
+  const [isHotelTweakOpen, setIsHotelTweakOpen] = useState(false);
+  const [isHotelTweaking, setIsHotelTweaking] = useState(false);
+  const [hotelTweakInput, setHotelTweakInput] = useState("");
+
+  // Card-Level Activity & Dining Micro-Tweak State
+  const [activeActivityTweakId, setActiveActivityTweakId] = useState<string | null>(null);
+  const [activityTweakInput, setActivityTweakInput] = useState("");
+  const [activeDiningTweakMeal, setActiveDiningTweakMeal] = useState<"lunch" | "dinner" | null>(null);
+  const [diningTweakInput, setDiningTweakInput] = useState("");
 
   useEffect(() => {
     const localized = localizeCuratedPlan(plan, locale);
+    if (!localized.hotelOptions || localized.hotelOptions.length === 0) {
+      localized.hotelOptions = getDefaultHotelsForPlan(localized, locale);
+    }
     setLocalPlan(localized);
 
     // Track visit telemetry to Supabase
@@ -166,8 +227,8 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
     setIsTweaking(true);
     setTweakLoadingText(
       locale === "en"
-        ? "AI is rearranging the route and drop-off points..."
-        : "AI 正在根据您的要求重新编排动线与落客点..."
+        ? "Rearranging the route and drop-off points..."
+        : "正在根据您的要求重新编排动线与落客点..."
     );
 
     try {
@@ -177,6 +238,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
         body: JSON.stringify({
           plan: localPlan,
           instruction: instruction.trim(),
+          activeDayIndex,
         }),
       });
 
@@ -187,12 +249,118 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
 
       setLocalPlan(data.plan);
       onPlanUpdated?.(data.plan);
+      saveLocalPlan(data.plan);
       setTweakInput("");
+      setActiveActivityTweakId(null);
+      setActivityTweakInput("");
+      setActiveDiningTweakMeal(null);
+      setDiningTweakInput("");
       showToast(t("tweakSuccess"));
     } catch (err: any) {
       showToast(err.message || t("tweakFailed"));
     } finally {
       setIsTweaking(false);
+    }
+  };
+
+  // -------------------------------------------------------------
+  // Hotel Selection & AI Recommendation Handlers
+  // -------------------------------------------------------------
+  const handleSelectHotel = (hotelId: string) => {
+    if (!localPlan.hotelOptions) return;
+    const updatedHotels = localPlan.hotelOptions.map((h) => ({
+      ...h,
+      isSelected: h.id === hotelId,
+    }));
+    const selectedHotel = updatedHotels.find((h) => h.id === hotelId);
+
+    // Synchronize Day 1 starting hotel activity/drop-off if present
+    const updatedDays = [...localPlan.days];
+    if (selectedHotel && updatedDays[0]?.timeline?.length > 0) {
+      const firstDayTimeline = [...updatedDays[0].timeline];
+      for (let i = 0; i < firstDayTimeline.length; i++) {
+        const item = firstDayTimeline[i];
+        if (
+          item.type === "activity" &&
+          (item.id?.includes("hotel") ||
+            item.name?.includes("酒店") ||
+            item.name?.includes("Hotel") ||
+            item.name?.includes("入住"))
+        ) {
+          firstDayTimeline[i] = {
+            ...item,
+            name:
+              locale === "en"
+                ? `${selectedHotel.name} · Check-in & Rest`
+                : `${selectedHotel.name} · 入住休憩`,
+            dropOffPoint: selectedHotel.locationDetail || item.dropOffPoint,
+          };
+          break;
+        }
+      }
+      updatedDays[0] = {
+        ...updatedDays[0],
+        timeline: firstDayTimeline,
+      };
+    }
+
+    const updatedPlan: TravelPlan = {
+      ...localPlan,
+      days: updatedDays,
+      hotelOptions: updatedHotels,
+    };
+
+    setLocalPlan(updatedPlan);
+    onPlanUpdated?.(updatedPlan);
+    saveLocalPlan(updatedPlan);
+    showToast(
+      locale === "en"
+        ? `Selected hotel: ${selectedHotel?.name}`
+        : `已选用酒店：${selectedHotel?.name}`
+    );
+  };
+
+  const executeHotelTweak = async (customInstruction: string) => {
+    if (!customInstruction.trim()) return;
+    setIsHotelTweaking(true);
+    try {
+      const resp = await fetch("/api/tweak-hotel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          destinations: localPlan.meta.destinations,
+          budgetTier: localPlan.meta.budgetTier,
+          travelerProfile: localPlan.meta.travelerProfile,
+          instruction: customInstruction.trim(),
+          currentHotels: (localPlan.hotelOptions || []).map((h) => h.name),
+          locale,
+        }),
+      });
+
+      const data = await resp.json();
+      if (!resp.ok || !data.success || !data.hotelOptions) {
+        throw new Error(data.error || (locale === "en" ? "Failed to recommend hotels" : "推荐酒店失败，请重试"));
+      }
+
+      const updatedPlan: TravelPlan = {
+        ...localPlan,
+        hotelOptions: data.hotelOptions,
+      };
+
+      setLocalPlan(updatedPlan);
+      onPlanUpdated?.(updatedPlan);
+      saveLocalPlan(updatedPlan);
+      setHotelTweakInput("");
+      setIsHotelTweakOpen(false);
+      showToast(
+        locale === "en"
+          ? "Curated fresh hotel options recommended!"
+          : "已根据您的要求推荐 3-4 家全新精选酒店"
+      );
+    } catch (err: any) {
+      showToast(err.message || (locale === "en" ? "Failed to recommend hotels" : "酒店推荐失败，请重试"));
+    } finally {
+      setIsHotelTweaking(false);
     }
   };
 
@@ -432,6 +600,200 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
         )}
       </div>
 
+      {/* Curated Hotels / 推荐精选酒店 (3-4 Options + In-Place AI Tweak) */}
+      {localPlan.hotelOptions && localPlan.hotelOptions.length > 0 && (
+        <div className="bg-white rounded-3xl border border-stone-200/90 p-5 sm:p-6 mb-6 shadow-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+            <div className="flex items-center gap-2">
+              <Building2 className="w-4 h-4 text-[#C5A880]" />
+              <span className="font-bold text-xs text-zinc-900 uppercase tracking-wide">
+                {locale === "en" ? "Handpicked Hotels" : "推荐精选酒店"}
+              </span>
+            </div>
+
+            <button
+              type="button"
+              disabled={isHotelTweaking}
+              onClick={() => setIsHotelTweakOpen((prev) => !prev)}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 hover:bg-stone-200/80 text-zinc-800 text-xs font-semibold transition border border-stone-200 self-start sm:self-auto cursor-pointer"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#C5A880]" />
+              <span>
+                {isHotelTweakOpen
+                  ? locale === "en"
+                    ? "Collapse"
+                    : "收起"
+                  : locale === "en"
+                  ? "Explore More Hotels"
+                  : "推荐其他酒店"}
+              </span>
+              {isHotelTweakOpen ? (
+                <ChevronUp className="w-3.5 h-3.5 text-zinc-500" />
+              ) : (
+                <ChevronDown className="w-3.5 h-3.5 text-zinc-500" />
+              )}
+            </button>
+          </div>
+
+          {/* Hotel Tweak Expandable Panel */}
+          {isHotelTweakOpen && (
+            <div className="mb-4 p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
+              <div className="text-[11px] font-semibold text-zinc-500">
+                {locale === "en"
+                  ? "Specify your stay preferences:"
+                  : "输入您的具体住宿偏好或期望："}
+              </div>
+
+              {/* Preset Chips */}
+              <div className="flex flex-wrap gap-1.5">
+                {[
+                  {
+                    zh: "🌊 高空视野 / 窗景极佳",
+                    en: "Ocean / Scenic View",
+                  },
+                  {
+                    zh: "🚇 靠近商圈 / 交通枢纽",
+                    en: "Near Metro & Downtown",
+                  },
+                  {
+                    zh: "🧸 亲子设施 / 家庭套房",
+                    en: "Family Suite & Kids Friendly",
+                  },
+                  {
+                    zh: "🌿 园林静谧 / 温泉私汤",
+                    en: "Garden Estate & Hot Spring",
+                  },
+                  {
+                    zh: "💰 预算更亲民 / 高性价比",
+                    en: "Budget Friendly & High Value",
+                  },
+                ].map((chip) => (
+                  <button
+                    key={chip.zh}
+                    type="button"
+                    disabled={isHotelTweaking}
+                    onClick={() =>
+                      executeHotelTweak(locale === "en" ? chip.en : chip.zh)
+                    }
+                    className="text-[11px] px-2.5 py-1 rounded-full bg-white hover:bg-stone-100 text-zinc-700 border border-stone-200 font-medium transition cursor-pointer"
+                  >
+                    + {locale === "en" ? chip.en : chip.zh}
+                  </button>
+                ))}
+              </div>
+
+              {/* Custom Input */}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  executeHotelTweak(hotelTweakInput);
+                }}
+                className="flex items-center gap-2 pt-1"
+              >
+                <input
+                  type="text"
+                  value={hotelTweakInput}
+                  onChange={(e) => setHotelTweakInput(e.target.value)}
+                  disabled={isHotelTweaking}
+                  placeholder={
+                    locale === "en"
+                      ? "e.g. Near beach, heated pool, quiet soundproofing, under $150..."
+                      : "输入具体要求（如：预算800内、带儿童恒温泳池、日式庭院风格、近地铁口...）"
+                  }
+                  className="flex-1 px-3.5 py-2 rounded-xl bg-white border border-stone-200 text-xs text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-900"
+                />
+                <button
+                  type="submit"
+                  disabled={isHotelTweaking || !hotelTweakInput.trim()}
+                  className="px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold transition disabled:opacity-40 shrink-0 flex items-center gap-1 cursor-pointer"
+                >
+                  {isHotelTweaking ? (
+                    <span className="w-3.5 h-3.5 border-2 border-white/60 border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <Sparkles className="w-3.5 h-3.5 text-[#C5A880]" />
+                  )}
+                  <span>
+                    {isHotelTweaking
+                      ? locale === "en"
+                        ? "Searching..."
+                        : "推荐中..."
+                      : locale === "en"
+                      ? "Recommend"
+                      : "推荐新酒店"}
+                  </span>
+                </button>
+              </form>
+            </div>
+          )}
+
+          {/* 3-4 Hotel Option Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+            {localPlan.hotelOptions.map((hotel) => {
+              const isSelected = Boolean(hotel.isSelected);
+              return (
+                <div
+                  key={hotel.id}
+                  onClick={() => handleSelectHotel(hotel.id)}
+                  className={`relative p-4 rounded-2xl border transition-all duration-200 cursor-pointer flex flex-col justify-between text-left group ${
+                    isSelected
+                      ? "bg-stone-50/80 border-zinc-900 ring-1 ring-zinc-900 shadow-xs"
+                      : "bg-white border-stone-200 hover:border-stone-400 hover:shadow-xs"
+                  }`}
+                >
+                  <div>
+                    {/* Top Status & Price: clean indicator without verbose confirmation text */}
+                    <div className="flex items-center justify-between gap-2 mb-2.5">
+                      <div
+                        className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 transition-all ${
+                          isSelected
+                            ? "bg-zinc-900 text-white shadow-xs"
+                            : "border border-stone-300 group-hover:border-zinc-400 bg-white"
+                        }`}
+                        title={isSelected ? (locale === "en" ? "Selected stay" : "当前选用酒店") : undefined}
+                      >
+                        {isSelected && <Check className="w-2.5 h-2.5 stroke-[3]" />}
+                      </div>
+                      <span className="text-xs font-semibold text-zinc-850 whitespace-nowrap">
+                        {hotel.priceRange}
+                      </span>
+                    </div>
+
+                    {/* Hotel Name */}
+                    <h3 className="font-bold text-xs sm:text-sm text-zinc-900 leading-snug line-clamp-2 mb-1">
+                      {hotel.name}
+                    </h3>
+
+                    {/* Star or Style */}
+                    <div className="text-[11px] text-[#A68A5E] font-medium mb-2">
+                      {hotel.starOrStyle}
+                    </div>
+
+                    {/* Location with MapPin */}
+                    <div className="flex items-start gap-1 text-[11px] text-zinc-500 mb-2.5">
+                      <MapPin className="w-3 h-3 text-[#C5A880] shrink-0 mt-0.5" />
+                      <span className="line-clamp-2">{hotel.locationDetail}</span>
+                    </div>
+                  </div>
+
+                  {/* Highlights Bullet Tags */}
+                  {hotel.highlights && hotel.highlights.length > 0 && (
+                    <div className="flex flex-wrap gap-1 pt-2 border-t border-stone-100 mt-1">
+                      {hotel.highlights.map((h, hi) => (
+                        <span
+                          key={hi}
+                          className="px-2 py-0.5 rounded-md bg-stone-100/80 text-[10px] text-zinc-600 font-medium"
+                        >
+                          {h}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Reservation Checklist Banner */}
       {localPlan.reservationChecklist &&
@@ -534,7 +896,8 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                 >
                   <Car className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
                   <span className="font-bold text-zinc-800">
-                    {item.fromStop} ➔ {item.toStop}
+                    {resolveStopDisplay(item.fromStop, currentDay.timeline, localPlan.days)} ➔{" "}
+                    {resolveStopDisplay(item.toStop, currentDay.timeline, localPlan.days)}
                   </span>
                   <span className="text-zinc-900 font-semibold">
                     {item.mode === "taxi"
@@ -567,14 +930,23 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                     </span>
                   </div>
 
-                  {/* Tier 2: Quick In-Place Action Buttons (Move, Swap, Delete) */}
+                  {/* Tier 2: Quick In-Place Action Buttons (Move, Tweak, Delete) */}
                   <div className="flex items-center gap-1">
                     <button
                       type="button"
                       disabled={isTweaking}
-                      onClick={() => handleSwapActivity(act.name)}
-                      className="p-1.5 rounded-full text-zinc-400 hover:text-zinc-800 hover:bg-stone-100 transition disabled:opacity-40"
-                      title={t("swapSpotAI")}
+                      onClick={() => {
+                        const cardId = act.id || `act_${idx}`;
+                        setActiveActivityTweakId(
+                          activeActivityTweakId === cardId ? null : cardId
+                        );
+                      }}
+                      className={`p-1.5 rounded-full transition disabled:opacity-40 cursor-pointer ${
+                        activeActivityTweakId === (act.id || `act_${idx}`)
+                          ? "bg-zinc-900 text-white shadow-xs"
+                          : "text-zinc-400 hover:text-zinc-800 hover:bg-stone-100"
+                      }`}
+                      title={locale === "en" ? "Fine-tune this spot" : "微调此景点"}
                     >
                       <RefreshCw className="w-3.5 h-3.5" />
                     </button>
@@ -608,6 +980,108 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                     </button>
                   </div>
                 </div>
+
+                {/* In-Place Activity Micro-Tweak Drawer */}
+                {activeActivityTweakId === (act.id || `act_${idx}`) && (
+                  <div className="my-3 p-3.5 rounded-2xl bg-stone-50 border border-stone-200 space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-zinc-900">
+                        <Sparkles className="w-3.5 h-3.5 text-[#C5A880]" />
+                        <span>
+                          {locale === "en" ? "Fine-tune this Stop" : "微调此景点"}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setActiveActivityTweakId(null)}
+                        className="text-zinc-400 hover:text-zinc-700 cursor-pointer p-0.5"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    {/* Quick Chips */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {[
+                        {
+                          labelZh: "📍 换同区域附近景点",
+                          labelEn: "Nearby Attraction",
+                          promptZh: `请将第 ${currentDay.dayNumber} 天的景点「${act.name}」替换为同区域其他适合的特色景点或漫步点位，确保落客和动线顺畅。`,
+                          promptEn: `Please replace the spot "${act.name}" on Day ${currentDay.dayNumber} with another suitable attraction in the same neighborhood, keeping smooth logistics.`,
+                        },
+                        {
+                          labelZh: "☂️ 换室内避雨/防晒",
+                          labelEn: "Indoor / Weather-Friendly",
+                          promptZh: `请将第 ${currentDay.dayNumber} 天的景点「${act.name}」替换为同区域优质的室内文博展馆、艺术空间或手作工坊，避开雨水或烈日。`,
+                          promptEn: `Please replace the spot "${act.name}" on Day ${currentDay.dayNumber} with a top indoor cultural space, museum, or workshop.`,
+                        },
+                        {
+                          labelZh: "🍵 换慢调茶憩/漫步",
+                          labelEn: "Gentle Tea / Low Walking",
+                          promptZh: `请将第 ${currentDay.dayNumber} 天的景点「${act.name}」替换为同区域平缓无台阶的慢调茶歇、咖啡馆或舒缓公园，降低体力消耗。`,
+                          promptEn: `Please replace the spot "${act.name}" on Day ${currentDay.dayNumber} with a low-mobility tea house, cafe, or gentle stroll.`,
+                        },
+                        {
+                          labelZh: "📸 换标志性经典机位",
+                          labelEn: "Iconic Landmark / Photo",
+                          promptZh: `请将第 ${currentDay.dayNumber} 天的景点「${act.name}」替换为同区域极具视觉吸引力的标志性景观或经典摄影机位。`,
+                          promptEn: `Please replace the spot "${act.name}" on Day ${currentDay.dayNumber} with an iconic visual landmark or photo viewpoint in the area.`,
+                        },
+                      ].map((chip) => (
+                        <button
+                          key={chip.labelZh}
+                          type="button"
+                          disabled={isTweaking}
+                          onClick={() =>
+                            executeAITweak(
+                              locale === "en" ? chip.promptEn : chip.promptZh
+                            )
+                          }
+                          className="text-[11px] px-2.5 py-1 rounded-full bg-white hover:bg-stone-100 text-zinc-700 border border-stone-200 font-medium transition cursor-pointer"
+                        >
+                          {locale === "en" ? chip.labelEn : chip.labelZh}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Custom Input */}
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        if (!activityTweakInput.trim()) return;
+                        const prompt =
+                          locale === "en"
+                            ? `Please replace the spot "${act.name}" on Day ${currentDay.dayNumber} with a new spot matching: ${activityTweakInput.trim()}. Ensure smooth drop-offs.`
+                            : `请将第 ${currentDay.dayNumber} 天的景点「${act.name}」替换为符合要求的新景点或活动：${activityTweakInput.trim()}。确保同区域落客动线顺畅。`;
+                        executeAITweak(prompt);
+                      }}
+                      className="flex items-center gap-1.5 pt-0.5"
+                    >
+                      <input
+                        type="text"
+                        value={activityTweakInput}
+                        onChange={(e) => setActivityTweakInput(e.target.value)}
+                        disabled={isTweaking}
+                        placeholder={
+                          locale === "en"
+                            ? "Or enter custom request (e.g. sunset view, quiet bookstore)..."
+                            : "或输入具体要求（如：想看落日、手作体验、避开人潮台阶...）"
+                        }
+                        className="flex-1 px-3 py-1.5 rounded-xl bg-white border border-stone-200 text-xs text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-900"
+                      />
+                      <button
+                        type="submit"
+                        disabled={isTweaking || !activityTweakInput.trim()}
+                        className="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold transition disabled:opacity-40 shrink-0 cursor-pointer"
+                      >
+                        {isTweaking ? (
+                          <span className="w-3 h-3 border-2 border-white/60 border-t-transparent rounded-full animate-spin" />
+                        ) : null}
+                        <span>{locale === "en" ? "Tweak" : "微调"}</span>
+                      </button>
+                    </form>
+                  </div>
+                )}
 
                 <div className="text-xs text-zinc-400 mb-2">
                   {t("durationMins")} {act.durationMinutes} {t("mins")}
@@ -731,20 +1205,122 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                         type="button"
                         disabled={isTweaking}
                         onClick={() =>
-                          currentDay.meals?.lunch &&
-                          handleSwapDining(
-                            locale === "en" ? "Lunch" : "午餐",
-                            currentDay.meals.lunch.restaurantName
+                          setActiveDiningTweakMeal(
+                            activeDiningTweakMeal === "lunch" ? null : "lunch"
                           )
                         }
-                        className="text-[10px] text-zinc-400 hover:text-zinc-900 flex items-center gap-0.5 hover:underline transition disabled:opacity-40"
-                        title={locale === "en" ? "Swap with similar restaurant" : "AI 换一家同商圈餐厅"}
+                        className={`text-[10px] flex items-center gap-1 px-2 py-0.5 rounded-full transition disabled:opacity-40 cursor-pointer ${
+                          activeDiningTweakMeal === "lunch"
+                            ? "bg-zinc-900 text-white shadow-xs"
+                            : "text-zinc-500 hover:text-zinc-900 bg-stone-100 hover:bg-stone-200/80"
+                        }`}
+                        title={locale === "en" ? "Fine-tune Lunch" : "微调午餐推荐"}
                       >
                         <RefreshCw className="w-2.5 h-2.5" />
-                        {t("swapRestaurant")}
+                        <span>{locale === "en" ? "Swap" : "换一家"}</span>
                       </button>
                     </div>
                   </div>
+
+                  {/* In-Place Lunch Micro-Tweak Drawer */}
+                  {activeDiningTweakMeal === "lunch" && (
+                    <div className="my-2.5 p-3 rounded-xl bg-white border border-stone-200 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5 text-xs font-bold text-zinc-900">
+                          <Sparkles className="w-3 h-3 text-[#C5A880]" />
+                          <span>{locale === "en" ? "Fine-tune Lunch" : "微调午餐"}</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setActiveDiningTweakMeal(null)}
+                          className="text-zinc-400 hover:text-zinc-700 cursor-pointer p-0.5"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+
+                      {/* Quick Chips */}
+                      <div className="flex flex-wrap gap-1">
+                        {[
+                          {
+                            labelZh: "🍽️ 换同商圈其他特色",
+                            labelEn: "Nearby Specialty",
+                            promptZh: `请将第 ${currentDay.dayNumber} 天的午餐（目前是「${currentDay.meals.lunch.restaurantName}」）替换为同商圈其他口碑好、适口性佳的特色餐厅。`,
+                            promptEn: `Please replace Day ${currentDay.dayNumber}'s lunch (${currentDay.meals.lunch.restaurantName}) with another highly-rated specialty restaurant in the same area.`,
+                          },
+                          {
+                            labelZh: "🥣 换温热清淡滋补",
+                            labelEn: "Mild & Comforting",
+                            promptZh: `请将第 ${currentDay.dayNumber} 天的午餐替换为温热、少油少盐、易消化的清淡炖汤或特色养生菜。`,
+                            promptEn: `Please replace Day ${currentDay.dayNumber}'s lunch with a mild, comforting, digestive-friendly dining option.`,
+                          },
+                          {
+                            labelZh: "🏮 换必吃非遗老字号",
+                            labelEn: "Heritage Brand",
+                            promptZh: `请将第 ${currentDay.dayNumber} 天的午餐替换为当地知名百年非遗老字号或地道传统名菜馆。`,
+                            promptEn: `Please replace Day ${currentDay.dayNumber}'s lunch with an authentic local heritage culinary institution.`,
+                          },
+                          {
+                            labelZh: "🌿 换精致轻食/素食",
+                            labelEn: "Light / Vegetarian",
+                            promptZh: `请将第 ${currentDay.dayNumber} 天的午餐替换为同商圈高品质轻食或精致素食餐厅。`,
+                            promptEn: `Please replace Day ${currentDay.dayNumber}'s lunch with a high quality light or vegetarian restaurant.`,
+                          },
+                        ].map((chip) => (
+                          <button
+                            key={chip.labelZh}
+                            type="button"
+                            disabled={isTweaking}
+                            onClick={() =>
+                              executeAITweak(
+                                locale === "en" ? chip.promptEn : chip.promptZh
+                              )
+                            }
+                            className="text-[10px] px-2 py-0.5 rounded-full bg-stone-50 hover:bg-stone-100 text-zinc-700 border border-stone-200 transition cursor-pointer"
+                          >
+                            {locale === "en" ? chip.labelEn : chip.labelZh}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Custom Input */}
+                      <form
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          if (!diningTweakInput.trim()) return;
+                          const prompt =
+                            locale === "en"
+                              ? `Please replace Day ${currentDay.dayNumber}'s lunch with a restaurant matching: ${diningTweakInput.trim()}. Keep it in the same neighborhood.`
+                              : `请将第 ${currentDay.dayNumber} 天的午餐替换为符合要求的新餐厅：${diningTweakInput.trim()}。保持同区域动线顺畅。`;
+                          executeAITweak(prompt);
+                        }}
+                        className="flex items-center gap-1.5 pt-0.5"
+                      >
+                        <input
+                          type="text"
+                          value={diningTweakInput}
+                          onChange={(e) => setDiningTweakInput(e.target.value)}
+                          disabled={isTweaking}
+                          placeholder={
+                            locale === "en"
+                              ? "e.g. Seafood banquet, quiet private room..."
+                              : "输入餐厅要求（如：想吃海鲜大排档、要有包厢、免排队...）"
+                          }
+                          className="flex-1 px-2.5 py-1 rounded-lg bg-stone-50 border border-stone-200 text-xs text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-900"
+                        />
+                        <button
+                          type="submit"
+                          disabled={isTweaking || !diningTweakInput.trim()}
+                          className="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold transition disabled:opacity-40 shrink-0 cursor-pointer"
+                        >
+                          {isTweaking ? (
+                            <span className="w-2.5 h-2.5 border border-white/60 border-t-transparent rounded-full animate-spin" />
+                          ) : null}
+                          <span>{locale === "en" ? "Tweak" : "微调"}</span>
+                        </button>
+                      </form>
+                    </div>
+                  )}
 
                   {/* Meal Photo if available */}
                   {currentDay.meals.lunch.image && (
@@ -860,20 +1436,122 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                         type="button"
                         disabled={isTweaking}
                         onClick={() =>
-                          currentDay.meals?.dinner &&
-                          handleSwapDining(
-                            locale === "en" ? "Dinner" : "晚餐",
-                            currentDay.meals.dinner.restaurantName
+                          setActiveDiningTweakMeal(
+                            activeDiningTweakMeal === "dinner" ? null : "dinner"
                           )
                         }
-                        className="text-[10px] text-zinc-400 hover:text-zinc-900 flex items-center gap-0.5 hover:underline transition disabled:opacity-40"
-                        title={locale === "en" ? "Swap with similar restaurant" : "AI 换一家同商圈餐厅"}
+                        className={`text-[10px] flex items-center gap-1 px-2 py-0.5 rounded-full transition disabled:opacity-40 cursor-pointer ${
+                          activeDiningTweakMeal === "dinner"
+                            ? "bg-zinc-900 text-white shadow-xs"
+                            : "text-zinc-500 hover:text-zinc-900 bg-stone-100 hover:bg-stone-200/80"
+                        }`}
+                        title={locale === "en" ? "Fine-tune Dinner" : "微调晚餐推荐"}
                       >
                         <RefreshCw className="w-2.5 h-2.5" />
-                        {t("swapRestaurant")}
+                        <span>{locale === "en" ? "Swap" : "换一家"}</span>
                       </button>
                     </div>
                   </div>
+
+                  {/* In-Place Dinner Micro-Tweak Drawer */}
+                  {activeDiningTweakMeal === "dinner" && (
+                    <div className="my-2.5 p-3 rounded-xl bg-white border border-stone-200 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5 text-xs font-bold text-zinc-900">
+                          <Sparkles className="w-3 h-3 text-[#C5A880]" />
+                          <span>{locale === "en" ? "Fine-tune Dinner" : "微调晚餐"}</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setActiveDiningTweakMeal(null)}
+                          className="text-zinc-400 hover:text-zinc-700 cursor-pointer p-0.5"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+
+                      {/* Quick Chips */}
+                      <div className="flex flex-wrap gap-1">
+                        {[
+                          {
+                            labelZh: "🍽️ 换同商圈其他特色",
+                            labelEn: "Nearby Specialty",
+                            promptZh: `请将第 ${currentDay.dayNumber} 天的晚餐（目前是「${currentDay.meals.dinner.restaurantName}」）替换为同商圈其他口碑好、适口性佳的特色餐厅。`,
+                            promptEn: `Please replace Day ${currentDay.dayNumber}'s dinner (${currentDay.meals.dinner.restaurantName}) with another highly-rated specialty restaurant in the same area.`,
+                          },
+                          {
+                            labelZh: "🥣 换温热清淡滋补",
+                            labelEn: "Mild & Comforting",
+                            promptZh: `请将第 ${currentDay.dayNumber} 天的晚餐替换为温热、少油少盐、易消化的清淡炖汤或特色养生菜。`,
+                            promptEn: `Please replace Day ${currentDay.dayNumber}'s dinner with a mild, comforting, digestive-friendly dining option.`,
+                          },
+                          {
+                            labelZh: "🏮 换必吃非遗老字号",
+                            labelEn: "Heritage Brand",
+                            promptZh: `请将第 ${currentDay.dayNumber} 天的晚餐替换为当地知名百年非遗老字号或地道传统名菜馆。`,
+                            promptEn: `Please replace Day ${currentDay.dayNumber}'s dinner with an authentic local heritage culinary institution.`,
+                          },
+                          {
+                            labelZh: "🌃 换景观天台/浪漫夜景",
+                            labelEn: "Rooftop / Nightscape",
+                            promptZh: `请将第 ${currentDay.dayNumber} 天的晚餐替换为同商圈拥有绝佳城市或海景夜景的景观餐厅。`,
+                            promptEn: `Please replace Day ${currentDay.dayNumber}'s dinner with a scenic rooftop or waterfront nightscape restaurant.`,
+                          },
+                        ].map((chip) => (
+                          <button
+                            key={chip.labelZh}
+                            type="button"
+                            disabled={isTweaking}
+                            onClick={() =>
+                              executeAITweak(
+                                locale === "en" ? chip.promptEn : chip.promptZh
+                              )
+                            }
+                            className="text-[10px] px-2 py-0.5 rounded-full bg-stone-50 hover:bg-stone-100 text-zinc-700 border border-stone-200 transition cursor-pointer"
+                          >
+                            {locale === "en" ? chip.labelEn : chip.labelZh}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Custom Input */}
+                      <form
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          if (!diningTweakInput.trim()) return;
+                          const prompt =
+                            locale === "en"
+                              ? `Please replace Day ${currentDay.dayNumber}'s dinner with a restaurant matching: ${diningTweakInput.trim()}. Keep it in the same neighborhood.`
+                              : `请将第 ${currentDay.dayNumber} 天的晚餐替换为符合要求的新餐厅：${diningTweakInput.trim()}。保持同区域动线顺畅。`;
+                          executeAITweak(prompt);
+                        }}
+                        className="flex items-center gap-1.5 pt-0.5"
+                      >
+                        <input
+                          type="text"
+                          value={diningTweakInput}
+                          onChange={(e) => setDiningTweakInput(e.target.value)}
+                          disabled={isTweaking}
+                          placeholder={
+                            locale === "en"
+                              ? "e.g. Quiet private room, authentic local barbecue..."
+                              : "输入餐厅要求（如：安静包厢、特色小吃排档、清淡少油...）"
+                          }
+                          className="flex-1 px-2.5 py-1 rounded-lg bg-stone-50 border border-stone-200 text-xs text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-900"
+                        />
+                        <button
+                          type="submit"
+                          disabled={isTweaking || !diningTweakInput.trim()}
+                          className="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold transition disabled:opacity-40 shrink-0 cursor-pointer"
+                        >
+                          {isTweaking ? (
+                            <span className="w-2.5 h-2.5 border border-white/60 border-t-transparent rounded-full animate-spin" />
+                          ) : null}
+                          <span>{locale === "en" ? "Tweak" : "微调"}</span>
+                        </button>
+                      </form>
+                    </div>
+                  )}
 
                   {/* Dinner Photo if available */}
                   {currentDay.meals.dinner.image && (
@@ -1008,7 +1686,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
           <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
         </div>
         <span className="text-xs font-bold tracking-wide">
-          {locale === "en" ? "AI Copilot Tweak" : "AI 行程管家微调"}
+          {locale === "en" ? "Concierge Copilot" : "行程管家微调"}
         </span>
         {isTweaking && (
           <span className="w-3.5 h-3.5 border-2 border-white/60 border-t-transparent rounded-full animate-spin ml-1" />
@@ -1016,7 +1694,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
       </button>
 
       {/* ------------------------------------------------------------- */}
-      {/* Floating AI Concierge Copilot Chat Drawer (Bottom Right)      */}
+      {/* Floating Concierge Copilot Chat Drawer (Bottom Right)         */}
       {/* ------------------------------------------------------------- */}
       <div
         className={`fixed bottom-5 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 max-h-[85vh] bg-white rounded-3xl shadow-2xl border border-stone-200/90 flex flex-col overflow-hidden transition-all duration-200 ${
@@ -1031,7 +1709,7 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
             </div>
             <div>
               <div className="text-xs font-bold flex items-center gap-1.5">
-                <span>{locale === "en" ? "AI Concierge Copilot" : "AI 行程管家微调"}</span>
+                <span>{locale === "en" ? "Concierge Copilot" : "行程管家微调"}</span>
                 <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
               </div>
               <div className="text-[10px] text-zinc-400">

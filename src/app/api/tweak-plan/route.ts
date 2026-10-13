@@ -2,12 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { tweakTravelPlan } from "@/lib/gemini";
 import { TravelPlan } from "@/types/itinerary";
 
+export const maxDuration = 60;
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { plan, instruction } = body as {
+    const { plan, instruction, activeDayIndex } = body as {
       plan?: TravelPlan;
       instruction?: string;
+      activeDayIndex?: number;
     };
 
     if (!plan || !plan.days || !instruction || !instruction.trim()) {
@@ -17,7 +20,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const updatedPlan = await tweakTravelPlan(plan, instruction.trim());
+    const updatedPlan = await tweakTravelPlan(
+      plan,
+      instruction.trim(),
+      activeDayIndex
+    );
 
     return NextResponse.json({
       success: true,
