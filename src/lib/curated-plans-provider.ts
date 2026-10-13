@@ -26,7 +26,21 @@ export function localizeCuratedPlan(plan: TravelPlan, locale: Locale): TravelPla
   if (plan.id && (plan.id.startsWith("curated_") || plan.id.startsWith("curated-"))) {
     const matched = getCuratedPlanById(plan.id, locale);
     if (matched) {
-      return matched;
+      // If the incoming plan already has customized or selected hotel options, preserve them!
+      const userSelectedHotelId = plan.hotelOptions?.find((h) => h.isSelected)?.id;
+      const hotelOptions =
+        plan.hotelOptions && plan.hotelOptions.length > 0
+          ? plan.hotelOptions.map((h) => ({
+              ...h,
+              isSelected: userSelectedHotelId ? h.id === userSelectedHotelId : h.isSelected,
+            }))
+          : matched.hotelOptions || getDefaultHotelsForPlan(matched, locale);
+
+      return {
+        ...matched,
+        ...plan,
+        hotelOptions,
+      };
     }
   }
   if (!plan.hotelOptions || plan.hotelOptions.length === 0) {

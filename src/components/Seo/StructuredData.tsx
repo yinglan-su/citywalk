@@ -223,7 +223,7 @@ export const StructuredData: React.FC = () => {
         name: "How does 7ka handle mapping and restaurant reviews outside of China?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "7ka dynamically switches map layers and review sources based on location: AMap and Dianping are used for Mainland China, while Google Maps, Google Reviews, and CartoDB/OSM tiles are used for international destinations like Kyoto, Tokyo, Singapore, and Taipei.",
+          text: "7ka dynamically switches map layers and review sources based on location: AMap and Dianping are used for Mainland China, while Google Maps, Google Reviews, and OpenStreetMap tiles are used for international destinations like Kyoto, Tokyo, Singapore, and Taipei.",
         },
       },
     ],

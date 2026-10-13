@@ -79,6 +79,8 @@ export interface DiningCard {
   googleMapsUrl?: string;
   dianpingUrl?: string;
   alternatives?: DiningAlternative[];
+  selectedDinerIndex?: number;
+  allDiners?: DiningAlternative[];
 }
 
 export interface ReservationItem {

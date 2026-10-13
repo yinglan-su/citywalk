@@ -104,10 +104,15 @@ export const DailyMap: React.FC<DailyMapProps> = ({ day }) => {
         tileUrl =
           "https://wprd01.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scl=1&style=7";
       } else {
-        // CartoDB Voyager Tiles (Clean global OpenStreetMap with English/International labels)
-        tileUrl =
-          "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
-        subdomains = ["a", "b", "c", "d"];
+        const cartoKey = process.env.NEXT_PUBLIC_CARTO_API_KEY;
+        if (cartoKey) {
+          tileUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=${cartoKey}`;
+          subdomains = ["a", "b", "c", "d"];
+        } else {
+          // OpenStreetMap standard tiles (Global, 100% Free, No API key required)
+          tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+          subdomains = ["a", "b", "c"];
+        }
       }
 
       tileLayerRef.current = L.tileLayer(tileUrl, {
@@ -239,7 +244,7 @@ export const DailyMap: React.FC<DailyMapProps> = ({ day }) => {
               ? "bg-zinc-900 text-white font-semibold shadow-2xs"
               : "text-zinc-600 hover:text-zinc-900 hover:bg-stone-100"
           }`}
-          title="Switch to Global CartoDB/OSM tiles (Worldwide optimal)"
+          title="Switch to Global OpenStreetMap tiles (Worldwide optimal)"
         >
           {locale === "en" ? "Global" : "全球 Global"}
         </button>
@@ -251,7 +256,9 @@ export const DailyMap: React.FC<DailyMapProps> = ({ day }) => {
           ? locale === "en"
             ? "AMap Vector (China)"
             : "高德矢量底图 (中国)"
-          : "CartoDB / OpenStreetMap (Global)"}
+          : locale === "en"
+          ? "OpenStreetMap (Global)"
+          : "OpenStreetMap 全球底图"}
       </div>
     </div>
   );
