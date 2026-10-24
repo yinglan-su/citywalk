@@ -83,7 +83,7 @@ export function generateOfflineHtml(plan: TravelPlan, locale?: Locale): string {
         budgetBudget: "高性价比",
         budgetComfort: "品质舒适",
         budgetLuxury: "奢华体验",
-        transportTaxi: "包车/打车优先",
+        transportTaxi: "打车 / 专车优先",
         transportPublic: "公共交通",
         highlights: "行程亮点与特色",
         logistics: "交通与后勤建议",
@@ -281,8 +281,8 @@ export function generateOfflineHtml(plan: TravelPlan, locale?: Locale): string {
             ${day.timeline.map((item) => {
               if (item.type === "transit") {
                 const modeText = isEn
-                  ? item.mode === "taxi" ? "Taxi" : item.mode === "charter" ? "Charter" : "Walk"
-                  : item.mode === "taxi" ? "打车" : item.mode === "charter" ? "包车" : "步行";
+                  ? item.mode === "taxi" ? "Taxi" : item.mode === "charter" ? "Private Car" : "Walk"
+                  : item.mode === "taxi" ? "打车" : item.mode === "charter" ? "专车" : "步行";
                 return `
                   <div class="transit-block">
                     <span>➔</span>

@@ -5,8 +5,8 @@ export const StructuredData: React.FC = () => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "7ka",
-    alternateName: ["7ka Bespoke Slow Travel", "7ka 慢调旅行"],
-    url: "https://plan.7ka.fit",
+    alternateName: ["7ka Bespoke Slow Travel", "7ka Travel"],
+    url: "https://7ka.fit",
     description:
       "AI-powered gentle travel engine with zero-backtrack routes, verified drop-offs, accessibility notes, and handpicked local dining.",
     inLanguage: ["zh-CN", "en-US"],
@@ -14,7 +14,7 @@ export const StructuredData: React.FC = () => {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://plan.7ka.fit/?q={search_term_string}",
+        urlTemplate: "https://7ka.fit/?q={search_term_string}",
       },
       "query-input": "required name=search_term_string",
     },
@@ -25,8 +25,8 @@ export const StructuredData: React.FC = () => {
     "@type": "TravelAgency",
     name: "7ka",
     alternateName: "7ka Bespoke Slow Travel",
-    url: "https://plan.7ka.fit",
-    logo: "https://plan.7ka.fit/favicon.ico",
+    url: "https://7ka.fit",
+    logo: "https://7ka.fit/favicon.ico",
     description:
       "Bespoke slow travel and barrier-free itinerary curation platform for multigenerational families and relaxed explorers.",
     knowsAbout: [

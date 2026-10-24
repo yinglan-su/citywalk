@@ -213,8 +213,8 @@ export const translations: Record<Locale, TranslationDictionary> = {
     cancel: "取消",
 
     // Hero
-    heroBadge: "慢调旅行 · 专属定制",
-    heroTitle: "慢调旅行 · 专属定制",
+    heroBadge: "探索下一段旅程",
+    heroTitle: "探索下一段旅程",
     heroSubtitle: "",
     startCustomizing: "开始定制",
 
@@ -250,7 +250,7 @@ export const translations: Record<Locale, TranslationDictionary> = {
     budgetMid: "品质舒适",
     budgetHigh: "高端品质",
     transportLabel: "交通偏好",
-    transportTaxi: "专车 / 打车",
+    transportTaxi: "打车 / 专车",
     transportPublic: "公共交通",
     transportDrive: "自驾租车",
     customNotesLabel: "特别要求",
@@ -452,7 +452,7 @@ export const translations: Record<Locale, TranslationDictionary> = {
     budgetMid: "Comfort",
     budgetHigh: "Luxury",
     transportLabel: "Transport",
-    transportTaxi: "Private / Taxi",
+    transportTaxi: "Taxi / Ride-Hailing",
     transportPublic: "Public Transit",
     transportDrive: "Self-Driving",
     customNotesLabel: "Notes",
@@ -482,7 +482,7 @@ export const translations: Record<Locale, TranslationDictionary> = {
     reservationRequired: "Booking Required",
     photoSpotAdvice: "Photo Tip",
     transitTaxi: "Taxi",
-    transitCharter: "Charter",
+    transitCharter: "Private Car",
     transitWalk: "Walk",
     mins: "mins",
     altSpots: "Alternative Spots",

@@ -44,3 +44,31 @@ body {
   animation: shake 0.4s ease-in-out;
 }
 
+@keyframes luxuryGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 1.5px rgba(158, 130, 90, 0.35), 0 10px 30px -4px rgba(158, 130, 90, 0.15);
+    background-color: #fdfcf9;
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(158, 130, 90, 0.75), 0 14px 38px -4px rgba(158, 130, 90, 0.28);
+    background-color: #faf6ee;
+  }
+}
+
+@keyframes shimmerBeam {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-luxury-glow {
+  animation: luxuryGlow 2.2s ease-in-out infinite;
+}
+
+.animate-shimmer-beam {
+  animation: shimmerBeam 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+

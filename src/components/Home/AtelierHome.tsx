@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Compass,
   ArrowRight,
@@ -12,6 +12,8 @@ import {
   ShieldCheck,
   Utensils,
   Footprints,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { TravelPlan, WizardConfig } from "@/types/itinerary";
@@ -24,12 +26,23 @@ interface AtelierHomeProps {
 
 type CollectionCategory = "all" | "zen" | "coastal" | "culinary";
 
+const SPOTLIGHT_PLAN_IDS = [
+  "curated_kyoto_4d",
+  "curated_qingdao_3d",
+  "curated_yanji_hunchun_6d",
+  "curated_beijing_4d",
+  "curated_xian_4d",
+  "curated_tokyo_4d",
+];
+
 export const AtelierHome: React.FC<AtelierHomeProps> = ({
   onSelectPlan,
   onRemixPlan,
 }) => {
   const { locale, t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<CollectionCategory>("all");
+  const [currentSpotlightIndex, setCurrentSpotlightIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const plans = getCuratedPlans(locale);
 
@@ -46,10 +59,10 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
     coastal: [
       "curated_qingdao_3d",
       "curated_xiamen_3d",
-      "curated_hongkong_4d",
+      "curated_hongkong_3d",
     ],
     culinary: [
-      "curated_yanji_6d",
+      "curated_yanji_hunchun_6d",
       "curated_chengdu_4d",
       "curated_shanghai_3d",
       "curated_singapore_4d",
@@ -60,30 +73,43 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
     categoryMap[activeCategory].includes(p.id)
   );
 
-  // Featured Spotlight Plan (Kyoto or first plan)
-  const spotlightPlan =
-    plans.find((p) => p.id === "curated_kyoto_4d") || plans[0];
+  // Rotating Spotlight Curated Plans
+  const spotlightPlans = SPOTLIGHT_PLAN_IDS.map((id) =>
+    plans.find((p) => p.id === id)
+  ).filter((p): p is TravelPlan => Boolean(p));
 
-  const handleSpotlightSelect = () => {
-    if (spotlightPlan) {
-      onSelectPlan(spotlightPlan);
-    }
+  const activeSpotlightList =
+    spotlightPlans.length > 0 ? spotlightPlans : plans.slice(0, 5);
+
+  // Auto-rotate spotlight every 6 seconds, pause on user hover
+  useEffect(() => {
+    if (isPaused || activeSpotlightList.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentSpotlightIndex((prev) => (prev + 1) % activeSpotlightList.length);
+    }, 6000);
+
+    return () => clearInterval(timer);
+  }, [isPaused, activeSpotlightList.length]);
+
+  const spotlightPlan =
+    activeSpotlightList[currentSpotlightIndex] || activeSpotlightList[0];
+
+  const handleSpotlightSelect = (plan: TravelPlan) => {
+    onSelectPlan(plan);
   };
 
-  const handleSpotlightRemix = (e: React.MouseEvent) => {
+  const handleSpotlightRemix = (e: React.MouseEvent, plan: TravelPlan) => {
     e.stopPropagation();
-    if (spotlightPlan) {
-      onRemixPlan({
-        destinations: spotlightPlan.meta.destinations.join(" + "),
-        durationDays: spotlightPlan.meta.durationDays,
-        mobility: "low",
-        companions:
-          spotlightPlan.meta.travelerProfile.includes("长辈友好") ||
-          spotlightPlan.meta.travelerProfile.includes("Senior Friendly")
-            ? ["elders"]
-            : [],
-      });
-    }
+    onRemixPlan({
+      destinations: plan.meta.destinations.join(" + "),
+      durationDays: plan.meta.durationDays,
+      mobility: "low",
+      companions:
+        plan.meta.travelerProfile.includes("长辈友好") ||
+        plan.meta.travelerProfile.includes("Senior Friendly")
+          ? ["elders"]
+          : [],
+    });
   };
 
   const categories = [
@@ -114,39 +140,118 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24">
+    <div className="space-y-12 sm:space-y-16">
       {/* ------------------------------------------------------------- */}
-      {/* 1. CURATOR'S SPOTLIGHT (Widescreen Hero Feature)               */}
+      {/* 1. CURATOR'S SPOTLIGHT (Widescreen Rotating Hero Feature)      */}
       {/* ------------------------------------------------------------- */}
       {spotlightPlan && (
         <section className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex flex-wrap items-center justify-between gap-2.5 mb-3">
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
-              <span className="text-xs font-semibold text-zinc-600 font-sans">
-                {locale === "en" ? "Featured Route" : "精选推荐"}
+              <span className="w-2 h-2 rounded-full bg-[#C5A880] animate-pulse" />
+              <span className="text-xs font-semibold text-zinc-700 tracking-wide font-sans">
+                {locale === "en" ? "Curator's Spotlight" : "精选推荐"}
               </span>
+              <span className="text-stone-300 text-xs">·</span>
+              <span className="text-[11px] text-zinc-400 font-mono">
+                {String(currentSpotlightIndex + 1).padStart(2, "0")} / {String(activeSpotlightList.length).padStart(2, "0")}
+              </span>
+            </div>
+
+            {/* Destination Quick-Switch Tabs */}
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+              {activeSpotlightList.map((plan, idx) => {
+                const isCurrent = idx === currentSpotlightIndex;
+                const cityName = plan.meta.destinations[0] || "";
+                return (
+                  <button
+                    key={plan.id}
+                    type="button"
+                    onClick={() => setCurrentSpotlightIndex(idx)}
+                    className={`px-3 py-1 rounded-full text-xs transition cursor-pointer select-none flex items-center gap-1.5 ${
+                      isCurrent
+                        ? "bg-zinc-900 text-white font-semibold shadow-xs"
+                        : "bg-white/80 hover:bg-white text-zinc-500 hover:text-zinc-800 border border-stone-200/60"
+                    }`}
+                  >
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full ${
+                        isCurrent ? "bg-[#C5A880]" : "bg-stone-300"
+                      }`}
+                    />
+                    <span>{cityName}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           <div
-            onClick={handleSpotlightSelect}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onClick={() => handleSpotlightSelect(spotlightPlan)}
             className="group relative rounded-3xl overflow-hidden bg-zinc-950 text-white cursor-pointer shadow-xl transition-all duration-700 hover:shadow-2xl border border-stone-800/80"
           >
-            {/* Cinematic Background Image with Gradient Mask */}
+            {/* Cinematic Background Images with Silky Crossfade */}
             <div className="relative aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden">
-              <img
-                src={spotlightPlan.meta.coverImage || "/images/spot_kyoto_zen.jpg"}
-                alt={spotlightPlan.meta.tripTitle}
-                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 ease-out opacity-80"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/80 via-transparent to-transparent hidden md:block" />
+              {activeSpotlightList.map((plan, idx) => (
+                <div
+                  key={plan.id}
+                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                    idx === currentSpotlightIndex
+                      ? "opacity-80 scale-100"
+                      : "opacity-0 scale-105 pointer-events-none"
+                  }`}
+                >
+                  <img
+                    src={plan.meta.coverImage || "/images/spot_kyoto_zen.jpg"}
+                    alt={plan.meta.tripTitle}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 ease-out"
+                  />
+                </div>
+              ))}
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/80 via-transparent to-transparent hidden md:block pointer-events-none" />
             </div>
 
+            {/* Prev & Next Floating Buttons */}
+            {activeSpotlightList.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  aria-label="Previous Spotlight"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentSpotlightIndex(
+                      (prev) =>
+                        (prev - 1 + activeSpotlightList.length) %
+                        activeSpotlightList.length
+                    );
+                  }}
+                  className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/40 hover:bg-black/75 backdrop-blur-md text-white flex items-center justify-center transition border border-white/20 opacity-70 sm:opacity-0 sm:group-hover:opacity-100 cursor-pointer shadow-lg active:scale-95"
+                >
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+
+                <button
+                  type="button"
+                  aria-label="Next Spotlight"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentSpotlightIndex(
+                      (prev) => (prev + 1) % activeSpotlightList.length
+                    );
+                  }}
+                  className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/40 hover:bg-black/75 backdrop-blur-md text-white flex items-center justify-center transition border border-white/20 opacity-70 sm:opacity-0 sm:group-hover:opacity-100 cursor-pointer shadow-lg active:scale-95"
+                >
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+              </>
+            )}
+
             {/* Content Overlay */}
-            <div className="absolute inset-0 p-6 sm:p-10 md:p-12 flex flex-col justify-end">
-              <div className="max-w-2xl space-y-3 sm:space-y-4">
+            <div className="absolute inset-0 p-6 sm:p-10 md:p-12 flex flex-col justify-end pointer-events-none">
+              <div className="max-w-2xl space-y-3 sm:space-y-4 pointer-events-auto">
                 {/* Badges */}
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="px-3 py-1 rounded-full bg-[#C5A880] text-zinc-950 text-xs font-bold tracking-wide">
@@ -175,8 +280,8 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
                 <div className="pt-2 flex flex-wrap items-center gap-3">
                   <button
                     type="button"
-                    onClick={handleSpotlightSelect}
-                    className="px-6 py-2.5 rounded-full bg-white text-zinc-950 text-xs font-bold hover:bg-[#FAF9F6] transition flex items-center gap-2 shadow-md group-hover:translate-x-0.5 transition-transform"
+                    onClick={() => handleSpotlightSelect(spotlightPlan)}
+                    className="px-6 py-2.5 rounded-full bg-white text-zinc-950 text-xs font-bold hover:bg-[#FAF9F6] transition flex items-center gap-2 shadow-md group-hover:translate-x-0.5 transition-transform cursor-pointer"
                   >
                     <span>{locale === "en" ? "View Itinerary" : "查看路线"}</span>
                     <ArrowRight className="w-3.5 h-3.5 text-zinc-950" />
@@ -184,14 +289,28 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
 
                   <button
                     type="button"
-                    onClick={handleSpotlightRemix}
-                    className="px-4 py-2.5 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md text-white text-xs font-semibold transition flex items-center gap-1.5 border border-white/20"
+                    onClick={(e) => handleSpotlightRemix(e, spotlightPlan)}
+                    className="px-4 py-2.5 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md text-white text-xs font-semibold transition flex items-center gap-1.5 border border-white/20 cursor-pointer"
                   >
                     <GitFork className="w-3.5 h-3.5 text-[#C5A880]" />
                     <span>{locale === "en" ? "Customize" : "以此定制"}</span>
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* Slide Progress Indicator Bar */}
+            <div className="absolute bottom-2.5 inset-x-0 flex items-center justify-center gap-1.5 z-20 pointer-events-none">
+              {activeSpotlightList.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`h-1 rounded-full transition-all duration-500 ${
+                    idx === currentSpotlightIndex
+                      ? "w-8 bg-[#C5A880]"
+                      : "w-2 bg-white/30"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </section>

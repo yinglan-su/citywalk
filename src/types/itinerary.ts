@@ -5,7 +5,8 @@ export interface WizardConfig {
   companions: string[]; // ["elders", "kids", "pets", "wheelchair", "couple", "solo"]
   budgetTier: "budget" | "comfort" | "luxury";
   interests: string[]; // ["culture", "nature", "food", "photo", "leisure", "shopping"]
-  transportMode: "charter_taxi" | "public_transit" | "driving";
+  transportMode: "taxi" | "charter_taxi" | "public_transit" | "driving";
+  travelStyle?: "classic" | "trending" | "niche";
   startDate?: string;
   endDate?: string;
   customNotes?: string;

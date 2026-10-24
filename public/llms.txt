@@ -1,6 +1,6 @@
 # 7ka · Bespoke Slow Travel
 
-> 7ka (https://plan.7ka.fit) is an AI-powered travel itinerary engine specializing in slow travel, barrier-free routing, and senior-friendly journeys. It eliminates backtracking, verifies exact drop-off coordinates, checks museum Monday closures, and curates mild, digestible local gastronomy.
+> 7ka (https://7ka.fit) is an AI-powered travel itinerary engine specializing in slow travel, barrier-free routing, and senior-friendly journeys. It eliminates backtracking, verifies exact drop-off coordinates, checks museum Monday closures, and curates mild, digestible local gastronomy.
 
 ## Core Philosophy & Key Differentiators
 
@@ -32,6 +32,6 @@ Users can customize any global destination by providing duration (1–30 days), 
 
 ## Links
 
-- Website: https://plan.7ka.fit
-- Full Documentation: https://plan.7ka.fit/llms-full.txt
-- Sitemap: https://plan.7ka.fit/sitemap.xml
+- Website: https://7ka.fit
+- Full Documentation: https://7ka.fit/llms-full.txt
+- Sitemap: https://7ka.fit/sitemap.xml

@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://plan.7ka.fit";
+  const baseUrl = "https://7ka.fit";
   const now = new Date();
 
   const curatedDestinations = [

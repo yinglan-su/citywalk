@@ -1,23 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { TripWizard } from "@/components/Wizard/TripWizard";
-import { GalleryView } from "@/components/Gallery/GalleryView";
+import { AtelierHome } from "@/components/Home/AtelierHome";
 import { SavedPlansView } from "@/components/Saved/SavedPlansView";
 import { ItineraryDashboard } from "@/components/Itinerary/ItineraryDashboard";
 import { TravelPlan, WizardConfig } from "@/types/itinerary";
 import { decompressPlan, getLocalPlans, saveLocalPlan } from "@/lib/storage";
 import { useLanguage } from "@/context/LanguageContext";
-
-const HERO_BACKGROUNDS = [
-  { url: "/images/spot_badaguan.jpg", title: "青岛 · 八大关红瓦绿树", titleEn: "Qingdao · Badaguan Seaside Villas" },
-  { url: "/images/spot_yj_danmu.jpg", title: "延吉 · 延边大学双语霓虹", titleEn: "Yanji · Yanbian University Neon Wall" },
-  { url: "/images/spot_zhanqiao.jpg", title: "青岛 · 栈桥海天一色", titleEn: "Qingdao · Zhanqiao Pier Ocean View" },
-  { url: "/images/spot_yj_rice.jpg", title: "海兰江 · 稻田风光与民俗村", titleEn: "Hailan River · Paddy Fields & Folk Village" },
-  { url: "/images/spot_taiqing.jpg", title: "崂山 · 太清山海相依", titleEn: "Mount Lao · Taiqing Temple Coastline" },
-];
 
 export default function Home() {
   const { locale, t } = useLanguage();
@@ -25,17 +16,10 @@ export default function Home() {
   const [currentPlan, setCurrentPlan] = useState<TravelPlan | null>(null);
   const [remixConfig, setRemixConfig] = useState<Partial<WizardConfig> | undefined>(undefined);
   const [savedCount, setSavedCount] = useState(0);
-  const [bgIndex, setBgIndex] = useState(0);
 
   const updateSavedCount = () => {
     setSavedCount(getLocalPlans().length);
   };
-
-  useEffect(() => {
-    // Pick a scenic photo once per session/page load; remains stable until refresh
-    const randomIndex = Math.floor(Math.random() * HERO_BACKGROUNDS.length);
-    setBgIndex(randomIndex);
-  }, []);
 
   useEffect(() => {
     updateSavedCount();
@@ -111,51 +95,40 @@ export default function Home() {
 
         <main>
           {viewMode === "home" && (
-            <div className="space-y-12 sm:space-y-16">
-              {/* Hero Section: Four Seasons Atmospheric Travel Scenery Backdrop (Session-Stable) */}
-              <section className="relative overflow-hidden pt-8 pb-12 sm:pt-14 sm:pb-16 px-4 sm:px-6">
-                {/* Background Images Layer */}
-                <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
-                  {HERO_BACKGROUNDS.map((bg, idx) => (
-                    <div
-                      key={bg.url}
-                      className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                        idx === bgIndex ? "opacity-85" : "opacity-0"
-                      }`}
-                    >
-                      <img
-                        src={bg.url}
-                        alt={locale === "en" ? bg.titleEn : bg.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
-                  {/* Four Seasons Luxury Soft Ambient Gradient Mask */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-[#FAF9F6]/40 to-[#FAF9F6]" />
-                </div>
+            <div className="space-y-4 sm:space-y-6">
+              {/* Elevated Editorial Hero Section */}
+              <section className="relative overflow-hidden pt-8 pb-2 sm:pt-12 sm:pb-3 px-4 sm:px-6">
+                <div className="relative z-10 max-w-3xl mx-auto text-center space-y-3">
+                  {/* Editorial Headline */}
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-zinc-900 tracking-tight leading-[1.18]">
+                    {locale === "en" ? (
+                      <>
+                        Travel in Stillness.<br />
+                        <span className="italic font-normal text-zinc-700">Walk with Ease.</span>
+                      </>
+                    ) : (
+                      <>
+                        慢调有时 · <span className="font-normal text-zinc-700">步履安然</span>
+                      </>
+                    )}
+                  </h1>
 
-                {/* Content Container (Above Background) */}
-                <div className="relative z-10 max-w-3xl mx-auto">
-                  <div className="text-center mb-6 sm:mb-8">
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-900 tracking-tight drop-shadow-xs">
-                      {locale === "en" ? "Bespoke Slow Travel" : "慢调旅行 · 专属定制"}
-                    </h1>
+
+                  {/* Generator Console */}
+                  <div id="generator-capsule" className="pt-2">
+                    <TripWizard
+                      onPlanGenerated={handlePlanGenerated}
+                      initialConfig={remixConfig}
+                    />
                   </div>
-
-                  <TripWizard
-                    onPlanGenerated={handlePlanGenerated}
-                    initialConfig={remixConfig}
-                  />
                 </div>
               </section>
 
-              {/* Showcase Section: Curated Gallery Grid Directly Below */}
-              <section className="border-t border-stone-200/80 pt-8 sm:pt-10 pb-16">
-                <GalleryView
-                  onSelectPlan={handleSelectPlan}
-                  onRemixPlan={handleRemixPlan}
-                />
-              </section>
+              {/* Atelier Showcase (Rotating Curator's Spotlight & Thematic Collections) */}
+              <AtelierHome
+                onSelectPlan={handleSelectPlan}
+                onRemixPlan={handleRemixPlan}
+              />
             </div>
           )}
 
@@ -187,29 +160,21 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-stone-200/80 bg-white py-8 mt-16 text-xs text-zinc-400">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="font-medium text-zinc-600">
-            {t("footerTagline")}
+      <footer className="border-t border-stone-200/80 bg-white py-10 mt-20 text-xs text-zinc-400">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="font-serif text-sm font-bold text-zinc-800">
+            7ka<span className="text-[#C5A880]">.</span> Atelier
+          </div>
+          <div className="text-zinc-500">
+            {locale === "en"
+              ? "Bespoke Slow Travel"
+              : "慢调有时 · 步履安然"}
           </div>
           <div className="text-zinc-400">
             © 7ka
           </div>
         </div>
       </footer>
-
-      {/* Floating Demo Preview Switcher */}
-      <Link
-        href="/demo"
-        className="fixed bottom-6 left-6 z-40 hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/95 backdrop-blur-md text-zinc-800 shadow-lg hover:shadow-xl hover:border-stone-400 transition-all border border-stone-200/90 text-xs font-semibold select-none group"
-        title="View Ultra-Premium Atelier Edition Demo"
-      >
-        <span className="w-2 h-2 rounded-full bg-[#C5A880] group-hover:scale-125 transition-transform" />
-        <span className="font-serif text-zinc-900">
-          {locale === "en" ? "Atelier View" : "新版设计"}
-        </span>
-        <span className="text-[10px] text-zinc-400 font-normal">→</span>
-      </Link>
     </div>
   );
 }

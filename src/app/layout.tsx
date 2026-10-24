@@ -19,9 +19,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://plan.7ka.fit"),
+  metadataBase: new URL("https://7ka.fit"),
   title: {
-    default: "7ka · Bespoke Slow Travel | 慢调旅行 · 专属定制",
+    default: "7ka · Bespoke Slow Travel",
     template: "%s | 7ka",
   },
   description:
@@ -40,11 +40,9 @@ export const metadata: Metadata = {
     "Qingdao seaside villas",
     "Yanji border travel",
     "offline travel guide",
-    "慢调旅行",
-    "适老化旅行定制",
     "无障碍旅行",
     "家庭亲子慢行",
-    "舒适慢行规划",
+    "舒适旅行规划",
   ],
   authors: [{ name: "7ka Bespoke Travel" }],
   creator: "7ka",
@@ -55,17 +53,17 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: "https://plan.7ka.fit",
+    canonical: "https://7ka.fit",
     languages: {
-      "en-US": "https://plan.7ka.fit/?lang=en",
-      "zh-CN": "https://plan.7ka.fit/?lang=zh",
+      "en-US": "https://7ka.fit/?lang=en",
+      "zh-CN": "https://7ka.fit/?lang=zh",
     },
   },
   openGraph: {
     title: "7ka · Bespoke Slow Travel",
     description:
       "Craft gentle, zero-backtrack travel itineraries with verified drop-offs, accessibility notes, and handpicked dining.",
-    url: "https://plan.7ka.fit",
+    url: "https://7ka.fit",
     siteName: "7ka",
     images: [
       {

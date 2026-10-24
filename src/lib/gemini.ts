@@ -1,5 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { TravelPlan, WizardConfig } from "@/types/itinerary";
+import { enrichPlanImages } from "@/lib/image-resolver";
 
 let keyIndex = 0;
 
@@ -308,9 +309,16 @@ CRITICAL PLANNING RULES:
    - For every single attraction, provide the EXACT taxi/car drop-off point (e.g. "南门地下落客区", "北门游客服务中心摆渡车站", "景区东侧地面停车场落客通道").
    - NEVER tell travelers to just "arrive at the scenic spot".
 
-2. TRANSIT CONNECTORS:
+2. TRANSIT CONNECTORS & REALISTIC TRANSPORTATION:
    - Between consecutive stops, ALWAYS insert a transit connector specifying mode, exact distance in km, driving/transit minutes, and specific boarding/alighting instructions.
    - fromStop and toStop MUST be clean, human-readable spot names (e.g. "厦门康莱德酒店", "堂宴·老厦门私房菜"), NEVER internal ID slugs or placeholders like "xm_d1_hotel" or "xm_d1_lunch".
+   - REALISTIC URBAN TRANSIT MODES:
+     * DEFAULT TO URBAN TAXI / RIDE-HAILING ('taxi') OR WALKING ('walk').
+     * DO NOT OVERUSE 'charter' (包车)! For normal city sightseeing, travelers take taxis or ride-hailing (打车 / 专车 / 出租车 / 滴滴), or walk for short hops.
+     * For distances under 1.2 km between adjacent spots, use mode='walk' (步行).
+     * For distances over 1.2 km within city boundaries, use mode='taxi' (打车 / 专车).
+     * ONLY use mode='charter' (包车) if explicitly requested by the traveler in custom notes, or for remote out-of-city day trips across long distances (e.g. 珲春防川边境、长白山、青城山后山).
+     * NEVER blanket-label all inner-city transit as '包车'.
 
 3. ADVANCE RESERVATION ACCURACY:
    - In China and popular Asian cities, popular museums (e.g. 延吉博物馆, 青岛啤酒博物馆, 故宫), universities (e.g. 延边大学), and monuments require real-name booking on WeChat mini-programs.
@@ -364,9 +372,17 @@ ${config.locale === "en" ? `   - LANGUAGE REQUIREMENT: The user requests ENGLISH
    - REVIEWS & RATINGS: For all dining spots, provide estimated Google Review ratings (e.g. "4.6★ (Google Reviews)") and note local dining etiquette.` : `   - LANGUAGE REQUIREMENT: Output in Simplified Chinese (zh-CN).
    - REVIEWS & RATINGS: For destinations outside mainland China, provide Google Reviews ratings & advice alongside local food recommendations.`}
 
+10. TRAVEL STYLE:
+${config.travelStyle === "trending" 
+  ? "   - TRENDING & PHOTOGENIC (热门潮流): Heavily feature aesthetically stunning, photogenic vantage points, architectural landmarks, popular lifestyle cafes, and vibrant aesthetic street walks."
+  : config.travelStyle === "niche"
+  ? "   - HIDDEN GEMS (小众秘境): Strictly avoid crowded tourist traps. Curate tranquil ancient alleys, secluded gardens, quiet local tea houses, peaceful waterfront strolls, and off-the-beaten-path cultural gems."
+  : "   - CLASSIC HIGHLIGHTS (经典必游): Curate timeless city landmarks, iconic heritage sites, and quintessential viewpoints with smart timing to avoid crowds."}
+
 TARGET TRIP SPECIFICATIONS:
 - Destinations: ${config.destinations}
 - Duration: ${config.durationDays} Days
+- Travel Style: ${config.travelStyle === "trending" ? "Trending & Photogenic (热门潮流)" : config.travelStyle === "niche" ? "Hidden Gems (小众秘境)" : "Classic Highlights (经典必游)"}
 - Language / Locale: ${config.locale || "zh"}
 ${config.startDate ? `- Departure Date: ${config.startDate}` : ""}
 ${config.endDate ? `- Return Date: ${config.endDate}` : ""}
@@ -374,7 +390,7 @@ ${config.endDate ? `- Return Date: ${config.endDate}` : ""}
 - Companions: ${companionsStr}
 - Budget Tier: ${config.budgetTier}
 - Trip Focus / Interests: ${config.interests.join(", ")}
-- Transportation: ${config.transportMode}
+- Transportation: ${config.transportMode === "taxi" || config.transportMode === "charter_taxi" ? "Taxi & Ride-Hailing (打车 / 专车优先, 城市内以打车/步行为主, 避免滥用全天包车)" : config.transportMode === "public_transit" ? "Public Transit (地铁 / 公交)" : "Self-Driving (自驾租车)"}
 ${config.customNotes ? `- Custom User Notes / Wishlist: "${config.customNotes}"` : ""}
 
 Generate the complete travel plan adhering strictly to the JSON schema.`;
@@ -498,7 +514,7 @@ export async function generateTravelPlan(config: WizardConfig): Promise<TravelPl
     emergencyContacts: rawObj.emergencyContacts || [],
   };
 
-  return travelPlan;
+  return enrichPlanImages(travelPlan, config.destinations);
 }
 
 function parseTargetDay(instruction: string, activeDayIndex?: number, totalDays = 1): number | null {
@@ -594,10 +610,10 @@ Please return the updated Day ${targetDay.dayNumber} JSON adhering to the schema
           dayNumber: targetDay.dayNumber,
         };
 
-        return {
+        return enrichPlanImages({
           ...existingPlan,
           days: updatedDays,
-        };
+        });
       }
     } catch (err) {
       console.warn("Single-day tweak failed, falling back to full-plan tweak:", err);
@@ -679,5 +695,5 @@ Please apply this instruction: "${instruction}" and return the updated TravelPla
     emergencyContacts: rawObj.emergencyContacts || existingPlan.emergencyContacts,
   };
 
-  return updatedPlan;
+  return enrichPlanImages(updatedPlan);
 }

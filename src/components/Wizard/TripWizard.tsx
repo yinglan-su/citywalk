@@ -29,6 +29,7 @@ interface TripWizardProps {
 
 const SLIDER_PRESETS = [1, 3, 5, 7, 14, 30];
 
+
 export const TripWizard: React.FC<TripWizardProps> = ({
   onPlanGenerated,
   initialConfig,
@@ -68,7 +69,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
   ];
 
   const transportPills = [
-    { value: "charter_taxi" as const, label: t("transportTaxi") },
+    { value: "taxi" as const, label: t("transportTaxi") },
     { value: "public_transit" as const, label: t("transportPublic") },
     { value: "driving" as const, label: t("transportDrive") },
   ];
@@ -149,15 +150,19 @@ export const TripWizard: React.FC<TripWizardProps> = ({
   const [mobility, setMobility] = useState<"low" | "moderate" | "high">(
     initialConfig?.mobility || "low"
   );
+  // Default to empty array - do NOT pre-select elders unless explicitly passed
   const [companions, setCompanions] = useState<string[]>(
-    initialConfig?.companions || ["elders"]
+    initialConfig?.companions || []
+  );
+  const [travelStyle, setTravelStyle] = useState<"classic" | "trending" | "niche">(
+    (initialConfig?.travelStyle as any) || "classic"
   );
   const [budgetTier, setBudgetTier] = useState<"budget" | "comfort" | "luxury">(
     initialConfig?.budgetTier || "comfort"
   );
   const [transportMode, setTransportMode] = useState<
-    "charter_taxi" | "public_transit" | "driving"
-  >(initialConfig?.transportMode || "charter_taxi");
+    "taxi" | "charter_taxi" | "public_transit" | "driving"
+  >((initialConfig?.transportMode as any) || "taxi");
   const [customNotes, setCustomNotes] = useState<string>(
     initialConfig?.customNotes || ""
   );
@@ -181,6 +186,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
     if (initialConfig?.durationDays) setDurationDays(initialConfig.durationDays);
     if (initialConfig?.mobility) setMobility(initialConfig.mobility);
     if (initialConfig?.companions) setCompanions(initialConfig.companions);
+    if (initialConfig?.travelStyle) setTravelStyle(initialConfig.travelStyle);
     if (initialConfig?.interests && initialConfig.interests.length > 0) {
       setTripFocus(initialConfig.interests);
     }
@@ -299,6 +305,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
       budgetTier,
       interests: tripFocus,
       transportMode,
+      travelStyle,
       startDate: dateMode === "calendar" ? startDate : undefined,
       customNotes: customNotes.trim(),
       locale,
@@ -669,6 +676,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                     {getCalendarSummary()}
                   </span>
                 </div>
+
               </div>
             ) : (
               /* Mode 2: 1-30 Day Range Slider */
@@ -695,23 +703,6 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                   className="w-full accent-zinc-900 cursor-pointer"
                 />
 
-                {/* Snap presets */}
-                <div className="flex items-center justify-between gap-1 text-[11px]">
-                  {SLIDER_PRESETS.map((day) => (
-                    <button
-                      key={day}
-                      type="button"
-                      onClick={() => setDurationDays(day)}
-                      className={`px-2 py-0.5 rounded-md transition ${
-                        durationDays === day
-                          ? "bg-zinc-900 text-white font-bold"
-                          : "bg-white text-zinc-600 border border-stone-200 hover:bg-stone-100"
-                      }`}
-                    >
-                      {day}{t("daysUnit")}
-                    </button>
-                  ))}
-                </div>
               </div>
             )}
           </div>
@@ -736,6 +727,71 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                     }`}
                   >
                     {selected ? `✓ ${f.label}` : f.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* 3.5 Travel Style (Classic Highlights, Trending & Photogenic, Hidden Gems) */}
+          <div>
+            <div className="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2 flex items-center justify-between">
+              <span>{locale === "en" ? "Travel Style" : "旅行风格"}</span>
+              <span className="text-[10px] text-zinc-400 font-normal">
+                {locale === "en" ? "Curates vibe & spot selection" : "决定选点倾向与打卡调性"}
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              {[
+                {
+                  value: "classic" as const,
+                  labelZh: "经典必游",
+                  labelEn: "Classic Highlights",
+                  descZh: "地标名胜与城市精髓",
+                  descEn: "Iconic landmarks & culture",
+                },
+                {
+                  value: "trending" as const,
+                  labelZh: "热门打卡",
+                  labelEn: "Trending & Photogenic",
+                  descZh: "出片胜地与美学设计",
+                  descEn: "Social hits & photo spots",
+                },
+                {
+                  value: "niche" as const,
+                  labelZh: "小众秘境",
+                  labelEn: "Hidden Gems",
+                  descZh: "清幽古韵与避开人潮",
+                  descEn: "Quiet & off the beaten path",
+                },
+              ].map((style) => {
+                const selected = travelStyle === style.value;
+                return (
+                  <button
+                    key={style.value}
+                    type="button"
+                    onClick={() => setTravelStyle(style.value)}
+                    className={`p-3 rounded-2xl text-left border transition-all select-none cursor-pointer flex flex-col justify-between ${
+                      selected
+                        ? "bg-zinc-900 text-white border-zinc-900 shadow-xs"
+                        : "bg-stone-50 hover:bg-stone-100 text-zinc-700 border-stone-200/80"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between w-full mb-1">
+                      <span className="text-xs font-bold">
+                        {locale === "en" ? style.labelEn : style.labelZh}
+                      </span>
+                      {selected && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#9E825A]" />
+                      )}
+                    </div>
+                    <span
+                      className={`text-[10px] leading-tight ${
+                        selected ? "text-stone-300" : "text-zinc-400"
+                      }`}
+                    >
+                      {locale === "en" ? style.descEn : style.descZh}
+                    </span>
                   </button>
                 );
               })}
