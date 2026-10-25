@@ -103,25 +103,14 @@ export default function Home() {
                   <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-zinc-900 tracking-tight leading-[1.18]">
                     {locale === "en" ? (
                       <>
-                        Travel in Stillness.<br />
-                        <span className="italic font-normal text-zinc-700">Walk with Ease.</span>
+                        Your Journey, <span className="italic font-normal text-zinc-700">Tailored to You.</span>
                       </>
                     ) : (
                       <>
-                        慢调有时 · <span className="font-normal text-zinc-700">步履安然</span>
+                        专属定制 · <span className="font-normal text-zinc-700">随心成行</span>
                       </>
                     )}
                   </h1>
-
-                  {/* Cross-Border & Zero-Language-Barrier Editorial Subtitle */}
-                  <div className="flex flex-wrap items-center justify-center gap-2 pt-0.5">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 border border-stone-200/80 text-[11px] font-medium text-zinc-600 shadow-2xs">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
-                      {locale === "en"
-                        ? "Zero-Language-Barrier Foreign Travel · Driver Flashcards · Point-to-Order Menus"
-                        : "异国零语言障碍 · 双语司机闪卡 · 指点即点地道菜单"}
-                    </span>
-                  </div>
 
                   {/* Generator Console */}
                   <div id="generator-capsule" className="pt-2">
