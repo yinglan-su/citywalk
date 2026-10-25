@@ -21,7 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-50 bg-[#FAF9F6]/90 backdrop-blur-xl border-b border-stone-200/80 transition-all">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* Brand Logo - 7ka Trip Planner */}
+        {/* Brand Logo */}
         <div
           onClick={onGoToHome}
           className="flex items-center gap-2.5 cursor-pointer select-none group"
@@ -31,14 +31,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               7
             </span>
           </div>
-          <div className="flex items-baseline gap-2">
-            <span className="font-bold text-xl tracking-tight text-zinc-900">
-              7ka<span className="text-[#C5A880]">.</span>
-            </span>
-            <span className="text-[11px] font-medium text-zinc-400 tracking-wide">
-              {locale === "en" ? "Trip Planner" : "行程规划"}
-            </span>
-          </div>
+          <span className="font-bold text-xl tracking-tight text-zinc-900">
+            7ka<span className="text-[#C5A880]">.</span>
+          </span>
         </div>
 
         {/* Right Actions: 语言切换 & 我的行程 */}
