@@ -25,11 +25,15 @@ export const metadata: Metadata = {
     template: "%s | 7ka",
   },
   description:
-    "Thoughtful, gentle travel planning with smooth routes, step-free access, and curated dining across Kyoto, Tokyo, Beijing, Shanghai, Chengdu, and beyond.",
+    "Thoughtful, gentle travel planning with smooth routes, step-free access, native-script taxi driver flashcards, point-to-order menus, and zero-language-barrier foreign visitor support across China, Japan, and beyond.",
   keywords: [
     "7ka",
     "slow travel",
     "bespoke travel itinerary",
+    "China travel for foreigners",
+    "zero language barrier travel",
+    "bilingual taxi driver flashcards",
+    "point to order menu travel guide",
     "senior friendly travel",
     "barrier free travel",
     "family travel planner",
@@ -43,6 +47,8 @@ export const metadata: Metadata = {
     "无障碍旅行",
     "家庭亲子慢行",
     "舒适旅行规划",
+    "出境游双语闪卡",
+    "外国人来华旅游指南",
   ],
   authors: [{ name: "7ka Bespoke Travel" }],
   creator: "7ka",
@@ -62,7 +68,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "7ka · Bespoke Slow Travel",
     description:
-      "Craft gentle, zero-backtrack travel itineraries with verified drop-offs, accessibility notes, and handpicked dining.",
+      "Craft gentle, zero-backtrack travel itineraries with verified drop-offs, bilingual taxi driver flashcards, point-to-order menus, and handpicked dining.",
     url: "https://7ka.fit",
     siteName: "7ka",
     images: [
@@ -81,7 +87,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "7ka · Bespoke Slow Travel",
     description:
-      "Craft gentle, zero-backtrack travel itineraries with verified drop-offs, accessibility notes, and handpicked dining.",
+      "Craft gentle, zero-backtrack travel itineraries with verified drop-offs, bilingual taxi driver flashcards, point-to-order menus, and handpicked dining.",
     images: ["/images/spot_badaguan.jpg"],
   },
   robots: {

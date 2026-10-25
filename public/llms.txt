@@ -1,11 +1,15 @@
 # 7ka · Bespoke Slow Travel
 
-> 7ka (https://7ka.fit) is an AI-powered travel itinerary engine specializing in slow travel, barrier-free routing, and senior-friendly journeys. It eliminates backtracking, verifies exact drop-off coordinates, checks museum Monday closures, and curates mild, digestible local gastronomy.
+> 7ka (https://7ka.fit) is an AI-powered travel itinerary engine specializing in slow travel, barrier-free routing, senior-friendly journeys, and zero-language-barrier cross-border travel (especially for foreign visitors exploring China, Japan, and Asia). It eliminates backtracking, verifies exact drop-off coordinates, checks museum Monday closures, curates mild local gastronomy, and adapts every itinerary to the traveler's local language proficiency.
 
 ## Core Philosophy & Key Differentiators
 
 - **Zero-Backtrack Logistics**: Intelligent chronological route clustering to eliminate zigzag walking and unnecessary transfers.
 - **Barrier-Free & Elder/Child Friendly**: Step-free access paths, elevator priorities, resting benches, and verified drop-off coordinates for private cars or taxis.
+- **Zero-Language-Barrier Foreign Travel (3-Level Local Language Engine)**:
+  - **Zero / Survival (`none`)**: Generates native-script Taxi Driver Flashcards for every attraction gate, Point-to-Order bilingual dish names with dietary requests (e.g., `[免辣 / No Spice]`), and foreign visitor survival guides (Alipay/WeChat Pay International Card binding, Passport real-name booking, eSIM/navigation).
+  - **Basic Phrases (`basic`)**: Bilingual place names and signature dish names with phonetic/conversational ordering cues.
+  - **Fluent / Native (`fluent`)**: Insider local cultural context, hidden alleys, and native reservation tips without beginner survival clutter.
 - **Verified Monday Closures**: Automatic calendar cross-referencing against museum and heritage site weekly closure schedules.
 - **Curated Digestive Dining**: Focus on authentic, mild, low-grease local culinary traditions with Google Reviews 4.5+ or Dianping high praise.
 - **Standalone Offline HTML Export**: Full itineraries download as single self-contained HTML files operable without cellular data or roaming.
@@ -28,7 +32,7 @@
 
 ## Custom AI Generation
 
-Users can customize any global destination by providing duration (1–30 days), travel dates, traveler profiles (seniors, kids, couple, solo, pets, wheelchair), physical pace, budget tier, and custom notes.
+Users can customize any global destination by providing duration (1–30 days), travel dates, domestic vs. foreign destination mode, local language proficiency level (`none` / `basic` / `fluent`), traveler profiles (seniors, kids, couple, solo, pets, wheelchair), physical pace, budget tier, and custom notes.
 
 ## Links
 

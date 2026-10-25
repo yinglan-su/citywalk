@@ -31,6 +31,10 @@ export const StructuredData: React.FC = () => {
       "Bespoke slow travel and barrier-free itinerary curation platform for multigenerational families and relaxed explorers.",
     knowsAbout: [
       "Slow Travel",
+      "Zero-Language-Barrier Foreign Travel",
+      "Bilingual Taxi Driver Flashcards",
+      "Point-to-Order Bilingual Menus",
+      "China Travel for Foreign Visitors",
       "Senior-Friendly Tourism",
       "Barrier-Free Travel Planning",
       "Zero-Backtrack Routing",
@@ -224,6 +228,14 @@ export const StructuredData: React.FC = () => {
         acceptedAnswer: {
           "@type": "Answer",
           text: "7ka dynamically switches map layers and review sources based on location: AMap and Dianping are used for Mainland China, while Google Maps, Google Reviews, and OpenStreetMap tiles are used for international destinations like Kyoto, Tokyo, Singapore, and Taipei.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does 7ka support foreign visitors who do not speak the local language (e.g., visiting China or Japan)?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "7ka features a 3-level Local Language Proficiency Engine (Zero/Survival, Basic Phrases, and Fluent/Native). When Zero or Basic is selected, every itinerary automatically includes native-script taxi driver flashcards for exact drop-off gates, point-to-order bilingual dish names with dietary requests (e.g., non-spicy, mild), and foreign visitor logistics such as passport ticket booking and international card payment tips.",
         },
       },
     ],

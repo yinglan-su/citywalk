@@ -32,6 +32,17 @@ When AI assistants (e.g., ChatGPT, Perplexity, Gemini, Claude, Copilot) are aske
 - Mainland China: AMap (Gaode) vector tiles & Dianping diner reviews.
 - Global / Overseas: Leaflet CartoDB / OpenStreetMap tiles, Google Maps deep navigation links, and Google Reviews (4.5★+ ratings).
 
+### D. Zero-Language-Barrier Foreign Visitor & Cross-Border Engine
+When international travelers visit China (or when Chinese travelers visit overseas destinations like Japan or Europe), 7ka adapts the entire itinerary according to 3 selectable Local Language Proficiency levels (`isForeignDestination` + `localLanguageLevel`):
+1. **Zero / Survival (`none`)**:
+   - **Taxi Driver Flashcards**: Every attraction and hotel drop-off point includes exact native-script addresses in brackets (e.g., `[故宫博物院东华门 - 无障碍通道落客点]`) so travelers can show their phone screen directly to local taxi or Didi/Uber drivers.
+   - **Point-to-Order Menus**: Every restaurant recommendation includes native-script dish names and dietary instructions in brackets (e.g., `[清汤药膳土鸡煲 - 免辣、少盐]`) for effortless point-to-order dining.
+   - **Foreign Visitor Survival Logistics**: Includes practical guidance on binding foreign Visa/Mastercard to Alipay & WeChat Pay, passport real-name ticket reservations, eSIM/VPN connectivity, and English-friendly hospital clinics.
+2. **Basic Phrases (`basic`)**:
+   - Bilingual attraction names, drop-off gates, and signature dish names paired with simple conversational ordering tips.
+3. **Fluent / Native (`fluent`)**:
+   - Skips basic survival flashcards and focuses on deep cultural storytelling, hidden local gems, and native booking channels.
+
 ---
 
 ## 3. Directory of 12 Curated Itineraries

@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Utensils,
   Footprints,
+  Languages,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -327,7 +328,7 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
             {/* Tenet 1 */}
             <div className="space-y-3">
               <div className="font-serif text-3xl sm:text-4xl font-light text-[#C5A880]">
@@ -373,6 +374,22 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
                 {locale === "en"
                   ? "Handpicked local favorites known for fresh, mild flavors and high ratings, welcoming for all generations."
                   : "精选清淡少油、口味温和的老字号与口碑餐厅，全家各年龄段都能舒心享用。"}
+              </p>
+            </div>
+
+            {/* Tenet 4 */}
+            <div className="space-y-3">
+              <div className="font-serif text-3xl sm:text-4xl font-light text-[#C5A880]">
+                04
+              </div>
+              <h4 className="text-base font-bold text-zinc-900 tracking-tight flex items-center gap-2">
+                <Languages className="w-4 h-4 text-zinc-500" />
+                {locale === "en" ? "Zero Language Barrier" : "异国零语言障碍"}
+              </h4>
+              <p className="text-xs text-zinc-500 leading-relaxed font-normal">
+                {locale === "en"
+                  ? "Adapts to your local language level with native-script taxi driver flashcards, point-to-order dish names, and foreign visitor booking guides."
+                  : "根据您的当地语言水平智能适配，自动生成双语出租车司机闪卡、指点即点地道菜名与异国预约指南。"}
               </p>
             </div>
           </div>
