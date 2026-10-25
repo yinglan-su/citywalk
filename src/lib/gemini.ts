@@ -379,9 +379,25 @@ ${config.travelStyle === "trending"
   ? "   - HIDDEN GEMS (小众秘境): Strictly avoid crowded tourist traps. Curate tranquil ancient alleys, secluded gardens, quiet local tea houses, peaceful waterfront strolls, and off-the-beaten-path cultural gems."
   : "   - CLASSIC HIGHLIGHTS (经典必游): Curate timeless city landmarks, iconic heritage sites, and quintessential viewpoints with smart timing to avoid crowds."}
 
+11. FOREIGN DESTINATION & LOCAL LANGUAGE ADAPTATION:
+${config.isForeignDestination
+  ? config.localLanguageLevel === "none"
+    ? `   - FOREIGN VISITOR WITH ZERO LOCAL LANGUAGE (完全不会当地语言 · 生存级双语保障):
+     * BILINGUAL DRIVER FLASHCARDS: Every single activity.name, activity.dropOffPoint, transit.fromStop, transit.toStop, and dining.restaurantName / addressOrDropOff MUST include the EXACT native local script in brackets (e.g. if user is English visiting China: "Forbidden City Donghua Gate [故宫东华门落客区]"; if user is Chinese visiting Japan/France: "岚山天龙寺正门 [天龍寺 総門前]" or "卢浮宫卡鲁塞尔入口 [Musée du Louvre - Entrée Carrousel]") so the traveler can literally show their phone screen to a local taxi driver.
+     * POINT-TO-ORDER MENUS: Every item in recommendedDishes MUST include both the user's language and the native local script in brackets (e.g. "Steamed Soup Dumplings [小笼包]" or "京都汤豆腐套餐 [湯豆腐会席]") so the traveler can point at the screen to order without speaking a word.
+     * FOREIGN VISITOR SURVIVAL LOGISTICS: In overview.logisticsSummary, dailyTips, and reservationChecklist, explicitly provide foreign visitor survival tips (e.g. local payment app setup like Alipay/WeChat international card binding or Suica, passport booking channels, and ride-hailing app tips that avoid verbal communication).`
+    : config.localLanguageLevel === "basic"
+    ? `   - FOREIGN VISITOR WITH BASIC CONVERSATIONAL PHRASES (基础日常沟通):
+     * Include bilingual names (User Language + Local Native Script in parentheses/brackets) for all attraction names, drop-off points, and restaurant names to ensure smooth navigation and taxi drop-offs.
+     * In reservationChecklist and dailyTips, note foreigner-friendly booking channels (passport registration rules) and helpful local transit/dining etiquette.`
+    : `   - FOREIGN VISITOR FLUENT IN LOCAL LANGUAGE (流利沟通 · 无语言障碍):
+     * The traveler speaks and reads the local language fluently! Feel free to recommend authentic neighborhood eateries without tourist menus, local-only reservation platforms, and deeper cultural experiences, while still noting cross-border essentials (passport ID rules, local payment apps).`
+  : "   - DOMESTIC / NATIVE LANGUAGE ENVIRONMENT: Standard native naming and local booking channels apply."}
+
 TARGET TRIP SPECIFICATIONS:
 - Destinations: ${config.destinations}
 - Duration: ${config.durationDays} Days
+- Foreign Destination Mode: ${config.isForeignDestination ? `Yes (Local Language Level: ${config.localLanguageLevel || "none"})` : "No (Domestic / Native)"}
 - Travel Style: ${config.travelStyle === "trending" ? "Trending & Photogenic (热门潮流)" : config.travelStyle === "niche" ? "Hidden Gems (小众秘境)" : "Classic Highlights (经典必游)"}
 - Language / Locale: ${config.locale || "zh"}
 ${config.startDate ? `- Departure Date: ${config.startDate}` : ""}
@@ -507,6 +523,9 @@ export async function generateTravelPlan(config: WizardConfig): Promise<TravelPl
       generatedAt: new Date().toISOString(),
       viewsCount: 1,
       likesCount: 0,
+      locale: config.locale,
+      isForeignDestination: config.isForeignDestination,
+      localLanguageLevel: config.isForeignDestination ? config.localLanguageLevel : undefined,
     },
     overview: rawObj.overview,
     days: normalizedDays,

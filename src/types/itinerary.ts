@@ -11,6 +11,8 @@ export interface WizardConfig {
   endDate?: string;
   customNotes?: string;
   locale?: "zh" | "en";
+  isForeignDestination?: boolean;
+  localLanguageLevel?: "none" | "basic" | "fluent";
 }
 
 export interface ActivityAlternative {
@@ -137,6 +139,8 @@ export interface TravelPlan {
     viewsCount?: number;
     likesCount?: number;
     locale?: "zh" | "en";
+    isForeignDestination?: boolean;
+    localLanguageLevel?: "none" | "basic" | "fluent";
   };
   overview: {
     highlights: string[];

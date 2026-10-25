@@ -12,10 +12,12 @@ import {
   Search,
   Globe,
   Check,
+  Languages,
 } from "lucide-react";
 import { TravelPlan, WizardConfig } from "@/types/itinerary";
 import { useLanguage } from "@/context/LanguageContext";
 import {
+  WORLD_CITIES,
   searchWorldCities,
   getCityDisplayName,
   getCityPrimaryName,
@@ -166,10 +168,55 @@ export const TripWizard: React.FC<TripWizardProps> = ({
   const [customNotes, setCustomNotes] = useState<string>(
     initialConfig?.customNotes || ""
   );
+  const [isForeignDestination, setIsForeignDestination] = useState<boolean>(
+    initialConfig?.isForeignDestination ?? false
+  );
+  const [hasManuallySetForeign, setHasManuallySetForeign] = useState<boolean>(
+    initialConfig?.isForeignDestination !== undefined
+  );
+  const [localLanguageLevel, setLocalLanguageLevel] = useState<
+    "none" | "basic" | "fluent"
+  >(initialConfig?.localLanguageLevel || "none");
 
   const [isLoading, setIsLoading] = useState(false);
   const [phaseIdx, setPhaseIdx] = useState(0);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  // Auto-detect whether selected cities are foreign unless user manually toggled
+  useEffect(() => {
+    if (hasManuallySetForeign || selectedCities.length === 0) return;
+    const englishSpeakingCountries = [
+      "United States",
+      "United Kingdom",
+      "Australia",
+      "New Zealand",
+      "Canada",
+    ];
+    let detectedForeign = false;
+    for (const c of selectedCities) {
+      const lower = c.toLowerCase();
+      const matched = WORLD_CITIES.find(
+        (w) =>
+          w.nameZh === c ||
+          w.nameEn.toLowerCase() === lower ||
+          w.pinyin === lower
+      );
+      if (matched) {
+        if (locale === "zh" && matched.region !== "china") {
+          detectedForeign = true;
+          break;
+        }
+        if (
+          locale === "en" &&
+          !englishSpeakingCountries.includes(matched.countryEn)
+        ) {
+          detectedForeign = true;
+          break;
+        }
+      }
+    }
+    setIsForeignDestination(detectedForeign);
+  }, [selectedCities, locale, hasManuallySetForeign]);
 
   // Parse destinations from initialConfig
   useEffect(() => {
@@ -189,6 +236,13 @@ export const TripWizard: React.FC<TripWizardProps> = ({
     if (initialConfig?.travelStyle) setTravelStyle(initialConfig.travelStyle);
     if (initialConfig?.interests && initialConfig.interests.length > 0) {
       setTripFocus(initialConfig.interests);
+    }
+    if (initialConfig?.isForeignDestination !== undefined) {
+      setIsForeignDestination(initialConfig.isForeignDestination);
+      setHasManuallySetForeign(true);
+    }
+    if (initialConfig?.localLanguageLevel) {
+      setLocalLanguageLevel(initialConfig.localLanguageLevel);
     }
   }, [initialConfig]);
 
@@ -309,6 +363,8 @@ export const TripWizard: React.FC<TripWizardProps> = ({
       startDate: dateMode === "calendar" ? startDate : undefined,
       customNotes: customNotes.trim(),
       locale,
+      isForeignDestination,
+      localLanguageLevel: isForeignDestination ? localLanguageLevel : undefined,
     };
 
     try {
@@ -592,6 +648,130 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                   </button>
                 );
               })}
+            </div>
+
+            {/* 1.5 Foreign Destination Toggle & Conditional Local Language Level */}
+            <div className="mt-4 pt-3.5 border-t border-stone-100 space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5">
+                  <Globe className="w-3.5 h-3.5 text-[#9E825A]" />
+                  <span className="text-xs font-bold text-zinc-900 uppercase tracking-wider">
+                    {locale === "en"
+                      ? "Is this a foreign destination for you?"
+                      : "是否为异国 / 外语目的地？"}
+                  </span>
+                </div>
+
+                <div className="flex items-center p-0.5 rounded-xl bg-stone-100 text-xs font-semibold border border-stone-200/70 self-start sm:self-auto">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsForeignDestination(false);
+                      setHasManuallySetForeign(true);
+                    }}
+                    className={`px-3 py-1 rounded-lg transition select-none cursor-pointer ${
+                      !isForeignDestination
+                        ? "bg-white text-zinc-900 shadow-xs font-bold"
+                        : "text-zinc-500 hover:text-zinc-800"
+                    }`}
+                  >
+                    {locale === "en" ? "Domestic" : "国内 / 母语区"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsForeignDestination(true);
+                      setHasManuallySetForeign(true);
+                    }}
+                    className={`px-3 py-1 rounded-lg transition select-none cursor-pointer flex items-center gap-1.5 ${
+                      isForeignDestination
+                        ? "bg-zinc-900 text-white shadow-xs font-bold"
+                        : "text-zinc-500 hover:text-zinc-800"
+                    }`}
+                  >
+                    <Languages className="w-3 h-3 text-[#C5A880]" />
+                    <span>
+                      {locale === "en" ? "Foreign Destination" : "异国 / 外语出行"}
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {isForeignDestination && (
+                <div className="p-3.5 rounded-2xl bg-stone-50/90 border border-stone-200/80 space-y-2.5 animate-fadeIn">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold text-zinc-800 uppercase tracking-wider flex items-center gap-1.5">
+                      <Languages className="w-3.5 h-3.5 text-[#9E825A]" />
+                      <span>
+                        {locale === "en"
+                          ? "Local Language Level"
+                          : "当地语言熟悉程度"}
+                      </span>
+                    </span>
+                    <span className="text-[10px] text-zinc-400">
+                      {locale === "en"
+                        ? "Adapts bilingual driver cards, menus & booking tips"
+                        : "自动匹配双语指路卡、点餐对照与外宾预约提示"}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    {[
+                      {
+                        value: "none" as const,
+                        labelEn: "Zero / Survival",
+                        labelZh: "完全不会",
+                        descEn: "Bilingual taxi cards & point-to-order menus",
+                        descZh: "附双语打车指路卡与指图点餐对照",
+                      },
+                      {
+                        value: "basic" as const,
+                        labelEn: "Basic Phrases",
+                        labelZh: "简单日常",
+                        descEn: "Key local names & foreign booking tips",
+                        descZh: "掌握基础问路，附关键地名与外宾提示",
+                      },
+                      {
+                        value: "fluent" as const,
+                        labelEn: "Fluent / Native",
+                        labelZh: "流利无碍",
+                        descEn: "No barrier · unlock local apps & deep gems",
+                        descZh: "无语言障碍 · 深入本地预约平台与秘境",
+                      },
+                    ].map((lvl) => {
+                      const selected = localLanguageLevel === lvl.value;
+                      return (
+                        <button
+                          key={lvl.value}
+                          type="button"
+                          onClick={() => setLocalLanguageLevel(lvl.value)}
+                          className={`p-2.5 rounded-xl text-left border transition-all select-none cursor-pointer flex flex-col justify-between ${
+                            selected
+                              ? "bg-zinc-900 text-white border-zinc-900 shadow-xs"
+                              : "bg-white hover:bg-stone-100 text-zinc-700 border-stone-200/90"
+                          }`}
+                        >
+                          <div className="flex items-center justify-between w-full mb-0.5">
+                            <span className="text-xs font-bold">
+                              {locale === "en" ? lvl.labelEn : lvl.labelZh}
+                            </span>
+                            {selected && (
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
+                            )}
+                          </div>
+                          <span
+                            className={`text-[10px] leading-tight ${
+                              selected ? "text-stone-300" : "text-zinc-400"
+                            }`}
+                          >
+                            {locale === "en" ? lvl.descEn : lvl.descZh}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
