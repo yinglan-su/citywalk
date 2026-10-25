@@ -917,12 +917,6 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
           {/* Hotel Tweak Expandable Panel */}
           {isHotelTweakOpen && (
             <div className="mb-4 p-4 rounded-2xl bg-stone-50/70 border border-stone-200/70 space-y-3">
-              <div className="text-[11px] font-medium text-zinc-500">
-                {locale === "en"
-                  ? "Specify your stay preferences:"
-                  : "输入具体住宿偏好或期望："}
-              </div>
-
               {/* Preset Chips */}
               <div className="flex flex-wrap gap-1.5">
                 {[
@@ -1382,13 +1376,12 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                 <div className="flex flex-wrap items-center justify-between gap-y-1.5 gap-x-3 text-xs text-zinc-500 my-2.5">
                   <div className="flex items-center gap-1.5 min-w-0">
                     <MapPin className="w-3.5 h-3.5 text-[#9E825A] shrink-0" />
-                    <span className="font-medium text-zinc-700">{t("dropOffNavTarget")}:</span>
                     <span className="truncate text-zinc-600">{act.dropOffPoint}</span>
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0">
                     <span className="text-zinc-400">
-                      {t("durationMins")} {act.durationMinutes} {t("mins")}
+                      {act.durationMinutes} {t("mins")}
                     </span>
                     {act.coordinates && act.coordinates.length === 2 && (
                       <>
@@ -1436,10 +1429,6 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                           e.currentTarget.src = "/images/spot_kyoto_zen.jpg";
                         }}
                       />
-                      <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-medium flex items-center gap-1.5 shadow-xs">
-                        <Camera className="w-3 h-3 text-[#9E825A]" />
-                        <span>{t("photoSpotAdvice")}</span>
-                      </div>
                     </div>
                   );
                 })()}
@@ -1448,17 +1437,13 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                 {act.photoTip && (
                   <div className="my-2 flex items-start gap-1.5 text-xs text-zinc-500 italic">
                     <Camera className="w-3.5 h-3.5 text-[#9E825A] shrink-0 mt-0.5 not-italic" />
-                    <div>
-                      <span className="not-italic font-medium text-zinc-700">{t("photoTipLabel")} </span>
-                      <span>{act.photoTip}</span>
-                    </div>
+                    <span>{act.photoTip}</span>
                   </div>
                 )}
 
                 {/* Elder/Kid notes: Clean Inline Caption */}
                 {act.elderKidNotes && (
                   <div className="text-[11px] text-zinc-500 mt-2 flex items-center gap-1.5">
-                    <span className="text-zinc-400">舒适出行提示：</span>
                     <span>{act.elderKidNotes}</span>
                   </div>
                 )}
@@ -1716,32 +1701,24 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                               e.currentTarget.src = "/images/spot_yj_samgyetang.jpg";
                             }}
                           />
-                          <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-medium flex items-center gap-1 shadow-xs">
-                            <Utensils className="w-2.5 h-2.5 text-[#9E825A]" />
-                            <span>{t("authenticFlavor")}</span>
-                          </div>
                         </div>
                       );
                     })()}
 
                     {/* Signature Highlights / Photo Tip */}
                     {currentDay.meals.lunch.photoTip && (
-                      <div className="my-1.5 text-[11px] text-zinc-500 italic flex items-start gap-1">
-                        <span className="not-italic font-medium text-zinc-700">{t("signatureHighlights")}: </span>
+                      <div className="my-1.5 text-[11px] text-zinc-500 italic">
                         <span>{currentDay.meals.lunch.photoTip}</span>
                       </div>
                     )}
 
                     {/* Recommended Dishes: Clean Editorial Typography */}
-                    <div className="my-2 text-xs text-zinc-700 leading-relaxed">
-                      <span className="text-zinc-400 font-medium">招牌推荐：</span>
-                      <span className="font-medium text-zinc-800">
-                        {currentDay.meals.lunch.recommendedDishes.join(" · ")}
-                      </span>
+                    <div className="my-2 text-xs font-medium text-zinc-800 leading-relaxed">
+                      {currentDay.meals.lunch.recommendedDishes.join(" · ")}
                     </div>
 
                     <div className="text-[11px] text-zinc-500 mb-2">
-                      {t("dietarySuitability")}: {currentDay.meals.lunch.elderKidSuitability}
+                      {currentDay.meals.lunch.elderKidSuitability}
                     </div>
 
                     {/* Google Reviews & Dianping Links: Monochromatic & Refined */}
@@ -2009,32 +1986,24 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
                               e.currentTarget.src = "/images/spot_yj_bbq.jpg";
                             }}
                           />
-                          <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-medium flex items-center gap-1 shadow-xs">
-                            <Utensils className="w-2.5 h-2.5 text-[#9E825A]" />
-                            <span>{t("authenticFlavor")}</span>
-                          </div>
                         </div>
                       );
                     })()}
 
                     {/* Signature Highlights / Photo Tip */}
                     {currentDay.meals.dinner.photoTip && (
-                      <div className="my-1.5 text-[11px] text-zinc-500 italic flex items-start gap-1">
-                        <span className="not-italic font-medium text-zinc-700">{t("signatureHighlights")}: </span>
+                      <div className="my-1.5 text-[11px] text-zinc-500 italic">
                         <span>{currentDay.meals.dinner.photoTip}</span>
                       </div>
                     )}
 
                     {/* Recommended Dishes: Clean Editorial Typography */}
-                    <div className="my-2 text-xs text-zinc-700 leading-relaxed">
-                      <span className="text-zinc-400 font-medium">招牌推荐：</span>
-                      <span className="font-medium text-zinc-800">
-                        {currentDay.meals.dinner.recommendedDishes.join(" · ")}
-                      </span>
+                    <div className="my-2 text-xs font-medium text-zinc-800 leading-relaxed">
+                      {currentDay.meals.dinner.recommendedDishes.join(" · ")}
                     </div>
 
                     <div className="text-[11px] text-zinc-500 mb-2">
-                      {t("dietarySuitability")}: {currentDay.meals.dinner.elderKidSuitability}
+                      {currentDay.meals.dinner.elderKidSuitability}
                     </div>
 
                     {/* Google Reviews & Dianping Links: Monochromatic & Refined */}
@@ -2139,14 +2108,9 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
             <div className="w-7 h-7 rounded-full bg-zinc-800 border border-[#9E825A]/40 flex items-center justify-center text-xs font-serif font-black text-[#9E825A]">
               7
             </div>
-            <div>
-              <div className="text-xs font-bold flex items-center gap-1.5">
-                <span>{locale === "en" ? "Concierge Copilot" : "行程管家微调"}</span>
-                <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-              </div>
-              <div className="text-[10px] text-zinc-400">
-                {locale === "en" ? "Real-time route & stop optimization" : "定向增量微调 · 自动保留坐标与落客点"}
-              </div>
+            <div className="text-xs font-bold flex items-center gap-1.5">
+              <span>{locale === "en" ? "Concierge Copilot" : "行程管家微调"}</span>
+              <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
             </div>
           </div>
           <button
@@ -2160,37 +2124,20 @@ export const ItineraryDashboard: React.FC<ItineraryDashboardProps> = ({
         </div>
 
         {/* Chat Body */}
-        <div className="p-4 space-y-3.5 overflow-y-auto max-h-[55vh] text-xs">
-          {/* Welcome Bubble */}
-          <div className="flex items-start gap-2.5">
-            <div className="w-6 h-6 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center shrink-0 mt-0.5">
-              <Sparkles className="w-3 h-3 text-[#9E825A]" />
-            </div>
-            <div className="bg-stone-50 border border-stone-200/80 rounded-2xl rounded-tl-xs p-3 text-zinc-700 leading-relaxed">
-              {locale === "en"
-                ? "Hello! I am your 7ka travel copilot. Need to avoid steep stairs, swap dinner to a mild soup, add a tea break, or adjust pacing? Tap a preset below or message me!"
-                : "您好！我是您的 7ka 专属行程管家。想避开台阶爬坡、换成温热清淡滋补晚餐、增加午后茶歇，或是替换某个景点？点击下方快捷指令或输入具体要求，我将自动重新规划动线。"}
-            </div>
-          </div>
-
+        <div className="p-4 space-y-3 overflow-y-auto max-h-[55vh] text-xs">
           {/* Preset Quick Chips */}
-          <div>
-            <div className="text-[11px] font-semibold text-zinc-400 mb-1.5">
-              {locale === "en" ? "Quick Presets" : "快捷微调指令"}
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {presetChips.map((chip) => (
-                <button
-                  key={chip}
-                  type="button"
-                  disabled={isTweaking}
-                  onClick={() => executeAITweak(chip)}
-                  className="text-[11px] px-2.5 py-1.5 rounded-full bg-stone-100 hover:bg-stone-200/80 text-zinc-800 border border-stone-200 transition disabled:opacity-50 select-none active:scale-[0.98] text-left cursor-pointer"
-                >
-                  + {chip}
-                </button>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-1.5">
+            {presetChips.map((chip) => (
+              <button
+                key={chip}
+                type="button"
+                disabled={isTweaking}
+                onClick={() => executeAITweak(chip)}
+                className="text-[11px] px-2.5 py-1.5 rounded-full bg-stone-100 hover:bg-stone-200/80 text-zinc-800 border border-stone-200 transition disabled:opacity-50 select-none active:scale-[0.98] text-left cursor-pointer"
+              >
+                + {chip}
+              </button>
+            ))}
           </div>
 
           {/* Loading State Banner */}

@@ -220,10 +220,7 @@ export default async function DestinationPage({ params }: PageProps) {
           </div>
 
           {/* Crawl-Friendly Directory of All 12 APAC Gateways */}
-          <div className="pt-6 border-t border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">
-              Explore More APAC Slow Travel Gateways:
-            </span>
+          <div className="pt-6 border-t border-stone-100">
             <nav className="flex flex-wrap gap-2">
               {DESTINATION_DIRECTORY.map((dest) => (
                 <Link

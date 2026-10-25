@@ -42,10 +42,7 @@ export const SavedPlansView: React.FC<SavedPlansViewProps> = ({
       {plans.length === 0 ? (
         <div className="text-center py-16 bg-white rounded-3xl border border-dashed border-stone-200 p-8">
           <Bookmark className="w-10 h-10 text-stone-300 mx-auto mb-2" />
-          <div className="text-sm font-semibold text-zinc-700">{t("noSavedTrips")}</div>
-          <p className="text-xs text-zinc-400 mt-1 mb-4">
-            {locale === "en" ? "Craft your next journey." : "开启您的下一趟专属之旅。"}
-          </p>
+          <div className="text-sm font-semibold text-zinc-700 mb-4">{t("noSavedTrips")}</div>
           <button
             type="button"
             onClick={onGoToWizard}
@@ -71,7 +68,7 @@ export const SavedPlansView: React.FC<SavedPlansViewProps> = ({
                     {p.meta.durationDays} {t("daysUnit")}
                   </span>
                   <span className="text-xs text-zinc-400">
-                    {locale === "en" ? "Created: " : "生成于: "} {new Date(p.meta.generatedAt).toLocaleDateString()}
+                    {new Date(p.meta.generatedAt).toLocaleDateString()}
                   </span>
                 </div>
                 <h3 className="font-bold text-base text-zinc-900 group-hover:text-black transition">

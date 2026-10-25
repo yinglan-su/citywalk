@@ -572,8 +572,8 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                   placeholder={
                     selectedCities.length === 0
                       ? locale === "en"
-                        ? "Click to pick or type any APAC/world city (e.g. Beijing, Shanghai, Tokyo, Singapore)..."
-                        : "点击选择或输入亚太/全球城市（如：北京、上海、东京、新加坡）..."
+                        ? "Search or pick a city (e.g. Beijing, Shanghai, Tokyo, Singapore)..."
+                        : "搜索或选择城市（如：北京、上海、东京、新加坡）..."
                       : t("addCityPlaceholder")
                   }
                   className="w-full text-xs font-medium py-1 px-2.5 bg-transparent text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
@@ -595,36 +595,8 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                 {isCitySuggestionsOpen && (
                   <div
                     onClick={(e) => e.stopPropagation()}
-                    className="absolute top-full left-0 mt-2 w-80 sm:w-96 max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-xl border border-stone-200 z-50 overflow-hidden py-1.5 animate-fadeIn"
+                    className="absolute top-full left-0 mt-2 w-80 sm:w-96 max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-xl border border-stone-200 z-50 overflow-hidden py-1 animate-fadeIn"
                   >
-                    <div className="px-3 py-1.5 text-[10px] font-semibold text-zinc-400 uppercase tracking-wider border-b border-stone-100 flex items-center justify-between">
-                      <span className="flex items-center gap-1">
-                        <Globe className="w-3 h-3 text-[#C5A880]" />
-                        <span>
-                          {!cityInput.trim()
-                            ? locale === "en"
-                              ? "Popular Destinations · Type any city"
-                              : "热门目的地 · 支持直接输入全球任意城市"
-                            : locale === "en"
-                            ? "World Cities Database"
-                            : "全球权威城市库验证"}
-                        </span>
-                      </span>
-                      <span className="text-[9px] text-zinc-400">
-                        {!cityInput.trim()
-                          ? locale === "en"
-                            ? "Click to select"
-                            : "点击直接选择"
-                          : matchingCities.length > 0
-                          ? locale === "en"
-                            ? `${matchingCities.length} found`
-                            : `匹配到 ${matchingCities.length} 个城市`
-                          : locale === "en"
-                          ? "Custom entry"
-                          : "自定义名称"}
-                      </span>
-                    </div>
-
                     {matchingCities.length > 0 ? (
                       <div className="max-h-60 overflow-y-auto">
                         {matchingCities.map((city) => {
@@ -662,23 +634,15 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                         })}
                       </div>
                     ) : (
-                      <div className="p-3 text-xs">
-                        <div className="flex items-start gap-2 text-zinc-600 bg-stone-50 p-2.5 rounded-xl border border-stone-200/80 mb-2">
-                          <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5 text-[#C5A880]" />
-                          <div className="text-[11px] leading-relaxed">
-                            {locale === "en"
-                              ? `"${cityInput.trim()}" is not in the top world cities directory, but can still be planned.`
-                              : `「${cityInput.trim()}」未收录在全球主要旅游城市库中，仍可为您规划，请确认拼写准确。`}
-                          </div>
-                        </div>
+                      <div className="p-2.5 text-xs">
                         <button
                           type="button"
                           onClick={() => handleAddCityInput()}
-                          className="w-full py-1.5 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold transition text-center cursor-pointer shadow-xs"
+                          className="w-full py-2 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold transition text-center cursor-pointer shadow-xs"
                         >
                           {locale === "en"
-                            ? `Add "${cityInput.trim()}" as custom destination`
-                            : `确认添加「${cityInput.trim()}」为目的地`}
+                            ? `+ Add "${cityInput.trim()}"`
+                            : `+ 添加「${cityInput.trim()}」`}
                         </button>
                       </div>
                     )}
@@ -687,11 +651,8 @@ export const TripWizard: React.FC<TripWizardProps> = ({
               </div>
             </div>
 
-            {/* Recommended Quick Toggle Chips */}
+            {/* Quick Toggle Chips */}
             <div className="flex flex-wrap gap-1.5 mt-2.5 items-center">
-              <span className="text-[11px] font-medium text-zinc-400 mr-1">
-                {t("recommendedDestinations")}:
-              </span>
               {recommendedCities.map((c) => {
                 const isSelected = selectedCities.includes(c);
                 return (
@@ -718,8 +679,8 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                   <Globe className="w-3.5 h-3.5 text-[#9E825A]" />
                   <span className="text-xs font-bold text-zinc-900 uppercase tracking-wider">
                     {locale === "en"
-                      ? "Is this a foreign destination for you?"
-                      : "是否为异国 / 外语目的地？"}
+                      ? "Destination Type"
+                      : "出行类型"}
                   </span>
                 </div>
 
@@ -760,19 +721,12 @@ export const TripWizard: React.FC<TripWizardProps> = ({
 
               {isForeignDestination && (
                 <div className="p-3.5 rounded-2xl bg-stone-50/90 border border-stone-200/80 space-y-2.5 animate-fadeIn">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold text-zinc-800 uppercase tracking-wider flex items-center gap-1.5">
-                      <Languages className="w-3.5 h-3.5 text-[#9E825A]" />
-                      <span>
-                        {locale === "en"
-                          ? "Local Language Level"
-                          : "当地语言熟悉程度"}
-                      </span>
-                    </span>
-                    <span className="text-[10px] text-zinc-400">
+                  <div className="flex items-center gap-1.5">
+                    <Languages className="w-3.5 h-3.5 text-[#9E825A]" />
+                    <span className="text-[11px] font-bold text-zinc-800 uppercase tracking-wider">
                       {locale === "en"
-                        ? "Adapts bilingual driver cards, menus & booking tips"
-                        : "自动匹配双语指路卡、点餐对照与外宾预约提示"}
+                        ? "Local Language Level"
+                        : "当地语言水平"}
                     </span>
                   </div>
 
@@ -976,11 +930,8 @@ export const TripWizard: React.FC<TripWizardProps> = ({
 
           {/* 3.5 Travel Style (Classic Highlights, Trending & Photogenic, Hidden Gems) */}
           <div>
-            <div className="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2 flex items-center justify-between">
-              <span>{locale === "en" ? "Travel Style" : "旅行风格"}</span>
-              <span className="text-[10px] text-zinc-400 font-normal">
-                {locale === "en" ? "Curates vibe & spot selection" : "决定选点倾向与打卡调性"}
-              </span>
+            <div className="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2">
+              {locale === "en" ? "Travel Style" : "旅行风格"}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               {[

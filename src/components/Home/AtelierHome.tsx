@@ -149,18 +149,7 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
       {/* ------------------------------------------------------------- */}
       {spotlightPlan && (
         <section className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-wrap items-center justify-between gap-2.5 mb-3">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#C5A880] animate-pulse" />
-              <span className="text-xs font-semibold text-zinc-700 tracking-wide font-sans">
-                {locale === "en" ? "Curator's Spotlight" : "精选推荐"}
-              </span>
-              <span className="text-stone-300 text-xs">·</span>
-              <span className="text-[11px] text-zinc-400 font-mono">
-                {String(currentSpotlightIndex + 1).padStart(2, "0")} / {String(activeSpotlightList.length).padStart(2, "0")}
-              </span>
-            </div>
-
+          <div className="flex flex-wrap items-center justify-end gap-1.5 mb-3">
             {/* Destination Quick-Switch Tabs */}
             <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
               {activeSpotlightList.map((plan, idx) => {
@@ -255,16 +244,10 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
             {/* Content Overlay */}
             <div className="absolute inset-0 p-6 sm:p-10 md:p-12 flex flex-col justify-end pointer-events-none">
               <div className="max-w-2xl space-y-3 sm:space-y-4 pointer-events-auto">
-                {/* Badges */}
+                {/* Duration Badge */}
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="px-3 py-1 rounded-full bg-[#C5A880] text-zinc-950 text-xs font-bold tracking-wide">
                     {spotlightPlan.meta.durationDays} {locale === "en" ? "Days" : "天"}
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-medium">
-                    {locale === "en" ? "Gentle Pace" : "轻松步调"}
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-medium">
-                    {locale === "en" ? "Step-Free Paths" : "平缓少台阶"}
                   </span>
                 </div>
 
@@ -452,9 +435,6 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
                   <div className="absolute top-3 left-3 flex items-center gap-1.5">
                     <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
                       {plan.meta.durationDays} {locale === "en" ? "Days" : "天"}
-                    </span>
-                    <span className="px-2.5 py-1 rounded-full bg-zinc-950/80 border border-[#C5A880]/40 backdrop-blur-md text-[#C5A880] text-[10px] font-bold">
-                      {locale === "en" ? "Curated" : "精选"}
                     </span>
                   </div>
                 </div>
