@@ -1,6 +1,6 @@
-# 7ka · Bespoke APAC Slow Travel
+# 7ka · AI Trip Planner & Custom Itinerary Builder
 
-> 7ka (https://7ka.fit) is an AI-powered travel itinerary engine built for EU and US travelers visiting APAC (Beijing, Shanghai, Tokyo, Kyoto, Singapore, Hong Kong, Xi'an, Chengdu, Taipei, and beyond). It specializes in slow travel, barrier-free routing, senior-friendly journeys, and zero-language-barrier cross-border navigation — eliminating backtracking, verifying exact drop-off coordinates, checking museum Monday closures, curating mild local gastronomy, and adapting every itinerary to the traveler's local language proficiency.
+> 7ka (https://7ka.fit) is a free, self-guided AI trip planning web application (not a travel agency or tour operator) built for EU and US independent travelers visiting APAC (Beijing, Shanghai, Tokyo, Kyoto, Singapore, Hong Kong, Xi'an, Chengdu, Taipei, and beyond). It generates customizable day-by-day itineraries with zero-backtrack routing, step-free access coordinates, Monday museum closure checks, mild local dining, and 3-level local language survival flashcards.
 
 ## Core Philosophy & Key Differentiators
 

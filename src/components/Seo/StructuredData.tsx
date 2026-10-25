@@ -4,12 +4,12 @@ export const StructuredData: React.FC = () => {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "7ka",
-    alternateName: ["7ka Bespoke Slow Travel", "7ka Travel"],
+    name: "7ka Trip Planner",
+    alternateName: ["7ka AI Trip Planner", "7ka Bespoke Slow Travel Planner"],
     url: "https://7ka.fit",
     description:
-      "AI-powered gentle travel engine with zero-backtrack routes, verified drop-offs, accessibility notes, and handpicked local dining.",
-    inLanguage: ["zh-CN", "en-US"],
+      "Self-guided AI trip planning tool for independent travelers with zero-backtrack routes, verified drop-offs, accessibility notes, and bilingual flashcards.",
+    inLanguage: ["en-US", "zh-CN"],
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -22,33 +22,26 @@ export const StructuredData: React.FC = () => {
 
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "TravelAgency",
-    name: "7ka",
-    alternateName: "7ka Bespoke Slow Travel",
+    "@type": "WebApplication",
+    name: "7ka Trip Planner",
+    alternateName: "7ka AI Itinerary Planner",
     url: "https://7ka.fit",
-    logo: "https://7ka.fit/favicon.ico",
+    applicationCategory: "TravelApplication",
+    operatingSystem: "All",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
     description:
-      "Bespoke slow travel and barrier-free itinerary curation platform for multigenerational families and relaxed explorers.",
-    knowsAbout: [
-      "Slow Travel",
-      "Zero-Language-Barrier Foreign Travel",
-      "Bilingual Taxi Driver Flashcards",
-      "Point-to-Order Bilingual Menus",
-      "China Travel for Foreign Visitors",
-      "Senior-Friendly Tourism",
-      "Barrier-Free Travel Planning",
-      "Zero-Backtrack Routing",
-      "Kyoto Slow Travel",
-      "Tokyo Gentle Itinerary",
-      "Beijing Forbidden City Accessible Route",
-      "Chengdu Giant Panda Slow Living",
-      "Qingdao Seaside Heritage",
-      "Yanji & Borderland Culture",
-      "Singapore Accessible Green Journey",
-      "Taipei National Palace Museum & Onsen",
+      "Free self-guided AI trip planner and itinerary generator for independent travelers, families, and seniors exploring APAC (not a travel agency or tour operator).",
+    featureList: [
+      "Custom AI Itinerary Generation (1-30 Days)",
+      "Zero-Language-Barrier Foreign Travel (Taxi Driver Flashcards & Point-to-Order Menus)",
+      "Zero-Backtrack Chronological Route Clustering",
+      "Step-Free & Senior-Friendly Drop-off Coordinates",
+      "Standalone Offline HTML Itinerary Export",
     ],
-    areaServed: ["CN", "JP", "SG", "HK", "TW", "Worldwide"],
-    currenciesAccepted: "CNY, JPY, USD, HKD, SGD, TWD",
   };
 
   const itemListSchema = {

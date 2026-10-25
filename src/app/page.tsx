@@ -119,19 +119,24 @@ export default function Home() {
             <div className="space-y-4 sm:space-y-6">
               {/* Elevated Editorial Hero Section */}
               <section className="relative overflow-hidden pt-8 pb-2 sm:pt-12 sm:pb-3 px-4 sm:px-6">
-                <div className="relative z-10 max-w-3xl mx-auto text-center space-y-3">
+                <div className="relative z-10 max-w-3xl mx-auto text-center space-y-2.5">
                   {/* Editorial Headline */}
                   <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-zinc-900 tracking-tight leading-[1.18]">
                     {locale === "en" ? (
                       <>
-                        Your Journey, <span className="italic font-normal text-zinc-700">Tailored to You.</span>
+                        Plan Your Trip, <span className="italic font-normal text-zinc-700">Your Way.</span>
                       </>
                     ) : (
                       <>
-                        专属定制 · <span className="font-normal text-zinc-700">随心成行</span>
+                        自由规划 · <span className="font-normal text-zinc-700">专属您的理想行程</span>
                       </>
                     )}
                   </h1>
+                  <p className="text-xs sm:text-sm text-zinc-500 font-normal">
+                    {locale === "en"
+                      ? "Instant AI itinerary planner for independent travelers — customize routes, pacing, and offline guides in seconds."
+                      : "面向自由行旅客的智能行程规划工具 — 自由定制每日路线、步调与离线路书，非旅行社跟团。"}
+                  </p>
 
                   {/* Generator Console */}
                   <div id="generator-capsule" className="pt-2">
@@ -186,7 +191,7 @@ export default function Home() {
             className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 pb-6 border-b border-stone-100"
           >
             <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">
-              {locale === "en" ? "APAC Gateways:" : "亚太精选:"}
+              {locale === "en" ? "Sample Itineraries:" : "精选行程范本:"}
             </span>
             {DESTINATION_DIRECTORY.map((dest) => (
               <Link
@@ -201,12 +206,12 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="font-serif text-sm font-bold text-zinc-800">
-              7ka<span className="text-[#C5A880]">.</span> Atelier
+              7ka<span className="text-[#C5A880]">.</span> Trip Planner
             </div>
-            <div className="text-zinc-500">
+            <div className="text-zinc-500 text-center">
               {locale === "en"
-                ? "Your Journey, Tailored to You."
-                : "专属定制 · 随心成行"}
+                ? "Self-Guided AI Trip Planning Tool · Not a Travel Agency"
+                : "自由行智能行程规划工具 · 非旅行社"}
             </div>
             <div className="text-zinc-400">© 7ka</div>
           </div>

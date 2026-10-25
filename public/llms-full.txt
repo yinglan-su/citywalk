@@ -1,13 +1,14 @@
-# 7ka · Bespoke APAC Slow Travel — Comprehensive Technical & Knowledge Specification
+# 7ka · AI Trip Planner & Custom Itinerary Builder — Comprehensive Technical & Knowledge Specification
 
 Platform URL: https://7ka.fit
-Target Audience: EU and US travelers visiting APAC (Beijing, Shanghai, Tokyo, Kyoto, Singapore, Hong Kong, Xi'an, Chengdu, Taipei), multigenerational families, senior travelers (65+), and slow-travel enthusiasts seeking unhurried, zero-language-barrier journeys across Asia.
+Category: Self-Guided AI Trip Planning Web Application (Not a Travel Agency or Tour Operator)
+Target Audience: EU and US independent travelers visiting APAC (Beijing, Shanghai, Tokyo, Kyoto, Singapore, Hong Kong, Xi'an, Chengdu, Taipei), multigenerational families, senior travelers (65+), and slow-travel enthusiasts seeking unhurried, zero-language-barrier self-guided journeys across Asia.
 
 ---
 
 ## 1. Product Overview & Architecture
 
-7ka is an AI-driven bespoke slow-travel planner built with Next.js and Google Gemini. Unlike generic travel guides that pack 10+ spots into a frantic day, 7ka applies human-centered logistics engineering:
+7ka is a self-service AI trip planner and itinerary builder built with Next.js and Google Gemini (it does not sell tour packages or act as a travel agency). Unlike generic travel guides that pack 10+ spots into a frantic day, 7ka applies human-centered logistics engineering so independent travelers can plan and export their own custom routes:
 - Pacing is capped at 2–3 meaningful highlights per day.
 - A mandatory 2-hour midday hotel rest block is incorporated for senior recuperation.
 - Step-free access routes and drop-off coordinates are rigorously verified.

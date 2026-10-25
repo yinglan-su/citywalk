@@ -21,13 +21,16 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://7ka.fit"),
   title: {
-    default: "7ka · Bespoke Slow Travel",
-    template: "%s | 7ka",
+    default: "7ka · AI Trip Planner & Custom Itinerary Builder",
+    template: "%s | 7ka Trip Planner",
   },
   description:
-    "Bespoke APAC slow travel for EU & US travelers visiting Beijing, Shanghai, Tokyo, Kyoto, Singapore, Hong Kong, and beyond — with zero-backtrack routes, native-script taxi driver flashcards, and point-to-order menus.",
+    "Self-guided AI trip planner and custom itinerary builder for independent travelers visiting Beijing, Shanghai, Tokyo, Kyoto, Singapore, and beyond — with zero-backtrack routes, taxi driver flashcards, and offline export.",
   keywords: [
     "7ka",
+    "AI trip planner",
+    "custom travel itinerary builder",
+    "self-guided trip planner",
     "APAC slow travel",
     "Asia travel planner for US and EU visitors",
     "Beijing travel itinerary",
@@ -46,13 +49,14 @@ export const metadata: Metadata = {
     "Forbidden City accessible route",
     "Chengdu panda base tour",
     "offline travel guide",
+    "智能行程规划工具",
+    "自由行路线定制",
     "无障碍旅行",
     "家庭亲子慢行",
-    "舒适旅行规划",
     "出境游双语闪卡",
     "外国人来华旅游指南",
   ],
-  authors: [{ name: "7ka Bespoke Travel" }],
+  authors: [{ name: "7ka Trip Planner" }],
   creator: "7ka",
   publisher: "7ka",
   formatDetection: {
@@ -68,17 +72,17 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "7ka · Bespoke APAC Slow Travel",
+    title: "7ka · AI Trip Planner & Custom Itinerary Builder",
     description:
-      "Effortless APAC itineraries across Beijing, Shanghai, Tokyo, Kyoto, and Singapore with verified drop-offs, bilingual taxi driver flashcards, and point-to-order menus.",
+      "Plan your own self-guided APAC itinerary across Beijing, Shanghai, Tokyo, Kyoto, and Singapore with verified drop-offs, bilingual taxi driver flashcards, and offline export.",
     url: "https://7ka.fit",
-    siteName: "7ka",
+    siteName: "7ka Trip Planner",
     images: [
       {
         url: "/images/spot_badaguan.jpg",
         width: 1200,
         height: 630,
-        alt: "7ka Bespoke APAC Slow Travel",
+        alt: "7ka AI Trip Planner",
       },
     ],
     locale: "en_US",
@@ -87,9 +91,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "7ka · Bespoke APAC Slow Travel",
+    title: "7ka · AI Trip Planner & Custom Itinerary Builder",
     description:
-      "Effortless APAC itineraries across Beijing, Shanghai, Tokyo, Kyoto, and Singapore with verified drop-offs, bilingual taxi driver flashcards, and point-to-order menus.",
+      "Plan your own self-guided APAC itinerary across Beijing, Shanghai, Tokyo, Kyoto, and Singapore with verified drop-offs, bilingual taxi driver flashcards, and offline export.",
     images: ["/images/spot_badaguan.jpg"],
   },
   robots: {
