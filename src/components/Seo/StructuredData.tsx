@@ -54,9 +54,9 @@ export const StructuredData: React.FC = () => {
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "7ka Curated Slow Travel Itineraries",
+    name: "7ka Curated APAC Slow Travel Itineraries for International Visitors",
     description:
-      "Handpicked itineraries field-tested for barrier-free access, gentle pacing, and authentic dining.",
+      "Handpicked APAC itineraries across Beijing, Shanghai, Tokyo, Singapore, Kyoto, and Hong Kong field-tested for barrier-free access, gentle pacing, and zero-language-barrier dining.",
     numberOfItems: 12,
     itemListElement: [
       {
@@ -64,15 +64,103 @@ export const StructuredData: React.FC = () => {
         position: 1,
         item: {
           "@type": "TouristTrip",
-          name: "Yanji + Hunchun 6-Day Borderland Charm & Korean Delicacies",
+          name: "Beijing 4-Day Imperial Elegance & Barrier-Free Palace",
           description:
-            "Relaxed exploration of Korean ethnic culture, live Russian king crab feast, and China-DPRK-Russia border.",
-          touristType: ["Seniors", "Families", "Foodies"],
+            "Forbidden City Donghua Gate accessible passage, Summer Palace royal lake cruise, and Temple of Heaven flat cypresses walk.",
+          touristType: ["International Visitors", "Seniors", "History & Heritage Travelers"],
         },
       },
       {
         "@type": "ListItem",
         position: 2,
+        item: {
+          "@type": "TouristTrip",
+          name: "Shanghai 3-Day Maritime Charm & Jiangnan Grace",
+          description:
+            "Waitan accessible riverside promenade, Yu Garden classical corridors, and mild Jiangnan cuisine.",
+          touristType: ["International Visitors", "Seniors", "Urban Walkers"],
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        item: {
+          "@type": "TouristTrip",
+          name: "Tokyo 4-Day Zen Parks & Edomae Flavors",
+          description:
+            "Shinjuku Gyoen flat emerald lawn, Asakusa Senso-ji accessible hall, Sumida River boat, and mild unagi.",
+          touristType: ["International Visitors", "Seniors", "Slow Travelers"],
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        item: {
+          "@type": "TouristTrip",
+          name: "Singapore 4-Day Garden City & Accessible Tropics",
+          description:
+            "Gardens by the Bay climate-controlled domes, Marina Bay Sands SkyPark elevator, and Botanic Gardens flat loops.",
+          touristType: ["International Visitors", "Seniors", "Multigenerational Families"],
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        item: {
+          "@type": "TouristTrip",
+          name: "Kyoto 4-Day Zen Gardens & Arashiyama Serenity",
+          description:
+            "Sagano scenic train, Tenryu-ji flat garden paths, and centuries-old Junsei tofu kaiseki.",
+          touristType: ["International Visitors", "Seniors", "Culture Enthusiasts"],
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 6,
+        item: {
+          "@type": "TouristTrip",
+          name: "Hong Kong 4-Day Victoria Harbour & Lingnan Heritage",
+          description:
+            "Peak Tram VIP fast-track, Star Ferry gentle harbor crossing, West Kowloon cultural park, and Michelin dim sum.",
+          touristType: ["International Visitors", "Seniors", "Families"],
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 7,
+        item: {
+          "@type": "TouristTrip",
+          name: "Xi'an 4-Day Tang Dynasty Glory & Ancient Capital Stroll",
+          description:
+            "Terracotta Warriors barrier-free ramp, Giant Wild Goose Pagoda fountain, and authentic Shaanxi clear broth.",
+          touristType: ["International Visitors", "Seniors", "History Travelers"],
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 8,
+        item: {
+          "@type": "TouristTrip",
+          name: "Chengdu & Dujiangyan 4-Day Shu Rhyme & Daoist Inquiry",
+          description:
+            "Giant Panda Base VIP barrier-free cart, Gaiwan teahouse by the river, and non-spicy Qinshanzhai banquet.",
+          touristType: ["International Visitors", "Seniors", "Multigenerational Families"],
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 9,
+        item: {
+          "@type": "TouristTrip",
+          name: "Taipei 4-Day National Treasure Elegance & Beitou Hot Springs",
+          description:
+            "National Palace Museum accessible passage, Kagaya private sulfur onsen, and Din Tai Fung 18-fold xiaolongbao.",
+          touristType: ["International Visitors", "Seniors", "Hot Spring & Culinary Travelers"],
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 10,
         item: {
           "@type": "TouristTrip",
           name: "Qingdao 3-Day Seaside Slow Travel & European Architecture",
@@ -83,84 +171,7 @@ export const StructuredData: React.FC = () => {
       },
       {
         "@type": "ListItem",
-        position: 3,
-        item: {
-          "@type": "TouristTrip",
-          name: "Kyoto 4-Day Zen Gardens & Arashiyama Serenity",
-          description:
-            "Sagano scenic train, Tenryu-ji flat garden paths, and centuries-old Junsei tofu kaiseki.",
-          touristType: ["Seniors", "Culture Enthusiasts", "Slow Travelers"],
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        item: {
-          "@type": "TouristTrip",
-          name: "Chengdu & Dujiangyan 4-Day Shu Rhyme & Daoist Inquiry",
-          description:
-            "Giant Panda Base VIP barrier-free cart, Gaiwan teahouse by the river, and non-spicy Qinshanzhai banquet.",
-          touristType: ["Seniors", "Multigenerational Families"],
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 5,
-        item: {
-          "@type": "TouristTrip",
-          name: "Beijing 4-Day Imperial Elegance & Barrier-Free Palace",
-          description:
-            "Forbidden City Donghua Gate accessible passage, Summer Palace royal lake cruise, and Temple of Heaven flat cypresses walk.",
-          touristType: ["Seniors", "History & Heritage Travelers"],
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 6,
-        item: {
-          "@type": "TouristTrip",
-          name: "Xi'an 4-Day Tang Dynasty Glory & Ancient Capital Stroll",
-          description:
-            "Terracotta Warriors barrier-free ramp, Giant Wild Goose Pagoda fountain, and authentic Shaanxi clear broth.",
-          touristType: ["Seniors", "History Travelers"],
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 7,
-        item: {
-          "@type": "TouristTrip",
-          name: "Shanghai 3-Day Maritime Charm & Jiangnan Grace",
-          description:
-            "Waitan accessible riverside promenade, Yu Garden classical corridors, and mild Jiangnan cuisine.",
-          touristType: ["Seniors", "Urban Walkers"],
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 8,
-        item: {
-          "@type": "TouristTrip",
-          name: "Hong Kong 4-Day Victoria Harbour & Lingnan Heritage",
-          description:
-            "Peak Tram VIP fast-track, Star Ferry gentle harbor crossing, West Kowloon cultural park, and Michelin dim sum.",
-          touristType: ["Seniors", "Families"],
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 9,
-        item: {
-          "@type": "TouristTrip",
-          name: "Tokyo 4-Day Zen Parks & Edomae Flavors",
-          description:
-            "Shinjuku Gyoen flat emerald lawn, Asakusa Senso-ji accessible hall, Sumida River boat, and mild unagi.",
-          touristType: ["Seniors", "Slow Travelers"],
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 10,
+        position: 11,
         item: {
           "@type": "TouristTrip",
           name: "Xiamen 3-Day Gulangyu Sea Breeze & Egret Island Stroll",
@@ -171,24 +182,13 @@ export const StructuredData: React.FC = () => {
       },
       {
         "@type": "ListItem",
-        position: 11,
-        item: {
-          "@type": "TouristTrip",
-          name: "Singapore 4-Day Garden City & Accessible Tropics",
-          description:
-            "Gardens by the Bay climate-controlled domes, Marina Bay Sands SkyPark elevator, and Botanic Gardens flat loops.",
-          touristType: ["Seniors", "Multigenerational Families"],
-        },
-      },
-      {
-        "@type": "ListItem",
         position: 12,
         item: {
           "@type": "TouristTrip",
-          name: "Taipei 4-Day National Treasure Elegance & Beitou Hot Springs",
+          name: "Yanji + Hunchun 6-Day Borderland Charm & Korean Delicacies",
           description:
-            "National Palace Museum accessible passage, Kagaya private sulfur onsen, and Din Tai Fung 18-fold xiaolongbao.",
-          touristType: ["Seniors", "Hot Spring & Culinary Travelers"],
+            "Relaxed exploration of Korean ethnic culture, live Russian king crab feast, and China-DPRK-Russia border.",
+          touristType: ["Seniors", "Families", "Foodies"],
         },
       },
     ],

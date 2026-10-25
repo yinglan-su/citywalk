@@ -28,12 +28,12 @@ interface AtelierHomeProps {
 type CollectionCategory = "all" | "zen" | "coastal" | "culinary";
 
 const SPOTLIGHT_PLAN_IDS = [
-  "curated_kyoto_4d",
-  "curated_qingdao_3d",
-  "curated_yanji_hunchun_6d",
   "curated_beijing_4d",
-  "curated_xian_4d",
+  "curated_shanghai_3d",
   "curated_tokyo_4d",
+  "curated_singapore_4d",
+  "curated_kyoto_4d",
+  "curated_hongkong_3d",
 ];
 
 export const AtelierHome: React.FC<AtelierHomeProps> = ({

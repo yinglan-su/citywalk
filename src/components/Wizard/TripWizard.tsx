@@ -40,8 +40,18 @@ export const TripWizard: React.FC<TripWizardProps> = ({
 
   const recommendedCities =
     locale === "en"
-      ? ["Kyoto", "Tokyo", "Paris", "Qingdao", "Yanji", "Seoul", "London"]
-      : ["延吉", "珲春", "长白山", "青岛", "威海", "成都", "西安", "京都"];
+      ? [
+          "Beijing",
+          "Shanghai",
+          "Tokyo",
+          "Kyoto",
+          "Singapore",
+          "Hong Kong",
+          "Xi'an",
+          "Chengdu",
+          "Taipei",
+        ]
+      : ["北京", "上海", "东京", "京都", "新加坡", "香港", "西安", "成都", "台北"];
 
   const tripFocusOptions = [
     { value: "foodie", label: t("focusFoodie") },
@@ -109,20 +119,20 @@ export const TripWizard: React.FC<TripWizardProps> = ({
   const cityInputContainerRef = useRef<HTMLDivElement>(null);
   const cityInputRef = useRef<HTMLInputElement>(null);
 
-  // Live matching from world cities database (shows popular gateways when input is empty)
+  // Live matching from world cities database (shows flagship APAC gateways when input is empty)
   const matchingCities = useMemo(() => {
     if (!cityInput.trim()) {
       const popularIds = [
         "cn_beijing",
         "cn_shanghai",
+        "jp_tokyo",
+        "jp_kyoto",
+        "sg_singapore",
+        "cn_hongkong",
         "cn_xian",
         "cn_chengdu",
-        "cn_qingdao",
-        "cn_yanji",
-        "jp_kyoto",
-        "jp_tokyo",
-        "cn_hongkong",
-        "sg_singapore",
+        "tw_taipei",
+        "kr_seoul",
       ];
       return popularIds
         .map((id) => WORLD_CITIES.find((c) => c.id === id))
@@ -186,7 +196,7 @@ export const TripWizard: React.FC<TripWizardProps> = ({
     initialConfig?.customNotes || ""
   );
   const [isForeignDestination, setIsForeignDestination] = useState<boolean>(
-    initialConfig?.isForeignDestination ?? false
+    initialConfig?.isForeignDestination ?? true
   );
   const [hasManuallySetForeign, setHasManuallySetForeign] = useState<boolean>(
     initialConfig?.isForeignDestination !== undefined
@@ -562,8 +572,8 @@ export const TripWizard: React.FC<TripWizardProps> = ({
                   placeholder={
                     selectedCities.length === 0
                       ? locale === "en"
-                        ? "Click to pick or type any world city (e.g. Beijing, Kyoto, Paris)..."
-                        : "点击选择或输入全球任意城市（如：北京、京都、巴黎）..."
+                        ? "Click to pick or type any APAC/world city (e.g. Beijing, Shanghai, Tokyo, Singapore)..."
+                        : "点击选择或输入亚太/全球城市（如：北京、上海、东京、新加坡）..."
                       : t("addCityPlaceholder")
                   }
                   className="w-full text-xs font-medium py-1 px-2.5 bg-transparent text-zinc-900 placeholder:text-zinc-400 focus:outline-none"

@@ -1,7 +1,7 @@
-# 7ka · Bespoke Slow Travel — Comprehensive Technical & Knowledge Specification
+# 7ka · Bespoke APAC Slow Travel — Comprehensive Technical & Knowledge Specification
 
 Platform URL: https://7ka.fit
-Target Audience: Multigenerational families, senior travelers (65+), travelers with strollers or mobility limitations, and slow-travel enthusiasts seeking unhurried, culturally rich journeys.
+Target Audience: EU and US travelers visiting APAC (Beijing, Shanghai, Tokyo, Kyoto, Singapore, Hong Kong, Xi'an, Chengdu, Taipei), multigenerational families, senior travelers (65+), and slow-travel enthusiasts seeking unhurried, zero-language-barrier journeys across Asia.
 
 ---
 
