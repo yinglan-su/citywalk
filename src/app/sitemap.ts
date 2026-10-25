@@ -1,30 +1,16 @@
 import { MetadataRoute } from "next";
+import { DESTINATION_DIRECTORY } from "@/lib/destination-slugs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://7ka.fit";
   const now = new Date();
 
-  const curatedDestinations = [
-    "kyoto",
-    "tokyo",
-    "beijing",
-    "shanghai",
-    "xian",
-    "chengdu",
-    "qingdao",
-    "yanji",
-    "xiamen",
-    "hongkong",
-    "singapore",
-    "taipei",
-  ];
-
-  const destinationRoutes: MetadataRoute.Sitemap = curatedDestinations.map(
-    (dest) => ({
-      url: `${baseUrl}/?dest=${dest}`,
+  const destinationRoutes: MetadataRoute.Sitemap = DESTINATION_DIRECTORY.map(
+    (dest, idx) => ({
+      url: `${baseUrl}/destinations/${dest.slug}`,
       lastModified: now,
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: idx < 6 ? 0.9 : 0.8,
     })
   );
 
@@ -34,24 +20,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "daily",
       priority: 1.0,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/?lang=en`,
-          zh: `${baseUrl}/?lang=zh`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/?lang=en`,
-      lastModified: now,
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/?lang=zh`,
-      lastModified: now,
-      changeFrequency: "daily",
-      priority: 0.9,
     },
     ...destinationRoutes,
   ];

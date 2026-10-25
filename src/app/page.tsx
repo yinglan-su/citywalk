@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { TripWizard } from "@/components/Wizard/TripWizard";
 import { AtelierHome } from "@/components/Home/AtelierHome";
@@ -9,6 +10,10 @@ import { ItineraryDashboard } from "@/components/Itinerary/ItineraryDashboard";
 import { TravelPlan, WizardConfig } from "@/types/itinerary";
 import { decompressPlan, getLocalPlans, saveLocalPlan } from "@/lib/storage";
 import { useLanguage } from "@/context/LanguageContext";
+import {
+  DESTINATION_DIRECTORY,
+  getDestinationPlanBySlug,
+} from "@/lib/destination-slugs";
 
 export default function Home() {
   const { locale, t } = useLanguage();
@@ -24,16 +29,32 @@ export default function Home() {
   useEffect(() => {
     updateSavedCount();
 
-    // Check URL Hash for shared compressed plan (Zero-database instant link sharing!)
-    if (typeof window !== "undefined" && window.location.hash.includes("#plan=")) {
-      const match = window.location.hash.match(/#plan=([^&]+)/);
-      if (match && match[1]) {
-        const decompressed = decompressPlan(match[1]);
-        if (decompressed) {
-          setCurrentPlan(decompressed);
+    if (typeof window !== "undefined") {
+      // Check URL query params (?dest=beijing or ?view=saved)
+      const params = new URLSearchParams(window.location.search);
+      const destParam = params.get("dest");
+      const viewParam = params.get("view");
+      if (destParam) {
+        const matched = getDestinationPlanBySlug(destParam, locale);
+        if (matched) {
+          setCurrentPlan(matched.plan);
           setViewMode("itinerary");
-          saveLocalPlan(decompressed);
-          updateSavedCount();
+        }
+      } else if (viewParam === "saved") {
+        setViewMode("saved");
+      }
+
+      // Check URL Hash for shared compressed plan (Zero-database instant link sharing!)
+      if (window.location.hash.includes("#plan=")) {
+        const match = window.location.hash.match(/#plan=([^&]+)/);
+        if (match && match[1]) {
+          const decompressed = decompressPlan(match[1]);
+          if (decompressed) {
+            setCurrentPlan(decompressed);
+            setViewMode("itinerary");
+            saveLocalPlan(decompressed);
+            updateSavedCount();
+          }
         }
       }
     }
@@ -157,19 +178,37 @@ export default function Home() {
         </main>
       </div>
 
-      {/* Footer */}
+      {/* Footer with Crawlable APAC Destination Directory */}
       <footer className="border-t border-stone-200/80 bg-white py-10 mt-20 text-xs text-zinc-400">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="font-serif text-sm font-bold text-zinc-800">
-            7ka<span className="text-[#C5A880]">.</span> Atelier
-          </div>
-          <div className="text-zinc-500">
-            {locale === "en"
-              ? "Bespoke Slow Travel"
-              : "慢调有时 · 步履安然"}
-          </div>
-          <div className="text-zinc-400">
-            © 7ka
+        <div className="max-w-6xl mx-auto px-4 space-y-6">
+          <nav
+            aria-label="Curated APAC Destinations"
+            className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 pb-6 border-b border-stone-100"
+          >
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">
+              {locale === "en" ? "APAC Gateways:" : "亚太精选:"}
+            </span>
+            {DESTINATION_DIRECTORY.map((dest) => (
+              <Link
+                key={dest.slug}
+                href={`/destinations/${dest.slug}`}
+                className="text-zinc-500 hover:text-zinc-900 transition-colors"
+              >
+                {locale === "en" ? dest.cityEn : dest.cityZh}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="font-serif text-sm font-bold text-zinc-800">
+              7ka<span className="text-[#C5A880]">.</span> Atelier
+            </div>
+            <div className="text-zinc-500">
+              {locale === "en"
+                ? "Your Journey, Tailored to You."
+                : "专属定制 · 随心成行"}
+            </div>
+            <div className="text-zinc-400">© 7ka</div>
           </div>
         </div>
       </footer>

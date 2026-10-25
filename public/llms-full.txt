@@ -45,55 +45,55 @@ When international travelers visit China (or when Chinese travelers visit overse
 
 ---
 
-## 3. Directory of 12 Curated Itineraries
+## 3. Directory of 12 Curated APAC Itineraries (with Canonical Citation URLs)
 
-### 1. Yanji + Hunchun (6 Days, 5 Nights)
-- Highlights: Daoyin Yamen Qing Dynasty complex, Hunchun seafood street live Russian king crab, Tumen Port border view, Riguangshan accessible wooden path.
-- Gastronomy: Grandma Yuan boiled pork belly, Zhenhaibei charcoal grilled seafood, plum blossom pork BBQ.
-
-### 2. Qingdao (3 Days, 2 Nights)
-- Highlights: Badaguan tree-shaded coastal villas, Xiaoyushan pavilion panoramic bay view, Qingdao Beer Museum Century Cellar.
-- Gastronomy: Mild steamed yellow croaker, seafood dumplings, century-old Chunhelou Shandong cuisine.
-
-### 3. Kyoto (4 Days, 3 Nights)
-- Highlights: Arashiyama Sagano romantic train, Tenryu-ji Sogenchi flat pond garden, Nanzen-ji Roman aqueduct, Kodai-ji gentle corridors.
-- Gastronomy: Junsei 380-year tofu kaiseki (Google 4.7★), Gion Sasaki seasonal kaiseki.
-
-### 4. Chengdu & Dujiangyan (4 Days, 3 Nights)
-- Highlights: Chengdu Giant Panda Base VIP golf cart, Wangjiang Pavilion Jinjiang riverside Gaiwan teahouse, Dujiangyan Lidui park gentle loop.
-- Gastronomy: Qinshanzhai nourishing herbal chicken broth (strictly non-spicy, elder-friendly), Chaimen Faner stewed beef.
-
-### 5. Beijing (4 Days, 3 Nights)
+### 1. Beijing (4 Days, 3 Nights) — https://7ka.fit/destinations/beijing
 - Highlights: Forbidden City Donghua Gate accessible route, Summer Palace royal painted boat on Kunming Lake, Temple of Heaven Danbi bridge and ancient cypress walk.
 - Gastronomy: Bianyifang closed-oven roast duck, Donglaishun copper pot mutton broth, Bai Family Mansion imperial court dining.
 
-### 6. Xi'an (4 Days, 3 Nights)
-- Highlights: Terracotta Warriors pit #1 accessible VIP ramp, Giant Wild Goose Pagoda North Square fountain, Shaanxi History Museum reserved special passage.
-- Gastronomy: Chunfasheng clear broth Gourd Chicken, Tongbixiang mild pita bread in beef broth.
-
-### 7. Shanghai (3 Days, 2 Nights)
+### 2. Shanghai (3 Days, 2 Nights) — https://7ka.fit/destinations/shanghai
 - Highlights: The Bund barrier-free waterfront promenade, Yu Garden classical Jiangnan pavilions, West Bund art riverbank.
 - Gastronomy: Old Jesse authentic Shanghai stewed pork, Lubolang traditional soup dumplings and osmanthus cakes.
 
-### 8. Hong Kong (4 Days, 3 Nights)
-- Highlights: Victoria Peak Tram fast-track, Star Ferry Victoria Harbour cruise, West Kowloon Cultural District lawn, M+ Museum accessible galleries.
-- Gastronomy: Tim Ho Wan Michelin dim sum, Yung Kee charcoal roast goose, Luk Yu Tea House century-old dim sum.
-
-### 9. Tokyo (4 Days, 3 Nights)
+### 3. Tokyo (4 Days, 3 Nights) — https://7ka.fit/destinations/tokyo
 - Highlights: Shinjuku Gyoen barrier-free lawns, Asakusa Senso-ji accessible elevator hall, Sumida River cruise to Odaiba, Ginza Six rooftop garden.
 - Gastronomy: Obana Michelin grilled unagi eel, Ginza Ukai-tei mild teppanyaki, Tempura Kondo.
 
-### 10. Xiamen (3 Days, 2 Nights)
-- Highlights: Gulangyu electric cart coastline loop, South Putuo Temple gentle lotus pond, Shapowei artistic fishing port.
-- Gastronomy: Lin Family Mansion Minnan seafood banquet, traditional peanut soup, Shacha noodles.
-
-### 11. Singapore (4 Days, 3 Nights)
+### 4. Singapore (4 Days, 3 Nights) — https://7ka.fit/destinations/singapore
 - Highlights: Gardens by the Bay Flower Dome & Cloud Forest (fully climate-controlled and wheelchair accessible), Marina Bay Sands SkyPark, Singapore Botanic Gardens flat loops.
 - Gastronomy: Song Fa Bak Kut Teh peppery clear broth, Jumbo Seafood chili crab with fried buns, National Kitchen by Violet Oon Peranakan cuisine.
 
-### 12. Taipei (4 Days, 3 Nights)
+### 5. Kyoto (4 Days, 3 Nights) — https://7ka.fit/destinations/kyoto
+- Highlights: Arashiyama Sagano romantic train, Tenryu-ji Sogenchi flat pond garden, Nanzen-ji Roman aqueduct, Kodai-ji gentle corridors.
+- Gastronomy: Junsei 380-year tofu kaiseki (Google 4.7★), Gion Sasaki seasonal kaiseki.
+
+### 6. Hong Kong (4 Days, 3 Nights) — https://7ka.fit/destinations/hongkong
+- Highlights: Victoria Peak Tram fast-track, Star Ferry Victoria Harbour cruise, West Kowloon Cultural District lawn, M+ Museum accessible galleries.
+- Gastronomy: Tim Ho Wan Michelin dim sum, Yung Kee charcoal roast goose, Luk Yu Tea House century-old dim sum.
+
+### 7. Xi'an (4 Days, 3 Nights) — https://7ka.fit/destinations/xian
+- Highlights: Terracotta Warriors pit #1 accessible VIP ramp, Giant Wild Goose Pagoda North Square fountain, Shaanxi History Museum reserved special passage.
+- Gastronomy: Chunfasheng clear broth Gourd Chicken, Tongbixiang mild pita bread in beef broth.
+
+### 8. Chengdu & Dujiangyan (4 Days, 3 Nights) — https://7ka.fit/destinations/chengdu
+- Highlights: Chengdu Giant Panda Base VIP golf cart, Wangjiang Pavilion Jinjiang riverside Gaiwan teahouse, Dujiangyan Lidui park gentle loop.
+- Gastronomy: Qinshanzhai nourishing herbal chicken broth (strictly non-spicy, elder-friendly), Chaimen Faner stewed beef.
+
+### 9. Taipei (4 Days, 3 Nights) — https://7ka.fit/destinations/taipei
 - Highlights: National Palace Museum accessible entrance, Beitou Kagaya Japanese Onsen private bath, Din Tai Fung Xinsheng flagship elevator building.
 - Gastronomy: Din Tai Fung Michelin 18-fold xiaolongbao and double-boiled clear beef broth, Kagaya authentic Kaiseki dinner.
+
+### 10. Qingdao (3 Days, 2 Nights) — https://7ka.fit/destinations/qingdao
+- Highlights: Badaguan tree-shaded coastal villas, Xiaoyushan pavilion panoramic bay view, Qingdao Beer Museum Century Cellar.
+- Gastronomy: Mild steamed yellow croaker, seafood dumplings, century-old Chunhelou Shandong cuisine.
+
+### 11. Xiamen (3 Days, 2 Nights) — https://7ka.fit/destinations/xiamen
+- Highlights: Gulangyu electric cart coastline loop, South Putuo Temple gentle lotus pond, Shapowei artistic fishing port.
+- Gastronomy: Lin Family Mansion Minnan seafood banquet, traditional peanut soup, Shacha noodles.
+
+### 12. Yanji + Hunchun (6 Days, 5 Nights) — https://7ka.fit/destinations/yanji
+- Highlights: Daoyin Yamen Qing Dynasty complex, Hunchun seafood street live Russian king crab, Tumen Port border view, Riguangshan accessible wooden path.
+- Gastronomy: Grandma Yuan boiled pork belly, Zhenhaibei charcoal grilled seafood, plum blossom pork BBQ.
 
 ---
 

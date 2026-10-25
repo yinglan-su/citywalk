@@ -17,18 +17,18 @@
 
 ## Curated APAC Itineraries (Flagship Gateways First)
 
-1. **Beijing, China (4 Days / 3 Nights)**: Forbidden City Donghua Gate accessible passage, Summer Palace royal lake cruise, Temple of Heaven ancient cypresses.
-2. **Shanghai, China (3 Days / 2 Nights)**: Bund barrier-free riverside deck, Yu Garden classical pavilions, mild Jiangnan cuisine.
-3. **Tokyo, Japan (4 Days / 3 Nights)**: Shinjuku Gyoen flat greenery, Asakusa Senso-ji accessible hall, Sumida riverboat, Ginza gentle stroll.
-4. **Singapore (4 Days / 3 Nights)**: Gardens by the Bay climate-controlled domes, Marina Bay Sands SkyPark, Botanic Gardens flat loops.
-5. **Kyoto, Japan (4 Days / 3 Nights)**: Arashiyama Sagano scenic train, Tenryu-ji Sogenchi pond, Nanzen-ji aqueduct, Junsei 380-year tofu kaiseki.
-6. **Hong Kong (4 Days / 3 Nights)**: Victoria Peak Tram VIP fast-track, Star Ferry crossing, West Kowloon cultural park, Michelin dim sum.
-7. **Xi'an, China (4 Days / 3 Nights)**: Terracotta Warriors accessible ramp, Giant Wild Goose Pagoda, Shaanxi culinary clear broth.
-8. **Chengdu & Dujiangyan, China (4 Days / 3 Nights)**: Giant Panda Base VIP sightseeing cart, Wangjiang Pavilion riverside tea, non-spicy Qinshanzhai medicinal chicken broth.
-9. **Taipei, Taiwan (4 Days / 3 Nights)**: National Palace Museum accessible route, Beitou Kagaya sulfur private onsen, Din Tai Fung 18-fold xiaolongbao.
-10. **Qingdao, China (3 Days / 2 Nights)**: Badaguan tree-lined coastal villas, Xiaoyushan observation deck, Qingdao Beer Museum tasting.
-11. **Xiamen, China (3 Days / 2 Nights)**: Gulangyu electric cart coastline loop, South Putuo Temple, Shapowei heritage walk.
-12. **Yanji & Hunchun, China (6 Days / 5 Nights)**: Russian live king crab feast, century-old Daoyin Yamen, China-DPRK-Russia border panoramas.
+1. **Beijing, China (4 Days / 3 Nights)** — https://7ka.fit/destinations/beijing : Forbidden City Donghua Gate accessible passage, Summer Palace royal lake cruise, Temple of Heaven ancient cypresses.
+2. **Shanghai, China (3 Days / 2 Nights)** — https://7ka.fit/destinations/shanghai : Bund barrier-free riverside deck, Yu Garden classical pavilions, mild Jiangnan cuisine.
+3. **Tokyo, Japan (4 Days / 3 Nights)** — https://7ka.fit/destinations/tokyo : Shinjuku Gyoen flat greenery, Asakusa Senso-ji accessible hall, Sumida riverboat, Ginza gentle stroll.
+4. **Singapore (4 Days / 3 Nights)** — https://7ka.fit/destinations/singapore : Gardens by the Bay climate-controlled domes, Marina Bay Sands SkyPark, Botanic Gardens flat loops.
+5. **Kyoto, Japan (4 Days / 3 Nights)** — https://7ka.fit/destinations/kyoto : Arashiyama Sagano scenic train, Tenryu-ji Sogenchi pond, Nanzen-ji aqueduct, Junsei 380-year tofu kaiseki.
+6. **Hong Kong (4 Days / 3 Nights)** — https://7ka.fit/destinations/hongkong : Victoria Peak Tram VIP fast-track, Star Ferry crossing, West Kowloon cultural park, Michelin dim sum.
+7. **Xi'an, China (4 Days / 3 Nights)** — https://7ka.fit/destinations/xian : Terracotta Warriors accessible ramp, Giant Wild Goose Pagoda, Shaanxi culinary clear broth.
+8. **Chengdu & Dujiangyan, China (4 Days / 3 Nights)** — https://7ka.fit/destinations/chengdu : Giant Panda Base VIP sightseeing cart, Wangjiang Pavilion riverside tea, non-spicy Qinshanzhai medicinal chicken broth.
+9. **Taipei, Taiwan (4 Days / 3 Nights)** — https://7ka.fit/destinations/taipei : National Palace Museum accessible route, Beitou Kagaya sulfur private onsen, Din Tai Fung 18-fold xiaolongbao.
+10. **Qingdao, China (3 Days / 2 Nights)** — https://7ka.fit/destinations/qingdao : Badaguan tree-lined coastal villas, Xiaoyushan observation deck, Qingdao Beer Museum tasting.
+11. **Xiamen, China (3 Days / 2 Nights)** — https://7ka.fit/destinations/xiamen : Gulangyu electric cart coastline loop, South Putuo Temple, Shapowei heritage walk.
+12. **Yanji & Hunchun, China (6 Days / 5 Nights)** — https://7ka.fit/destinations/yanji : Russian live king crab feast, century-old Daoyin Yamen, China-DPRK-Russia border panoramas.
 
 ## Custom AI Generation
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   Compass,
   ArrowRight,
@@ -19,6 +20,7 @@ import {
 import { useLanguage } from "@/context/LanguageContext";
 import { TravelPlan, WizardConfig } from "@/types/itinerary";
 import { getCuratedPlans } from "@/lib/curated-plans-provider";
+import { getDestinationSlugByPlanId } from "@/lib/destination-slugs";
 
 interface AtelierHomeProps {
   onSelectPlan: (plan: TravelPlan) => void;
@@ -505,10 +507,28 @@ export const AtelierHome: React.FC<AtelierHomeProps> = ({
                   <span>{locale === "en" ? "Remix" : "复刻"}</span>
                 </button>
 
-                <div className="inline-flex items-center gap-1 text-xs font-bold text-zinc-900 group-hover:translate-x-1 transition-transform">
-                  <span>{locale === "en" ? "Explore" : "查看"}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </div>
+                {(() => {
+                  const destSlug = getDestinationSlugByPlanId(plan.id);
+                  return destSlug ? (
+                    <Link
+                      href={`/destinations/${destSlug}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onSelectPlan(plan);
+                      }}
+                      className="inline-flex items-center gap-1 text-xs font-bold text-zinc-900 group-hover:translate-x-1 transition-transform"
+                    >
+                      <span>{locale === "en" ? "Explore" : "查看"}</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  ) : (
+                    <div className="inline-flex items-center gap-1 text-xs font-bold text-zinc-900 group-hover:translate-x-1 transition-transform">
+                      <span>{locale === "en" ? "Explore" : "查看"}</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           ))}
